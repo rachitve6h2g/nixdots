@@ -1,7 +1,0 @@
-{
-  "indexes": [
-    "nixpkgs",
-    "home-manager",
-    "nixos"
-  ]
-}

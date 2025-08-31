@@ -1,5 +1,0 @@
-[Service]
-ExecStart=/nix/store/qxk46izvl0csk9icvgbgazlshj94hhb4-home-manager-auto-upgrade/bin/home-manager-auto-upgrade
-
-[Unit]
-Description=Home Manager upgrade

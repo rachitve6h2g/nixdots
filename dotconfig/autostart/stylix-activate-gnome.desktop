@@ -1,4 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=/nix/store/lpmx34d8340s5ipzv8bgxsk1a388h5f1-stylix-activate-gnome/bin/stylix-activate-gnome enable
-Name=Stylix: enable User Themes extension for GNOME Shell
