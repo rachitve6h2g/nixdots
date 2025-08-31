@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./.codeberg/assets/nixos-logo.png" width="150px"/>
+    <img src="./.github/assets/nixos-logo.png" width="150px"/>
     <h2 align="center"><br>Chris's flake for NixOS<br></h2>
 </p>
 
