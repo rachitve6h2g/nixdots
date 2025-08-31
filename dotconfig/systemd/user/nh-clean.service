@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/nix/store/q57khkn91gv4svnck2nip4ln988qyvp7-nh-4.1.2/bin/nh clean user --keep 5 --keep-since 3d
+Type=oneshot
+
+[Unit]
+Description=Nh clean (user)

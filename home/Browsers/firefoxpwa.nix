@@ -1,0 +1,8 @@
+{
+  programs = {
+    firefoxpwa = {
+      enable = true;
+
+    };
+  };
+}

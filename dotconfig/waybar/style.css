@@ -1,0 +1,161 @@
+window#waybar, tooltip {
+    background: alpha(@base00, 1.000000);
+}
+
+* {
+    font-family: "ComicShannsMono Nerd Font";
+    font-size: 10pt;
+}
+
+@define-color base00 #202020; @define-color base01 #2a2827;
+@define-color base02 #504945; @define-color base03 #5a524c;
+@define-color base04 #bdae93; @define-color base05 #ddc7a1;
+@define-color base06 #ebdbb2; @define-color base07 #fbf1c7;
+
+@define-color base08 #ea6962; @define-color base09 #e78a4e;
+@define-color base0A #d8a657; @define-color base0B #a9b665;
+@define-color base0C #89b482; @define-color base0D #7daea3;
+@define-color base0E #d3869b; @define-color base0F #bd6f3e;
+window#waybar, tooltip {
+    color: @base05;
+}
+
+tooltip {
+    border-color: @base0D;
+}
+#wireplumber,
+#pulseaudio,
+#sndio {
+  padding: 0 5px;
+}
+#wireplumber.muted,
+#pulseaudio.muted,
+#sndio.muted {
+  padding: 0 5px;
+}
+#upower,
+#battery {
+  padding: 0 5px;
+}
+#upower.charging,
+#battery.Charging {
+  padding: 0 5px;
+}
+#network {
+  padding: 0 5px;
+}
+#network.disconnected {
+  padding: 0 5px;
+}
+#user {
+  padding: 0 5px;
+}
+#clock {
+  padding: 0 5px;
+}
+#backlight {
+  padding: 0 5px;
+}
+#cpu {
+  padding: 0 5px;
+}
+#disk {
+  padding: 0 5px;
+}
+#idle_inhibitor {
+  padding: 0 5px;
+}
+#temperature {
+  padding: 0 5px;
+}
+#mpd {
+  padding: 0 5px;
+}
+#language {
+  padding: 0 5px;
+}
+#keyboard-state {
+  padding: 0 5px;
+}
+#memory {
+  padding: 0 5px;
+}
+#window {
+  padding: 0 5px;
+}
+#bluetooth {
+  padding: 0 5px;
+}
+#bluetooth.disabled {
+  padding: 0 5px;
+}
+.modules-left #workspaces button {
+    border-bottom: 3px solid transparent;
+}
+.modules-left #workspaces button.focused,
+.modules-left #workspaces button.active {
+    border-bottom: 3px solid @base05;
+}
+.modules-center #workspaces button {
+    border-bottom: 3px solid transparent;
+}
+.modules-center #workspaces button.focused,
+.modules-center #workspaces button.active {
+    border-bottom: 3px solid @base05;
+}
+.modules-right #workspaces button {
+    border-bottom: 3px solid transparent;
+}
+.modules-right #workspaces button.focused,
+.modules-right #workspaces button.active {
+    border-bottom: 3px solid @base05;
+}
+
+* {
+  background-color: @base00;
+  color: @base05;
+
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#tray,
+#cpu,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#clock {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-expand-icon {
+  margin-right: 12px;
+}
+
+tooltip {
+  padding: 2px;
+}

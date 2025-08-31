@@ -1,0 +1,6 @@
+[Service]
+ExecStart=/nix/store/9a959817yr68ip3nhlz1g77gcshcz28k-trash-cli-0.24.5.26/bin/trash-empty 30
+Type=oneshot
+
+[Unit]
+Description=Empty trash older than 30 days

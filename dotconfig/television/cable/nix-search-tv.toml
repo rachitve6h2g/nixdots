@@ -1,0 +1,9 @@
+[metadata]
+description = "Search nix options and packages"
+name = "nix-search-tv"
+
+[preview]
+command = "/nix/store/g1bsqg1bg866jr46a76sklykrdb4gkx9-nix-search-tv-2.1.7/bin/nix-search-tv preview {}"
+
+[source]
+command = "/nix/store/g1bsqg1bg866jr46a76sklykrdb4gkx9-nix-search-tv-2.1.7/bin/nix-search-tv print"

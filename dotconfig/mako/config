@@ -1,0 +1,31 @@
+actions=true
+anchor=top-right
+background-color=#202020FF
+border-color=#7daea3
+border-radius=10
+default-timeout=5000
+font=ComicShannsMono Nerd Font 10
+icon-path=/nix/store/4mdh138b4f2kcqw87ybcbnksicdvg07d-gruvbox-plus-icons-6.3.0/share/icons/Gruvbox-Plus-Dark
+icons=true
+ignore-timeout=true
+layer=overlay
+markup=true
+max-history=10
+on-button-middle=exec makoctl menu -n "$id" wofi -S dmenu -p 'Select Action: '
+on-notify=exec /nix/store/icisyjrv3rm85f7ikxkg1wwiswimwv6f-mpv-with-scripts-0.40.0/bin/mpv /nix/store/5ls3d4rakwnngb8g7r0zs0w95ijlgwbc-sound-theme-freedesktop-0.8/share/sounds/freedesktop/stereo/message.oga
+progress-color=over #504945
+sort=-time
+text-color=#ddc7a1
+
+[mode=do-not-disturb]
+invisible=1
+
+[urgency=high]
+background-color=#202020FF
+border-color=#ea6962
+text-color=#ddc7a1
+
+[urgency=low]
+background-color=#202020FF
+border-color=#5a524c
+text-color=#ddc7a1

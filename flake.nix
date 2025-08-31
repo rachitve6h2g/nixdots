@@ -7,8 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
-
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
@@ -23,19 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland plugins fix
-    # Remove this once it's fixed
-    # Refer https://github.com/hyprwm/hyprland-plugins/pull/338/files (CShader replaced by SShader)
-    #hyprlandPlugins = {
-    #  url = "github:hyprwm/hyprland-plugins/c491d2831448645f24a1597a17f564aa52691ac6";
-    #  flake = false;
-    #};
+    mnw.url = "github:Gerg-L/mnw";
 
     niri-flake.url = "github:sodiboo/niri-flake";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -55,16 +45,12 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
     };
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       flake-parts,
+      # nixpkgs,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -77,6 +63,20 @@
         inputs.git-hooks-nix.flakeModule
         inputs.home-manager.flakeModules.home-manager
       ];
+
+      flake = {
+        homeConfigurations.krish = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./home
+            inputs.stylix.homeModules.stylix
+          ];
+        };
+      };
 
       perSystem =
         {

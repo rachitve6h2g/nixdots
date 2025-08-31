@@ -1,0 +1,57 @@
+[[mgr.prepend_keymap]]
+desc = "run lazygit"
+on = ["g", "i"]
+run = "plugin lazygit"
+
+[[mgr.prepend_keymap]]
+desc = "Show Git file changes"
+on = ["g", "c"]
+run = "plugin vcs-files"
+
+[[mgr.prepend_keymap]]
+on = ["<C-e>"]
+run = "seek 5"
+
+[[mgr.prepend_keymap]]
+on = ["<C-y>"]
+run = "seek -5"
+
+[[mgr.prepend_keymap]]
+desc = "Recursively enter the child directory, skipping children with only a single subdirectory"
+on = ["L"]
+run = "plugin bypass"
+
+[[mgr.prepend_keymap]]
+desc = "Recursively enter the child directory, skipping children with only a single subdirectory"
+on = ["H"]
+run = "plugin bypass reverse"
+
+[[mgr.prepend_keymap]]
+desc = "Smart Filter"
+on = ["F"]
+run = "plugin smart-filter"
+
+[[mgr.prepend_keymap]]
+desc = "Toggle tree/list dir preview"
+on = ["E"]
+run = "plugin eza-preview"
+
+[[mgr.prepend_keymap]]
+desc = "Increment tree level"
+on = ["-"]
+run = "plugin eza-preview inc-level"
+
+[[mgr.prepend_keymap]]
+desc = "Decrement tree level"
+on = ["_"]
+run = "plugin eza-preview dec-level"
+
+[[mgr.prepend_keymap]]
+desc = "Toggle tree follow symlinks"
+on = ["$"]
+run = "plugin eza-preview toggle-follow-symlinks"
+
+[[mgr.prepend_keymap]]
+desc = "Toggle hidden files"
+on = ["*"]
+run = "plugin eza-preview toggle-hidden"

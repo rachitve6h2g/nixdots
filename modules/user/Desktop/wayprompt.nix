@@ -1,5 +1,0 @@
-{
-  programs.wayprompt = {
-    enable = true;
-  };
-}

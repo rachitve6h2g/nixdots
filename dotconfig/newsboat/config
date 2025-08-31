@@ -1,0 +1,8 @@
+max-items 0
+browser /nix/store/1jsdycia1353ip0rpp31bwrl75iqs5fa-xdg-utils-1.2.1/bin/xdg-open
+reload-threads 5
+auto-reload yes
+reload-time 60
+prepopulate-query-feeds yes
+
+

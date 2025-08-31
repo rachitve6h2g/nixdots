@@ -1,0 +1,10 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/nix/store/vpqcwz36lmjyh71a37b23x10f2i80ia7-udiskie-2.5.7/bin/udiskie
+
+[Unit]
+After=graphical-session.target
+Description=udiskie mount daemon
+PartOf=graphical-session.target

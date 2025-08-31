@@ -126,3 +126,27 @@ If you have rmpc you can download and configure lyrics from [[https://lrclib.net
 
 ** 🔥 Pro Tip
 > Lua is small but powerful — you can master it quickly by writing real code regularly.
+
+===========================================================================
+ _                            _   _ _
+| |    ___  __ _ _ __ _ __   | \ | (_)_  __
+| |   / _ \/ _` | '__| '_ \  |  \| | \ \/ /
+| |__|  __/ (_| | |  | | | | | |\  | |>  <
+|_____\___|\__,_|_|  |_| |_| |_| \_|_/_/\_\
+
+===========================================================================
+* Sources
+- Read the dotfiles of Librephoenix (he's got a way to blur qutebrowser)
+
+* Learning Resources
+I just made a list of learning resources that I used to understand NixOS, so perfect timing!
+
+[[https://zero-to-nix.com/][ Overall review]]
+ [[https://nix.dev/][Overall review alternative]]
+[[https://youtu.be/9fWrxmEYGAs][ Best installation guide (for the calamares installer ISO)]]
+[[https://youtu.be/C5eAecVeO_c][ Home-manager intro + how to make nix modules (YouTube)]]
+[[https://youtu.be/DXz3FJszfo0][ Flakes intro + convert your system config into a flake]]
+[[https://elatov.github.io/2022/01/building-a-nix-package/][ How to build your own nix package]]
+[[https://mynixos.com/][ Build Dev-shells, images, home-manager configs and even your own NixOS in the browser]]
+ https://docs.nix.zone/
+

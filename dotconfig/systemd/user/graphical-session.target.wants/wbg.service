@@ -1,0 +1,10 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/nix/store/w0qglygf2m415bk8v0sdyfssdkz2m357-wbg-1.2.0/bin/wbg %h/.dotfiles/hosts/core/Desktop/anime_skull.png
+
+[Unit]
+After=niri.service
+PartOf=graphical-session.target
+Requires=niri.service

@@ -1,0 +1,73 @@
+{
+  "chat.editor.fontFamily": "ComicShannsMono Nerd Font",
+  "chat.editor.fontSize": 18.666666666666668,
+  "debug.console.fontFamily": "ComicShannsMono Nerd Font",
+  "debug.console.fontSize": 18.666666666666668,
+  "editor.fontFamily": "ComicShannsMono Nerd Font",
+  "editor.fontSize": 18.666666666666668,
+  "editor.formatOnSave": true,
+  "editor.inlayHints.fontFamily": "ComicShannsMono Nerd Font",
+  "editor.inlineSuggest.fontFamily": "ComicShannsMono Nerd Font",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.sectionHeaderFontSize": 12.0,
+  "extension.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "git.confirmSync": true,
+  "git.openRepositoryInParentFolders": "always",
+  "markdown.preview.fontFamily": "ComicShannsMono Nerd Font",
+  "markdown.preview.fontSize": 18.666666666666668,
+  "nix.enableLanguageServer": true,
+  "nix.formatterPath": "nixfmt",
+  "nix.serverPath": "nixd",
+  "nix.serverSettings": {
+    "nixd": {
+      "formatting": {
+        "command": [
+          "nixfmt"
+        ]
+      },
+      "options": {
+        "nixos": {
+          "expr": "(builtins.getFlake \"/home/krish/.dotfiles\").nixosConfigurations.hppavilion.options"
+        }
+      }
+    }
+  },
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.showHiddenFiles": true,
+  "redhat.telemetry.enabled": true,
+  "scm.inputFontFamily": "ComicShannsMono Nerd Font",
+  "scm.inputFontSize": 17.333333333333336,
+  "screencastMode.fontSize": 74.66666666666667,
+  "terminal.integrated.fontSize": 18.666666666666668,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "j"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<Esc>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    }
+  ],
+  "vim.useCtrlKeys": true,
+  "workbench.colorTheme": "Stylix",
+  "workbench.iconTheme": "catppuccin-mocha"
+}

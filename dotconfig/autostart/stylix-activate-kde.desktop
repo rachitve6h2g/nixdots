@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=/nix/store/f85jn70c74gyg3s1hx0nbq03pn6wkx62-stylix-kde-apply-plasma-theme/bin/stylix-kde-apply-plasma-theme
+Name=Stylix: activate KDE theme
+X-KDE-AutostartScript=true

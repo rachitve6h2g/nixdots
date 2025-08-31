@@ -1,7 +1,0 @@
-{
-  services = {
-    swww = {
-      enable = true;
-    };
-  };
-}

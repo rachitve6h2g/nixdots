@@ -1,0 +1,15 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+Environment=PATH=/nix/store/lb33m49aslmvkx5l4xrkiy7m6nbh2kqf-bash-interactive-5.3p0/bin
+ExecStart=/nix/store/p6c0l31x4fzk31jzc07xyfgr2wd9zrfw-swayidle-1.8.0/bin/swayidle -w timeout 15 '/nix/store/qdv9ha7qkbc23d0bg6vh6gl9c7p7gnrw-libnotify-0.8.6/bin/notify-send '\''Locking in 5 seconds'\'' -t 5000' timeout 20 /nix/store/0i5fh9fvkcm9pw32smr7cl897h2xsc8z-swaylock-effects-1.7.0.0/bin/swaylock timeout 25 '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-off-monitors' resume '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-on-monitors' timeout 30 '/nix/store/wq3ivni0plh7g8xl3my8qr9llh4dy7q4-systemd-257.6/bin/systemctl suspend' before-sleep '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-off-monitors;/nix/store/0i5fh9fvkcm9pw32smr7cl897h2xsc8z-swaylock-effects-1.7.0.0/bin/swaylock' after-resume '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-on-monitors' lock '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-off-monitors;/nix/store/0i5fh9fvkcm9pw32smr7cl897h2xsc8z-swaylock-effects-1.7.0.0/bin/swaylock' unlock '/nix/store/py1pcia4886n8dc9yakx4w2g0zj80bb1-niri-25.05.1/bin/niri msg action power-on-monitors'
+Restart=always
+Type=simple
+
+[Unit]
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+Description=Idle manager for Wayland
+Documentation=man:swayidle(1)
+PartOf=graphical-session.target

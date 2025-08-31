@@ -11,7 +11,7 @@
           };
           modules = [
             inputs.disko.nixosModules.disko
-            ../modules/core
+            ./core
             ../modules/overlays
             ./${hostname}
           ];

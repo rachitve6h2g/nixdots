@@ -1,0 +1,9 @@
+[Install]
+WantedBy=timers.target
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Unit]
+Description=Run trash-empty daily
