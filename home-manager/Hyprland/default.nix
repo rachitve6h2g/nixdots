@@ -44,7 +44,6 @@
 
       plugins = with pkgs.hyprlandPlugins; [
         hyprexpo
-        hyprtrails
         hypr-dynamic-cursors
       ];
 
@@ -60,6 +59,12 @@
             gesture_distance = 300;
             gesture_positive = false;
           };
+
+          dynamic-cursors = {
+            hyprcursor = {
+              enabled = true;
+            };
+          };
         };
 
         monitor = [
@@ -67,9 +72,9 @@
         ];
 
         # To test some lines or stuff
-        source = [
-          "~/.config/hypr/testings.conf"
-        ];
+        # source = [
+        #   "~/.config/hypr/testings.conf"
+        # ];
 
         "$terminal" = "${pkgs.app2unit}/bin/app2unit -T";
         "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
@@ -95,8 +100,8 @@
           shadow = {
             enabled = true;
             ignore_window = true;
-            range = 30;
-            render_power = 4;
+            range = 10;
+            render_power = 3;
           };
 
           blur = {
@@ -161,19 +166,6 @@
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
-          # vfr = 1;
-          # vrr = 1;
-          mouse_move_enables_dpms = true;
-          key_press_enables_dpms = true;
-          animate_manual_resizes = false;
-          animate_mouse_windowdragging = false;
-          enable_swallow = false;
-          swallow_regex = "(foot|kitty|alacritty|Alacritty)";
-          new_window_takes_over_fullscreen = 2;
-          allow_session_lock_restore = true;
-          session_lock_xray = true;
-          initial_workspace_tracking = false;
-          focus_on_activate = true;
         };
 
         input = {
