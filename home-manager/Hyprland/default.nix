@@ -61,8 +61,8 @@
         };
 
         decoration = {
-          rounding = 0;
-          # rounding_power = 5;
+          rounding = 18;
+          rounding_power = 5;
 
           active_opacity = 1.0;
           inactive_opacity = 1.0;
@@ -77,8 +77,18 @@
 
           blur = {
             enabled = true;
-            size = 3;
-            passes = 1;
+            xray = true;
+            special = false;
+            new_optimizations = true;
+            size = 14;
+            passes = 3;
+            brightness = 1;
+            noise = 0.01;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
+            input_methods = true;
+            input_methods_ignorealpha = 0.8;
             vibrancy = 0.1696;
           };
         };
