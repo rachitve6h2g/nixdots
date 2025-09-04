@@ -38,41 +38,28 @@
     {
       self,
       nixpkgs,
-      nur,
       home-manager,
       ...
     }@inputs:
     let
-      inherit (self) outputs;
-
-      systems = [
-        "x86_64-linux"
-      ];
-
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      system = "x86_64-linux";
     in
     {
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-      overlays = import ./overlays { inherit inputs; };
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      formatter = nixpkgs.legacyPackages.${system}.nixfmt;
       nixosConfigurations = {
         nixpavilion = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./nixos
 
-            {
-              nixpkgs.overlays = [
-                nur.overlays.default
-              ];
-            }
+            ./pkgs
+            ./overlays
 
             home-manager.nixosModules.home-manager
 
             {
               home-manager = {
-                extraSpecialArgs = { inherit inputs outputs; };
+                extraSpecialArgs = { inherit inputs; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.krish = ./home-manager/home.nix;

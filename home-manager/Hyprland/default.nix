@@ -34,6 +34,7 @@
         enable = false;
       };
       xwayland.enable = false;
+
       importantPrefixes = [
         "$"
         "bezier"
@@ -41,9 +42,33 @@
         "output"
       ];
 
+      plugins = with pkgs.hyprlandPlugins; [
+        hyprexpo
+        hyprtrails
+        hypr-dynamic-cursors
+      ];
+
       settings = {
+        plugin = {
+          hyprexpo = {
+            columns = 3;
+            gap_size = 5;
+            bg_col = "rgb(000000)";
+            workspace_method = "first 1";
+            enable_gesture = true;
+            gesture_fingers = 3;
+            gesture_distance = 300;
+            gesture_positive = false;
+          };
+        };
+
         monitor = [
           ",preferred,auto,1"
+        ];
+
+        # To test some lines or stuff
+        source = [
+          "~/.config/hypr/testings.conf"
         ];
 
         "$terminal" = "${pkgs.app2unit}/bin/app2unit -T";
@@ -69,10 +94,9 @@
 
           shadow = {
             enabled = true;
-            range = 2;
-            render_power = 3;
-            # Managed by stylix
-            # color = "";
+            ignore_window = true;
+            range = 30;
+            render_power = 4;
           };
 
           blur = {
@@ -137,6 +161,18 @@
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
+          # vfr = 1;
+          # vrr = 1;
+          mouse_move_enables_dpms = true;
+          key_press_enables_dpms = true;
+          animate_manual_resizes = false;
+          animate_mouse_windowdragging = false;
+          enable_swallow = false;
+          swallow_regex = "(foot|kitty|alacritty|Alacritty)";
+          new_window_takes_over_fullscreen = 2;
+          allow_session_lock_restore = true;
+          session_lock_xray = true;
+          initial_workspace_tracking = false;
           focus_on_activate = true;
         };
 
@@ -144,12 +180,23 @@
           kb_layout = "us";
           kb_variant = "colemak_dh";
           kb_options = "ctrl:swapcaps";
+          numlock_by_default = true;
 
           follow_mouse = 1;
+          off_window_axis_events = 2;
           sensitivity = 0;
+
           touchpad = {
             natural_scroll = true;
+            disable_while_typing = true;
+            clickfinger_behavior = true;
+            scroll_factor = 0.5;
           };
+        };
+
+        cursor = {
+          zoom_factor = 1;
+          zoom_rigid = false;
         };
 
         gestures = {
@@ -188,6 +235,9 @@
           # Scroll through existing workspaces with mod + scroll
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
+
+          # For hyprexpo plugin
+          "$mod, O, hyprexpo:expo, toggle"
         ]
         ++ (
           # workspaces
@@ -217,7 +267,7 @@
           in
           [
             # Laptop multimedia keys for volume and LCD brightness
-            ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+            ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 0.9 @DEFAULT_AUDIO_SINK@ 5%+"
             ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
             ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"

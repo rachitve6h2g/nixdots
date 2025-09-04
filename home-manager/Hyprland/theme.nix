@@ -7,8 +7,8 @@
 {
   stylix = {
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-hyprcursor;
+      name = "Bibata-Modern-Classic-hyprcursor";
       size = 24;
     };
 

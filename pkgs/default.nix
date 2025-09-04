@@ -1,5 +1,10 @@
-# Custom packages, that can be defined similarly to ones from nixpkgs
-# You can build them using 'nix build .#example'
-pkgs: {
-  # example = pkgs.callPackage ./example { };
+{ ... }:
+
+let
+  overlay = self: super: {
+    bibata-hyprcursor = super.callPackage ./bibata-hyprcursor.nix { };
+  };
+in
+{
+  nixpkgs.overlays = [ overlay ];
 }
