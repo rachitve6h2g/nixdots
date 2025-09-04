@@ -1,5 +1,6 @@
 {
-  description = "My experimental flake";
+  # Template credit goes to Misterio77/nix-starter-configs
+  description = "Krish's flake";
 
   inputs = {
     disko = {
@@ -7,25 +8,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
-    git-hooks-nix.url = "github:cachix/git-hooks.nix";
-
     home-manager = {
-      url = "github:nix-community/home-manager"; # The nixpkgs version and home-manager version should be same
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     mnw.url = "github:Gerg-L/mnw";
 
-    niri-flake.url = "github:sodiboo/niri-flake";
-
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -38,55 +29,57 @@
     };
 
     stylix = {
-      url = "github:danth/stylix"; # use "github:nix-community/stylix" for stable.
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
     };
   };
 
   outputs =
     {
-      flake-parts,
-      # nixpkgs,
+      self,
+      nixpkgs,
+      nur,
+      home-manager,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    let
+      inherit (self) outputs;
+
       systems = [
         "x86_64-linux"
       ];
-      imports = [
-        ./hosts
-        ./modules/treefmt/flake-module.nix
-        inputs.git-hooks-nix.flakeModule
-        inputs.home-manager.flakeModules.home-manager
-      ];
 
-      flake = {
-        homeConfigurations.krish = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
-          extraSpecialArgs = {
-            inherit inputs;
-          };
+      overlays = import ./overlays { inherit inputs; };
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      nixosConfigurations = {
+        nixpavilion = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
           modules = [
-            ./home
-            inputs.stylix.homeModules.stylix
+            ./nixos
+
+            {
+              nixpkgs.overlays = [
+                nur.overlays.default
+              ];
+            }
+
+            home-manager.nixosModules.home-manager
+
+            {
+              home-manager = {
+                extraSpecialArgs = { inherit inputs outputs; };
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.krish = ./home-manager/home.nix;
+              };
+            }
           ];
         };
       };
-
-      perSystem =
-        {
-          pkgs,
-          # system,
-          ...
-        }:
-        {
-          pre-commit.settings.hooks.nixfmt-rfc-style.enable = true;
-          formatter = pkgs.nixfmt-rfc-style;
-        };
     };
 }

@@ -1,0 +1,25 @@
+{
+  imports = [
+    ./battery.nix
+    ./bluetooth.nix
+    ./boot-loader.nix
+    ./btrfs-autoscrub.nix
+    ./cleanup.nix
+    ./compileopts.nix
+    ./consolekeymap.nix
+    ./graphics.nix
+    ./hyprland.nix
+    ./kdeconnect.nix
+    ./keymap.nix
+    ./networking.nix
+    ./nh.nix
+    ./nix-index.nix
+    ./plymouth.nix
+    ./security.nix
+    ./sound.nix
+    ./system-stylix.nix
+    ./system.nix
+    ./thunar.nix
+    ./user.nix
+  ];
+}
