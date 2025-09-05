@@ -11,6 +11,7 @@
         # cursor_trail_decay = "0.1 0.4";
         window_margin_width = 21.75;
         shell = "bash";
+        notify_on_cmd_finish = "unfocused 5.0 command notify-send --icon=kitty \"Job finished with status: %s %c\"";
       };
     };
   };

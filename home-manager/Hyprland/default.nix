@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  osConfig,
   lib,
   ...
 }:
@@ -29,6 +30,12 @@
   wayland.windowManager = with config.lib.stylix.colors; {
     hyprland = {
       enable = true;
+
+      # Cannot be set to null like told in the Hyprland wiki, because of
+      # hyprsunset
+      package = osConfig.programs.hyprland.package;
+      portalPackage = osConfig.programs.hyprland.portalPackage;
+
       sourceFirst = true;
       systemd = {
         enable = false;
