@@ -42,6 +42,8 @@
         nixcon = "cd /etc/nixos";
         ".." = "cd ..";
         ns = "tv nix-search-tv";
+
+        btop = "btop --force-utf";
       };
       sessionVariables = {
         EDITOR = "nvim";

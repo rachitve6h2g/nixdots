@@ -75,7 +75,8 @@
         };
 
         monitor = [
-          ",preferred,auto,1"
+          "eDP-1,1920x1080@60.05600,0x0,1"
+          "HDMI-A-1,1920x1080@120.00,1920x0,1"
         ];
 
         # To test some lines or stuff
@@ -213,7 +214,8 @@
           "$mod, R, exec, $menu"
           "$mod, P, pseudo, # dwindle"
           "$mod, E, togglesplit, # dwindle"
-          "$mod, F, fullscreen,"
+          "$mod, F, fullscreen, 0"
+          "$modSHIFT, F, fullscreen, 1"
 
           # focus with mod + arrow keys
           "$mod, h, movefocus, l"

@@ -11,7 +11,3 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.treesitter.language.register("nix", "nix")
-
-require("stay-centered").setup()
-
-require("nvim-highlight-colors").setup({})

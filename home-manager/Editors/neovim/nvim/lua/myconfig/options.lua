@@ -57,7 +57,6 @@ local options = {
   hlsearch = true,
 
   -- statusline
-  showmode = false,
   showcmd = true,
 
   -- Only one statusline, for better separator between horizontal splits
