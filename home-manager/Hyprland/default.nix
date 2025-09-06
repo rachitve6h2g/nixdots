@@ -179,7 +179,7 @@
         input = {
           kb_layout = "us";
           kb_variant = "colemak_dh";
-          kb_options = "ctrl:swapcaps";
+          kb_options = "caps:swapescape";
           numlock_by_default = true;
 
           follow_mouse = 1;

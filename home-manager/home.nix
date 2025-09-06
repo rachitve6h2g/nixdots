@@ -1,4 +1,4 @@
-{ inputs, osConfig, ... }:
+{ osConfig, ... }:
 {
   home = rec {
     username = "krish";
