@@ -38,7 +38,6 @@
     {
       # self,
       nixpkgs,
-      nur,
       home-manager,
       ...
     }@inputs:
