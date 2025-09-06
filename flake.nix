@@ -38,6 +38,7 @@
     {
       # self,
       nixpkgs,
+      nur,
       home-manager,
       ...
     }@inputs:
@@ -51,6 +52,8 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./nixos
+
+            # nur.modules.nixos.default
 
             ./pkgs
             ./overlays

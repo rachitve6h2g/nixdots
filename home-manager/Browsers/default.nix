@@ -80,7 +80,6 @@
           {
             # Unhook, YouTube suggestions removed.
             "myallychou@gmail.com" = {
-              # install_url = "https://addons.mozilla.org/firefox/downloads/file/4263531/youtube_recommended_videos-1.6.7.xpi";
               install_url = moz "4263531";
               installation_mode = "force_installed";
               private_browsing = "true";

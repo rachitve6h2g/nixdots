@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     ansifilter
     bluetui
+    cheese
     gthumb
     impala
     (uget.override {
