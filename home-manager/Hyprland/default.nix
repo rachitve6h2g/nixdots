@@ -27,6 +27,14 @@
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
+  programs = {
+    hyprshot = {
+      enable = true;
+      # Saves screenshots into the $XDG_PICTURES_DIR/Screenshot directory.
+      saveLocation = "${config.xdg.userDirs.pictures}/Screenshot";
+    };
+  };
+
   wayland.windowManager = with config.lib.stylix.colors; {
     hyprland = {
       enable = true;
@@ -239,6 +247,11 @@
 
           # For hyprexpo plugin
           "$mod, O, hyprexpo:expo, toggle"
+
+          # For hyprshot screenshot
+          "$mod, PRINT, exec, hyprshot -m window" # For a window
+          ", PRINT, exec, hyprshot -m output"
+          "$modSHIFT, PRINT, exec, hyprshot -m region"
         ]
         ++ (
           # workspaces
