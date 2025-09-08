@@ -13,17 +13,7 @@
 
 # Notes:
 
-- Use this to download the dots with the wallpapers.
-    ```bash
-    $git --recurse-submodules https://codeberg.org/rachitve6h2g/dotfiles.git
-    ```
-
-    If it's necessary to download the git repo fast (coz it takes too much time to download)
-    ```bash
-    $git submodule init
-    $git submodule update
-    ```
-
+- If wallpapers are needed, the [wallpapers](https//github.com/rachitve6h2g/Wallpapers) or the [resources](./resources.md) can be used for the links.
 
 # TODO:
 - [ ] Have one directory for lock icons, wallpapers, etc.
