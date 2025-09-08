@@ -45,36 +45,18 @@
                     {
                       "/root" = {
                         mountpoint = "/";
-                        # mountOptions = [
-                        #   "compress=zstd"
-                        #   "noatime"
-                        #   "ssd"
-                        # ];
                         mountOptions = mountOpts;
                       };
                       "/home" = {
                         mountpoint = "/home";
-                        # mountOptions = [
-                        #   "compress=zstd"
-                        #   "noatime"
-                        #   "ssd"
-                        # ];
                         mountOptions = mountOpts;
                       };
                       "/nix" = {
                         mountpoint = "/nix";
-                        # mountOptions = [
-                        #   "compress=zstd"
-                        #   "noatime"
-                        # ];
                         mountOptions = mountOpts;
                       };
                       "/persist" = {
                         mountpoint = "/persist";
-                        # mountOptions = [
-                        #   "compress=zstd"
-                        #   "noatime"
-                        # ];
                         mountOptions = mountOpts;
                       };
                     };
