@@ -8,11 +8,6 @@
   };
   programs = {
     home-manager.enable = true;
-
-    nix-index = {
-      enable = osConfig.programs.nix-index.enable;
-      enableBashIntegration = osConfig.programs.nix-index.enableBashIntegration;
-    };
   };
 
   imports = [

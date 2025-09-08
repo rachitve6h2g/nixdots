@@ -28,6 +28,19 @@
         };
       };
 
+      # signing = {
+      #   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEL6Z8uvB3G6fKauDN0t5UeoO6OpdLscviTJes0udjQ1";
+      #   signByDefault = true;
+      # };
+      extraConfig = {
+        # gpg = {
+        #   format = "ssh";
+        # };
+        push = {
+          autoSetupRemote = true;
+        };
+      };
+
       aliases = {
         co = "checkout";
         s = "status";

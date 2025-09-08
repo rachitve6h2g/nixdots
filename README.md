@@ -10,11 +10,6 @@
 # Installation Notes:
 
 - For disk partioning (using [disko](https://github.com/nix-community/disko))
-- Post installation run:
-    ```bash
-    $nix-index
-    ```
-    to create a database of all packages.
 
 # Notes:
 

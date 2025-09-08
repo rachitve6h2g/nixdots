@@ -25,7 +25,6 @@
     yazi.enableBashIntegration = true;
     zoxide.enableBashIntegration = true;
     starship.enableBashIntegration = true;
-    nix-index.enableBashIntegration = true;
     television.enableBashIntegration = true;
     kitty.shellIntegration.enableBashIntegration = true;
 
