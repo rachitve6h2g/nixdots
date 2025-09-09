@@ -87,11 +87,6 @@
           "HDMI-A-1,1920x1080@120.00,1920x0,1"
         ];
 
-        # To test some lines or stuff
-        # source = [
-        #   "~/.config/hypr/testings.conf"
-        # ];
-
         "$terminal" = "${pkgs.app2unit}/bin/app2unit -T";
         "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
         "$filemanager" = "${pkgs.app2unit}/bin/app2unit yazi.desktop";
@@ -182,6 +177,9 @@
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
+
+          enable_swallow = true;
+          swallow_regex = "kitty";
         };
 
         input = {

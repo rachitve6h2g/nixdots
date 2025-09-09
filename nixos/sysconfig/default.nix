@@ -13,6 +13,7 @@
     ./keymap.nix
     ./networking.nix
     ./nh.nix
+    ./nix-index.nix
     ./plymouth.nix
     ./security.nix
     ./sound.nix
