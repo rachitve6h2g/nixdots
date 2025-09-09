@@ -1,4 +1,10 @@
 { lib, pkgs, ... }:
+let
+  userVars = {
+    EDITOR = "vim";
+    KITTY_ENABLE_WAYLAND = 1;
+  };
+in
 {
   imports = [
     ./bat.nix
@@ -7,6 +13,7 @@
     ./kitty.nix
     ./readline.nix
     ./starship
+    ./vivid.nix
     ./ripgrep.nix
     ./zoxide.nix
   ];
@@ -17,6 +24,7 @@
     };
 
     packages = with pkgs; [ vivid ];
+    sessionVariables = userVars;
   };
 
   programs = {
@@ -26,6 +34,7 @@
     zoxide.enableBashIntegration = true;
     starship.enableBashIntegration = true;
     television.enableBashIntegration = true;
+    vivid.enableBashIntegration = true;
     kitty.shellIntegration.enableBashIntegration = true;
 
     bash = {
@@ -44,16 +53,10 @@
 
         btop = "btop --force-utf";
       };
-      sessionVariables = {
-        EDITOR = "nvim";
-      };
+      sessionVariables = userVars;
 
       bashrcExtra =
         let
-          vivid_setup = # bash
-            ''
-              export LS_COLORS="$(vivid generate gruvbox-dark-hard)"
-            '';
           interactive_dangers = # bash
             ''
               rm() { command rm -i "''${@}"; }
@@ -78,7 +81,6 @@
             '';
         in
         lib.mkMerge [
-          vivid_setup
           interactive_dangers
           lazygit_change_dir
         ];
