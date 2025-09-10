@@ -8,6 +8,7 @@
 {
   imports = [
     ./clipboard.nix
+    ./fuzzel.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprsunset.nix
@@ -15,7 +16,6 @@
     ./poweralertd.nix
     ./theme.nix
     ./waybar.nix
-    ./wofi.nix
   ];
 
   home = {
@@ -24,8 +24,12 @@
 
   services.playerctld.enable = true;
 
-  xdg.configFile."uwsm/env".source =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile = {
+    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "uwsm/env-hyprland".text = ''
+      export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
+    '';
+  };
 
   programs = {
     hyprshot = {
@@ -88,7 +92,7 @@
         ];
 
         "$terminal" = "${pkgs.app2unit}/bin/app2unit -T";
-        "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
+        "$menu" = "${pkgs.fuzzel}/bin/fuzzel";
         "$filemanager" = "${pkgs.app2unit}/bin/app2unit yazi.desktop";
 
         general = {
