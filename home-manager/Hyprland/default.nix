@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  osConfig,
+  # osConfig,
   lib,
   ...
 }:
@@ -39,10 +39,10 @@
     hyprland = {
       enable = true;
 
-      # Cannot be set to null like told in the Hyprland wiki, because of
-      # hyprsunset
-      package = osConfig.programs.hyprland.package;
-      portalPackage = osConfig.programs.hyprland.portalPackage;
+      # Set to null to follow the nixos version of package and portalPackage.
+      # See Hyprland wiki for reasons.
+      package = null;
+      portalPackage = null;
 
       sourceFirst = true;
       systemd = {
