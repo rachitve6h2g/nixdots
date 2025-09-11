@@ -1,7 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   userVars = {
-    EDITOR = "vim";
+    # EDITOR = if !config.services.emacs.defaultEditor then "vim" else "";
     KITTY_ENABLE_WAYLAND = 1;
   };
 in

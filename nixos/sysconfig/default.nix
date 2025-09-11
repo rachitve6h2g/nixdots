@@ -13,8 +13,10 @@
     ./keymap.nix
     ./networking.nix
     ./nh.nix
+    ./niri.nix
     ./nix-index.nix
     ./plymouth.nix
+    ./sddm.nix
     ./security.nix
     ./sound.nix
     ./system-stylix.nix
