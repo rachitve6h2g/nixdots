@@ -23,4 +23,7 @@
 
   # To not use the niri polkit agent
   systemd.user.services.niri-flake-polkit.enable = false;
+
+  # Enable the sodiboo official cache.
+  niri-flake.cache.enable = true;
 }

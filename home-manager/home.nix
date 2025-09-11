@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+# { osConfig, ... }:
 {
   home = rec {
     username = "krish";
@@ -14,8 +14,8 @@
     ./Browsers
     ./Editors
     ./Git
-    ./Hyprland
     ./Media
+    ./Niri
     ./Programs
     ./Shell
 

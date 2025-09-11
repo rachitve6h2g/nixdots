@@ -7,8 +7,8 @@
 {
   stylix = {
     cursor = {
-      package = pkgs.bibata-hyprcursor;
-      name = "Bibata-Modern-Classic-hyprcursor";
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
       size = 24;
     };
 
@@ -22,18 +22,9 @@
     };
   };
 
-  home.pointerCursor =
-    let
-      stylix_cursor = config.stylix.cursor;
-    in
-    {
-      dotIcons.enable = false;
-
-      hyprcursor = {
-        enable = true;
-        size = stylix_cursor.size;
-      };
-    };
+  home.pointerCursor = {
+    dotIcons.enable = false;
+  };
 
   gtk = {
     enable = true;

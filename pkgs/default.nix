@@ -2,7 +2,7 @@
 
 let
   overlay = self: super: {
-    bibata-hyprcursor = super.callPackage ./bibata-hyprcursor.nix { };
+    # bibata-hyprcursor = super.callPackage ./bibata-hyprcursor.nix { };
   };
 in
 {

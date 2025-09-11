@@ -8,7 +8,6 @@
     ./compileopts.nix
     ./consolekeymap.nix
     ./graphics.nix
-    ./hyprland.nix
     ./kdeconnect.nix
     ./keymap.nix
     ./networking.nix

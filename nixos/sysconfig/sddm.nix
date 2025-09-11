@@ -41,7 +41,7 @@
           };
         };
       };
-      defaultSession = "hyprland-uwsm";
+      defaultSession = "niri-uwsm";
     };
   };
 }
