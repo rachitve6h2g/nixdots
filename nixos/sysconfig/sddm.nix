@@ -1,6 +1,6 @@
 {
   inputs,
-  pkgs,
+  config,
   lib,
   ...
 }:
@@ -27,10 +27,8 @@
           settings = {
             Background =
               let
-                wallpaper = pkgs.fetchurl {
-                  url = "https://github.com/AngelJumbo/gruvbox-wallpapers/blob/main/wallpapers/anime/anime_skull.png?raw=true";
-                  hash = "sha256-cI8tgi0ADVpvWbk+8tTKA+4RmV1pdLNLfCdc5EUxQj4=";
-                };
+                # Use ~/.dotfiles/home-manager/Niri/wallpaper.nix source.
+                wallpaper = config.home-manager.users.krish.stylix.image;
               in
               lib.cleanSource wallpaper;
             ScreenWidth = 1920;

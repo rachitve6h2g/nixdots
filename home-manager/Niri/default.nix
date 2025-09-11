@@ -208,7 +208,9 @@ in
           XF86MonBrightnessUp = {
             action = spawn [
               "brightnessctl"
-              "s"
+              "-e4"
+              "-n2"
+              "set"
               "5%+"
             ];
             allow-when-locked = true;
@@ -216,7 +218,9 @@ in
           XF86MonBrightnessDown = {
             action = spawn [
               "brightnessctl"
-              "s"
+              "-e4"
+              "-n2"
+              "set"
               "5%-"
             ];
             allow-when-locked = true;
