@@ -29,6 +29,7 @@ in
     ./theme.nix
     ./wallpaper.nix
     ./waybar.nix
+    ./wlsunset.nix
   ];
 
   home = {
@@ -89,6 +90,10 @@ in
             enable = true;
             max-scroll-amount = "0%";
           };
+          workspace-auto-back-and-forth = true;
+          warp-mouse-to-focus = {
+            enable = true;
+          };
         };
 
         binds = with config.lib.niri.actions; {
@@ -133,6 +138,16 @@ in
           "Mod+Ctrl+I".action = move-workspace-up;
 
           "Mod+1".action = focus-workspace 1;
+          "Mod+2".action = focus-workspace 2;
+          "Mod+3".action = focus-workspace 3;
+          "Mod+4".action = focus-workspace 4;
+          "Mod+5".action = focus-workspace 5;
+          "Mod+6".action = focus-workspace 6;
+          "Mod+7".action = focus-workspace 7;
+          "Mod+8".action = focus-workspace 8;
+          "Mod+9".action = focus-workspace 9;
+          "Mod+0".action = focus-workspace 10;
+
           # "Mod+Ctrl+1".action = move-column-to-workspace 1;
 
           "Mod+BracketLeft".action = consume-or-expel-window-left;
@@ -256,7 +271,12 @@ in
         };
 
         layout = {
-          gaps = 30;
+          gaps = 16;
+          struts = {
+            left = 64;
+            right = 64;
+          };
+
           background-color = "transparent";
           center-focused-column = "on-overflow";
           always-center-single-column = true;

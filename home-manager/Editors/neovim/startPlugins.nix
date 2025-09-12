@@ -32,6 +32,7 @@ let
     mini-completion # For completion
     mini-clue # lightweight which-key replacement
     mini-files # File explorer
+    mini-surround # For surrounds
 
     # Aesthetics mini
     mini-animate # for aesthetics

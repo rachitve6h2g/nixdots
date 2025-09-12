@@ -89,6 +89,19 @@
         # about:config settings defined globally
         Preferences = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+          # Disable the pocket extension, and the home-feed.
+          "extensions.pocket.enabled" = false;
+          "extensions.pocket.showHome" = false;
+          "browser.newtabpage.activity-stream.discoverystream.saveToPocketCard.enabled" = false;
+          "browser.newtabpage.activity-stream.discoverystream.personalization.enabled" = false;
+          "browser.newtabpage.activity-stream.showSearch" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
         };
       };
 
