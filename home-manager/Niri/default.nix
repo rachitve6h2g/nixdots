@@ -96,6 +96,18 @@ in
           };
         };
 
+        outputs = {
+          "eDP-1" = {
+            enable = true;
+            focus-at-startup = true;
+            mode = {
+              refresh = 60.056;
+              width = 1980;
+              height = 1080;
+            };
+          };
+        };
+
         binds = with config.lib.niri.actions; {
           "Mod+D" = {
             action = spawn "fuzzel";

@@ -54,6 +54,7 @@ let
       bash
       comment
       fish
+      kdl
       luadoc
       qmljs
       gitignore
