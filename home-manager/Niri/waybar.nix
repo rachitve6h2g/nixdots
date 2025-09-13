@@ -105,7 +105,7 @@
           tooltip-format-disconnected = "Disconnected";
           interval = 3;
           spacing = 1;
-          on-click = "kitty --class=Impala -e impala";
+          on-click = "sh -c \"kitten quick-access-terminal impala\"";
         };
         battery = {
           format = "{capacity}% {icon}";
@@ -142,7 +142,7 @@
           tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
           tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
           interval = 5;
-          on-click = "omarchy-menu power";
+          # on-click = "omarchy-menu power";
           states = {
             warning = 20;
             critical = 10;
@@ -153,7 +153,7 @@
           format-disabled = "󰂲";
           format-connected = "";
           tooltip-format = "Devices connected: {num_connections}";
-          on-click = "kitty --class=Bluetui bluetui";
+          on-click = "sh -c \"kitten quick-access-terminal bluetui\"";
         };
         "group/tray-expander" = {
           orientation = "inherit";
@@ -172,8 +172,8 @@
         };
         pulseaudio = {
           format = "{icon}";
-          on-click = "kitty --class=Wiremix -e wiremix";
-          on-click-right = "pamixer -t";
+          on-click = "sh -c \"kitten quick-access-terminal wiremix\"";
+          on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           tooltip-format = "Playing at {volume}%";
           scroll-step = 5;
           format-muted = "󰝟";
