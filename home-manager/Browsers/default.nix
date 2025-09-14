@@ -301,6 +301,31 @@
                   }
                 ];
               }
+
+              {
+                name = "Social";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "whatsapp";
+                    url = "web.whatsapp.com";
+                  }
+                ];
+              }
+              {
+                name = "Study";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "chatgpt";
+                    url = "https://chatgpt.com";
+                  }
+                  {
+                    name = "Physics Wallah";
+                    url = "https://www.pw.live";
+                  }
+                ];
+              }
             ];
 
           };
