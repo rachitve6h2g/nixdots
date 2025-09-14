@@ -18,7 +18,7 @@
       4
       3
     ];
-    show_hidden = true;
+    show_hidden = false;
     show_symlink = true;
     sort_reverse = false;
     sort_sensitive = true;

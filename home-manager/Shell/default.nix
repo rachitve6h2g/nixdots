@@ -1,12 +1,10 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
   userVars = {
-    # EDITOR = if !config.services.emacs.defaultEditor then "vim" else "";
     KITTY_ENABLE_WAYLAND = 1;
   };
 in
@@ -57,6 +55,7 @@ in
         ns = "tv nix-search-tv";
 
         btop = "btop --force-utf";
+        speedtest = "nix run nixpkgs#speedtest-cli -- --secure";
       };
       sessionVariables = userVars;
 
