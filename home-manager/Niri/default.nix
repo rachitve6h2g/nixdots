@@ -23,6 +23,7 @@ in
     ./clipboard.nix
     ./fuzzel.nix
     ./mako.nix
+    ./niriswitcher.nix
     ./poweralertd.nix
     ./swayidle.nix
     ./swaylock.nix
@@ -69,6 +70,11 @@ in
               "uwsm"
               "finalize"
             ];
+          }
+
+          {
+            # For starting niriswitcher
+            command = [ "${pkgs.niriswitcher}/bin/niriswitcher" ];
           }
         ];
         input = {
@@ -279,6 +285,36 @@ in
               "previous"
             ];
             allow-when-locked = true;
+          };
+
+          # For niriswitcher
+          "Alt+Tab" = {
+            repeat = false;
+            action = spawn [
+              "${pkgs.glib}/bin/gdbus"
+              "call"
+              "--session"
+              "--dest"
+              "io.github.isaksamsten.Niriswitcher"
+              "--object-path"
+              "/io/github/isaksamsten/Niriswitcher"
+              "--method"
+              "io.github.isaksamsten.Niriswitcher.application"
+            ];
+          };
+          "Alt+Grave" = {
+            repeat = false;
+            action = spawn [
+              "${pkgs.glib}/bin/gdbus"
+              "call"
+              "--session"
+              "--dest"
+              "io.github.isaksamsten.Niriswitcher"
+              "--object-path"
+              "/io/github/isaksamsten/Niriswitcher"
+              "--method"
+              "io.github.isaksamsten.Niriswitcher.application"
+            ];
           };
         };
 
