@@ -17,8 +17,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.maple-mono.NF;
-        name = "Maple Mono NF Medium Italic";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
       };
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
