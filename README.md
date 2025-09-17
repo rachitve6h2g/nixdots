@@ -3,9 +3,6 @@
     <h2 align="center"><br>Chris's flake for NixOS<br></h2>
 </p>
 
->[!NOTE]
->I'll move to sway after my exam (most probably 2 weeks after 10/09/2025).
-
 
 # Installation Notes:
 

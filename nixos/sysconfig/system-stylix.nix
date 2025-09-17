@@ -17,8 +17,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.comic-shanns-mono;
-        name = "ComicShannsMono Nerd Font";
+        package = pkgs.maple-mono.NF;
+        name = "Maple Mono NF Medium Italic";
       };
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
