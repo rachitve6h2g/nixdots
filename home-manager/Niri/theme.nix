@@ -29,21 +29,21 @@
   gtk = {
     enable = true;
 
-    theme = {
-      package = lib.mkForce (
-        pkgs.gruvbox-gtk-theme.override {
-          colorVariants = [ "dark" ];
-          sizeVariants = [ "standard" ];
-          themeVariants = [ "yellow" ];
-          tweakVariants = [
-            "black"
-            "macos"
-          ];
-          iconVariants = [ "Dark" ];
-        }
-      );
-
-      name = lib.mkForce "Gruvbox-Yellow-Dark";
-    };
+    # theme = {
+    #   package = lib.mkForce (
+    #     pkgs.gruvbox-gtk-theme.override {
+    #       colorVariants = [ "dark" ];
+    #       sizeVariants = [ "standard" ];
+    #       themeVariants = [ "yellow" ];
+    #       tweakVariants = [
+    #         "black"
+    #         "macos"
+    #       ];
+    #       iconVariants = [ "Dark" ];
+    #     }
+    #   );
+    #
+    #   name = lib.mkForce "Gruvbox-Yellow-Dark";
+    # };
   };
 }
