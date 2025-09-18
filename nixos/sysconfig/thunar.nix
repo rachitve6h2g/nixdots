@@ -8,11 +8,15 @@
         thunar-volman
 
         # This is in unstable branch for now (25.05)
-        #thunar-vcs-plugin
+        thunar-vcs-plugin
         thunar-media-tags-plugin
       ];
     };
   };
+
+  home-manager.users.krish.xdg.configFile."xfce4/helpers.rc".text = ''
+    TerminalEmulator=kitty
+  '';
 
   services = {
     gvfs = {
