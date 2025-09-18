@@ -1,8 +1,10 @@
+{ pkgs, ... }:
 {
   console = {
     enable = true;
-    font = "Lat2-Terminus16";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-132b.psf.gz";
     keyMap = "mod-dh-ansi-us";
     earlySetup = true;
+    # useXkbConfig = true;
   };
 }
