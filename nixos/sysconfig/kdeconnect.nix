@@ -9,4 +9,9 @@
     ];
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
+
+  home-manager.users.krish.services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 }

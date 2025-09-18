@@ -2,8 +2,8 @@
   home = {
     keyboard = {
       layout = "us";
-      options = [ 
-        "ctrl:nocaps"
+      options = [
+        "ctrl:swapcaps"
       ];
       variant = "colemak_dh";
     };

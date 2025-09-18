@@ -7,7 +7,6 @@
     ./fastfetch.nix
     ./gcc.nix
     ./irssi.nix
-    ./kdeconnect.nix
     ./newsboat.nix
     ./nix-search-tv.nix
     ./nix-init.nix
