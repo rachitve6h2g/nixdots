@@ -2,7 +2,7 @@
 let
   pkgsPlugins = with pkgs.vimPlugins; [
     # For colorscheme
-    gruvbox-material-nvim
+    gruvbox-nvim
 
     # Plugin manager helper
     lz-n
@@ -12,7 +12,6 @@ let
     nvim-window-picker
 
     # Completion and LSP
-    blink-cmp
     lazydev-nvim
     nvim-lspconfig
     luasnip
@@ -45,7 +44,7 @@ let
     markdown-preview-nvim
 
     # For nix
-    vim-nix
+    # vim-nix
     vim-nixhash
   ];
 

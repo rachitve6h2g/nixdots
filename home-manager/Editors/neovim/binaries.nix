@@ -16,6 +16,7 @@ let
     stylua
     lua-language-server
     kdePackages.qtdeclarative # for qmlls
+    tree-sitter # For tree-sitter executable
   ];
 in
 packages

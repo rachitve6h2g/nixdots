@@ -10,6 +10,7 @@
   };
 
   programs = {
+    neovim.defaultEditor = true;
     mnw = {
       enable = true;
 

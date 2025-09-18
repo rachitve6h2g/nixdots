@@ -1,12 +1,15 @@
 {
   lib,
+  config,
   pkgs,
   ...
 }:
 let
   userVars = {
     KITTY_ENABLE_WAYLAND = 1;
-  };
+    MANPAGER = "nvim +Man!";
+  }
+  // (if !config.programs.emacs.enable then { EDITOR = "vim"; } else { });
 in
 {
   imports = [
@@ -26,7 +29,6 @@ in
       enableBashIntegration = true;
     };
 
-    packages = with pkgs; [ vivid ];
     sessionVariables = userVars;
   };
 
