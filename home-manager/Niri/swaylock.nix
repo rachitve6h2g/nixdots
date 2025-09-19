@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   programs.swaylock = {
     enable = true;
@@ -6,9 +6,9 @@
 
     settings = {
       clock = true;
-      # image = "${config.stylix.image}";
       effect-blur = "7x5";
       daemonize = true;
+      timestr = "%I:%M:%S %p";
     };
   };
 }

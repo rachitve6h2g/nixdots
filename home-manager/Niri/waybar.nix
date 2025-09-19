@@ -85,7 +85,7 @@
             on-click = "app2unit btop";
           };
           clock = {
-            format = "{:%A %H:%M}";
+            format = "{:%A %I:%M %p}";
             format-alt = "{:%d %B W%V %Y}";
             tooltip = false;
             on-click-right = "app2unit clock-rs";

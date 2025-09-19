@@ -8,6 +8,7 @@ let
   userVars = {
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
+    GTK_THEME = "adw-gtk3";
   }
   // (if !config.programs.emacs.enable then { EDITOR = "vim"; } else { });
 in
