@@ -11,7 +11,7 @@
       enable = true;
       shellWrapperName = "y";
 
-      package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
+      package = pkgs.yazi.override { _7zz = pkgs.p7zip-rar; };
 
       plugins = (import ./plugins.nix { inherit pkgs; });
 

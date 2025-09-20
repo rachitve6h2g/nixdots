@@ -46,6 +46,9 @@ let
     # For nix
     # vim-nix
     vim-nixhash
+
+    # clang for c/c++
+    clangd_extensions-nvim
   ];
 
   treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (

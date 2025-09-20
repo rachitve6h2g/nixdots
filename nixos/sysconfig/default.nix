@@ -7,6 +7,7 @@
     ./cleanup.nix
     ./compileopts.nix
     ./consolekeymap.nix
+    ./gaming.nix
     ./graphics.nix
     ./kdeconnect.nix
     ./keymap.nix

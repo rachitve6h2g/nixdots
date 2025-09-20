@@ -17,6 +17,7 @@ let
     lua-language-server
     kdePackages.qtdeclarative # for qmlls
     tree-sitter # For tree-sitter executable
+    libclang
   ];
 in
 packages

@@ -1,7 +1,6 @@
 {
   config,
-  # inputs,
-  # lib,
+  lib,
   pkgs,
   ...
 }:
@@ -9,16 +8,6 @@ let
   colors = config.lib.stylix.colors.withHashtag;
 in
 {
-  # Use only when using separate home-manager config.
-  /*
-    imports = [
-      inputs.niri-flake.homeModules.niri
-      inputs.niri-flake.homeModules.stylix
-    ];
-
-    nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
-  */
-
   imports = [
     ./clipboard.nix
     ./fuzzel.nix
@@ -40,12 +29,21 @@ in
     ];
   };
 
-  xdg.configFile = {
-    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg = {
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      config.common.default = "*";
+    };
 
-    "uwsm/env-niri".text = ''
-      export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
-    '';
+    configFile = {
+      "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+
+      "uwsm/env-niri".text = ''
+        export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
+      '';
+    };
   };
 
   services.playerctld.enable = true;
@@ -57,12 +55,10 @@ in
         prefer-no-csd = true;
 
         # Available for next version.
-        /*
-          xwayland-sattellite = {
-            enable = true;
-            path = lib.getExe pkgs.xwayland-satellite;
-          };
-        */
+        xwayland-satellite = {
+          enable = true;
+          path = lib.getExe pkgs.xwayland-satellite;
+        };
 
         spawn-at-startup = [
           {
