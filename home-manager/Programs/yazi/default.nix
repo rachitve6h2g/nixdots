@@ -4,6 +4,7 @@
     mediainfo # for mediainfo.yazi
     rich-cli # for readme viewing
     trash-cli # for restore.yazi
+    p7zip-rar # for extraction
   ];
 
   programs = {
