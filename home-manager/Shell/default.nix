@@ -50,10 +50,6 @@ in
       enableVteIntegration = false;
 
       shellAliases = {
-        vim = "nvim";
-        vi = "nvim";
-        ovim = "${pkgs.vim}/bin/vim";
-
         nixcon = "cd /etc/nixos";
         ".." = "cd ..";
         ns = "tv nix-search-tv";

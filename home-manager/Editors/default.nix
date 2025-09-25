@@ -1,6 +1,6 @@
 {
   imports = [
-    ./vscodium.nix
+    # ./vscodium.nix
     # ./emacs
 
     # TODO: setup [mnw](https://gerg-l.github.io/mnw/)

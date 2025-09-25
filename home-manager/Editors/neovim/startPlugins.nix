@@ -1,77 +1,20 @@
 { pkgs, ... }:
 let
-  pkgsPlugins = with pkgs.vimPlugins; [
-    # For colorscheme
-    gruvbox-nvim
+  startPlugins = with pkgs.vimPlugins; [ 
+    gruvbox-nvim # eyes stay healthy
 
-    # Plugin manager helper
-    lz-n
+    lz-n # for lazyloading
 
-    # Icons and utils
-    # nvim-web-devicons
-    nvim-window-picker
-
-    # Completion and LSP
-    lazydev-nvim
-    nvim-lspconfig
-    luasnip
-    conform-nvim
-
-    # Notifications/UI
-    mini-ai # For textobjects
-    mini-diff # for diff info in statusline
-    mini-notify
-    mini-statusline # for statusline
-    mini-git # for git info in statusline
-    mini-icons # for icons
-    mini-pairs # Fro autopairing
-    mini-comment # For comment declaration
-
-    mini-snippets # For completion
-    mini-completion # For completion
-    mini-clue # lightweight which-key replacement
-    mini-files # File explorer
-    mini-surround # For surrounds
-
-    # Aesthetics mini
-    mini-animate # for aesthetics
-    mini-cursorword # highlight the word which cursor points
-    mini-hipatterns # For highlighting colors and TODO and stuff
-    mini-indentscope # The name says it
-    mini-starter # For a banner
-    mini-tabline # For a cool tabline.
-
-    markdown-preview-nvim
-
-    # For nix
-    # vim-nix
-    vim-nixhash
-
-    # clang for c/c++
-    clangd_extensions-nvim
+    nvim-treesitter # tree-sitter setup
+    nvim-lspconfig # for lsp
   ];
 
-  treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (
-    p: with p; [
-      bash
-      comment
-      fish
-      kdl
-      luadoc
-      qmljs
-      gitignore
-      git_rebase
-      css
-      html
-      json
-      toml
-      yaml
-      nix
-      c
-      lua
-      regex
-      zathurarc
-    ]
-  );
+  treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: with p;
+  [
+    comment # for comments
+    lua # for lua nvim
+    luadoc # for lua again
+    nix # for nix
+  ]);
 in
-pkgsPlugins ++ [ treeSitterGrammars ]
+startPlugins ++ [ treeSitterGrammars ]
