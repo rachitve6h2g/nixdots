@@ -9,6 +9,7 @@ let
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";
+    MOZ_ENABLE_WAYLAND = 1;
   }
   // (if !config.programs.emacs.enable then { EDITOR = "vim"; } else { });
 in

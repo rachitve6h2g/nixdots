@@ -10,8 +10,6 @@
 
       enableGnomeExtensions = false;
 
-      nativeMessagingHosts = with pkgs; [ firefoxpwa ];
-
       policies = {
         # Updates and background services
         AppAutoUpdate = false;

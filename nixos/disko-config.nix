@@ -59,6 +59,10 @@
                         mountpoint = "/persist";
                         mountOptions = mountOpts;
                       };
+                      # "/swap" = {
+                      #   mountpoint = "/.swapvol";
+                      #   swap.swapfile.size = "20M";
+                      # };
                     };
                 };
               };
