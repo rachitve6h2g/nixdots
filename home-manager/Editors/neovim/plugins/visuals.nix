@@ -15,7 +15,7 @@ in
 ]; in {
     luaConfigRC = {
       indent-blankline-pre =
-        entryBefore [ "indent-blankline" ] # lua
+        entryBefore [ "indent-blankline" "rainbow-delimiters" ] # lua
           ''
             -- A precursor Lua module that defines Lua locals that can be accessed in
             -- ibl's setup function. All Lua locals defined here will be made available
@@ -43,7 +43,6 @@ in
                 vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
                 vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
             end)
-            vim.g.rainbow_delimiters = { highlight = highlight }
           '';
 
           indent-blankline-post = entryAfter [ "indent-blankline" ] #lua
@@ -80,16 +79,14 @@ in
 
       rainbow-delimiters = {
         enable = true;
+        setupOpts = {
+          highlight = ibl_highlight;
+        };
       };
 
       nvim-web-devicons.enable = true;
       fidget-nvim.enable = true;
     };
 
-    # for rainbow-delimiters integration with indent-blankline
-    # vim.g.rainbow_delimiters option
-    # globals = {
-    #   rainbow_delimiters = ibl_highlight;
-    # };
   };
 }
