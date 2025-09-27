@@ -1,7 +1,7 @@
-{ lib, nvf, ... }:
+{ lib, ... }:
 let
   inherit (lib.generators) mkLuaInline;
-  inherit (nvf.lib.nvim.dag) entryBefore entryAfter;
+  inherit (lib.nvim.dag) entryBefore entryAfter;
 in
 {
   vim = {
