@@ -4,7 +4,15 @@ let
   inherit (lib.nvim.dag) entryBefore entryAfter;
 in
 {
-  vim = {
+  vim = let ibl_highlight = [
+                "RainbowRed"
+                "RainbowYellow"
+                "RainbowBlue"
+                "RainbowOrange"
+                "RainbowGreen"
+                "RainbowViolet"
+                "RainbowCyan"
+]; in {
     luaConfigRC = {
       indent-blankline-pre =
         entryBefore [ "indent-blankline" ] # lua
@@ -12,7 +20,7 @@ in
             -- A precursor Lua module that defines Lua locals that can be accessed in
             -- ibl's setup function. All Lua locals defined here will be made available
             -- to the DAG node in which ibl's setup is handled.
-            local ibl_highlight = {
+            local highlight = {
                 "RainbowRed",
                 "RainbowYellow",
                 "RainbowBlue",
@@ -21,11 +29,6 @@ in
                 "RainbowViolet",
                 "RainbowCyan",
             }
-          '';
-
-      indent-blankline-post =
-        entryAfter [ "indent-blankline" ] # lua
-          ''
             -- This Lua chunk will be placed *after* ibl's setup is done.
             local ibl_hooks = require "ibl.hooks"
 
@@ -40,7 +43,11 @@ in
                 vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
                 vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
             end)
+            vim.g.rainbow_delimiters = { highlight = highlight }
+          '';
 
+          indent-blankline-post = entryAfter [ "indent-blankline" ] #lua
+          ''
             hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
           '';
     };
@@ -67,7 +74,7 @@ in
           indent = {
             char = "│";
           };
-          scope.highlight = mkLuaInline "ibl_highlight";
+          scope.highlight = ibl_highlight;
         };
       };
 
@@ -81,8 +88,8 @@ in
 
     # for rainbow-delimiters integration with indent-blankline
     # vim.g.rainbow_delimiters option
-    globals = {
-      rainbow_delimiters = mkLuaInline "ibl_highlight";
-    };
+    # globals = {
+    #   rainbow_delimiters = ibl_highlight;
+    # };
   };
 }

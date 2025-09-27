@@ -1,4 +1,4 @@
-# { osConfig, ... }:
+{ inputs, ... }:
 {
   home = rec {
     username = "krish";
@@ -23,5 +23,6 @@
     ./nh.nix
     ./stylix.nix
     ./xdgsettings.nix
+    # inputs.nvf.homeManagerModules.default
   ];
 }

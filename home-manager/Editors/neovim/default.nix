@@ -15,6 +15,8 @@
   programs = {
     nvf = {
       enable = true;
+      enableManpages = true;
+      defaultEditor = true;
       settings = {
         imports = [
           ./plugins
