@@ -13,8 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mnw.url = "github:Gerg-L/mnw";
-
     niri-flake.url = "github:sodiboo/niri-flake";
 
     nix-index-database = {
@@ -29,10 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nvf = {
-    #   url = "github:NotAShelf/nvf";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";

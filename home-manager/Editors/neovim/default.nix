@@ -1,48 +1,71 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
-  imports = [ inputs.mnw.homeManagerModules.mnw ];
+  imports = [ inputs.nvf.homeManagerModules.default ];
 
   stylix.targets = {
     neovim.enable = false;
     neovide.enable = false;
     nixvim.enable = false;
-    nvf.enable = false;
+    nvf = {
+      enable = true;
+      transparentBackground = true;
+    };
   };
 
   programs = {
-    neovim.defaultEditor = true;
-    mnw = {
+    nvf = {
       enable = true;
+      settings = {
+        imports = [
+          ./plugins
+        ];
+        vim = {
+          clipboard = {
+            enable = true;
+            providers = {
+              wl-copy = {
+                enable = true;
+              };
+            };
+            registers = "unnamedplus";
+          };
 
-      aliases = [
-        "vim"
-        "vi"
-      ];
+          globals = rec {
+            mapleader = " ";
+            maplocalleader = mapleader;
+          };
 
-      desktopEntry = false;
+          viAlias = true;
+          vimAlias = true;
 
-      initLua = # lua
-        ''
-          ${builtins.readFile ./init.lua}
-        '';
+          # Theme will be managed by stylix
+          # theme = {
+          #   enable = true;
+          #   name = lib.mkForce "gruvbox";
+          #   style = "dark";
+          #   transparent = lib.mkForce true;
+          # };
 
-      neovim = pkgs.neovim-unwrapped;
-
-      providers = {
-        nodeJs.enable = true;
-      };
-
-      extraBinPath = import ./binaries.nix { inherit pkgs; };
-      extraLuaPackages = ps: with ps; [ jsregexp ];
-
-      plugins = {
-        start = import ./startPlugins.nix { inherit pkgs; };
-
-        opt = import ./optPlugins.nix { inherit pkgs; };
-
-        dev.myconfig = {
-          pure = ./nvim;
-          impure = "/' .. vim.uv.cwd() .. '/nvim";
+          undoFile = {
+            enable = true;
+          };
+          syntaxHighlighting = true;
+          options = {
+            relativenumber = true;
+            mouse = "a";
+            signcolumn = "yes";
+            updatetime = 250;
+            splitright = true;
+            splitbelow = true;
+            # cursorline = true;
+            # cursorlineopt = "both";
+            shiftwidth = 0;
+            tabstop = 2;
+            termguicolors = true;
+            autoindent = true;
+            wrap = false;
+            confirm = true;
+          };
         };
       };
     };
