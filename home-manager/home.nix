@@ -10,6 +10,8 @@
     home-manager.enable = true;
   };
 
+  systemd.user.startServices = true;
+
   imports = [
     ./Browsers
     ./Editors
