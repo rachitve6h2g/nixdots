@@ -12,7 +12,12 @@ let
     blink-cmp
 
     # For file explorer
-    mini-files
+    neo-tree-nvim
+    nui-nvim
+    plenary-nvim
+    nvim-lsp-file-operations # load at event="LspAttach"
+    nvim-window-picker
+    image-nvim
   ];
 in
 pkgsPlugins

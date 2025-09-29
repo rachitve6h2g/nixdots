@@ -2,14 +2,15 @@
 let
   pkgsPlugins = with pkgs.vimPlugins; [
     # For colorscheme
-    gruvbox-nvim
+    gruvbox-material
 
     # Plugin manager helper
     lz-n
 
+    bufferline-nvim
+
     # Icons and utils
     nvim-web-devicons
-    nvim-window-picker
 
     lualine-nvim
 
@@ -40,7 +41,7 @@ let
     markdown-preview-nvim
 
     # For nix
-    # vim-nix
+    vim-nix
     vim-nixhash
 
     # clang for c/c++
