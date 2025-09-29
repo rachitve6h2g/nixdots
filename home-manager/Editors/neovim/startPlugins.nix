@@ -8,8 +8,10 @@ let
     lz-n
 
     # Icons and utils
-    # nvim-web-devicons
+    nvim-web-devicons
     nvim-window-picker
+
+    lualine-nvim
 
     # Completion and LSP
     lazydev-nvim
@@ -21,16 +23,10 @@ let
     mini-ai # For textobjects
     mini-diff # for diff info in statusline
     mini-notify
-    mini-statusline # for statusline
-    mini-git # for git info in statusline
-    mini-icons # for icons
     mini-pairs # Fro autopairing
     mini-comment # For comment declaration
 
-    mini-snippets # For completion
-    mini-completion # For completion
     mini-clue # lightweight which-key replacement
-    mini-files # File explorer
     mini-surround # For surrounds
 
     # Aesthetics mini

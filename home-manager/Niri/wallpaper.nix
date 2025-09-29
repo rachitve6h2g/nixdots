@@ -20,7 +20,7 @@
   };
 
   stylix.image = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruvbox_tux.png";
-    hash = "sha256-AqUKCbT61A5T9lzoW09GF75vNvoHJnopu/RNtQjggdU=";
+    url = "https://raw.githubusercontent.com/ChapST1/gruvbox-wallpapers-web/master/wallpapers/mix/19.jpg";
+    hash = "sha256-ZQsr2w8vzwPrWvaU7sAE69d8ouetpwe8nkBKeIGx58U=";
   };
 }

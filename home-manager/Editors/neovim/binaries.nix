@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   packages = with pkgs; [
+    curl
     wl-clipboard
     ripgrep
     ruff
@@ -18,6 +19,9 @@ let
     kdePackages.qtdeclarative # for qmlls
     tree-sitter # For tree-sitter executable
     libclang
+
+    # C compiler for treesitter
+    gcc
   ];
 in
 packages
