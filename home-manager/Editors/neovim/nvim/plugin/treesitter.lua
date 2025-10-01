@@ -11,3 +11,14 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.treesitter.language.register("nix", "nix")
+
+require("treesitter-context").setup({
+  line_numbers = true,
+  max_lines = 0,
+  min_window_height = 0,
+  mode = "cursor",
+  multiline_threshold = 20,
+  separator = "-",
+  trim_scope = "outer",
+  zindex = 20,
+})

@@ -372,7 +372,7 @@ in
             draw-border-with-background = false;
             geometry-corner-radius =
               let
-                r = 8.0;
+                r = 0.0;
               in
               {
                 top-left = r;

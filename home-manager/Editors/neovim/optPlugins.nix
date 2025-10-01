@@ -10,14 +10,23 @@ let
 
     # For completion
     blink-cmp
+    blink-emoji-nvim
+    blink-ripgrep-nvim
+    blink-cmp-spell
 
     # For file explorer
     neo-tree-nvim
-    nui-nvim
-    plenary-nvim
     nvim-lsp-file-operations # load at event="LspAttach"
     nvim-window-picker
     image-nvim
+
+    fidget-nvim
+
+    gitlinker-nvim
+    hunk-nvim
+    lazygit-nvim
+
+    toggleterm-nvim
   ];
 in
 pkgsPlugins

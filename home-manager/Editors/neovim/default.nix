@@ -33,7 +33,11 @@
       };
 
       extraBinPath = import ./binaries.nix { inherit pkgs; };
-      extraLuaPackages = ps: with ps; [ jsregexp ];
+      extraLuaPackages =
+        ps: with ps; [
+          jsregexp
+          magick
+        ];
 
       plugins = {
         start = import ./startPlugins.nix { inherit pkgs; };

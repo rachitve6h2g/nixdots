@@ -4,6 +4,7 @@
   ...
 }:
 {
+  imports = [ ./chromium.nix ];
   programs = {
     firefox = {
       enable = true;

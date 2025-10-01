@@ -1,0 +1,7 @@
+{
+  programs = {
+    chromium = {
+      enable = true;
+    };
+  };
+}

@@ -17,6 +17,7 @@
           sponsorblock
           mpris
           thumbfast
+          mpv-notify-send
         ];
         mpv = pkgs.mpv-unwrapped.override {
           bluraySupport = false;

@@ -6,6 +6,7 @@ let
 
     # Plugin manager helper
     lz-n
+    lzn-auto-require
 
     bufferline-nvim
 
@@ -19,11 +20,11 @@ let
     nvim-lspconfig
     luasnip
     conform-nvim
+    lspkind-nvim
 
     # Notifications/UI
     mini-ai # For textobjects
     mini-diff # for diff info in statusline
-    mini-notify
     mini-pairs # Fro autopairing
     mini-comment # For comment declaration
 
@@ -40,12 +41,20 @@ let
 
     markdown-preview-nvim
 
+    nvim-notify
+
     # For nix
     vim-nix
     vim-nixhash
 
     # clang for c/c++
     clangd_extensions-nvim
+
+    # Library for a lot of plugins, must eager load
+    nui-nvim
+    plenary-nvim
+
+    nvim-treesitter-context
   ];
 
   treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (

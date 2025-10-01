@@ -4,7 +4,7 @@
     mediainfo # for mediainfo.yazi
     rich-cli # for readme viewing
     trash-cli # for restore.yazi
-    p7zip-rar # for extraction
+    _7zz-rar # for extraction
   ];
 
   programs = {
@@ -12,7 +12,7 @@
       enable = true;
       shellWrapperName = "y";
 
-      package = pkgs.yazi.override { _7zz = pkgs.p7zip-rar; };
+      package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
 
       plugins = (import ./plugins.nix { inherit pkgs; });
 

@@ -2,7 +2,10 @@ vim.opt.termguicolors = true
 
 require("bufferline").setup({
   options = {
-    diagnostics = "nvim_lsp",
+    always_show_bufferline = true,
+    auto_toggle_bufferline = true,
+    buffer_close_icon = " 󰅖 ",
+    themeable = true,
     numbers = "both",
     indicator = {
       style = "underline",

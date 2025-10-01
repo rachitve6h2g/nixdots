@@ -52,7 +52,7 @@ in
       shellAliases = {
         nixcon = "cd /etc/nixos";
         ".." = "cd ..";
-        ns = "tv nix-search-tv";
+        # ns = "tv nix-search-tv";
 
         btop = "btop --force-utf";
         speedtest = "nix run nixpkgs#speedtest-cli -- --secure";

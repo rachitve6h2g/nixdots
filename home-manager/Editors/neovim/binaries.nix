@@ -22,6 +22,8 @@ let
 
     # C compiler for treesitter
     gcc
+
+    imagemagick
   ];
 in
 packages
