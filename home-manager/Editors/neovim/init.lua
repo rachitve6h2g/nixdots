@@ -1,4 +1,3 @@
 require("myconfig")
 require("lz.n").load("lazy")
-require("lzn-auto-require").enable()
-vim.lsp.enable("nixd", "lua_ls")
+vim.lsp.enable({ "lua_ls", "nixd" })

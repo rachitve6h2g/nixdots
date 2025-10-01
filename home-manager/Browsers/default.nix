@@ -4,7 +4,7 @@
   ...
 }:
 {
-  imports = [ ./chromium.nix ];
+  # imports = [ ./chromium.nix ];
   programs = {
     firefox = {
       enable = true;

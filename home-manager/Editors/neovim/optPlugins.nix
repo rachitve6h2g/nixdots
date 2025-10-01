@@ -27,6 +27,7 @@ let
     lazygit-nvim
 
     toggleterm-nvim
+    colorful-menu-nvim
   ];
 in
 pkgsPlugins

@@ -15,9 +15,7 @@ return {
         popup_border_style = "",
         enable_git_status = true,
         enable_diagnostics = true,
-        source_selector = {
-          winbar = true,
-        },
+        source_selector = { winbar = true },
         window = {
           mappings = {
             ["P"] = {
