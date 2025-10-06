@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{
+  # inputs,
+  ...
+}:
 {
   home = rec {
     username = "krish";
