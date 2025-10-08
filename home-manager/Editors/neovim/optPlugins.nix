@@ -20,6 +20,7 @@ let
     nvim-window-picker
     image-nvim
 
+    # for a better ui
     fidget-nvim
 
     gitlinker-nvim

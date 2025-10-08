@@ -17,7 +17,7 @@ in
           "nur"
         ];
         update_interval = "3h2m1s";
-        enable_waiting_banner = true;
+        enable_waiting_banner = false;
       };
     };
 

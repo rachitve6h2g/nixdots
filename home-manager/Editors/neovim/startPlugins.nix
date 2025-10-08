@@ -33,8 +33,10 @@ let
     mini-ai # For textobjects
     mini-pairs # Fro autopairing
     mini-comment # For comment declaration
-
     mini-surround # For surrounds
+    mini-starter # for a nice banner
+
+    neoscroll-nvim
 
     markdown-preview-nvim
 
@@ -60,6 +62,8 @@ let
     which-key-nvim
 
     toggleterm-nvim # Better loaded at startup
+
+    nvim-colorizer-lua # for color color
   ];
 
   treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (
