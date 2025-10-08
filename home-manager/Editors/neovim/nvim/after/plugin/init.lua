@@ -5,3 +5,4 @@ require("myconfig.autocmds")
 require("myconfig.lsp")
 
 require("myconfig.colorscheme")
+require("lz.n").load("lazy")

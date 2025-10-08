@@ -6,7 +6,7 @@ return {
       {
         "<leader>e",
         "<CMD>Neotree toggle right<CR>",
-        desc = "MiniFiles Toggle",
+        desc = "Neotree toggle",
       },
     },
     after = function()
@@ -15,7 +15,10 @@ return {
         popup_border_style = "",
         enable_git_status = true,
         enable_diagnostics = true,
-        source_selector = { winbar = true },
+        source_selector = {
+          winbar = true,
+          truncation_character = "...",
+        },
         window = {
           mappings = {
             ["P"] = {
@@ -34,20 +37,7 @@ return {
   {
     "nvim-lsp-file-operations",
     after = function()
-      -- require("lz.n").trigger_load("nvim-lspconfig")
       require("lsp-file-operations").setup()
-      local lspconfig = require("lspconfig")
-
-      -- Set global defaults for all servers
-      lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-        capabilities = vim.tbl_deep_extend(
-          "force",
-          vim.lsp.protocol.make_client_capabilities(),
-          -- returns configured operations if setup() was already called
-          -- or default operations if not
-          require("lsp-file-operations").default_capabilities()
-        ),
-      })
     end,
   },
   {

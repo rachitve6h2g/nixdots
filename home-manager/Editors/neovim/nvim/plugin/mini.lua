@@ -1,3 +1,7 @@
+require("mini.ai").setup({ n_lines = 500 })
+
+require("mini.surround").setup()
+
 require("mini.pairs").setup({
   modes = { insert = true, command = true, terminal = false },
   -- skip autopair when next character is one of these
@@ -23,3 +27,5 @@ require("mini.pairs").setup({
     ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
   },
 })
+
+require("mini.comment").setup()

@@ -69,4 +69,4 @@ end, { range = true })
 -- I'll just abbreviate it. Happy?
 -- Called when auto-format is disabled for a language or folder,
 -- but we want to format it anyways
-cabbrev("fmt", "Fmt")
+-- cabbrev("fmt", "Fmt")

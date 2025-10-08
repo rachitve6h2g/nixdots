@@ -11,5 +11,3 @@ require("lazydev").setup({
   },
 })
 vim.g.lazydev_enabled = true
-
-vim.lsp.enable("lua_ls")

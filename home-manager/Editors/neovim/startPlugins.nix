@@ -25,7 +25,6 @@ let
 
     # Completion and LSP
     lazydev-nvim
-    nvim-lspconfig
     luasnip
     conform-nvim
     lspkind-nvim
@@ -35,15 +34,7 @@ let
     mini-pairs # Fro autopairing
     mini-comment # For comment declaration
 
-    mini-clue # lightweight which-key replacement
     mini-surround # For surrounds
-
-    # Aesthetics mini
-    mini-animate # for aesthetics
-    mini-cursorword # highlight the word which cursor points
-    mini-hipatterns # For highlighting colors and TODO and stuff
-    mini-starter # For a banner
-    mini-tabline # For a cool tabline.
 
     markdown-preview-nvim
 
@@ -67,6 +58,8 @@ let
     nvim-treesitter-context
 
     which-key-nvim
+
+    toggleterm-nvim # Better loaded at startup
   ];
 
   treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (

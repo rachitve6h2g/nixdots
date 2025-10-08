@@ -1,4 +1,5 @@
 { inputs, pkgs, ... }:
+
 {
   imports = [ inputs.mnw.homeManagerModules.mnw ];
 
@@ -21,10 +22,10 @@
 
       desktopEntry = false;
 
-      initLua = # lua
-        ''
-          ${builtins.readFile ./init.lua}
-        '';
+      # initLua = # lua
+      #   ''
+      #     ${builtins.readFile ./init.lua}
+      #   '';
 
       neovim = pkgs.neovim-unwrapped;
 

@@ -42,7 +42,7 @@
 
   outputs =
     {
-      self,
+      # self,
       nixpkgs,
       home-manager,
       ...

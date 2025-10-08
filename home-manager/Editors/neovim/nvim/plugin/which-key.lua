@@ -1,1 +1,1 @@
-require("which-key").setup({ global = false })
+require("which-key").setup({ global = true })

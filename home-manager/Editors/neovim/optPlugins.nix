@@ -26,7 +26,6 @@ let
     hunk-nvim
     lazygit-nvim
 
-    toggleterm-nvim
     colorful-menu-nvim
   ];
 in
