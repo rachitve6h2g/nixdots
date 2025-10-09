@@ -3,7 +3,7 @@ vim.lsp.config("*", {
   root_markers = { ".git" },
 })
 
-vim.lsp.enable({ "lua_ls", "nixd", "clangd" })
+vim.lsp.enable({ "lua_ls", "nixd", "clangd", "qmlls", "bashls" })
 
 vim.diagnostic.config({
   severity_sort = true,

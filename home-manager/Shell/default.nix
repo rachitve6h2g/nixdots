@@ -1,6 +1,6 @@
 {
   lib,
-  config,
+  # config,
   pkgs,
   ...
 }:
@@ -52,10 +52,11 @@ in
       shellAliases = {
         nixcon = "cd /etc/nixos";
         ".." = "cd ..";
-        # ns = "tv nix-search-tv";
 
         btop = "btop --force-utf";
         speedtest = "nix run nixpkgs#speedtest-cli -- --secure";
+
+        ff = "${pkgs.fastfetch}/bin/fastfetch";
       };
       sessionVariables = userVars;
 
