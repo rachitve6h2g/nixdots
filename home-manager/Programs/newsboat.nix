@@ -13,6 +13,22 @@
           "nixos"
         ];
       }
+
+      {
+        url = "https://nixos.org/blog/announcements-rss.xml";
+        title = "NixOS Announcements";
+        tags = [ "nixos" ];
+      }
+      {
+        url = "https://nixos.org/blog/newsletters-rss.xml";
+        title = "NixOS Newsletters";
+        tags = [ "nixos" ];
+      }
+      {
+        url = "https://nixos.org/blog/stories-rss.xml";
+        title = "NixOS stories";
+        tags = [ "nixos" ];
+      }
     ];
 
     # extraConfig = ''

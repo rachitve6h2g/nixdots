@@ -5,12 +5,14 @@
   ...
 }:
 let
-  userVars = {
+  userVars = rec {
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";
     MOZ_ENABLE_WAYLAND = 1;
     EDITOR = lib.mkDefault "vim";
+
+    XDG_BIN_PATH = "$HOME/.local/bin";
   };
 in
 {

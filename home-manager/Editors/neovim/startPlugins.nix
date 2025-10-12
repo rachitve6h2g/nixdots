@@ -83,6 +83,7 @@ let
       yaml
       nix
       c
+      cpp
       lua
       regex
       zathurarc

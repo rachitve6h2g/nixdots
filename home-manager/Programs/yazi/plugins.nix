@@ -10,6 +10,7 @@
   smart-filter = pkgs.yaziPlugins.smart-filter;
   starship = pkgs.yaziPlugins.starship;
   restore = pkgs.yaziPlugins.restore;
+  yatline = pkgs.yaziPlugins.yatline;
 
   eza-preview = (
     pkgs.fetchFromGitHub {
