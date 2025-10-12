@@ -29,6 +29,15 @@
         title = "NixOS stories";
         tags = [ "nixos" ];
       }
+
+      {
+        url = "https://www.notashelf.dev/rss.xml";
+        title = "NotAShelf's Blogs";
+        tags = [
+          "nix"
+          "nixos"
+        ];
+      }
     ];
 
     # extraConfig = ''
