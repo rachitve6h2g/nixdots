@@ -22,6 +22,8 @@
     ./system-stylix.nix
     ./system.nix
     ./thunar.nix
+    ./tmp_on_ram.nix
     ./user.nix
+    ./zram.nix
   ];
 }

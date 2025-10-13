@@ -13,6 +13,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence.url = "github:nix-community/impermanence";
+
     mnw.url = "github:Gerg-L/mnw";
 
     niri-flake.url = "github:sodiboo/niri-flake";

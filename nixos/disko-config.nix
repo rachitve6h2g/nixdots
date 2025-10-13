@@ -31,7 +31,7 @@
                 #additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = ["-L" "nixos" "-f" ];
                   subvolumes =
                     let
                       mountOpts = [
@@ -47,6 +47,9 @@
                         mountpoint = "/";
                         mountOptions = mountOpts;
                       };
+                      "/root-blank" = {
+                        mountOptions = mountOpts ++ (["nodatacow"]);
+                      };
                       "/home" = {
                         mountpoint = "/home";
                         mountOptions = mountOpts;
@@ -59,9 +62,18 @@
                         mountpoint = "/persist";
                         mountOptions = mountOpts;
                       };
-                      "/swap" = {
-                        mountpoint = "/.swapvol";
-                        swap.swapfile.size = "8G";
+		      "/log" = {
+		      	mountpoint = "/var/log";
+			mountOptions = mountOpts;
+		      };
+		      "/lib" = {
+		      	mountpoint = "/var/lib";
+			mountOptions = mountOpts;
+		      };
+                      "/persist/swap" = {
+                        mountpoint = "/persist/swap";
+			mountOptions = [ "noatime" "nodatacow" "compress=no" ];
+                        swap.swapfile.size = "18G";
                       };
                     };
                 };
@@ -71,5 +83,11 @@
         };
       };
     };
+  };
+
+  fileSystems = {
+  	"/persist".neededForBoot = true;
+	"/var/log".neededForBoot = true;
+	"/var/lib".neededForBoot = true;
   };
 }

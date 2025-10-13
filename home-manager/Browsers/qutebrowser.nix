@@ -2,7 +2,7 @@
 {
   programs = {
     qutebrowser = {
-      enable = false;
+      enable = true;
 
       settings = {
         # See the enableVulkan flag in the qutebrowser
