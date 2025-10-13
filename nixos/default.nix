@@ -13,10 +13,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModules.impermanence
 
     ./disko-config.nix
-    ./impermanence.nix
     ./sysconfig
   ];
 
@@ -41,12 +39,4 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-
-  boot.initrd.luks.devices = {
-    cryptroot = {
-      device = "/dev/disk/by-partlabel/luks";
-      allowDiscards = true;
-      preLVM = true;
-    };
-  };
 }
