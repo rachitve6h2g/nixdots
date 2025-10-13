@@ -25,6 +25,7 @@
     ansifilter
     bluetui
     cheese
+    discord-ptb
     gthumb
     impala
     (uget.override {
