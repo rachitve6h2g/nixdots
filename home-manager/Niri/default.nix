@@ -79,7 +79,7 @@ in
             xkb = {
               layout = "us";
               variant = "colemak_dh";
-              options = "ctrl:swapcaps";
+              options = "caps:swapescape";
             };
           };
           touchpad = {
