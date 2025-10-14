@@ -26,6 +26,7 @@
     bluetui
     cheese
     discord-ptb
+    gnome-calculator
     gthumb
     impala
     (uget.override {
