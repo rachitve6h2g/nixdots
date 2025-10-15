@@ -14,7 +14,7 @@ in
     ./mako.nix
     ./niriswitcher.nix
     ./poweralertd.nix
-    # ./quickshell.nix
+    ./quickshell.nix
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
