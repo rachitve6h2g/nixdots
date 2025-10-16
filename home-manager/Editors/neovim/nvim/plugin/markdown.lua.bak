@@ -12,3 +12,22 @@ vim.cmd([[
 ]])
 
 vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
+
+require("render-markdown").setup({
+  enabled = true,
+  code = {
+    sign = false,
+    width = "block",
+    right_pad = 1,
+  },
+
+  heading = {
+    sign = false,
+    icons = {},
+  },
+
+  checkbox = { enabled = false },
+  file_types = { "markdown", "quarto" },
+
+  render_modes = { "n", "c", "t" },
+})

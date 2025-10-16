@@ -24,6 +24,8 @@ let
     gcc
 
     imagemagick
+
+    python313Packages.pylatexenc
   ];
 in
 packages

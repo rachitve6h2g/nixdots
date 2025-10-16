@@ -38,8 +38,6 @@ let
 
     neoscroll-nvim
 
-    markdown-preview-nvim
-
     nvim-notify
     nvim-navic
 
@@ -74,11 +72,18 @@ let
       ini # for ini filetypes
       kdl
       luadoc
+
+      # for markdown
+      markdown
+      markdown-inline
+
+      html
+      latex
+
       qmljs
       gitignore
       git_rebase
       css
-      html
       json
       toml
       yaml

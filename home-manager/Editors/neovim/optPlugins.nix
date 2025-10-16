@@ -3,7 +3,6 @@ let
   pkgsPlugins = with pkgs.vimPlugins; [
     telescope-nvim
     trouble-nvim
-    render-markdown-nvim
 
     # Better lsp
     lspsaga-nvim
@@ -13,6 +12,10 @@ let
     blink-emoji-nvim
     blink-ripgrep-nvim
     blink-cmp-spell
+
+    # For markdown files
+    markdown-preview-nvim
+    render-markdown-nvim
 
     # For file explorer
     neo-tree-nvim
