@@ -71,6 +71,7 @@ let
       bash
       comment
       fish
+      ini # for ini filetypes
       kdl
       luadoc
       qmljs
