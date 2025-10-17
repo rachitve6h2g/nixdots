@@ -28,4 +28,6 @@
       enable = true;
     };
   };
+
+  services.userborn.enable = true;
 }
