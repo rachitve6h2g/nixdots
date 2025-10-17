@@ -7,6 +7,7 @@
     ./cleanup.nix
     ./compileopts.nix
     ./consolekeymap.nix
+    ./fingerprint.nix
     ./gaming.nix
     ./graphics.nix
     ./kdeconnect.nix
@@ -26,4 +27,6 @@
     ./user.nix
     ./zram.nix
   ];
+
+  documentation.man.generateCaches = false;
 }
