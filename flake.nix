@@ -3,10 +3,9 @@
   description = "Krish's flake";
 
   inputs = {
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    disko.url = "github:nix-community/disko";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -41,38 +40,19 @@
   };
 
   outputs =
-    {
-      # self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-    in
-    {
-      formatter = nixpkgs.legacyPackages.${system}.nixfmt;
-      nixosConfigurations = {
-        nixpavilion = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./nixos
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+      }
+      {
+        systems = [ "x86_64-linux" ];
+        imports = [
+          flake-parts.flakeModules.flakeModules
+          ./nixos.nix
+          ./pkgs
 
-            ./pkgs
-            ./overlays
-
-            home-manager.nixosModules.home-manager
-
-            {
-              home-manager = {
-                extraSpecialArgs = { inherit inputs; };
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.krish = ./home-manager/home.nix;
-              };
-            }
-          ];
-        };
+          inputs.disko.flakeModules.default
+        ];
       };
-    };
 }

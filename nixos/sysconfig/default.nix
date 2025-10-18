@@ -20,6 +20,7 @@
     ./sddm.nix
     ./security.nix
     ./sound.nix
+    ./ssh.nix
     ./system-stylix.nix
     ./system.nix
     ./thunar.nix

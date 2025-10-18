@@ -1,7 +1,7 @@
 {
   imports = [
     # ./vscodium.nix
-    # ./emacs
+    ./emacs
 
     # TODO: setup [mnw](https://gerg-l.github.io/mnw/)
     ./neovim

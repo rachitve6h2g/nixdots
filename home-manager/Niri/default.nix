@@ -15,7 +15,7 @@ in
     ./niriswitcher.nix
     ./polkit.nix
     ./poweralertd.nix
-    ./quickshell.nix
+    # ./quickshell.nix # NOTE: learn nix first, lisp second and then qml
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
@@ -80,7 +80,7 @@ in
             xkb = {
               layout = "us";
               variant = "colemak_dh";
-              options = "caps:swapescape";
+              options = "ctrl:swapcaps";
             };
           };
           touchpad = {

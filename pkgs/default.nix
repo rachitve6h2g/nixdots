@@ -1,10 +1,9 @@
-{ ... }:
-
-let
-  overlay = self: super: {
-    # bibata-hyprcursor = super.callPackage ./bibata-hyprcursor.nix { };
-  };
-in
 {
-  nixpkgs.overlays = [ overlay ];
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages = {
+        bibata-hyprcursor = pkgs.callPackage ./bibata-hyprcursor.nix { };
+      };
+    };
 }

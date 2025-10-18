@@ -1,19 +1,17 @@
 {
   lib,
-  # config,
+  config,
   pkgs,
   ...
 }:
 let
-  userVars = rec {
+  userVars = {
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";
     MOZ_ENABLE_WAYLAND = 1;
-    EDITOR = lib.mkDefault "vim";
-
-    XDG_BIN_PATH = "$HOME/.local/bin";
-  };
+  }
+  // (if config.services.emacs.defaultEditor then { } else { EDITOR = "vim"; });
 in
 {
   imports = [

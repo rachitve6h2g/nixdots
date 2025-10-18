@@ -26,7 +26,7 @@
     bluetui
     cheese
     discord-ptb
-    freecad-wayland # for trying out for my brother
+    # freecad-wayland # for trying out for my brother
     gnome-calculator
     gthumb
     impala
