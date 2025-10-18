@@ -13,6 +13,7 @@ in
     ./fuzzel.nix
     ./mako.nix
     ./niriswitcher.nix
+    ./polkit.nix
     ./poweralertd.nix
     ./quickshell.nix
     ./swayidle.nix
