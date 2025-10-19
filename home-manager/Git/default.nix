@@ -54,6 +54,12 @@
       enableDefaultConfig = true;
       # hashKnownHosts = true;
       # addKeysToAgent = "yes";
+      extraConfig = ''
+        Host myphone
+          Hostname 10.151.197.102
+          Port 8022
+          User u0_a347
+      '';
     };
   };
 }

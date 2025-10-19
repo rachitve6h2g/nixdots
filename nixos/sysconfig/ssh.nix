@@ -2,6 +2,7 @@
   services = {
     openssh = {
       enable = true;
+      authorizedKeysInHomedir = true; # Keep authorized keys in home_directory
       ports = [ 5432 ];
       settings = {
         PasswordAuthentication = false;
@@ -18,6 +19,8 @@
 
     endlessh = {
       enable = true;
+      port = 8022;
+      openFirewall = true;
     };
   };
 }
