@@ -3,7 +3,10 @@
     openssh = {
       enable = true;
       authorizedKeysInHomedir = true; # Keep authorized keys in home_directory
-      ports = [ 5432 ];
+      ports = [
+        5432
+        22
+      ];
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
