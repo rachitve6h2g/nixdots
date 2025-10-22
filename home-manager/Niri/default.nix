@@ -318,10 +318,11 @@ in
 
         layout = {
           gaps = 16;
-          struts = {
-            left = 64;
-            right = 64;
-          };
+
+          # struts = {
+          #   left = 64;
+          #   right = 64;
+          # };
 
           background-color = "transparent";
           center-focused-column = "on-overflow";
@@ -329,7 +330,9 @@ in
           empty-workspace-above-first = true;
 
           preset-column-widths = [
-            # { fixed = 1920; }
+            { proportion = 1. / 3.; }
+            { proportion = 1. / 2.; }
+            { proportion = 2. / 3.; }
           ];
 
           default-column-width = {
@@ -350,6 +353,12 @@ in
 
           shadow = {
             enable = true;
+            softness = 30;
+            spread = 5;
+            offset = {
+              x = 0;
+              y = 5;
+            };
           };
 
           tab-indicator = {
@@ -374,7 +383,7 @@ in
             draw-border-with-background = false;
             geometry-corner-radius =
               let
-                r = 0.0;
+                r = 20.0;
               in
               {
                 top-left = r;
@@ -384,6 +393,16 @@ in
               };
 
             clip-to-geometry = true;
+          }
+
+          {
+            matches = [
+              {
+                app-id = "r#\"firefox$\"";
+                title = "^Picture-in-Picture$";
+              }
+            ];
+            open-floating = true;
           }
         ];
 
@@ -395,7 +414,83 @@ in
           };
         };
 
-        animations.window-resize.custom-shader = builtins.readFile ./resize.glsl;
+        animations = {
+          workspace-switch = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0001;
+            };
+          };
+
+          window-open = {
+            enable = true;
+            kind.easing = {
+              duration-ms = 200;
+              curve = "ease-out-quad";
+            };
+          };
+
+          window-close = {
+            enable = true;
+            kind.easing = {
+              duration-ms = 200;
+              curve = "ease-out-cubic";
+            };
+          };
+          horizontal-view-movement = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0001;
+            };
+          };
+          window-movement = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0001;
+            };
+          };
+          window-resize = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0001;
+            };
+            custom-shader = builtins.readFile ./resize.glsl;
+          };
+
+          config-notification-open-close = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.001;
+            };
+          };
+
+          screenshot-ui-open = {
+            enable = true;
+            kind.easing = {
+              duration-ms = 300;
+              curve = "ease-out-quad";
+            };
+          };
+
+          overview-open-close = {
+            enable = true;
+            kind.spring = {
+              damping-ratio = 1.0;
+              stiffness = 900;
+              epsilon = 0.0001;
+            };
+          };
+        };
       };
     };
   };
