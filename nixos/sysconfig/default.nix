@@ -8,7 +8,7 @@
     ./compileopts.nix
     ./consolekeymap.nix
     ./fingerprint.nix
-    # ./gaming.nix
+    ./gaming.nix
     ./graphics.nix
     ./kdeconnect.nix
     ./keymap.nix
