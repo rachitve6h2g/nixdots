@@ -56,7 +56,7 @@
       # addKeysToAgent = "yes";
       extraConfig = ''
         Host myphone
-          Hostname 10.151.197.102
+          Hostname 10.177.48.57
           Port 8022
           User u0_a347
       '';
