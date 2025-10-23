@@ -195,9 +195,9 @@ in
           "Mod+Space".action = switch-layout "next";
           "Mod+Shift+Space".action = switch-layout "prev";
 
-          "Print".action = screenshot;
+          "Print".action.screenshot = [ ];
           "Ctrl+Print".action.screenshot-screen = [ ];
-          "Alt+Print".action = screenshot-window;
+          "Alt+Print".action.screenshot-window = [ ];
 
           "Mod+Shift+E".action = quit;
 
