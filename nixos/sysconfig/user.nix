@@ -16,7 +16,7 @@
     ]; # Enable ‘sudo’ for the user.
 
     packages = with pkgs; [
-      git
+      (git.override { withLibsecret = true; })
       vim
     ];
     initialPassword = "Shouvik@1234";
