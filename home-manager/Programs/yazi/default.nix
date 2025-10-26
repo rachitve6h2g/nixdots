@@ -11,6 +11,7 @@
     yazi = {
       enable = true;
       shellWrapperName = "y";
+      enableBashIntegration = true;
 
       package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
 

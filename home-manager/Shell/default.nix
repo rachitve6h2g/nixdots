@@ -35,15 +35,6 @@ in
   };
 
   programs = {
-    eza.enableBashIntegration = true;
-    fzf.enableBashIntegration = true;
-    yazi.enableBashIntegration = true;
-    zoxide.enableBashIntegration = true;
-    starship.enableBashIntegration = true;
-    television.enableBashIntegration = true;
-    vivid.enableBashIntegration = true;
-    kitty.shellIntegration.enableBashIntegration = true;
-
     bash = {
       enable = true;
       enableCompletion = true;

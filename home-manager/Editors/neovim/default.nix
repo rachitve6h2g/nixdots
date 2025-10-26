@@ -31,13 +31,25 @@
 
       providers = {
         nodeJs.enable = true;
+        perl = {
+          enable = true;
+          extraPackages =
+            p: with p; [
+              NeovimExt # Defaults must
+              Appcpanminus # be present
+
+              DirManifest
+            ];
+        };
       };
 
       extraBinPath = import ./binaries.nix { inherit pkgs; };
       extraLuaPackages =
         ps: with ps; [
           jsregexp
+          lua-utils-nvim
           magick
+          pathlib-nvim
         ];
 
       plugins = {

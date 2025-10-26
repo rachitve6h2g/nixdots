@@ -2,7 +2,10 @@
   programs = {
     kitty = {
       enable = true;
-      shellIntegration.mode = "enabled";
+      shellIntegration = {
+        mode = "enabled";
+        enableBashIntegration = true;
+      };
       enableGitIntegration = true;
       settings = {
         dynamic_background_opacity = true;

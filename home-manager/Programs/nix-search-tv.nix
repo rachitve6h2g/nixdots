@@ -23,6 +23,7 @@ in
 
     television = {
       enable = true;
+      enableBashIntegration = true;
       # TODO: write the settings.
 
       settings = {

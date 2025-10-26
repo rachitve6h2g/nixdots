@@ -2,6 +2,7 @@
 {
   imports = [
     ./bottom.nix
+    ./broot.nix
     ./btop.nix
     ./clock-rs.nix
     ./fastfetch.nix

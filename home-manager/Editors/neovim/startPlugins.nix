@@ -36,6 +36,8 @@ let
     mini-surround # For surrounds
     mini-starter # for a nice banner
 
+    neorg
+
     neoscroll-nvim
 
     nvim-notify
@@ -64,36 +66,60 @@ let
     nvim-colorizer-lua # for color color
   ];
 
-  treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (
-    p: with p; [
-      bash
-      comment
-      fish
-      ini # for ini filetypes
-      kdl
-      luadoc
+  treeSitterGrammars =
+    let
+      # treesitter-norg = pkgs.tree-sitter.buildGrammar {
+      #   language = "norg";
+      #   version = "v0.2.6";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "nvim-neorg";
+      #     repo = "tree-sitter-norg";
+      #     rev = "1aab69c95bd9d5e7c0e172ecbe5d29bcf5834612";
+      #     hash = "sha256-DxRu3LG/aF2BG4SYOKTj9/WHIryAYuY4THvwKPSmRIs=";
+      #   };
+      #   meta.homepage = "https://github.com/nvim-neorg/tree-sitter-norg";
+      # };
+      treesitter-norg = pkgs.tree-sitter-grammars.tree-sitter-norg;
+      treesitter-norg-meta = pkgs.tree-sitter-grammars.tree-sitter-norg-meta;
+    in
+    (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+      p:
+      with p;
+      [
+        bash
+        comment
+        fish
+        ini # for ini filetypes
+        kdl
+        luadoc
 
-      # for markdown
-      markdown
-      markdown-inline
+        # for markdown
+        markdown
+        markdown-inline
 
-      html
-      latex
+        query
 
-      qmljs
-      gitignore
-      git_rebase
-      css
-      json
-      toml
-      yaml
-      nix
-      c
-      cpp
-      lua
-      regex
-      zathurarc
-    ]
-  );
+        html
+        latex
+
+        qmljs
+        gitignore
+        git_rebase
+        css
+        json
+        toml
+        yaml
+        nix
+        c
+        cpp
+        lua
+        regex
+        zathurarc
+      ]
+      ++ [
+        treesitter-norg
+        treesitter-norg-meta
+      ]
+    ));
 in
 pkgsPlugins ++ [ treeSitterGrammars ]

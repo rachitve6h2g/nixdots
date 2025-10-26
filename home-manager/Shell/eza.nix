@@ -6,6 +6,7 @@
     icons = "auto";
     colors = "auto";
 
+    enableBashIntegration = true;
     extraOptions = [
       "--group-directories-first"
       "--header"

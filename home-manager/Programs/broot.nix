@@ -1,11 +1,11 @@
 {
   programs = {
-    zoxide = {
+    broot = {
       enable = true;
       enableBashIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
+      settings = {
+        modal = true;
+      };
     };
   };
 }
