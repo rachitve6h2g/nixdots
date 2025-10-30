@@ -60,7 +60,7 @@
               "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt"
               "https://github.com/uBlockOrigin/uAssets/raw/master/filters/quick-fixes.txt"
               "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt"
-              "https://github.com/uBlockOrigin/uAssets/raw/master/filters/ubol-link-shorteners.txt"
+              "https://github.com/uBlockOrigin/uAssets/raw/master/filters/ubo-link-shorteners.txt"
               "https://github.com/uBlockOrigin/uAssets/raw/master/filters/ubol-filters.txt"
               "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
             ];
