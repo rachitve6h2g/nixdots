@@ -11,7 +11,7 @@
     dconf.enable = true;
     niri = {
       enable = true;
-      package = pkgs.niri-stable;
+      package = pkgs.niri;
     };
 
     uwsm = {
