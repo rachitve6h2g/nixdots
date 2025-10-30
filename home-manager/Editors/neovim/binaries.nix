@@ -24,6 +24,7 @@ let
     gcc
 
     imagemagick
+    taplo # LSP for TOML
 
     python313Packages.pylatexenc
   ];

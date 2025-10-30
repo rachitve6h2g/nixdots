@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   ns = pkgs.writeShellScriptBin "ns" (builtins.readFile ./nixpkgs.sh);
 in
@@ -36,7 +36,7 @@ in
           use_nerd_font_icons = true;
           ui_scale = 120;
           show_preview_panel = false;
-          theme = "gruvbox-dark";
+          theme = "kanagawa";
           input_bar = {
             position = "top";
             prompt = ">";
@@ -187,4 +187,33 @@ in
       };
     };
   };
+
+  xdg.configFile."television/themes/kanagawa.toml".source =
+    let
+      colors = config.lib.stylix.colors.withHashtag;
+    in
+    (pkgs.formats.toml { }).generate "kanagawa_television.toml" {
+      # general
+      background = "${colors.base00}";
+      border_fg = "${colors.base07}";
+      text_fg = "${colors.base05}";
+      dimmed_text_fg = "${colors.base0D}";
+      # input
+      input_text_fg = "${colors.base08}";
+      result_count_fg = "${colors.base08}";
+      # results
+      result_name_fg = "${colors.base0D}";
+      result_line_number_fg = "${colors.base09}";
+      result_value_fg = "${colors.base03}";
+      selection_fg = "${colors.base0C}";
+      selection_bg = "${colors.base04}";
+      match_fg = "${colors.base08}";
+      # preview
+      preview_title_fg = "${colors.base0E}";
+      # modes
+      channel_mode_fg = "${colors.base00}";
+      channel_mode_bg = "${colors.base09}";
+      remote_control_mode_fg = "${colors.base00}";
+      remote_control_mode_bg = "${colors.base0C}";
+    };
 }
