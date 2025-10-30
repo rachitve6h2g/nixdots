@@ -4,6 +4,9 @@
   # lib,
   ...
 }:
+let
+  theme = "kanagawa";
+in
 {
   stylix = {
     cursor = {
@@ -14,10 +17,24 @@
 
     iconTheme = {
       enable = true;
-      package = pkgs.gruvbox-plus-icons.override { folder-color = "purple"; };
-      light = "Gruvbox-Plus-Dark";
-      # package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; };
-      # light = "Papirus";
+    }
+    // (
+      if theme == "gruvbox" then
+        {
+          package = pkgs.gruvbox-plus-icons.override { folder-color = "purple"; };
+          light = "Gruvbox-Plus-Dark";
+          # package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; };
+          # light = "Papirus";
+        }
+      else if theme == "kanagawa" then
+        {
+          package = pkgs.kanagawa-icon-theme;
+          light = "Kanagawa";
+        }
+      else
+        { }
+    )
+    // {
       dark = config.stylix.iconTheme.light;
     };
   };

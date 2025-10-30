@@ -10,6 +10,13 @@ require("neorg").setup({
         default_workspace = "notes",
       },
     },
+    -- ["core.integrations.telescope"] = {
+    --   config = {
+    --     insert_file_link = {
+    --       show_title_preview = true,
+    --     },
+    --   },
+    -- },
   },
 })
 

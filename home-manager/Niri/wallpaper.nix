@@ -20,7 +20,7 @@
   };
 
   stylix.image = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/photography/forest-4.jpg";
-    hash = "sha256-+CDKGUqsTMSnJ9RRMOIApGX244Eak6Ls53wnF1kD3jI=";
+    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/117497448_p0.jpg?raw=true";
+    hash = "sha256-3r+INWEskjl+zRJga535QRWF2bS8WUyZfMw17KrKWz8=";
   };
 }

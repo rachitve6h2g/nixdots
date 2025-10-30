@@ -2,7 +2,8 @@
 let
   pkgsPlugins = with pkgs.vimPlugins; [
     # For colorscheme
-    gruvbox-material
+    # gruvbox-material
+    kanagawa-nvim
 
     # for git integration
     git-conflict-nvim
@@ -37,6 +38,7 @@ let
     mini-starter # for a nice banner
 
     neorg
+    neorg-telescope
 
     neoscroll-nvim
 

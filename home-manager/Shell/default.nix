@@ -16,6 +16,7 @@ in
 {
   imports = [
     ./bat.nix
+    ./dircolors.nix
     ./eza.nix
     ./fzf.nix
     ./kitty.nix
