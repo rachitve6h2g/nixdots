@@ -1,15 +1,17 @@
 { pkgs, ... }:
 {
   bypass = pkgs.yaziPlugins.bypass;
+  dupes = pkgs.yaziPlugins.dupes; # requires jdupes-cli which is self-contained
+  # in the plugin
   full-border = pkgs.yaziPlugins.full-border;
   git = pkgs.yaziPlugins.git;
   lazygit = pkgs.yaziPlugins.lazygit;
   mediainfo = pkgs.yaziPlugins.mediainfo;
+  recycle-bin = pkgs.yaziPlugins.recycle-bin;
   rich-preview = pkgs.yaziPlugins.rich-preview;
   vcs-files = pkgs.yaziPlugins.vcs-files;
   smart-filter = pkgs.yaziPlugins.smart-filter;
   starship = pkgs.yaziPlugins.starship;
-  restore = pkgs.yaziPlugins.restore;
   yatline = pkgs.yaziPlugins.yatline;
 
   eza-preview = (

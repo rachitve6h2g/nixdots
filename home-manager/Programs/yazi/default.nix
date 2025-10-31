@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     mediainfo # for mediainfo.yazi
     rich-cli # for readme viewing
-    trash-cli # for restore.yazi
+    trash-cli # for recycle-bin.yazi
     _7zz-rar # for extraction
   ];
 

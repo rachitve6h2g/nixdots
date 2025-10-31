@@ -83,11 +83,47 @@
         ];
       }
 
-      # For restore.yazi
+      # For dupes.yazi: find the duplicates
       {
-        on = "u";
-        run = "plugin restore -- --interactive";
-        desc = "Restore last deleted files/folders";
+        on = [
+          "<A-J>"
+          "i"
+        ];
+        run = "plugin dupes interactive";
+        desc = "Run dupes interactive";
+      }
+      {
+        on = [
+          "<A-J>"
+          "o"
+        ];
+        run = "plugin dupes override";
+        desc = "Run dupes override";
+      }
+      {
+        on = [
+          "<A-J>"
+          "d"
+        ];
+        run = "plugin dupes dry";
+        desc = "Run dupes dry";
+      }
+      {
+        on = [
+          "<A-J>"
+          "a"
+        ];
+        run = "plugin dupes apply";
+        desc = "Run dupes apply";
+      }
+
+      # For recycle-bin.yazi
+      {
+        on = [
+          "R"
+          "b"
+        ];
+        run = "plugin recycle-bin";
       }
     ];
   };

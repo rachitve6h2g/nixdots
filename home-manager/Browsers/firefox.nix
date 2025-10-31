@@ -325,22 +325,16 @@
           };
           extensions = {
             force = true;
+            exactPermissions = true;
+            exhaustivePermissions = true;
 
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               localcdn
-              stylus
               ublock-origin
               facebook-container
             ];
 
             settings = {
-              "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-                force = true;
-                settings = {
-                  dbInChromeStorage = true;
-                };
-              };
-
               "uBlock0@raymondhill.net" = {
                 force = true;
                 settings = {
@@ -352,7 +346,53 @@
                     "ublock-quick-fixes"
                   ];
                 };
+                permissions = [
+                  "alarms"
+                  "dns"
+                  "menus"
+                  "privacy"
+                  "storage"
+                  "tabs"
+                  "unlimitedStorage"
+                  "webNavigation"
+                  "webRequest"
+                  "webRequestBlocking"
+                  "<all_urls>"
+                  "http://*/*"
+                  "https://*/*"
+                  "file://*/*"
+                  "https://easylist.to/*"
+                  "https://*.fanboy.co.nz/*"
+                  "https://filterlists.com/*"
+                  "https://forums.lanik.us/*"
+                  "https://github.com/*"
+                  "https://*.github.io/*"
+                  "https://github.com/uBlockOrigin/*"
+                  "https://ublockorigin.github.io/*"
+                  "https://*.reddit.com/r/uBlockOrigin/*"
+                ];
               };
+
+              "{b86e4813-687a-43e6-ab65-0bde4ab75758}".permissions = [
+                "*://*/*"
+                "privacy"
+                "storage"
+                "webNavigation"
+                "webRequest"
+                "webRequestBlocking"
+              ];
+
+              "@contain-facebook".permissions = [
+                "<all_urls>"
+                "browsingData"
+                "contextualIdentities"
+                "cookies"
+                "management"
+                "storage"
+                "tabs"
+                "webRequestBlocking"
+                "webRequest"
+              ];
             };
           };
         };
