@@ -27,7 +27,6 @@ in
   home = {
     packages = with pkgs; [
       brightnessctl
-      app2unit
     ];
   };
 
@@ -38,17 +37,11 @@ in
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
       config.common.default = "*";
     };
-
-    configFile = {
-      "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-
-      "uwsm/env-niri".text = ''
-        export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
-      '';
-    };
   };
 
   services.playerctld.enable = true;
+
+  wayland.systemd.target = "graphical-session.target";
 
   programs = {
     niri = {
@@ -63,13 +56,6 @@ in
         };
 
         spawn-at-startup = [
-          {
-            command = [
-              "uwsm"
-              "finalize"
-            ];
-          }
-
           {
             # For starting niriswitcher
             command = [ "${pkgs.niriswitcher}/bin/niriswitcher" ];
@@ -120,8 +106,7 @@ in
 
           "Mod+Return" = {
             action = spawn [
-              "app2unit"
-              "-T"
+              "kitty"
             ];
             hotkey-overlay.title = "Spawn Kitty Terminal";
           };

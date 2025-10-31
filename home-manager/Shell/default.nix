@@ -36,6 +36,7 @@ in
   };
 
   programs = {
+    fd.enable = true;
     bash = {
       enable = true;
       enableCompletion = true;

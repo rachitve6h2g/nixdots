@@ -21,6 +21,9 @@
 
       systemd = {
         enable = true;
+        # target = ; # Set the same as wayland.systemd.target
+        enableDebug = true;
+        # enableInspect = true;
       };
 
       settings = {
@@ -82,13 +85,13 @@
           cpu = {
             interval = 5;
             format = "󰍛";
-            on-click = "app2unit btop";
+            on-click = "kitty -e btop";
           };
           clock = {
             format = "{:%A %I:%M %p}";
             format-alt = "{:%d %B W%V %Y}";
             tooltip = false;
-            on-click-right = "app2unit clock-rs";
+            on-click-right = "kitty -e clock-rs";
           };
           network = {
             format-icons = [

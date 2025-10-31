@@ -5,24 +5,16 @@
   ...
 }:
 {
-  imports = [ inputs.niri-flake.nixosModules.niri ];
+  imports = [
+    inputs.niri-flake.nixosModules.niri
+    ./greeter.nix
+  ];
 
   programs = {
     dconf.enable = true;
     niri = {
       enable = true;
       package = pkgs.niri;
-    };
-
-    uwsm = {
-      enable = true;
-      waylandCompositors = {
-        niri = {
-          prettyName = "Niri";
-          comment = "Niri compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/niri -- --session";
-        };
-      };
     };
   };
 

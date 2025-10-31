@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   hardware = {
+    enableRedistributableFirmware = true;
     intel-gpu-tools.enable = true;
     graphics = {
       enable = true;

@@ -18,7 +18,6 @@
     ./niri.nix
     ./nix-index.nix
     ./plymouth.nix
-    ./sddm.nix
     ./security.nix
     ./sound.nix
     ./ssh.nix

@@ -1,13 +1,4 @@
 {
-  opener = {
-    open = [
-      {
-        run = "app2unit-open \"$1\"";
-        desc = "Open";
-        for = "linux";
-      }
-    ];
-  };
   log = {
     enabled = true;
   };

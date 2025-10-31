@@ -21,7 +21,6 @@
           prompt = "󱡴  ";
           use-bold = "yes";
           layer = "overlay";
-          launch-prefix = "app2unit --fuzzel-compat --";
         };
       };
     };
