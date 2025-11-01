@@ -26,7 +26,7 @@ vim.o.background = "dark"
 require("kanagawa").setup({
   compile = false, -- enable compiling the colorscheme
   undercurl = true, -- enable undercurls
-  commentStyle = { italic = false },
+  commentStyle = { italic = true },
   functionStyle = { italic = true },
   keywordStyle = { italic = true },
   statementStyle = { bold = true },

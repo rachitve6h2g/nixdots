@@ -115,13 +115,17 @@ in
             action = close-window;
           };
 
-          "Mod+N".action = focus-window-down-or-column-right;
-          "Mod+P".action = focus-window-up-or-column-left;
+          # Move around windows in a workspace using vim keys.
+          "Mod+H".action = focus-column-left;
+          "Mod+L".action = focus-column-right;
+          "Mod+K".action = focus-window-up;
+          "Mod+J".action = focus-window-down;
 
-          "Mod+Ctrl+B".action = move-column-left;
-          "Mod+Ctrl+N".action = move-window-down;
-          "Mod+Ctrl+P".action = move-window-up;
-          "Mod+Ctrl+F".action = move-column-right;
+          # Move the windows around in a workspace.
+          "Mod+Ctrl+H".action = move-column-left;
+          "Mod+Ctrl+L".action = move-column-right;
+          "Mod+Ctrl+K".action = move-window-up;
+          "Mod+Ctrl+J".action = move-window-down;
 
           "Mod+Shift+N".action = move-window-down;
           "Mod+Shift+P".action = move-window-up;
