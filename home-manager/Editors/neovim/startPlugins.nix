@@ -48,6 +48,10 @@ let
     indent-blankline-nvim
     rainbow-delimiters-nvim
 
+    # very handy plugin
+    telescope-nvim
+    telescope-fzf-native-nvim
+
     # For nix
     vim-nix
     vim-nixhash

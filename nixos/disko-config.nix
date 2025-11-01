@@ -64,7 +64,7 @@
                         mountOptions = [
                           "noatime"
                           "nodatacow"
-                          "compress=no"
+                          "compress=zstd"
                         ];
                         swap.swapfile.size = "18G";
                       };

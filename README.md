@@ -12,14 +12,6 @@
 
 - If wallpapers are needed, the [wallpapers](https//github.com/rachitve6h2g/Wallpapers) or the [resources](./resources.md) can be used for the links. Use Stylix or fetchurl for using the wallpapers.
 
-# TODO:
-- [ ] Write an event for pausing song/video on earphone unplug, resume on plug-in
-- [ ] Move to treefmt-nix from nixfmt
-- [ ] Move to xdg-desktop-portal-termfilechooser
-- [ ] Learn difference between focus-ring and border (read the wiki properly)
-- [ ] Move to SwayWM
-- [ ] Write quickshell configs.
-
 # License
 
 This project is licensed under the GNU General Public License v3.0.

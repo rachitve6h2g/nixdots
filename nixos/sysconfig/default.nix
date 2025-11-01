@@ -9,7 +9,7 @@
     ./compileopts.nix
     ./consolekeymap.nix
     ./fingerprint.nix
-    ./gaming.nix
+    # ./gaming.nix
     ./graphics.nix
     ./kdeconnect.nix
     ./keymap.nix
@@ -27,7 +27,8 @@
     ./tmp_on_ram.nix
     ./user.nix
     ./virtualization.nix
-    ./zram.nix
+    # ./zram.nix
+    ./zswap.nix
   ];
 
   documentation.man.generateCaches = false;

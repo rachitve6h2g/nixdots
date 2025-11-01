@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   pkgsPlugins = with pkgs.vimPlugins; [
-    telescope-nvim
+    aerial-nvim # for amazing code outline
+
     trouble-nvim
 
     # Better lsp

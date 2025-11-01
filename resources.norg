@@ -1,159 +1,158 @@
-** Wallpapers
-*** -[[https://github.com/the-argus/wallpapers][ Great Wallpapers]]
-*** - [[https://github.com/fr0st-iwnl/wallz][From fr0st's wallz repo]]
-*** - [[https://github.com/Noob-linux-user/Wallpaper][From Noob-linux user]]
-*** - [[https://www.wallrice.xyz/][WallRice(customize any wallpaper to match your theme)]]
-*** - [[https://ign.schrodinger-hat.it/color-schemes][Another Wallpaper converter]]
+* Wallpapers
+  - [Great Wallpapers]{https://github.com/the-argus/wallpapers}
+  - [From fr0st's wallz repo]{https://github.com/fr0st-iwnl/wallz}
+  - [From Noob-linux user]{https://github.com/Noob-linux-user/Wallpaper}
+  - [WallRice(customize any wallpaper to match your theme)]{https://www.wallrice.xyz/}
+  - [Another Wallpaper converter]{https://ign.schrodinger-hat.it/color-schemes}
 
 
-** RMPC music player:
-If you have rmpc you can download and configure lyrics from [[https://lrclib.net/][librc.net]].
+* RMPC music player:
+  If you have rmpc you can download and configure lyrics from
+  [librc.net]{https://lrclib.net/}.
 
-=============================
+  =============================
 * 💡 Emacs Lisp (Elisp)
-=============================
+  =============================
 
-*** Quickstart
-- Emacs Tutorial: `M-x info`, then read "Introduction to Emacs Lisp"
-- https://github.com/susam/emacs4cl/blob/master/elisp-cheatsheet.txt
-- [[https://learnxinyminutes.com/docs/elisp/]["Elisp in 15 minutes"]]
+** Quickstart
+   - Emacs Tutorial: `M-x info`, then read "Introduction to Emacs Lisp"
+   - {https://github.com/susam/emacs4cl/blob/master/elisp-cheatsheet.txt}
+   - ["Elisp in 15 minutes"]{https://learnxinyminutes.com/docs/elisp/}
 
-*** Books
-- [[https://www.gnu.org/software/emacs/manual/eintr.html][An Introduction to Programming in Emacs Lisp (official)]]
-- [[https://www.masteringemacs.org][Mastering Emacs blog (real-world Elisp tips)]]
+** Books
+   - [An Introduction to Programming in Emacs Lisp (official)]{https://www.gnu.org/software/emacs/manual/eintr.html}
+   - [Mastering Emacs blog (real-world Elisp tips)]{https://www.masteringemacs.org}
 
-*** Practice
-- Customize your `init.el` using `use-package`, write commands/macros
-- [[https://github.com/doomemacs/doomemacs/tree/master/modules][Read other people’s configs]]
+** Practice
+   - Customize your `init.el` using `use-package`, write commands/macros
+   - [Read other people’s configs]{https://github.com/doomemacs/doomemacs/tree/master/modules}
 
-=============================
+   ==============================
 * 📘 Common Lisp (CL)
-=============================
+  =============================
 
-*** Syntax + Concepts
-- [[https://learnxinyminutes.com/docs/common-lisp/][Quick tour]]
-- [[https://lisper.in][Practical intro to Lisp from scratch (great for beginners)]]
+** Syntax + Concepts
+   - [Quick tour]{https://learnxinyminutes.com/docs/common-lisp/}
+   - [Practical intro to Lisp from scratch (great for
+   beginners)]{https://lisper.in}
 
-*** Core Book
-- [[https://gigamonkeys.com/book/][Practical Common Lisp (hands down best CL book)]]
+** Core Book
+   - [Practical Common Lisp (hands down best CL book)]{https://gigamonkeys.com/book/}
 
-*** Tools
-- Install SBCL + Emacs SLIME or SLY
-- Try https://portacle.github.io — all-in-one Lisp dev setup
+** Tools
+   - Install SBCL + Emacs SLIME or SLY
+   - Try {https://portacle.github.io} — all-in-one Lisp dev setup
 
 * 🐸 Scheme / Guile (for Guix)
 
-*** Syntax + Basics
-- [[https://learnxinyminutes.com/docs/scheme/][Short, simple Scheme tour]]
-- [[https://spritely.institute/guides/guile-for-hackers/][Guile for Hackers]]
+** Syntax + Basics
+   - [Short, simple Scheme tour]{https://learnxinyminutes.com/docs/scheme/}
+   - [Guile for Hackers]{https://spritely.institute/guides/guile-for-hackers/}
 
-*** Guile Docs
-- [[https://www.gnu.org/software/guile/manual/][Guile Reference Manual]]
-- [[https://guix.gnu.org/en/manual/en/guix.html][Guix Manual (read Config chapters)]]
+** Guile Docs
+   - [Guile ReferenceManual]{https://www.gnu.org/software/guile/manual/}
+   - [Guix Manual (read Config chapters)]{https://guix.gnu.org/en/manual/en/guix.html}
 
-*** Books
-- Structure and Interpretation of Computer Programs (SICP) — MIT classic (only if you want deep CS)
-  - Free HTML: https://sarabander.github.io/sicp/html/index.xhtml
-  - Or video lectures: https://www.youtube.com/playlist?list=PLE18841CABEA24090
+** Books
+   - Structure and Interpretation of Computer Programs (SICP) — MIT classic (only if you want deep CS)
+   - Free HTML: {https://sarabander.github.io/sicp/html/index.xhtml}
+   - Or video lectures: {https://www.youtube.com/playlist?list=PLE18841CABEA24090}
 
-*** Guix-Specific
-- Try modifying your own `config.scm`
-- Follow [[https://www.reddit.com/r/guix/][r/Guix]] and [#guix on Libera IRC]
+** Guix-Specific
+   - Try modifying your own `config.scm`
+   - Follow [r/Guix]{https://www.reddit.com/r/guix/} and [#guix on Libera IRC]
 
 
 * 🧠 Bonus: Understanding Lisp Philosophy
 
-- [[https://paulgraham.com/lisp.html][Beating the Averages]]
-- [[https://wiki.c2.com/?WhyLisp][Community reflections on why Lisp is special]]
+  - [Beating the Averages]{https://paulgraham.com/lisp.html}
+  - [Community reflections on why Lisp is special]{https://wiki.c2.com/?WhyLisp}
 
-- Scripting in lua (additional languages as well) [[https://docs.fivem.net/docs/scripting-manual/][FiveM Docs]] recommended by FreeCodeCamp users.
 
 * Learn Lua - Free Resources
 
+  - Scripting in lua (additional languages as well) [FiveMDocs]{https://docs.fivem.net/docs/scripting-manual/} recommended by FreeCodeCamp users.
 ** 🧠 Best Starting Point
-*** [[https://www.lua.org/pil/contents.html][Programming in Lua (1st Edition) – by Roberto Ierusalimschy]]
-- Official book by Lua’s creator
-- Covers Lua 5.0 (still highly relevant)
-- Teaches idiomatic Lua
-- Absolutely recommended as your first resource
+*** [Programming in Lua (1st Edition) – by Roberto Ierusalimschy]{https://www.lua.org/pil/contents.html}
+    - Official book by Lua’s creator
+    - Covers Lua 5.0 (still highly relevant)
+    - Teaches idiomatic Lua
+    - Absolutely recommended as your first resource
 
 ** 🧰 Practical Lua Resources
-*** [[https://learnxinyminutes.com/docs/lua/][Learn Lua in Y Minutes]]
-- Quick syntax-driven overview
-- Great for polyglot programmers
-- Excellent for quick referencing
+*** [Learn Lua in Y Minutes]{https://learnxinyminutes.com/docs/lua/}
+    - Quick syntax-driven overview
+    - Great for polyglot programmers
+    - Excellent for quick referencing
 
-*** [[https://www.lua.org/manual/5.4/][Lua 5.4 Reference Manual]]
-- Official language documentation
-- Precise and thorough
-- Use like a dictionary (not a tutorial)
+*** [Lua 5.4 Reference Manual]{https://www.lua.org/manual/5.4/}
+    - Official language documentation
+    - Precise and thorough
+    - Use like a dictionary (not a tutorial)
 
 ** 🧑‍💻 Interactive & Project-Based Learning
-*** [[https://exercism.org/tracks/lua][Exercism – Lua Track]]
-- Interactive programming challenges
-- Mentor feedback available
-- Ideal for learning through practice
+*** [Exercism – Lua Track]{https://exercism.org/tracks/lua}
+    - Interactive programming challenges
+    - Mentor feedback available
+    - Ideal for learning through practice
 
-*** [[https://github.com/EmmanuelOga/luakoans][Lua Koans]]
-- Learn by fixing broken unit tests
-- Fun and engaging way to internalize Lua concepts
+*** [Lua Koans]{https://github.com/EmmanuelOga/luakoans}
+    - Learn by fixing broken unit tests
+    - Fun and engaging way to internalize Lua concepts
 
 ** 📚 Additional Reading & Advanced Material
-*** [[https://lua.space/general/lua-for-professionals-book][Lua for Professionals (Free Book)]]
-- Covers Lua 5.3+
-- Cleanly structured and modern
-- Great second step after PIL
+*** [Lua for Professionals (Free Book)]{https://lua.space/general/lua-for-professionals-book}
+    - Covers Lua 5.3+
+    - Cleanly structured and modern
+    - Great second step after PIL
 
-*** [[https://github.com/LewisJEllis/awesome-lua][Awesome Lua (GitHub)]]
-- Curated list of libraries, tools, and articles
-- Great for expanding your Lua toolkit
+*** [Awesome Lua (GitHub)]{https://github.com/LewisJEllis/awesome-lua}
+    - Curated list of libraries, tools, and articles
+    - Great for expanding your Lua toolkit
 
 ** ⚙️ For System Scripting, FFI, or Neovim
-*** [[https://luajit.org/ext_ffi.html][LuaJIT FFI Tutorial]]
-- Low-level interfacing with C
-- For embedded and performance-critical Lua
+*** [LuaJIT FFITutorial]{https://luajit.org/ext_ffi.html}
+    - Low-level interfacing with C
+    - For embedded and performance-critical Lua
 
-*** [[https://github.com/nanotee/nvim-lua-guide][Neovim Lua Guide]]
-- For configuring and scripting Neovim in Lua
-- Best resource for plugin authors or power users
+*** [Neovim Lua Guide]{https://github.com/nanotee/nvim-lua-guide}
+    - For configuring and scripting Neovim in Lua
+    - Best resource for plugin authors or power users
 
 ** 🏁 Suggested Learning Path
-1. Read *Programming in Lua* fully.
-2. Practice with *Exercism* and *Lua Koans*.
-3. Keep *Lua Manual* and *Awesome Lua* as reference.
-4. Build scripts, Neovim configs, or small Lua apps.
-5. Deepen your skills with *Lua for Professionals*.
+   ~ Read *Programming in Lua* fully.
+   ~ Practice with *Exercism* and *Lua Koans*.
+   ~ Keep *Lua Manual* and *Awesome Lua* as reference.
+   ~ Build scripts, Neovim configs, or small Lua apps.
+   ~ Deepen your skills with *Lua for Professionals*.
 
 ** 🔥 Pro Tip
-> Lua is small but powerful — you can master it quickly by writing real code regularly.
+   > Lua is small but powerful — you can master it quickly by writing real code regularly.
 
-===========================================================================
- _                            _   _ _
-| |    ___  __ _ _ __ _ __   | \ | (_)_  __
-| |   / _ \/ _` | '__| '_ \  |  \| | \ \/ /
-| |__|  __/ (_| | |  | | | | | |\  | |>  <
-|_____\___|\__,_|_|  |_| |_| |_| \_|_/_/\_\
-
-===========================================================================
 * Sources
-- Read the dotfiles of Librephoenix (he's got a way to blur qutebrowser)
+  - Read the dotfiles of Librephoenix (he's got a way to blur qutebrowser)
 
 * Learning Resources
-I just made a list of learning resources that I used to understand NixOS, so perfect timing!
+  I just made a list of learning resources that I used to understand NixOS, so perfect timing!
 
-[[https://zero-to-nix.com/][ Overall review]]
- 
- [[https://nix.dev/][Overall review alternative]]
- 
-[[https://youtu.be/9fWrxmEYGAs][ Best installation guide (for the calamares installer ISO)]]
- 
-[[https://youtu.be/C5eAecVeO_c][ Home-manager intro + how to make nix modules (YouTube)]]
- 
-[[https://youtu.be/DXz3FJszfo0][ Flakes intro + convert your system config into a flake]]
- 
-[[https://elatov.github.io/2022/01/building-a-nix-package/][ How to build your own nix package]]
- 
-[[https://mynixos.com/][ Build Dev-shells, images, home-manager configs and even your own NixOS in the browser]]
- 
- https://docs.nix.zone/
+  - [Overall review]{https://zero-to-nix.com/}
+  - [Overall review alternative]{https://nix.dev/}
+  - [Best installation guide (for the calamares installer ISO)]{https://youtu.be/9fWrxmEYGAs}
+  - [Home-manager intro + how to make nix modules (YouTube)]{https://youtu.be/C5eAecVeO_c}
+  - [Flakes intro + convert your system config into a flake]{https://youtu.be/DXz3FJszfo0}
+  - [How to build your own nix package]{https://elatov.github.io/2022/01/building-a-nix-package/}
+  - [Build Dev-shells, images, home-manager configs and even your own NixOS in the browser]{https://mynixos.com/}
+  - {https://docs.nix.zone/}
 
+* Learn Qt Qml
+** Start here
+   - [StartHere]{https://doc.qt.io/qt-6/qml-tutorial.html}
+   - [Starting Video Lectures by Void Realms(official qtpartner)]{https://youtube.com/playlist?list=PLUbFnGajtZlXbrbdlraCe3LMC_YH5abao&si=ba0mNC4XUMAYZ4Ez}
+   - [Book on Qt5 (useful)]{https://qmlbook.github.io/}
+
+** Master QtQuick Controls, Animations, Models
+   - [KDAB's qt tutorial videos]{https://youtube.com/playlist?list=PL6CJYn40gN6hdNC1IGQZfVI707dh9DPRc&si=5dRzsFruvnV3P-zj}
+
+
+   Other things such as C++ integration and QtQuick controls are already
+   written in the [Official Documentation]{https://doc.qt.io/}
