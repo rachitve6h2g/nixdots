@@ -133,14 +133,14 @@ in
           "Mod+E".action = focus-column-last;
           "Mod+A".action = focus-column-first;
 
-          "Mod+D".action = focus-workspace-down;
-          "Mod+U".action = focus-workspace-up;
+          "Mod+U".action = focus-workspace-down;
+          "Mod+I".action = focus-workspace-up;
 
-          "Mod+Shift+D".action = move-column-to-workspace-down;
-          "Mod+Shift+U".action = move-column-to-workspace-up;
+          "Mod+Shift+U".action = move-column-to-workspace-down;
+          "Mod+Shift+I".action = move-column-to-workspace-up;
 
-          "Mod+Ctrl+D".action = move-workspace-down;
-          "Mod+Ctrl+U".action = move-workspace-up;
+          "Mod+Ctrl+U".action = move-workspace-down;
+          "Mod+Ctrl+I".action = move-workspace-up;
 
           "Mod+1".action = focus-workspace 1;
           "Mod+2".action = focus-workspace 2;
