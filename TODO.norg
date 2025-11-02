@@ -9,3 +9,5 @@
 
 ** ( ) Configure neomutt
    - ( ) Configure notmuch
+   - ( ) Configure vdirsyncer < done with the accounts module in home-manager
+   - ( ) Configure khal < done with the accounts module in home-manager

@@ -16,6 +16,7 @@
   systemd.user.startServices = true;
 
   imports = [
+    ./Accounts
     ./Browsers
     ./Editors
     ./Git

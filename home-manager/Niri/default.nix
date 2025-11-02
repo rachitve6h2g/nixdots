@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./clipboard.nix
-    ./fuzzel.nix
+    # ./fuzzel.nix
     ./mako.nix
     ./niriswitcher.nix
     ./polkit.nix
@@ -19,6 +19,7 @@ in
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
+    ./walker.nix
     ./wallpaper.nix
     ./waybar.nix
     ./wlsunset.nix
@@ -99,9 +100,9 @@ in
         };
 
         binds = with config.lib.niri.actions; {
-          "Mod+R" = {
-            action = spawn "fuzzel";
-            hotkey-overlay.title = "Run an Application: fuzzel";
+          "Mod+D" = {
+            action = spawn "walker";
+            hotkey-overlay.title = "Run an Application: walker";
           };
 
           "Mod+T" = {

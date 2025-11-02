@@ -5,6 +5,7 @@
 {
   imports = [
     ./gh.nix
+    ./gpg.nix
     ./lazygit.nix
   ];
 
