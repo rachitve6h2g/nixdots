@@ -127,12 +127,12 @@
    ~ Deepen your skills with *Lua for Professionals*.
 
 ** 🔥 Pro Tip
-   > Lua is small but powerful — you can master it quickly by writing real code regularly.
+   Lua is small but powerful — you can master it quickly by writing real code regularly.
 
 * Sources
   - Read the dotfiles of Librephoenix (he's got a way to blur qutebrowser)
 
-* Learning Resources
+* Master Nix
   I just made a list of learning resources that I used to understand NixOS, so perfect timing!
 
   - [Overall review]{https://zero-to-nix.com/}

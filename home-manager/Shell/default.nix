@@ -17,6 +17,7 @@ in
   imports = [
     ./bat.nix
     ./dircolors.nix
+    ./direnv.nix
     ./eza.nix
     ./fzf.nix
     ./kitty.nix
