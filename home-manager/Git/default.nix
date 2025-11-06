@@ -10,14 +10,16 @@
   ];
 
   programs = {
-    delta = {
+    difftastic = {
       enable = true;
       options = {
-        navigate = true;
-        dark = true;
-        side-by-side = true;
-        hyperlinks = true;
-        line-numbers = true;
+        color = "dark";
+        sort-path = true;
+        tab-width = 8;
+      };
+      git = {
+        enable = true;
+        diffToolMode = true;
       };
     };
 

@@ -6,7 +6,7 @@
         mode = "enabled";
         enableBashIntegration = true;
       };
-      enableGitIntegration = true;
+      # enableGitIntegration = true; # Use difftastic instead.
       settings = {
         dynamic_background_opacity = true;
         enable_audio_bell = "no";

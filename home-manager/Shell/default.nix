@@ -10,6 +10,15 @@ let
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";
     MOZ_ENABLE_WAYLAND = 1;
+    SUDO_PROMPT = lib.concatStrings [
+      "$(tput bold)"
+      "$(tput setaf 5)"
+      "[🔒 SUDO]$(tput sgr0) "
+      "$(tput bold)$(tput setaf 6)"
+      "Password for "
+      "$(tput setaf 3)"
+      "$USER$(tput sgr0): "
+    ];
   }
   // (if config.services.emacs.defaultEditor then { } else { EDITOR = "vim"; });
 in
@@ -63,25 +72,9 @@ in
               mv() { command mv -i "''${@}"; }
               trash() { command trash -i "''${@}"; }
             '';
-
-          lazygit_change_dir = # bash
-            ''
-              lg()
-                {
-                    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-                    lazygit "$@"
-
-                    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-                            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-                            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-                    fi
-                }
-            '';
         in
         lib.mkMerge [
           interactive_dangers
-          lazygit_change_dir
         ];
     };
   };
