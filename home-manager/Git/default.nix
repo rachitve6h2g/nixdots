@@ -60,6 +60,14 @@
           controlPath = "~/.ssh/master-%r@%n:%p";
           controlPersist = "no";
         };
+
+        # Works only when my phone's hotspot is connected
+        # to my Laptop.
+        myphone = {
+          user = "u0_a347";
+          hostname = "10.119.61.176";
+          port = 8022;
+        };
       };
     };
   };

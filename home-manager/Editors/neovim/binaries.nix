@@ -27,6 +27,10 @@ let
     taplo # LSP for TOML
 
     python313Packages.pylatexenc
+
+    systemd-language-server # Iykyk
+
+    nur.repos.Freed-Wu.mutt-language-server # for neomutt
   ];
 in
 packages

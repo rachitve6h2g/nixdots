@@ -15,7 +15,7 @@ in
     ./niriswitcher.nix
     ./polkit.nix
     ./poweralertd.nix
-    # ./quickshell.nix # NOTE: learn nix first, lisp second and then qml
+    ./quickshell.nix # NOTE: learn nix first, lisp second and then qml
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
@@ -39,6 +39,11 @@ in
       config.common.default = "*";
     };
   };
+
+  # qmlls will not be able to pick up qml modules that are not in QML2_IMPORT_PATH.
+  # The easiest way to ensure this is by setting qt.enable to true
+  # and installing the quickshell package globally.
+  qt.enable = true;
 
   services.playerctld.enable = true;
 

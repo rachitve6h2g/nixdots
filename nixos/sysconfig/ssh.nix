@@ -15,6 +15,8 @@
       };
     };
 
+    tailscale.enable = true;
+
     # Enable fail2ban for banning multiple authentication attempts
     fail2ban = {
       enable = true;

@@ -132,6 +132,10 @@
 * Sources
   - Read the dotfiles of Librephoenix (he's got a way to blur qutebrowser)
 
+* To master Nix, you might need a little idea (or maybe huge) about Functional Programming
+  ~ _/Start Here:/_ [Learn You a Haskell - read and code along]{https://learnyouahaskell.github.io/chapters.html}
+  ~ _/Practice Here:/_ [Exercism]{https://exercism.org/}
+
 * Master Nix
   I just made a list of learning resources that I used to understand NixOS, so perfect timing!
 
