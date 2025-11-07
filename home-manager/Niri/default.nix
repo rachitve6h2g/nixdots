@@ -23,21 +23,14 @@ in
     ./wallpaper.nix
     ./waybar.nix
     ./wlsunset.nix
+
+    ./xdg-portal.nix
   ];
 
   home = {
     packages = with pkgs; [
       brightnessctl
     ];
-  };
-
-  xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      config.common.default = "*";
-    };
   };
 
   # qmlls will not be able to pick up qml modules that are not in QML2_IMPORT_PATH.

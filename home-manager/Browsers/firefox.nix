@@ -96,6 +96,9 @@
           "browser.newtabpage.activity-stream.feeds.snippets" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.showSponsored" = false;
+
+          # For xdg-desktop-portal-termfilechooser
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
         };
       };
 
