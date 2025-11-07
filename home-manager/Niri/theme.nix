@@ -39,8 +39,12 @@ in
     };
   };
 
-  home.pointerCursor = {
-    dotIcons.enable = false;
+  home = {
+    pointerCursor = {
+      dotIcons.enable = false;
+    };
+
+    packages = with pkgs; [ sound-theme-freedesktop ];
   };
 
   gtk = rec {
@@ -52,8 +56,9 @@ in
         gtk-toolbar-icon = GTK_ICON_SIZE_SMALL_TOOLBAR
         gtk-button-images = 0
         gtk-menu-images = 0
-        gtk-enable-event-sounds = 0
-        gtk-enable-input-feedback-sounds = 0
+        gtk-enable-event-sounds = true
+        gtk-enable-input-feedback-sounds = true
+        gtk-sound-theme-name = freedesktop
         gtk-xft-antialias = 1
         gtk-xft-hinting = 1
         gtk-xft-hintstyle = "hintslight"
@@ -62,13 +67,14 @@ in
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "menu:close";
+      gtk-decoration-layout = "menu:";
       gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";
       gtk-toolbar-icon-size = "GTK_ICON_SIZE_SMALL_TOOLBAR";
       gtk-button-images = 0;
       gtk-menu-images = 0;
-      gtk-enable-event-sounds = 0;
-      gtk-enable-input-feedback-sounds = 0;
+      gtk-enable-event-sounds = true;
+      gtk-enable-input-feedback-sounds = true;
+      gtk-sound-theme-name = "freedesktop";
     };
     gtk4.extraConfig = gtk3.extraConfig;
   };

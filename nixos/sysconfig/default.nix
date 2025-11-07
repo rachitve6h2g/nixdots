@@ -27,6 +27,7 @@
     ./tmp_on_ram.nix
     ./user.nix
     ./virtualization.nix
+    ./xdg.nix
     # ./zram.nix
     ./zswap.nix
   ];

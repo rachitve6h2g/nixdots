@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  config,
   ...
 }:
 {
@@ -26,12 +25,4 @@
   # Enable the sodiboo official cache.
   niri-flake.cache.enable = true;
 
-  # xdg desktop portal
-  environment.pathsToLink = [
-    "/share/xdg-desktop-portal"
-    "/share/applications"
-  ];
-  xdg.portal = config.home-manager.users.krish.xdg.portal // {
-    wlr.enable = true;
-  };
 }
