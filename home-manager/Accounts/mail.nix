@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   accounts.email = {
     maildirBasePath = "Mail";
@@ -40,6 +40,17 @@
 
       # Local maildir
       maildir.path = "INBOX";
+
+      # Set up imapnotify
+      imapnotify = {
+        enable = true;
+        onNotify = "${pkgs.isync}/bin/mbsync test-%s";
+        extraArgs = [ "-wait 1" ];
+        boxes = [
+          "Inbox"
+          "[Gmail]/'All Mail'"
+        ];
+      };
     };
   };
 
@@ -54,8 +65,7 @@
   };
 
   services = {
-    mbsync = {
-      enable = true;
-    };
+    mbsync.enable = true;
+    imapnotify.enable = true;
   };
 }

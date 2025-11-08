@@ -1,5 +1,6 @@
 {
   networking = {
+    useNetworkd = true;
     # Refer this https://mynixos.com/nixpkgs/option/networking.hostName
     # For properly setting your hostname
     hostName = "nixpavilion"; # Define your
@@ -13,12 +14,6 @@
           Settings = {
             AutoConnect = true;
           };
-          # General = {
-          #   EnableNetworkConfiguration = true;
-          # };
-          # IPv4 = {
-          #   SendHostname = true;
-          # };
         };
       };
     };
