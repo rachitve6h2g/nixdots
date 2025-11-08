@@ -60,7 +60,8 @@ in
         speedtest = "nix run nixpkgs#speedtest-cli -- --secure";
 
         ff = "${pkgs.fastfetch}/bin/fastfetch";
-      };
+      }
+      // (if config.programs.emacs.enable then { ec = "emacsclient -c"; } else { });
       sessionVariables = userVars;
 
       bashrcExtra =

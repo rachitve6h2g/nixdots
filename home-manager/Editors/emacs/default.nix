@@ -10,7 +10,7 @@
     client = {
       enable = true;
       arguments = [
-        "-c"
+        # "-c"
       ];
     };
 
@@ -19,6 +19,17 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-pgtk;
+    extraPackages =
+      epkgs: with epkgs; [
+        magit
+
+        (treesit-grammars.with-grammars (
+          grammars: with grammars; [
+            tree-sitter-bash
+            tree-sitter-nix
+          ]
+        ))
+      ];
     extraConfig =
       # lisp
       ''

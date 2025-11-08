@@ -216,6 +216,7 @@
                 definedAliases = [ "@gwiki" ];
               };
 
+              # Search for github repo
               gitrepos = {
                 name = "Git Repos";
                 urls = [
@@ -237,6 +238,28 @@
                 definedAliases = [ "@gitrepo" ];
               };
 
+              # Search for git code
+              gitcode = {
+                name = "Git Repos";
+                urls = [
+                  {
+                    template = "https://github.com/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                      {
+                        name = "type";
+                        value = "code";
+                      }
+                    ];
+                  }
+                ];
+                iconMapObj."16" = "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png";
+                definedAliases = [ "@gitcode" ];
+              };
+
               chatgpt = {
                 name = "ChatGpt";
                 urls = [
@@ -247,6 +270,16 @@
 
                 iconMapObj."16" = "https://chat.openai.com/favicon.ico";
                 definedAliases = [ "@gpt" ];
+              };
+
+              perplexity = {
+                name = "Perplexity AI";
+                urls = [
+                  {
+                    template = "https://www.perplexity.ai/?q={searchTerms}";
+                  }
+                ];
+                definedAliases = [ "@perplex" ];
               };
 
               youtube = {
