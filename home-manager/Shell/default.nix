@@ -57,7 +57,6 @@ in
         ".." = "cd ..";
 
         btop = "btop --force-utf";
-        speedtest = "nix run nixpkgs#speedtest-cli -- --secure";
 
         ff = "${pkgs.fastfetch}/bin/fastfetch";
       }
