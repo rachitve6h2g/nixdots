@@ -22,7 +22,8 @@
     extraPackages =
       epkgs: with epkgs; [
         magit
-
+        nix-mode
+	nix-ts-mode
         (treesit-grammars.with-grammars (
           grammars: with grammars; [
             tree-sitter-bash
