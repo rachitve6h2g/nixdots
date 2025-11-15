@@ -20,5 +20,6 @@
     LIBVA_DRIVER_NAME = "iHD";
     NIXOS_OZONE_WL = 1;
     ANV_DEBUG = "video-decode,video-encode";
+    WLR_RENDERER = "vulkan"; # For wayland backend rendering.
   };
 }

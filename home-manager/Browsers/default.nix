@@ -2,7 +2,7 @@
   imports = [
     # ./chromium.nix
     ./firefox.nix
-    ./qutebrowser.nix
+    # ./qutebrowser.nix
   ];
 
   # Set the default browser

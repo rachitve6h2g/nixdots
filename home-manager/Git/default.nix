@@ -67,7 +67,6 @@
         # to my Laptop.
         myphone = {
           user = "u0_a347";
-          hostname = "10.119.61.176";
           port = 8022;
         };
       };

@@ -59,6 +59,7 @@ in
         btop = "btop --force-utf";
 
         ff = "${pkgs.fastfetch}/bin/fastfetch";
+        ls_epkgs = "nix-env -f '<nixpkgs>' -qaP -A emacsPackages";
       }
       // (if config.programs.emacs.enable then { ec = "emacsclient -c"; } else { });
       sessionVariables = userVars;

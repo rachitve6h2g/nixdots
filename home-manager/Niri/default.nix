@@ -126,9 +126,6 @@ in
           "Mod+Ctrl+K".action = move-window-up;
           "Mod+Ctrl+J".action = move-window-down;
 
-          "Mod+Shift+N".action = move-window-down;
-          "Mod+Shift+P".action = move-window-up;
-
           "Mod+E".action = focus-column-last;
           "Mod+A".action = focus-column-first;
 
