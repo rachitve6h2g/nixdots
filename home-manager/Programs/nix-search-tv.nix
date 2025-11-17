@@ -36,7 +36,7 @@ in
           use_nerd_font_icons = true;
           ui_scale = 120;
           show_preview_panel = false;
-          theme = "kanagawa";
+          theme = "catppuccin";
           input_bar = {
             position = "top";
             prompt = ">";

@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ./avizo.nix
     ./clipboard.nix
     # ./fuzzel.nix
     ./mako.nix
@@ -65,7 +66,8 @@ in
             xkb = {
               layout = "us";
               variant = "colemak_dh";
-              options = "ctrl:swapcaps";
+              # options = "ctrl:swapcaps";
+              options = "caps:swapescape";
             };
           };
           touchpad = {
@@ -194,50 +196,64 @@ in
 
           XF86AudioRaiseVolume = {
             action = spawn [
-              "wpctl"
-              "set-volume"
-              "@DEFAULT_AUDIO_SINK@"
-              "3%+"
-              "-l"
-              "1.0"
+              # "wpctl"
+              # "set-volume"
+              # "@DEFAULT_AUDIO_SINK@"
+              # "3%+"
+              # "-l"
+              # "1.0"
+
+              "volumectl"
+              "-u"
+              "up"
             ];
             allow-when-locked = true;
           };
           XF86AudioLowerVolume = {
             action = spawn [
-              "wpctl"
-              "set-volume"
-              "@DEFAULT_AUDIO_SINK@"
-              "3%-"
+              # "wpctl"
+              # "set-volume"
+              # "@DEFAULT_AUDIO_SINK@"
+              # "3%-"
+              "volumectl"
+              "-u"
+              "down"
             ];
             allow-when-locked = true;
           };
           XF86AudioMute = {
             action = spawn [
-              "wpctl"
-              "set-mute"
-              "@DEFAULT_AUDIO_SINK@"
-              "toggle"
+              # "wpctl"
+              # "set-mute"
+              # "@DEFAULT_AUDIO_SINK@"
+              # "toggle"
+              "volumectl"
+              "toggle-mute"
             ];
             allow-when-locked = true;
           };
           XF86MonBrightnessUp = {
             action = spawn [
-              "brightnessctl"
-              "-e4"
-              "-n2"
-              "set"
-              "5%+"
+              # "brightnessctl"
+              # "-e4"
+              # "-n2"
+              # "set"
+              # "5%+"
+              #
+              "lightctl"
+              "up"
             ];
             allow-when-locked = true;
           };
           XF86MonBrightnessDown = {
             action = spawn [
-              "brightnessctl"
-              "-e4"
-              "-n2"
-              "set"
-              "5%-"
+              # "brightnessctl"
+              # "-e4"
+              # "-n2"
+              # "set"
+              # "5%-"
+              "lightctl"
+              "down"
             ];
             allow-when-locked = true;
           };

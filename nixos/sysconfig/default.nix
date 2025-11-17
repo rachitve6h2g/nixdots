@@ -5,6 +5,7 @@
     ./bluetooth.nix
     ./boot-loader.nix
     ./btrfs-autoscrub.nix
+    ./clamav.nix
     ./cleanup.nix
     ./compileopts.nix
     ./consolekeymap.nix

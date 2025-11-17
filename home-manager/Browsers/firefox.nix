@@ -240,7 +240,7 @@
 
               # Search for git code
               gitcode = {
-                name = "Git Repos";
+                name = "Git Code";
                 urls = [
                   {
                     template = "https://github.com/search";

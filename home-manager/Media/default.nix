@@ -1,8 +1,11 @@
 {
   imports = [
+    ./beets.nix
     ./cava.nix
-    ./cmus.nix
+    # ./cmus.nix
+    ./mpd.nix
     ./mpv.nix
+    ./rmpc.nix
   ];
 
   services = {

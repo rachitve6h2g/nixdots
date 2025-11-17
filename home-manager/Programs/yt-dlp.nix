@@ -9,6 +9,8 @@
         # I tried changing the user agent but it still didn't work.
         downloader-args = "aria2c:'-c -j 3 -x 3 -s 3 -k 1M'";
         format = "bestvideo+bestaudio/best";
+        embed-thumbnail = true;
+        add-metadata = true;
       };
     };
 

@@ -3,7 +3,8 @@ let
   pkgsPlugins = with pkgs.vimPlugins; [
     # For colorscheme
     # gruvbox-material
-    kanagawa-nvim
+    # kanagawa-nvim
+    catppuccin-nvim
 
     # for git integration
     git-conflict-nvim
@@ -110,6 +111,7 @@ let
         cpp
         lua
         regex
+        ron
         zathurarc
       ]
       ++ [

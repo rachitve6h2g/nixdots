@@ -5,7 +5,7 @@
   ...
 }:
 let
-  theme = "kanagawa";
+  theme = "catppuccin";
 in
 {
   stylix = {
@@ -30,6 +30,11 @@ in
         {
           package = pkgs.kanagawa-icon-theme;
           light = "Kanagawa";
+        }
+      else if theme == "catppuccin" then
+        {
+          package = pkgs.catppuccin-papirus-folders.override { accent = "mauve"; };
+          light = "Papirus";
         }
       else
         { }

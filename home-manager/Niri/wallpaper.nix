@@ -20,7 +20,7 @@
   };
 
   stylix.image = pkgs.fetchurl {
-    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/117497448_p0.jpg?raw=true";
-    hash = "sha256-3r+INWEskjl+zRJga535QRWF2bS8WUyZfMw17KrKWz8=";
+    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/catppuccin-13.png?raw=true";
+    hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
   };
 }

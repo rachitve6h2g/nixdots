@@ -19,8 +19,7 @@ let
       "$(tput setaf 3)"
       "$USER$(tput sgr0): "
     ];
-  }
-  // (if config.services.emacs.defaultEditor then { } else { EDITOR = "vim"; });
+  };
 in
 {
   imports = [
@@ -59,9 +58,7 @@ in
         btop = "btop --force-utf";
 
         ff = "${pkgs.fastfetch}/bin/fastfetch";
-        ls_epkgs = "nix-env -f '<nixpkgs>' -qaP -A emacsPackages";
-      }
-      // (if config.programs.emacs.enable then { ec = "emacsclient -c"; } else { });
+      };
       sessionVariables = userVars;
 
       bashrcExtra =
@@ -73,10 +70,24 @@ in
               mv() { command mv -i "''${@}"; }
               trash() { command trash -i "''${@}"; }
             '';
+          yt-playlist = /* bash */ ''
+              yt-playlist() {
+                yt-dlp \
+                    --ignore-errors \
+                    --continue \
+                    --no-overwrites \
+                    --download-archive progress.txt \
+                    "$@"
+            }
+
+          '';
         in
-        lib.mkMerge [
-          interactive_dangers
-        ];
+        lib.mkMerge (
+          [
+            interactive_dangers
+          ]
+          ++ (if config.programs.yt-dlp.enable then [ yt-playlist ] else [ ])
+        );
     };
   };
 }
