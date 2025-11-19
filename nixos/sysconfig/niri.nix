@@ -23,6 +23,5 @@
   security.pam.services.swaylock = { };
 
   # Enable the sodiboo official cache.
-  niri-flake.cache.enable = true;
-
+  niri-flake.cache.enable = false;
 }

@@ -1,7 +1,7 @@
 {
   programs = {
     dircolors = {
-      enable = true;
+      enable = false;
       enableBashIntegration = true;
     };
   };
