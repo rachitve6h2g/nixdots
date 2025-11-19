@@ -8,7 +8,7 @@
       realName = "Rachit Kumar Verma";
 
       userName = address;
-      passwordCommand = "pass show gmail-app-password";
+      passwordCommand = "${pkgs.pass}/bin/pass show gmail-app-password";
 
       imap.host = "imap.gmail.com";
       smtp.host = "smtp.gmail.com";
@@ -45,10 +45,13 @@
       imapnotify = {
         enable = true;
         onNotify = "${pkgs.isync}/bin/mbsync test-%s";
-        extraArgs = [ "-wait 1" ];
+        extraArgs = [
+          "-wait"
+          "1"
+        ];
         boxes = [
           "Inbox"
-          "[Gmail]/'All Mail'"
+          "[Gmail]/All Mail"
         ];
       };
     };
