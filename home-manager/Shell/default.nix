@@ -6,6 +6,7 @@
 }:
 let
   userVars = {
+    EDITOR = "vim";
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";

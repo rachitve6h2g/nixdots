@@ -11,7 +11,6 @@
   };
 
   programs = {
-    neovim.defaultEditor = true;
     mnw = {
       enable = true;
 
@@ -54,7 +53,9 @@
 
       plugins = {
         start = import ./startPlugins.nix { inherit pkgs; };
-
+        startAttrs = {
+          "blink.cmp" = null;
+        };
         opt = import ./optPlugins.nix { inherit pkgs; };
 
         dev.myconfig = {
