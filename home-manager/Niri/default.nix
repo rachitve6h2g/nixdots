@@ -354,7 +354,7 @@ in
             width = 3;
 
             active.gradient = {
-              from = colors.base0A;
+              from = colors.base0E;
               to = colors.base0D;
               angle = 45;
               in' = "oklab";
