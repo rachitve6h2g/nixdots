@@ -1,8 +1,7 @@
+{ inputs, pkgs, ... }:
 {
   imports = [
     # ./vscodium.nix
-
-    # TODO: setup [mnw](https://gerg-l.github.io/mnw/)
-    ./neovim
   ];
+  home.packages = [ inputs.knvim.packages.${pkgs.stdenv.system}.default ];
 }

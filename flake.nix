@@ -12,7 +12,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mnw.url = "github:Gerg-L/mnw";
+    # mnw.url = "github:Gerg-L/mnw";
+
+    knvim.url = "github:rachitve6h2g/knvim";
 
     niri-flake = {
       url = "github:sodiboo/niri-flake";
