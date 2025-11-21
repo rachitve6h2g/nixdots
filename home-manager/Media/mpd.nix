@@ -20,6 +20,11 @@
         pid_file  "~/.config/mpd/pid"
         state_file "~/.local/state/mpd/state"
         sticker_file "~/.config/mpd/sticker.sql"
+
+        audio_output {
+          type "pipewire"
+          name "PipeWire Sound Server"
+        }
       '';
     };
 
