@@ -12,7 +12,7 @@
           lower_cutoff_freq = 50;
           higher_cutoff_freq = 10000;
 
-          bar_width = 0.5;
+          # bar_width = 0.5;
         };
 
         output = {

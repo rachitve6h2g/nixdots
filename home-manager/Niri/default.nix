@@ -20,10 +20,11 @@ in
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
-    ./walker.nix
+    # ./walker.nix
     ./wallpaper.nix
     ./waybar.nix
     ./wlsunset.nix
+    ./wofi.nix
 
     ./xdg-portal.nix
   ];
@@ -99,223 +100,232 @@ in
           };
         };
 
-        binds = with config.lib.niri.actions; {
-          "Mod+D" = {
-            action = spawn "walker";
-            hotkey-overlay.title = "Run an Application: walker";
+        binds =
+          with config.lib.niri.actions;
+          let
+            sh = spawn "sh" "-c";
+          in
+          {
+            "Mod+D" = {
+              action = spawn [
+                "wofi"
+                "--show"
+                "drun"
+              ];
+              hotkey-overlay.title = "Run an Application: wofi";
+            };
+
+            "Mod+T" = {
+              action = spawn [
+                "kitty"
+              ];
+              hotkey-overlay.title = "Spawn Kitty Terminal";
+            };
+
+            "Mod+Q" = {
+              action = close-window;
+            };
+
+            # Move around windows in a workspace using vim keys.
+            "Mod+H".action = focus-column-left;
+            "Mod+L".action = focus-column-right;
+            "Mod+K".action = focus-window-up;
+            "Mod+J".action = focus-window-down;
+
+            # Move the windows around in a workspace.
+            "Mod+Ctrl+H".action = move-column-left;
+            "Mod+Ctrl+L".action = move-column-right;
+            "Mod+Ctrl+K".action = move-window-up;
+            "Mod+Ctrl+J".action = move-window-down;
+
+            "Mod+E".action = focus-column-last;
+            "Mod+A".action = focus-column-first;
+
+            "Mod+U".action = focus-workspace-down;
+            "Mod+I".action = focus-workspace-up;
+
+            "Mod+Shift+U".action = move-column-to-workspace-down;
+            "Mod+Shift+I".action = move-column-to-workspace-up;
+
+            "Mod+Ctrl+U".action = move-workspace-down;
+            "Mod+Ctrl+I".action = move-workspace-up;
+
+            "Mod+1".action = focus-workspace 1;
+            "Mod+2".action = focus-workspace 2;
+            "Mod+3".action = focus-workspace 3;
+            "Mod+4".action = focus-workspace 4;
+            "Mod+5".action = focus-workspace 5;
+            "Mod+6".action = focus-workspace 6;
+            "Mod+7".action = focus-workspace 7;
+            "Mod+8".action = focus-workspace 8;
+            "Mod+9".action = focus-workspace 9;
+            "Mod+0".action = focus-workspace 10;
+
+            # "Mod+Ctrl+1".action = move-column-to-workspace 1;
+
+            "Mod+BracketLeft".action = consume-or-expel-window-left;
+            "Mod+BracketRight".action = consume-or-expel-window-right;
+
+            "Mod+Comma".action = consume-window-into-column;
+            "Mod+Period".action = expel-window-from-column;
+
+            # "Mod+R".action = set-preset-column-width;
+            "Mod+Shift+R".action = switch-preset-window-height;
+            "Mod+Ctrl+R".action = reset-window-height;
+            "Mod+M".action = maximize-column;
+            "Mod+Shift+M".action = fullscreen-window;
+            "Mod+Ctrl+M".action = expand-column-to-available-width;
+
+            "Mod+C".action = center-column;
+
+            "Mod+Minus".action = set-column-width "-10%";
+            "Mod+Equal".action = set-column-width "+10%";
+
+            "Mod+Shift+Minus".action = set-window-height "-10%";
+            "Mod+Shift+Equal".action = set-window-height "+10%";
+
+            "Mod+V".action = toggle-window-floating;
+            "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+
+            "Mod+W".action = toggle-column-tabbed-display;
+
+            "Mod+Space".action = switch-layout "next";
+            "Mod+Shift+Space".action = switch-layout "prev";
+
+            "Print".action.screenshot = [ ];
+            "Ctrl+Print".action.screenshot-screen = [ ];
+            "Alt+Print".action.screenshot-window = [ ];
+
+            "Mod+Shift+E".action = quit;
+
+            "Mod+G".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+
+            "Mod+O".action = toggle-overview;
+
+            "Mod+X".action = spawn "fuzzel-powermenu";
+
+            XF86AudioRaiseVolume = {
+              action = spawn [
+                # "wpctl"
+                # "set-volume"
+                # "@DEFAULT_AUDIO_SINK@"
+                # "3%+"
+                # "-l"
+                # "1.0"
+
+                "volumectl"
+                "-u"
+                "up"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioLowerVolume = {
+              action = spawn [
+                # "wpctl"
+                # "set-volume"
+                # "@DEFAULT_AUDIO_SINK@"
+                # "3%-"
+                "volumectl"
+                "-u"
+                "down"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioMute = {
+              action = spawn [
+                # "wpctl"
+                # "set-mute"
+                # "@DEFAULT_AUDIO_SINK@"
+                # "toggle"
+                "volumectl"
+                "toggle-mute"
+              ];
+              allow-when-locked = true;
+            };
+            XF86MonBrightnessUp = {
+              action = spawn [
+                # "brightnessctl"
+                # "-e4"
+                # "-n2"
+                # "set"
+                # "5%+"
+                #
+                "lightctl"
+                "up"
+              ];
+              allow-when-locked = true;
+            };
+            XF86MonBrightnessDown = {
+              action = spawn [
+                # "brightnessctl"
+                # "-e4"
+                # "-n2"
+                # "set"
+                # "5%-"
+                "lightctl"
+                "down"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioNext = {
+              action = spawn [
+                "playerctl"
+                "next"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioPause = {
+              action = spawn [
+                "playerctl"
+                "play-pause"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioPlay = {
+              action = spawn [
+                "playerctl"
+                "play-pause"
+              ];
+              allow-when-locked = true;
+            };
+            XF86AudioPrev = {
+              action = spawn [
+                "playerctl"
+                "previous"
+              ];
+              allow-when-locked = true;
+            };
+
+            # For niriswitcher
+            "Alt+Tab" = {
+              repeat = false;
+              action = spawn [
+                "${pkgs.glib}/bin/gdbus"
+                "call"
+                "--session"
+                "--dest"
+                "io.github.isaksamsten.Niriswitcher"
+                "--object-path"
+                "/io/github/isaksamsten/Niriswitcher"
+                "--method"
+                "io.github.isaksamsten.Niriswitcher.application"
+              ];
+            };
+            "Alt+Grave" = {
+              repeat = false;
+              action = spawn [
+                "${pkgs.glib}/bin/gdbus"
+                "call"
+                "--session"
+                "--dest"
+                "io.github.isaksamsten.Niriswitcher"
+                "--object-path"
+                "/io/github/isaksamsten/Niriswitcher"
+                "--method"
+                "io.github.isaksamsten.Niriswitcher.application"
+              ];
+            };
           };
-
-          "Mod+T" = {
-            action = spawn [
-              "kitty"
-            ];
-            hotkey-overlay.title = "Spawn Kitty Terminal";
-          };
-
-          "Mod+Q" = {
-            action = close-window;
-          };
-
-          # Move around windows in a workspace using vim keys.
-          "Mod+H".action = focus-column-left;
-          "Mod+L".action = focus-column-right;
-          "Mod+K".action = focus-window-up;
-          "Mod+J".action = focus-window-down;
-
-          # Move the windows around in a workspace.
-          "Mod+Ctrl+H".action = move-column-left;
-          "Mod+Ctrl+L".action = move-column-right;
-          "Mod+Ctrl+K".action = move-window-up;
-          "Mod+Ctrl+J".action = move-window-down;
-
-          "Mod+E".action = focus-column-last;
-          "Mod+A".action = focus-column-first;
-
-          "Mod+U".action = focus-workspace-down;
-          "Mod+I".action = focus-workspace-up;
-
-          "Mod+Shift+U".action = move-column-to-workspace-down;
-          "Mod+Shift+I".action = move-column-to-workspace-up;
-
-          "Mod+Ctrl+U".action = move-workspace-down;
-          "Mod+Ctrl+I".action = move-workspace-up;
-
-          "Mod+1".action = focus-workspace 1;
-          "Mod+2".action = focus-workspace 2;
-          "Mod+3".action = focus-workspace 3;
-          "Mod+4".action = focus-workspace 4;
-          "Mod+5".action = focus-workspace 5;
-          "Mod+6".action = focus-workspace 6;
-          "Mod+7".action = focus-workspace 7;
-          "Mod+8".action = focus-workspace 8;
-          "Mod+9".action = focus-workspace 9;
-          "Mod+0".action = focus-workspace 10;
-
-          # "Mod+Ctrl+1".action = move-column-to-workspace 1;
-
-          "Mod+BracketLeft".action = consume-or-expel-window-left;
-          "Mod+BracketRight".action = consume-or-expel-window-right;
-
-          "Mod+Comma".action = consume-window-into-column;
-          "Mod+Period".action = expel-window-from-column;
-
-          # "Mod+R".action = set-preset-column-width;
-          "Mod+Shift+R".action = switch-preset-window-height;
-          "Mod+Ctrl+R".action = reset-window-height;
-          "Mod+M".action = maximize-column;
-          "Mod+Shift+M".action = fullscreen-window;
-          "Mod+Ctrl+M".action = expand-column-to-available-width;
-
-          "Mod+C".action = center-column;
-
-          "Mod+Minus".action = set-column-width "-10%";
-          "Mod+Equal".action = set-column-width "+10%";
-
-          "Mod+Shift+Minus".action = set-window-height "-10%";
-          "Mod+Shift+Equal".action = set-window-height "+10%";
-
-          "Mod+V".action = toggle-window-floating;
-          "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
-
-          "Mod+W".action = toggle-column-tabbed-display;
-
-          "Mod+Space".action = switch-layout "next";
-          "Mod+Shift+Space".action = switch-layout "prev";
-
-          "Print".action.screenshot = [ ];
-          "Ctrl+Print".action.screenshot-screen = [ ];
-          "Alt+Print".action.screenshot-window = [ ];
-
-          "Mod+Shift+E".action = quit;
-
-          "Mod+G".action = spawn "clipboard";
-
-          "Mod+O".action = toggle-overview;
-
-          "Mod+X".action = spawn "fuzzel-powermenu";
-
-          XF86AudioRaiseVolume = {
-            action = spawn [
-              # "wpctl"
-              # "set-volume"
-              # "@DEFAULT_AUDIO_SINK@"
-              # "3%+"
-              # "-l"
-              # "1.0"
-
-              "volumectl"
-              "-u"
-              "up"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioLowerVolume = {
-            action = spawn [
-              # "wpctl"
-              # "set-volume"
-              # "@DEFAULT_AUDIO_SINK@"
-              # "3%-"
-              "volumectl"
-              "-u"
-              "down"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioMute = {
-            action = spawn [
-              # "wpctl"
-              # "set-mute"
-              # "@DEFAULT_AUDIO_SINK@"
-              # "toggle"
-              "volumectl"
-              "toggle-mute"
-            ];
-            allow-when-locked = true;
-          };
-          XF86MonBrightnessUp = {
-            action = spawn [
-              # "brightnessctl"
-              # "-e4"
-              # "-n2"
-              # "set"
-              # "5%+"
-              #
-              "lightctl"
-              "up"
-            ];
-            allow-when-locked = true;
-          };
-          XF86MonBrightnessDown = {
-            action = spawn [
-              # "brightnessctl"
-              # "-e4"
-              # "-n2"
-              # "set"
-              # "5%-"
-              "lightctl"
-              "down"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioNext = {
-            action = spawn [
-              "playerctl"
-              "next"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioPause = {
-            action = spawn [
-              "playerctl"
-              "play-pause"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioPlay = {
-            action = spawn [
-              "playerctl"
-              "play-pause"
-            ];
-            allow-when-locked = true;
-          };
-          XF86AudioPrev = {
-            action = spawn [
-              "playerctl"
-              "previous"
-            ];
-            allow-when-locked = true;
-          };
-
-          # For niriswitcher
-          "Alt+Tab" = {
-            repeat = false;
-            action = spawn [
-              "${pkgs.glib}/bin/gdbus"
-              "call"
-              "--session"
-              "--dest"
-              "io.github.isaksamsten.Niriswitcher"
-              "--object-path"
-              "/io/github/isaksamsten/Niriswitcher"
-              "--method"
-              "io.github.isaksamsten.Niriswitcher.application"
-            ];
-          };
-          "Alt+Grave" = {
-            repeat = false;
-            action = spawn [
-              "${pkgs.glib}/bin/gdbus"
-              "call"
-              "--session"
-              "--dest"
-              "io.github.isaksamsten.Niriswitcher"
-              "--object-path"
-              "/io/github/isaksamsten/Niriswitcher"
-              "--method"
-              "io.github.isaksamsten.Niriswitcher.application"
-            ];
-          };
-        };
 
         layout = {
           gaps = 16;
