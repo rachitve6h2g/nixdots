@@ -328,7 +328,7 @@ in
           };
 
         layout = {
-          gaps = 16;
+          gaps = 10;
 
           # struts = {
           #   left = 64;
@@ -351,7 +351,7 @@ in
           };
 
           border = {
-            width = 3;
+            width = 2;
 
             active.gradient = {
               from = colors.base0E;
@@ -394,7 +394,7 @@ in
             draw-border-with-background = false;
             geometry-corner-radius =
               let
-                r = 20.0;
+                r = 10.0;
               in
               {
                 top-left = r;
