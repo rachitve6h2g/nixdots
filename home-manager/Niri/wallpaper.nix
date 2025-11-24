@@ -20,7 +20,10 @@
   };
 
   stylix.image = pkgs.fetchurl {
-    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/catppuccin-13.png?raw=true";
-    hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
+    url = "https://4kwallpapers.com/images/wallpapers/hollow-knight-video-5120x2880-19930.jpg";
+    # To get the hash run:
+    # $nix hash convert --hash-algo sha256 $(nix-prefetch-url
+    # <url_to_wallpaper_here)
+    hash = "sha256-mQN9d7CCNZyKI0uUA+04DvAGwotILw5TD3SfwJ7i8wQ=";
   };
 }

@@ -11,4 +11,6 @@
       };
     };
   };
+
+  stylix.opacity.popups = 0.8;
 }

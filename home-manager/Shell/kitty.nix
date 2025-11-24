@@ -22,7 +22,7 @@
         columns = 80;
         edge = "none";
         hide_on_focus_loss = "no";
-        background_opacity = 0.85;
+        background_opacity = 0.9;
       };
 
     };
@@ -30,6 +30,6 @@
 
   stylix = {
     fonts.sizes.terminal = 13;
-    # opacity.terminal = 0.85;
+    opacity.terminal = 0.85;
   };
 }
