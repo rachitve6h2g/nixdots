@@ -15,6 +15,7 @@
     ./trash-cli.nix
     ./udiskie.nix
     ./yt-dlp.nix
+    ./zapzap.nix
     ./zathura.nix
 
     ./wgetpaste

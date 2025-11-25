@@ -4,7 +4,7 @@
       enable = true;
       clean = {
         enable = true;
-        dates = "weekly";
+        dates = "daily";
         extraArgs = "--keep 5 --keep-since 3d";
       };
       flake = "/etc/nixos";

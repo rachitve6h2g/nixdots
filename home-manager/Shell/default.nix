@@ -32,6 +32,7 @@ in
     ./kitty.nix
     ./readline.nix
     ./starship
+    ./tealdeer.nix
     ./vivid.nix
     ./ripgrep.nix
     ./zoxide.nix
@@ -43,6 +44,8 @@ in
     };
 
     sessionVariables = userVars;
+
+    packages = [ pkgs.wikiman ];
   };
 
   programs = {
@@ -71,6 +74,7 @@ in
               mv() { command mv -i "''${@}"; }
               trash() { command trash -i "''${@}"; }
             '';
+
           yt-playlist = /* bash */ ''
               yt-playlist() {
                 yt-dlp \
@@ -80,12 +84,16 @@ in
                     --download-archive progress.txt \
                     "$@"
             }
+          '';
 
+          wikiman = /* bash */ ''
+            source ${pkgs.wikiman}/share/wikiman/widgets/widget.bash
           '';
         in
         lib.mkMerge (
           [
             interactive_dangers
+            wikiman
           ]
           ++ (if config.programs.yt-dlp.enable then [ yt-playlist ] else [ ])
         );

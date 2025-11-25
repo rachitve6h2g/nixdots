@@ -288,9 +288,16 @@
                 definedAliases = [ "@yt" ];
               };
 
+              reddit = {
+                name = "Reddit";
+                urls = [ { template = "https://reddit.com/r/{searchTerms}"; } ];
+                definedAliases = [ "@red" ];
+              };
+
               bing.metaData.hidden = true;
               google.metaData.alias = "@g";
             };
+
           };
           settings = {
             "extensions.autoDisableScopes" = 0; # This will automatically enable installed extensions

@@ -14,7 +14,9 @@
 
     # mnw.url = "github:Gerg-L/mnw";
 
-    knvim.url = "github:rachitve6h2g/knvim";
+    # Use this while installing a new system.
+    # knvim.url = "github:rachitve6h2g/knvim";
+    knvim.url = "path:/home/krish/Downloads/knvim";
 
     niri-flake = {
       url = "github:sodiboo/niri-flake";
