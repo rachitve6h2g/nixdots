@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # This is the example configuration file for river.
 #
 # If you wish to edit this, you will probably want to copy it to
