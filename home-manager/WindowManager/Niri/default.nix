@@ -328,7 +328,7 @@ in
           };
 
         layout = {
-          gaps = 10;
+          gaps = 12;
 
           # struts = {
           #   left = 64;
@@ -360,6 +360,7 @@ in
               in' = "oklab";
               relative-to = "workspace-view";
             };
+            inactive.color = colors.base02;
           };
 
           shadow = {
@@ -394,7 +395,7 @@ in
             draw-border-with-background = false;
             geometry-corner-radius =
               let
-                r = 10.0;
+                r = 15.0;
               in
               {
                 top-left = r;

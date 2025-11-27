@@ -21,9 +21,10 @@
     ./Editors
     ./Git
     ./Media
-    ./Niri
+
     ./Programs
     ./Shell
+    ./WindowManager
 
     ./keymap.nix
     ./nh.nix
