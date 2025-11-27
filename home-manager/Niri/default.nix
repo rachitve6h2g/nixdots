@@ -115,7 +115,7 @@ in
               hotkey-overlay.title = "Run an Application: wofi";
             };
 
-            "Mod+T" = {
+            "Mod+Return" = {
               action = spawn [
                 "kitty"
               ];
