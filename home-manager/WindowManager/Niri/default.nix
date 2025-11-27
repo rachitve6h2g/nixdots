@@ -385,6 +385,9 @@ in
               {
                 namespace = "^wallpaper$";
               }
+              {
+                namespace = "kitty-panel";
+              }
             ];
             place-within-backdrop = true;
           }
