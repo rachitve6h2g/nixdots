@@ -246,14 +246,17 @@
         "nur": "nur"
       },
       "locked": {
-        "lastModified": 1764234041,
-        "narHash": "sha256-0F+WsoDVd+tltWbcEa0iqKocNvyeR8HMdKpCY9T6N0Q=",
-        "path": "/home/krish/Downloads/knvim",
-        "type": "path"
+        "lastModified": 1764234037,
+        "narHash": "sha256-5HKdXMbJJP1g5TVfUjGdLGjkdYyB+8UyROPpx3NQoEU=",
+        "owner": "rachitve6h2g",
+        "repo": "knvim",
+        "rev": "06ceda7a18b301a569b2859356a60730dd6f360a",
+        "type": "github"
       },
       "original": {
-        "path": "/home/krish/Downloads/knvim",
-        "type": "path"
+        "owner": "rachitve6h2g",
+        "repo": "knvim",
+        "type": "github"
       }
     },
     "mnw": {
