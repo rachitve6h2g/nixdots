@@ -32,9 +32,6 @@
     gthumb
     impala
     speedtest-rs
-    (uget.override {
-      aria2 = pkgs.aria2;
-    })
     wgetpaste
     wiremix
     wl-clipboard
