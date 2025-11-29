@@ -9,6 +9,7 @@
     ./newsboat.nix
     ./nix-search-tv.nix
     ./nix-init.nix
+    ./onlyoffice.nix
     ./swayimg.nix
     ./trash-cli.nix
     ./udiskie.nix

@@ -6,12 +6,19 @@
 }:
 let
   colors = config.lib.stylix.colors.withHashtag;
+
+  niri_tweaks = pkgs.fetchFromGitHub {
+    owner = "heyoeyo";
+    repo = "niri_tweaks";
+    rev = "b41b6e655143af2d4730508989ce53e413a6ab30";
+    hash = "sha256-pQaRsGmppyMm2FbIHqdTN1ogJKKgjZa7WDN+U66teVo=";
+  };
 in
 {
   imports = [
+    ./anyrun.nix
     ./avizo.nix
     ./clipboard.nix
-    # ./fuzzel.nix
     ./mako.nix
     ./niriswitcher.nix
     ./polkit.nix
@@ -20,7 +27,6 @@ in
     ./swayidle.nix
     ./swaylock.nix
     ./theme.nix
-    # ./walker.nix
     ./wallpaper.nix
     ./waybar.nix
     ./wlsunset.nix
@@ -60,6 +66,16 @@ in
           {
             # For starting niriswitcher
             command = [ "${pkgs.niriswitcher}/bin/niriswitcher" ];
+          }
+          {
+            command = [
+              "${pkgs.python3Minimal}/bin/python3"
+              "${niri_tweaks}/niri_tile_to_n.py"
+              "-x"
+              "False"
+              "-xc"
+              "False"
+            ];
           }
         ];
         input = {
@@ -108,11 +124,9 @@ in
           {
             "Mod+D" = {
               action = spawn [
-                "wofi"
-                "--show"
-                "drun"
+                "anyrun"
               ];
-              hotkey-overlay.title = "Run an Application: wofi";
+              hotkey-overlay.title = "Run an Application: anyrun";
             };
 
             "Mod+Return" = {
@@ -206,13 +220,6 @@ in
 
             XF86AudioRaiseVolume = {
               action = spawn [
-                # "wpctl"
-                # "set-volume"
-                # "@DEFAULT_AUDIO_SINK@"
-                # "3%+"
-                # "-l"
-                # "1.0"
-
                 "volumectl"
                 "-u"
                 "up"
@@ -221,10 +228,6 @@ in
             };
             XF86AudioLowerVolume = {
               action = spawn [
-                # "wpctl"
-                # "set-volume"
-                # "@DEFAULT_AUDIO_SINK@"
-                # "3%-"
                 "volumectl"
                 "-u"
                 "down"
@@ -233,10 +236,6 @@ in
             };
             XF86AudioMute = {
               action = spawn [
-                # "wpctl"
-                # "set-mute"
-                # "@DEFAULT_AUDIO_SINK@"
-                # "toggle"
                 "volumectl"
                 "toggle-mute"
               ];
@@ -244,12 +243,6 @@ in
             };
             XF86MonBrightnessUp = {
               action = spawn [
-                # "brightnessctl"
-                # "-e4"
-                # "-n2"
-                # "set"
-                # "5%+"
-                #
                 "lightctl"
                 "up"
               ];
@@ -257,11 +250,6 @@ in
             };
             XF86MonBrightnessDown = {
               action = spawn [
-                # "brightnessctl"
-                # "-e4"
-                # "-n2"
-                # "set"
-                # "5%-"
                 "lightctl"
                 "down"
               ];

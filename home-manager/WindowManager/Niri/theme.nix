@@ -83,4 +83,8 @@ in
     };
     gtk4.extraConfig = gtk3.extraConfig;
   };
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+  };
 }
