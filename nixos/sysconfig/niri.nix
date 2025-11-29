@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -8,7 +9,6 @@
     inputs.niri-flake.nixosModules.niri
     ./greeter.nix
   ];
-
   programs = {
     dconf.enable = true;
     niri = {

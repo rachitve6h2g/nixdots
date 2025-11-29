@@ -304,6 +304,8 @@
           settings = {
             "extensions.autoDisableScopes" = 0; # This will automatically enable installed extensions
             "webgl.disabled" = false;
+            "devtools.chrome.enabled" = true;
+            "devtools.debugger.remote-enabled" = true;
           };
 
           bookmarks = {

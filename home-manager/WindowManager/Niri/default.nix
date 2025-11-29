@@ -6,13 +6,6 @@
 }:
 let
   colors = config.lib.stylix.colors.withHashtag;
-
-  niri_tweaks = pkgs.fetchFromGitHub {
-    owner = "heyoeyo";
-    repo = "niri_tweaks";
-    rev = "b41b6e655143af2d4730508989ce53e413a6ab30";
-    hash = "sha256-pQaRsGmppyMm2FbIHqdTN1ogJKKgjZa7WDN+U66teVo=";
-  };
 in
 {
   imports = [
@@ -41,12 +34,9 @@ in
     ];
   };
 
-  # qmlls will not be able to pick up qml modules that are not in QML2_IMPORT_PATH.
-  # The easiest way to ensure this is by setting qt.enable to true
-  # and installing the quickshell package globally.
-  qt.enable = true;
-
-  services.playerctld.enable = true;
+  services = {
+    playerctld.enable = true;
+  };
 
   wayland.systemd.target = "graphical-session.target";
 
@@ -66,16 +56,6 @@ in
           {
             # For starting niriswitcher
             command = [ "${pkgs.niriswitcher}/bin/niriswitcher" ];
-          }
-          {
-            command = [
-              "${pkgs.python3Minimal}/bin/python3"
-              "${niri_tweaks}/niri_tile_to_n.py"
-              "-x"
-              "False"
-              "-xc"
-              "False"
-            ];
           }
         ];
         input = {
