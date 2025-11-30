@@ -5,7 +5,7 @@
   # in the plugin
   full-border = pkgs.yaziPlugins.full-border;
   git = pkgs.yaziPlugins.git;
-  lazygit = pkgs.yaziPlugins.lazygit;
+  gitui = pkgs.yaziPlugins.gitui;
   mediainfo = pkgs.yaziPlugins.mediainfo;
   recycle-bin = pkgs.yaziPlugins.recycle-bin;
   rich-preview = pkgs.yaziPlugins.rich-preview;

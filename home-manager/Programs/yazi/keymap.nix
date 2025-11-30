@@ -6,8 +6,8 @@
           "g"
           "i"
         ];
-        run = "plugin lazygit";
-        desc = "run lazygit";
+        run = "plugin gitui";
+        desc = "run gitui";
       }
       {
         on = [
