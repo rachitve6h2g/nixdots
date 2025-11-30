@@ -69,6 +69,11 @@
           user = "u0_a347";
           port = 8022;
         };
+
+        "github.com" = {
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_ed25519";
+        };
       };
     };
   };
