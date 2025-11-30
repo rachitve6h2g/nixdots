@@ -12,8 +12,8 @@
           co = "pr checkout";
         };
         color_labels = "enabled";
-        accessible_colors = "disabled";
-        accessible_prompter = "disabled";
+        accessible_colors = "enabled";
+        accessible_prompter = "enabled";
         spinner = "enabled";
       };
     };

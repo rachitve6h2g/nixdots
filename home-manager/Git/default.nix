@@ -5,8 +5,8 @@
 {
   imports = [
     ./gh.nix
-    ./gitui.nix
     ./gpg.nix
+    ./lazygit.nix
   ];
 
   programs = {
@@ -52,7 +52,7 @@
       matchBlocks = {
         "*" = {
           forwardAgent = false;
-          addKeysToAgent = "no";
+          addKeysToAgent = "yes";
           compression = false;
           serverAliveInterval = 0;
           serverAliveCountMax = 3;
