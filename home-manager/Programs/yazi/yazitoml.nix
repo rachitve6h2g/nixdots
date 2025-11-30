@@ -104,4 +104,21 @@
     ];
   };
 
+  opener = {
+    open = [
+      {
+        run = "xdg-open \"$@\"";
+        desc = "Open";
+      }
+    ];
+  };
+
+  open = {
+    prepend_rules = [
+      {
+        name = "*.cbz";
+        use = "open";
+      }
+    ];
+  };
 }

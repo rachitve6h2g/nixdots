@@ -23,6 +23,7 @@
 
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura-pdf.desktop";
+        "application/vnd.comicbook" = "org.pwmt.zathura.desktop";
         "application/zip" = "7zz";
         "image/png" = "swayimg.desktop";
         "image/jpeg" = "swayimg.desktop";
