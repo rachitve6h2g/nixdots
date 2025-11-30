@@ -30,6 +30,6 @@
 
   stylix = {
     fonts.sizes.terminal = 13;
-    opacity.terminal = 0.85;
+    opacity.terminal = 0.95;
   };
 }
