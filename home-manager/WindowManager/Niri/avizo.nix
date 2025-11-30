@@ -12,5 +12,5 @@
     };
   };
 
-  stylix.opacity.popups = 0.8;
+  stylix.opacity.popups = 0.95;
 }
