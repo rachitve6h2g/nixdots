@@ -20,10 +20,13 @@
   };
 
   stylix.image = pkgs.fetchurl {
-    url = "https://4kwallpapers.com/images/wallpapers/hollow-knight-video-5120x2880-19930.jpg";
+    # url = "https://4kwallpapers.com/images/wallpapers/hollow-knight-video-5120x2880-19930.jpg";
     # To get the hash run:
     # $nix hash convert --hash-algo sha256 $(nix-prefetch-url
     # <url_to_wallpaper_here)
-    hash = "sha256-mQN9d7CCNZyKI0uUA+04DvAGwotILw5TD3SfwJ7i8wQ=";
+    # hash = "sha256-mQN9d7CCNZyKI0uUA+04DvAGwotILw5TD3SfwJ7i8wQ=";
+    #
+    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/1347701.png?raw=true";
+    hash = "sha256-bcirr2E5RFdX22ww1TF+icDN+hbeDXZwToXhNfsqzOA=";
   };
 }
