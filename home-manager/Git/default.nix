@@ -6,7 +6,7 @@
   imports = [
     ./gh.nix
     ./gitui.nix
-    ./gpg.nix
+    # ./gpg.nix
   ];
 
   programs = {
