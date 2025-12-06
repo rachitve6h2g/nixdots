@@ -9,7 +9,6 @@ let
 in
 {
   imports = [
-    ./anyrun.nix
     ./avizo.nix
     ./clipboard.nix
     ./mako.nix
@@ -104,9 +103,11 @@ in
           {
             "Mod+D" = {
               action = spawn [
-                "anyrun"
+                "wofi"
+                "-S"
+                "drun"
               ];
-              hotkey-overlay.title = "Run an Application: anyrun";
+              hotkey-overlay.title = "Run an Application: wofi";
             };
 
             "Mod+Return" = {
