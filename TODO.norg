@@ -1,7 +1,7 @@
 * TODO:
-  - ( ) Write an event for pausing song/video on earphone unplug, resume on plug-in
+  - (x) Write an event for pausing song/video on earphone unplug, resume on plug-in
   - ( ) Move to treefmt-nix from nixfmt
-  - ( ) Move to xdg-desktop-portal-termfilechooser
+  - (x) Move to xdg-desktop-portal-termfilechooser
   - ( ) Learn difference between focus-ring and border (read the wiki properly)
   - ( ) Move to SwayWM
   - ( ) Write quickshell configs.

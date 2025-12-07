@@ -60,6 +60,8 @@
             AlertPartitionIntersection = "yes";
 
             VirusEvent = "${virusEvent}/bin/virus-event.sh";
+
+            ConcurrentDatabaseReload = "no";
           };
       };
       updater.enable = true;

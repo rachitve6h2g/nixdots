@@ -89,6 +89,9 @@
   - [Build Dev-shells, images, home-manager configs and even your own NixOS in the browser]{https://mynixos.com/}
   - {https://docs.nix.zone/}
 
+** Best dotfiles for reading:
+   - [Drop home-manager and shift to wrappers]{https://github.com/sioodmy/dotfiles/}
+
 * Learn Qt Qml
 ** Start here
    - [StartHere]{https://doc.qt.io/qt-6/qml-tutorial.html}
