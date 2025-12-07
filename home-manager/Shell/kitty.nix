@@ -15,6 +15,7 @@
         window_margin_width = 21;
         shell = "bash";
         notify_on_cmd_finish = "unfocused 5.0 command notify-send --icon=kitty \"Job finished with status: %s %c\"";
+        background_blur = 32;
       };
 
       quickAccessTerminalConfig = {
@@ -29,7 +30,7 @@
   };
 
   stylix = {
-    fonts.sizes.terminal = 13;
+    fonts.sizes.terminal = 12;
     opacity.terminal = 0.95;
   };
 }
