@@ -51,6 +51,7 @@
         systems = [ "x86_64-linux" ];
         imports = [
           flake-parts.flakeModules.flakeModules
+          inputs.home-manager.flakeModules.home-manager
           ./nixos.nix
           ./pkgs
 

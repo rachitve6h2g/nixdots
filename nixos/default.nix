@@ -13,8 +13,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
-
-    ./disko-config.nix
+    inputs.self.diskoConfigurations.nixpavilion # Used with flake-parts
+    # ./disko-config.nix # use only when flake-parts sorta fails... ?
     ./sysconfig
   ];
 

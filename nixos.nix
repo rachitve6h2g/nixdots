@@ -25,5 +25,8 @@
     };
 
     diskoConfigurations.nixpavilion = import ./nixos/disko-config.nix;
+    homeModules = {
+      thunard = import ./home-manager/modules;
+    };
   };
 }

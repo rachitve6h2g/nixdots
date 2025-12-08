@@ -1,5 +1,5 @@
 {
-  # inputs,
+  inputs,
   ...
 }:
 {
@@ -31,6 +31,7 @@
     ./stylix.nix
     ./xdgsettings.nix
 
-    ./modules
+    # ./modules # Don't use when using flake-parts
+    inputs.self.homeModules.thunard # Use when using flake-parts
   ];
 }
