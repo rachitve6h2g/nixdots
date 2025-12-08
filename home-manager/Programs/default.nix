@@ -3,7 +3,6 @@
   imports = [
     ./btop.nix
     ./clock-rs.nix
-    ./fastfetch.nix
     ./gcc.nix
     ./irssi.nix
     ./newsboat.nix
@@ -14,7 +13,6 @@
     ./trash-cli.nix
     ./udiskie.nix
     ./yt-dlp.nix
-    ./zapzap.nix
     ./zathura.nix
 
     ./wgetpaste
@@ -31,6 +29,8 @@
     gnome-calculator
     gthumb
     impala
+    microfetch # Patch for customization
+    seahorse
     speedtest-rs
     wgetpaste
     wiremix

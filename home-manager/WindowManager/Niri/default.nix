@@ -13,7 +13,7 @@ in
     ./clipboard.nix
     ./mako.nix
     ./niriswitcher.nix
-    ./polkit.nix
+    # ./polkit.nix # KDE polkit is enabled by default in niri-flake
     ./poweralertd.nix
     ./quickshell.nix # NOTE: learn nix first, lisp second and then qml
     ./swayidle.nix
@@ -35,6 +35,11 @@ in
 
   services = {
     playerctld.enable = true;
+    thunard.enable = true;
+    gnome-keyring = {
+      enable = true;
+      components = [ "ssh" ];
+    };
   };
 
   wayland.systemd.target = "graphical-session.target";
@@ -387,6 +392,11 @@ in
               }
             ];
             open-floating = true;
+          }
+
+          {
+            matches = [ { is-floating = false; } ];
+            shadow.enable = false;
           }
         ];
 

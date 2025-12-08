@@ -30,6 +30,7 @@
     ./nh.nix
     ./stylix.nix
     ./xdgsettings.nix
-    # inputs.nvf.homeManagerModules.default
+
+    ./modules
   ];
 }

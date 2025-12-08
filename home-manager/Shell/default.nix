@@ -61,7 +61,6 @@ in
 
         btop = "btop --force-utf";
 
-        ff = "${pkgs.fastfetch}/bin/fastfetch";
         kava = "kitten panel --edge=background --override background_opacity=0.0 cava";
       };
       sessionVariables = userVars;
