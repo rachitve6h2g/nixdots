@@ -112,10 +112,10 @@
             spacing = 1;
             on-click = "sh -c \"kitten quick-access-terminal impala\"";
           };
-          battery = {
+          battery = rec {
             format = "{capacity}% {icon}";
-            format-discharging = "{icon}";
-            format-charging = "{icon}";
+            format-discharging = format;
+            format-charging = format;
             format-plugged = "";
             format-icons = {
               charging = [
