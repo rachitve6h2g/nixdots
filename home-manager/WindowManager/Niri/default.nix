@@ -68,7 +68,7 @@ in
               layout = "us";
               variant = "colemak_dh";
               # options = "ctrl:swapcaps";
-              options = "caps:swapescape";
+              options = if config.services.emacs.defaultEditor then "ctrl:swapcaps" else "caps:swapescape";
             };
           };
           touchpad = {
