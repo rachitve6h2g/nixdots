@@ -7,6 +7,7 @@
 {
   programs.zathura = {
     enable = true;
+    emacsBindings.enable = true;
 
     package = pkgs.zathura.override {
       useMupdf = true;

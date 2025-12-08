@@ -32,6 +32,6 @@
     ./xdgsettings.nix
 
     # ./modules # Don't use when using flake-parts
-    inputs.self.homeModules.thunard # Use when using flake-parts
+    inputs.self.homeModules.custom # Use when using flake-parts
   ];
 }

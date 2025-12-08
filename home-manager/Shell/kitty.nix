@@ -16,6 +16,13 @@
         shell = "bash";
         notify_on_cmd_finish = "unfocused 5.0 command notify-send --icon=kitty \"Job finished with status: %s %c\"";
         background_blur = 32;
+
+        # Tab style
+        tab_bar_min_tabs = 1;
+        tab_bar_edge = "bottom";
+        tab_bar_style = "powerline";
+        tab_powerline_style = "slanted";
+        tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
       };
 
       quickAccessTerminalConfig = {

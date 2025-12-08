@@ -6,7 +6,6 @@
 }:
 let
   userVars = {
-    EDITOR = "vim";
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
     GTK_THEME = "adw-gtk3";
@@ -20,7 +19,8 @@ let
       "$(tput setaf 3)"
       "$USER$(tput sgr0): "
     ];
-  };
+  }
+  // (if config.services.emacs.defaultEditor then { } else { EDITOR = "vim"; });
 in
 {
   imports = [
@@ -86,6 +86,16 @@ in
             }
           '';
 
+          yt-music = # bash
+            ''
+              yt-music() {
+                yt-dlp \
+                -x \
+                -f bestaudio \
+                "$@"
+              }
+            '';
+
           wikiman = /* bash */ ''
             source ${pkgs.wikiman}/share/wikiman/widgets/widget.bash
           '';
@@ -95,7 +105,15 @@ in
             interactive_dangers
             wikiman
           ]
-          ++ (if config.programs.yt-dlp.enable then [ yt-playlist ] else [ ])
+          ++ (
+            if config.programs.yt-dlp.enable then
+              [
+                yt-playlist
+                yt-music
+              ]
+            else
+              [ ]
+          )
         );
     };
   };
