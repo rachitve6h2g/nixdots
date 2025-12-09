@@ -370,6 +370,23 @@ in
         window-rules = [
           {
             draw-border-with-background = false;
+            # Enable rounded borders
+            # geometry-corner-radius =
+            #   let
+            #     r = 15.0;
+            #   in
+            #   {
+            #     top-left = r;
+            #     top-right = r;
+            #     bottom-right = r;
+            #     bottom-left = r;
+            #   };
+
+            clip-to-geometry = true;
+          }
+
+          {
+            matches = [ { is-floating = true; } ];
             geometry-corner-radius =
               let
                 r = 15.0;
@@ -380,8 +397,6 @@ in
                 bottom-right = r;
                 bottom-left = r;
               };
-
-            clip-to-geometry = true;
           }
 
           {
