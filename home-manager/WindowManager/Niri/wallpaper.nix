@@ -26,7 +26,7 @@
     # <url_to_wallpaper_here)
     # hash = "sha256-mQN9d7CCNZyKI0uUA+04DvAGwotILw5TD3SfwJ7i8wQ=";
     #
-    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/1347701.png?raw=true";
-    hash = "sha256-bcirr2E5RFdX22ww1TF+icDN+hbeDXZwToXhNfsqzOA=";
+    url = "https://github.com/rachitve6h2g/Wallpapers/blob/main/Woods_catppuccin.png?raw=true";
+    hash = "sha256-cWixfeuwlyqXZ+XQ16TJoBuRNT3cMbhOBpziAn++H2Y=";
   };
 }

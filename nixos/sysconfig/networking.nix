@@ -3,7 +3,7 @@
     useNetworkd = true;
     # Refer this https://mynixos.com/nixpkgs/option/networking.hostName
     # For properly setting your hostname
-    hostName = "nixpavilion"; # Define your
+    hostName = "nixpavilion"; # Define your hostname
     wireless = {
       iwd = {
         enable = true;

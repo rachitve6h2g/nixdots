@@ -5,6 +5,7 @@
   ...
 }:
 let
+  emacsEnabled = config.services.emacs.defaultEditor;
   userVars = {
     KITTY_ENABLE_WAYLAND = 1;
     MANPAGER = "nvim +Man!";
@@ -20,7 +21,7 @@ let
       "$USER$(tput sgr0): "
     ];
   }
-  // (if config.services.emacs.defaultEditor then { } else { EDITOR = "vim"; });
+  // (if emacsEnabled then { } else { EDITOR = "vim"; });
 in
 {
   imports = [
@@ -62,7 +63,16 @@ in
         btop = "btop --force-utf";
 
         kava = "kitten panel --edge=background --override background_opacity=0.0 cava";
-      };
+      }
+      // (
+        if emacsEnabled then
+          {
+            epkgs = "nix-env -f '<nixpkgs>' -qaP -A emacsPackages";
+            ec = "emacsclient -c";
+          }
+        else
+          { }
+      );
       sessionVariables = userVars;
 
       bashrcExtra =

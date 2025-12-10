@@ -126,21 +126,6 @@ in
               action = close-window;
             };
 
-            # Move around windows in a workspace using vim keys.
-            "Mod+H".action = focus-column-left;
-            "Mod+L".action = focus-column-right;
-            "Mod+K".action = focus-window-up;
-            "Mod+J".action = focus-window-down;
-
-            # Move the windows around in a workspace.
-            "Mod+Ctrl+H".action = move-column-left;
-            "Mod+Ctrl+L".action = move-column-right;
-            "Mod+Ctrl+K".action = move-window-up;
-            "Mod+Ctrl+J".action = move-window-down;
-
-            "Mod+E".action = focus-column-last;
-            "Mod+A".action = focus-column-first;
-
             "Mod+U".action = focus-workspace-down;
             "Mod+I".action = focus-workspace-up;
 
@@ -299,7 +284,43 @@ in
                 "io.github.isaksamsten.Niriswitcher.application"
               ];
             };
-          };
+          }
+          // (
+            if config.services.emacs.defaultEditor then
+              {
+
+                # Move to the first/last window in the row
+                "Mod+E".action = focus-column-last;
+                "Mod+A".action = focus-column-first;
+
+                # Navigate windows
+                "Mod+B".action = focus-column-left;
+                "Mod+F".action = focus-column-right;
+                "Mod+P".action = focus-window-up;
+                "Mod+N".action = focus-window-down;
+
+                # Move the windows around in a workspace
+                "Mod+Shift+B".action = move-column-left;
+                "Mod+Shift+F".action = move-column-right;
+                "Mod+Shift+P".action = move-window-up;
+                "Mod+Shift+N".action = move-window-down;
+
+              }
+            else
+              {
+                # Move around windows in a workspace using vim keys.
+                "Mod+H".action = focus-column-left;
+                "Mod+L".action = focus-column-right;
+                "Mod+K".action = focus-window-up;
+                "Mod+J".action = focus-window-down;
+
+                # Move the windows around in a workspace.
+                "Mod+Ctrl+H".action = move-column-left;
+                "Mod+Ctrl+L".action = move-column-right;
+                "Mod+Ctrl+K".action = move-window-up;
+                "Mod+Ctrl+J".action = move-window-down;
+              }
+          );
 
         layout = {
           gaps = 12;

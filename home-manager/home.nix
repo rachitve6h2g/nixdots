@@ -16,7 +16,7 @@
   systemd.user.startServices = true;
 
   imports = [
-    ./Accounts
+    # ./Accounts # Manage emails and stuff in emacs not in external applications
     ./Browsers
     ./Editors
     ./Git

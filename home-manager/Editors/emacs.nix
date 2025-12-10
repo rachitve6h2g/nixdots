@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [ nixfmt ];
   services.emacs = {
     enable = true;
     socketActivation.enable = true;
@@ -30,6 +31,9 @@
             tree-sitter-nix
           ]
         ))
+        use-package # for declratively setting up packages
+        vterm # for terminal inside emacs
+        format-all # formatter for text files
       ];
     extraConfig =
       # lisp
