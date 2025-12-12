@@ -98,6 +98,14 @@ in
               height = 1080;
             };
           };
+          "HDMI-A-1" = {
+            enable = true;
+            mode = {
+              refresh = 120.000;
+              width = 1920;
+              height = 1080;
+            };
+          };
         };
 
         binds =
@@ -120,6 +128,14 @@ in
                 "kitty"
               ];
               hotkey-overlay.title = "Spawn Kitty Terminal";
+            };
+
+            "Mod+Shift+Return" = {
+              action = spawn [
+                "emacsclient"
+                "-c"
+              ];
+              hotkey-overlay.title = "Spawn Emacsclient";
             };
 
             "Mod+Q" = {
@@ -145,8 +161,6 @@ in
             "Mod+8".action = focus-workspace 8;
             "Mod+9".action = focus-workspace 9;
             "Mod+0".action = focus-workspace 10;
-
-            # "Mod+Ctrl+1".action = move-column-to-workspace 1;
 
             "Mod+BracketLeft".action = consume-or-expel-window-left;
             "Mod+BracketRight".action = consume-or-expel-window-right;
@@ -181,7 +195,7 @@ in
             "Ctrl+Print".action.screenshot-screen = [ ];
             "Alt+Print".action.screenshot-window = [ ];
 
-            "Mod+Shift+E".action = quit;
+            "Mod+Shift+Ctrl+E".action = quit;
 
             "Mod+G".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
 
@@ -289,7 +303,7 @@ in
             if config.services.emacs.defaultEditor then
               {
 
-                # Move to the first/last window in the row
+                # Move to the last/first window
                 "Mod+E".action = focus-column-last;
                 "Mod+A".action = focus-column-first;
 
@@ -305,6 +319,19 @@ in
                 "Mod+Shift+P".action = move-window-up;
                 "Mod+Shift+N".action = move-window-down;
 
+                # For monitor movement
+                "Mod+Ctrl+B".action = focus-monitor-left;
+                "Mod+Ctrl+F".action = focus-monitor-right;
+                "Mod+Ctrl+P".action = focus-monitor-up;
+                "Mod+Ctrl+N".action = focus-monitor-down;
+
+                # Focus on next/previous monitor
+                "Mod+Ctrl+E".action = focus-monitor-next;
+                "Mod+Ctrl+A".action = focus-monitor-previous;
+
+                # Move window from one monitor to another monitor
+                "Mod+Shift+E".action = move-column-to-monitor-next;
+                "Mod+Shift+A".action = move-column-to-monitor-previous;
               }
             else
               {

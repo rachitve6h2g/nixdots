@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ nixfmt ];
+  home.packages = with pkgs; [
+    nixfmt
+
+    mupdf # for doc viewer
+    ghostscript # for doc viewer as well
+  ];
   services.emacs = {
     enable = true;
     socketActivation.enable = true;
@@ -23,6 +28,7 @@
     extraPackages =
       epkgs: with epkgs; [
         magit
+        org # For mode
         nix-mode
         nix-ts-mode
         (treesit-grammars.with-grammars (
@@ -34,6 +40,8 @@
         use-package # for declratively setting up packages
         vterm # for terminal inside emacs
         format-all # formatter for text files
+
+        pdf-tools
       ];
     extraConfig =
       # lisp

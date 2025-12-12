@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./adb.nix
@@ -36,5 +37,10 @@
   documentation.man.generateCaches = false;
 
   # Add $HOME/.local/bin to the $PATH variable.
-  environment.localBinInPath = true;
+  environment = {
+    localBinInPath = true;
+    variables = {
+      QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.qt6.qtbase.outPath}/lib/qt-6/plugins";
+    };
+  };
 }
