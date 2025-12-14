@@ -5,6 +5,7 @@
 
     mupdf # for doc viewer
     ghostscript # for doc viewer as well
+    vlc # for listen.el
   ];
   services.emacs = {
     enable = true;
@@ -27,6 +28,7 @@
     package = pkgs.emacs-pgtk;
     extraPackages =
       epkgs: with epkgs; [
+        listen # For listening music
         magit
         org # For mode
         nix-mode
