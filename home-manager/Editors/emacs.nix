@@ -18,6 +18,8 @@
       enable = true;
       arguments = [
         "-c"
+        "-a"
+        "emacs"
       ];
     };
 
@@ -28,6 +30,7 @@
     package = pkgs.emacs-pgtk;
     extraPackages =
       epkgs: with epkgs; [
+        envrc # for working with direnv
         listen # For listening music
         magit
         org # For mode
@@ -43,7 +46,11 @@
         vterm # for terminal inside emacs
         format-all # formatter for text files
 
-        pdf-tools
+        pdf-tools # for pdf viewing
+        pdf-view-restore # for restoring the last page of pdf visited
+
+        # Lsp setup
+        lsp-mode
       ];
     extraConfig =
       # lisp
