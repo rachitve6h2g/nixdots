@@ -5,8 +5,9 @@
 
     mupdf # for doc viewer
     ghostscript # for doc viewer as well
-    vlc # for listen.el
+    # vlc # for listen.el
   ];
+
   services.emacs = {
     enable = true;
     socketActivation.enable = true;
@@ -32,7 +33,10 @@
       epkgs: with epkgs; [
         dirvish
         envrc # for working with direnv
-        listen # For listening music
+
+        # Get a lighter thing, like mpv to work in emacs
+        # listen # For listening music
+
         magit
         org # For mode
         nix-mode
@@ -50,12 +54,12 @@
         pdf-tools # for pdf viewing
         pdf-view-restore # for restoring the last page of pdf visited
 
-        lemon-mode # the system monitor
-
+        ligature # for ligature support
         nerd-icons
         # Lsp setup
         lsp-mode
       ];
+
     extraConfig =
       # lisp
       ''
