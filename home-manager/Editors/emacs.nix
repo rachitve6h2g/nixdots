@@ -30,6 +30,7 @@
     package = pkgs.emacs-pgtk;
     extraPackages =
       epkgs: with epkgs; [
+        dirvish
         envrc # for working with direnv
         listen # For listening music
         magit
@@ -49,6 +50,9 @@
         pdf-tools # for pdf viewing
         pdf-view-restore # for restoring the last page of pdf visited
 
+        lemon-mode # the system monitor
+
+        nerd-icons
         # Lsp setup
         lsp-mode
       ];
