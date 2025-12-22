@@ -8,6 +8,7 @@
     ./newsboat.nix
     ./nix-search-tv.nix
     ./nix-init.nix
+    ./ollama.nix
     ./onlyoffice.nix
     ./swayimg.nix
     ./trash-cli.nix

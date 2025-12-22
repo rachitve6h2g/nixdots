@@ -31,7 +31,8 @@
     package = pkgs.emacs-pgtk;
     extraPackages =
       epkgs: with epkgs; [
-        dirvish
+        catppuccin-theme # For catppuccin theme
+        dirvish # A better dired # TODO: Still needs to be configured.
         envrc # for working with direnv
 
         # Get a lighter thing, like mpv to work in emacs
