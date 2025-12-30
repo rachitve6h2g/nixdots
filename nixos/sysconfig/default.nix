@@ -42,5 +42,7 @@
     variables = {
       QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.qt6.qtbase.outPath}/lib/qt-6/plugins";
     };
+    # Required by programs.bash.enableCompletion in home-manager.
+    pathsToLink = [ "/share/bash-completion" ];
   };
 }

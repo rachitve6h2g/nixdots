@@ -38,6 +38,6 @@
 
   stylix = {
     fonts.sizes.terminal = 12;
-    opacity.terminal = 0.95;
+    opacity.terminal = 0.92;
   };
 }

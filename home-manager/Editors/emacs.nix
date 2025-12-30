@@ -52,6 +52,8 @@
         vterm # for terminal inside emacs
         format-all # formatter for text files
 
+        gptel # AI agent within emacs
+
         pdf-tools # for pdf viewing
         pdf-view-restore # for restoring the last page of pdf visited
 
