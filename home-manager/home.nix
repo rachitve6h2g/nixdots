@@ -23,6 +23,7 @@
     ./Media
 
     ./Programs
+    ./Scripts
     ./Shell
     ./WindowManager
 

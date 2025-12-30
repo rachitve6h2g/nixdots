@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     nixfmt
+    nixd
 
     mupdf # for doc viewer
     ghostscript # for doc viewer as well
