@@ -51,6 +51,14 @@
         ))
         use-package # for declratively setting up packages
         vterm # for terminal inside emacs
+
+        # The full thing for multimedia
+        emms
+        emms-info-mediainfo
+        emms-mark-ext
+        emms-mode-line-cycle
+        emms-player-simple-mpv
+
         format-all # formatter for text files
 
         gptel # AI agent within emacs

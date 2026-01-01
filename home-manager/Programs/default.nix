@@ -4,6 +4,7 @@
     ./btop.nix
     ./clock-rs.nix
     ./gcc.nix
+    ./info.nix
     ./irssi.nix
     ./newsboat.nix
     ./nix-search-tv.nix
