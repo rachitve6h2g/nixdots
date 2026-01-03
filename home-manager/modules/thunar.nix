@@ -23,7 +23,7 @@ in
         WantedBy = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.xfce.thunar}/bin/thunar --daemon";
+        ExecStart = "${pkgs.thunar}/bin/thunar --daemon";
       };
     };
   };

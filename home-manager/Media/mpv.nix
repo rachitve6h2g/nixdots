@@ -40,13 +40,17 @@
       video-sync = "display-resample";
       interpolation = true;
       profile = "gpu-hq";
-      vo = "gpu";
-      hwdec = "auto-safe";
+      vo = "gpu-next";
+      hwdec = "vulkan";
       gpu-api = "vulkan";
 
       input-ipc-server = "/tmp/mpv.sock";
 
       audio-file-auto = "fuzzy";
+
+      # On complain of matroska,webm support denial
+      demuxer-lavf-analyzeduration = 10;
+      demuxer-lavf-probesize = 5000000;
 
       # UOSC integration
       osd-bar = false;
@@ -59,6 +63,16 @@
 
       cursor-autohide = 1000;
       cursor-autohide-fs-only = true;
+
+      # On ArchWiki: HD Audio Passthrough
+      audio-spdif = "ac3,eac3,dts-hd,truehd";
+
+      # For a more verbose msg-level for video output and stuff.
+      msg-level = "vd=v,vo=v,vo/gpu/vaapi-egl=trace";
+    };
+
+    bindings = {
+      n = "cycle_values af loudnorm=I=-30 loudnorm=I=-15 anull";
     };
 
     scriptOpts = {

@@ -2,6 +2,9 @@
   config,
   ...
 }:
+let
+  mpdHost = "$XDG_RUNTIME_DIR/mpd/socket";
+in
 {
   services = {
     mpd = {
@@ -25,11 +28,15 @@
           type "pipewire"
           name "PipeWire Sound Server"
         }
+
+        bind_to_address ${mpdHost}
       '';
     };
-
     mpd-mpris = {
       enable = true;
     };
   };
+
+  # For listening to Unix domain socket
+  home.sessionVariables.MPD_HOST = mpdHost;
 }
