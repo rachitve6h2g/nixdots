@@ -70,6 +70,8 @@
         nerd-icons
         # Lsp setup
         lsp-mode
+
+        kdeconnect # kdeconnect.el
       ];
 
     extraConfig =

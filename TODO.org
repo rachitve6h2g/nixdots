@@ -1,0 +1,9 @@
+* TODO Write an event for pausing song/video on earphone unplug, resume on plug-in
+* TODO Move to treefmt-nix from nixfmt
+* DONE Move to xdg-desktop-portal-termfilechooser
+* TODO Learn difference between focus-ring and border (read the wiki properly)
+* TODO Move to SwayWM
+* TODO Write quickshell configs.
+* TODO Configure notmuch
+* TODO Configure vdirsyncer < done with the accounts module in home-manager
+* TODO Configure khal < done with the accounts module in home-manager
