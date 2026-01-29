@@ -13,7 +13,7 @@
         self.nixosModules.locale
         self.nixosModules.niri
         self.nixosModules.nix
-        self.niosModules.sound
+        self.nixosModules.sound
       ];
       programs = {
         thunar = {

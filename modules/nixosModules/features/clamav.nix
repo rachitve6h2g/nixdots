@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.clamv =
+  flake.nixosModules.clamav =
     { pkgs, lib, ... }:
     {
       services = {

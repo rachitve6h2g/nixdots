@@ -1,5 +1,5 @@
 {
-  flake.homeModules.niri =
+  flake.homeModules.swaylock =
     { pkgs, ... }:
     {
       programs.swaylock = {

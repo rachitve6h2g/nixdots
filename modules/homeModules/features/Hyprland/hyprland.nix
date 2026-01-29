@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.homeModules.hyprland =
     {
@@ -7,6 +8,12 @@
       ...
     }:
     {
+      imports = [
+        self.homeModules.hypridle
+        self.homeModules.hyprlauncher
+        self.homeModules.hyprlock
+        self.homeModules.hyprsunset
+      ];
       xdg = {
         portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
         configFile = {
@@ -25,21 +32,6 @@
           '';
         };
       };
-
-      imports = [
-        ./hypridle.nix
-
-        # Doesn't have keybinds and theming requires hyprtoolkit,
-        # the binary is missing. See https://github.com/NixOS/nixpkgs/issues/483620
-        # ./hyprlauncher.nix
-
-        ./hyprlock.nix
-        ./hyprsunset.nix
-
-        # Only for experimentation, disable other
-        # DE theming to see how it affects colors
-        # ./stylix.nix
-      ];
 
       # Adding to the packages list anyways.
       home.packages = with pkgs; [ hyprtoolkit ];

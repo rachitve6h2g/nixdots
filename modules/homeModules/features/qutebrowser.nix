@@ -1,5 +1,5 @@
 {
-  flake.homeModules.browser =
+  flake.homeModules.qutebrowser =
     { pkgs, ... }:
     {
       programs = {

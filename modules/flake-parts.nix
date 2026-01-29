@@ -2,7 +2,7 @@
 {
   imports = [
     # currently unused
-    inputs.home-manager.flakeModules.modules
+    inputs.home-manager.flakeModules.home-manager
     inputs.flake-parts.flakeModules.modules
   ];
 

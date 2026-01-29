@@ -1,5 +1,5 @@
 {
-  flake.homeModules.niri = {
+  flake.homeModules.wlsunset = {
     services.wlsunset = {
       enable = true;
       temperature = {

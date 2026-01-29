@@ -24,7 +24,6 @@ in
             self.homeModules.general
             self.homeModules.shell
             self.homeModules.desktop
-            self.homeModules.browser
             self.homeModules.niri
             self.homeModules.media
           ];

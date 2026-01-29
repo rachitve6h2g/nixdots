@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktop =
+  flake.homeModules.waybar =
     {
       lib,
       pkgs,

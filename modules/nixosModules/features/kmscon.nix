@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.kmscon =
+  flake.nixosModules.kmscon =
     { config, ... }:
     {
       # https://wiki.archlinux.org/title/KMSCON

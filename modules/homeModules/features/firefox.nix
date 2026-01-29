@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.homeModules.browser =
+  flake.homeModules.firefox =
     { config, pkgs, ... }:
     {
       nixpkgs.overlays = [ inputs.nur.overlays.default ];

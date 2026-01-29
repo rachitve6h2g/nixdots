@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.virtualization =
+  flake.nixosModules.virtualization =
     { pkgs, globalValues, ... }:
     {
       virtualisation = {

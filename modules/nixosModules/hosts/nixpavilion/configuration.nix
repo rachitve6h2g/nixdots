@@ -27,6 +27,15 @@
         self.diskoConfigurations.hostMain
       ];
 
+      programs = {
+        git = {
+          enable = true;
+          package = (pkgs.git.override { withLibsecret = true; });
+        };
+
+        nano.enable = false;
+        vim.enable = true;
+      };
       # Don't frickin' change it!!!
       system.stateVersion = "26.05";
 
@@ -39,22 +48,23 @@
         loader = {
           systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
-
-          plymouth.enable = true;
-
-          kernelParams = [
-            "quiet"
-            "splash"
-            "i915.force_probe=!a7a0"
-            "zswap.enabled=1" # enables zswap
-            "zswap.compressor=zstd" # compression algorithm
-            "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
-            "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure           "xe.force_probe=a7a0"
-          ];
-          kernel.sysctl = {
-            "vm.swappiness" = 10;
-          };
         };
+
+        kernel.sysctl = {
+          "vm.swappiness" = 10;
+        };
+
+        plymouth.enable = true;
+
+        kernelParams = [
+          "quiet"
+          "splash"
+          "i915.force_probe=!a7a0"
+          "zswap.enabled=1" # enables zswap
+          "zswap.compressor=zstd" # compression algorithm
+          "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
+          "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure           "xe.force_probe=a7a0"
+        ];
       };
 
       networking = {

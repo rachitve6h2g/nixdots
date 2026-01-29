@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.ssh =
+  flake.nixosModules.ssh =
     { globalValues, ... }:
     {
       services = {

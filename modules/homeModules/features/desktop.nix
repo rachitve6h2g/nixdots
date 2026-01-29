@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.homeModules.desktop =
     {
@@ -7,6 +8,11 @@
       ...
     }:
     {
+
+      imports = [
+        self.homeModules.firefox
+        self.homeModules.zathura
+      ];
 
       home.packages = with pkgs; [
         brightnessctl

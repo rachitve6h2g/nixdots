@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.homeModules.shell =
+  flake.homeModules.neovim =
     { pkgs, ... }:
     {
       imports = [ inputs.mnw.homeManagerModules.mnw ];

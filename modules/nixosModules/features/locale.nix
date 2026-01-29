@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.loacle = {
+  flake.nixosModules.locale = {
     # Set your time zone.
     time.timeZone = "Asia/Kolkata";
 

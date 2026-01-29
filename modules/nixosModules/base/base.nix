@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flakes.nixosModules.base =
+  flake.nixosModules.base =
     { pkgs, ... }:
     {
       imports = [

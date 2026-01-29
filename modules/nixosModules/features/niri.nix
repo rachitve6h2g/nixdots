@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
-  flakes.nixosModules.niri =
+  flake.nixosModules.niri =
     {
-      inputs,
       pkgs,
       ...
     }:

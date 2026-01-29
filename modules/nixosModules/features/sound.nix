@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.sound =
+  flake.nixosModules.sound =
     { pkgs, ... }:
     {
       # Enable sound with pipewire.

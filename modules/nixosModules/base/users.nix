@@ -1,5 +1,5 @@
 {
-  flakes.nixosModules.users =
+  flake.nixosModules.users =
     {
       pkgs,
       ...

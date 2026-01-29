@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.homeModules.niri =
     {
@@ -16,6 +16,14 @@
         # Module, comment the these modules
         inputs.niri.homeModules.stylix
         inputs.niri.homeModules.niri
+
+        # Modules to use with niri
+        self.homeModules.fuzzel
+        self.homeModules.swayidle
+        self.homeModules.swaylock
+        self.homeModules.waybar
+        self.homeModules.wbg
+        self.homeModules.wlsunset
       ];
 
       services.gnome-keyring = {

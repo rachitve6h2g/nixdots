@@ -1,9 +1,9 @@
+{ inputs, ... }:
 {
-  flakes.nixosModules.nix =
+  flake.nixosModules.nix =
     {
       pkgs,
       lib,
-      inputs,
       config,
       ...
     }:
@@ -41,15 +41,16 @@
           flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
         in
         {
+          package = pkgs.lix;
           settings = {
             experimental-features = "nix-command flakes";
             nix-path = config.nix.nixPath;
 
             auto-optimise-store = true;
-            optimise = {
-              automatic = true;
-              dates = [ "03:45" ];
-            };
+          };
+          optimise = {
+            automatic = true;
+            dates = [ "03:45" ];
           };
           channel.enable = false;
 

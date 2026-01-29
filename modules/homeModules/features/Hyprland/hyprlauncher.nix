@@ -1,5 +1,5 @@
 {
-  flake.homeModules.hyprland =
+  flake.homeModules.hyprlauncher =
     { pkgs, ... }:
     {
       services = {
