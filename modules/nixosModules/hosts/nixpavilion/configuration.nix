@@ -14,6 +14,7 @@
       imports = [
         # desktop stuff
         self.nixosModules.desktop
+        self.nixosModules.niri
 
         # All the base stuff
         self.nixosModules.base
@@ -63,7 +64,8 @@
           "zswap.enabled=1" # enables zswap
           "zswap.compressor=zstd" # compression algorithm
           "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
-          "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure           "xe.force_probe=a7a0"
+          "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure           
+	"xe.force_probe=a7a0"
         ];
       };
 

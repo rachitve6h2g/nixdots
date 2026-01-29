@@ -31,7 +31,7 @@
             dates = "daily";
             extraArgs = "--keep 5 --keep-since 3d";
           };
-          flake = "/etc/nixos";
+          flake = "/home/krish/nixdots";
         };
         nix-index-database.comma.enable = true;
       };

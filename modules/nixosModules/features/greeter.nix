@@ -2,7 +2,6 @@
   flake.nixosModules.greeter =
     {
       pkgs,
-      # config,
       ...
     }:
     {
@@ -34,6 +33,7 @@
       };
 
       environment.etc."greetd/environments".text = ''
+	niri
         bash
         hyprland
       '';

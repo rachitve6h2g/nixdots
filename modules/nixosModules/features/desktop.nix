@@ -11,7 +11,6 @@
         self.nixosModules.keymap
         self.nixosModules.kmscon
         self.nixosModules.locale
-        self.nixosModules.niri
         self.nixosModules.nix
         self.nixosModules.sound
       ];

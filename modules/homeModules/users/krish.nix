@@ -26,6 +26,7 @@ in
             self.homeModules.desktop
             self.homeModules.niri
             self.homeModules.media
+		self.homeModules.neovim
           ];
           nix = {
             settings = {

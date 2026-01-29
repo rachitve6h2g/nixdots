@@ -27,7 +27,7 @@
           };
 
           # TODO Change flake paths once the nixos-config is centralized
-          flake = "/etc/nixos";
+          flake = "/home/krish/nixdots";
           homeFlake = "${flake}";
           osFlake = "${flake}";
         };

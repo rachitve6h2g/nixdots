@@ -34,7 +34,7 @@
           };
         };
         polkit-gnome = {
-          enable = true;
+          enable = false;
         };
         poweralertd.enable = true;
 

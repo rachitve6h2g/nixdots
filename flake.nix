@@ -49,7 +49,7 @@
     # TODO: Idea is to wrap as many packages as possible
     # using the nix module system.
     # Currently wrapped is btop without the wrappers library.
-    wrappers.url = "github:lassulus/wrappers";
+   # wrappers.url = "github:lassulus/wrappers";
 
   };
 
