@@ -68,7 +68,7 @@
               accent = "mauve";
             }
           );
-          light = "Tela-circle-nord-dark";
+          light = "Papirus-Dark";
           dark = config.stylix.icons.light;
         };
 
