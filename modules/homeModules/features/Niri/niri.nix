@@ -126,14 +126,15 @@
                   action = close-window;
                 };
 
-                "Mod+U".action = focus-workspace-down;
-                "Mod+I".action = focus-workspace-up;
+                # TODO: These can be used to work with multi-monior setup
+                # "Mod+U".action = focus-workspace-down;
+                # "Mod+I".action = focus-workspace-up;
 
-                "Mod+Shift+U".action = move-column-to-workspace-down;
-                "Mod+Shift+I".action = move-column-to-workspace-up;
+                # "Mod+Shift+U".action = move-column-to-workspace-down;
+                # "Mod+Shift+I".action = move-column-to-workspace-up;
 
-                "Mod+Ctrl+U".action = move-workspace-down;
-                "Mod+Ctrl+I".action = move-workspace-up;
+                # "Mod+Ctrl+U".action = move-workspace-down;
+                # "Mod+Ctrl+I".action = move-workspace-up;
 
                 "Mod+1".action = focus-workspace 1;
                 "Mod+2".action = focus-workspace 2;
@@ -225,26 +226,17 @@
                   allow-when-locked = true;
                 };
 
-                "Mod+Shift+Return" = {
-                  action = spawn [
-                    "emacsclient"
-                    "-a"
-                    "\"\""
-                    "-c"
-                  ];
-                  hotkey-overlay.title = "Spawn Emacsclient";
-                };
                 # Move around windows in a workspace using vim keys.
-                "Mod+H".action = focus-column-left;
-                "Mod+L".action = focus-column-right;
-                "Mod+K".action = focus-window-up;
-                "Mod+J".action = focus-window-down;
+                "Mod+H".action = focus-column-left-or-last;
+                "Mod+L".action = focus-column-right-or-first;
+                "Mod+K".action = focus-window-or-workspace-up;
+                "Mod+J".action = focus-window-or-workspace-down;
 
-                # Move the windows around in a workspace.
-                "Mod+Ctrl+H".action = move-column-left;
-                "Mod+Ctrl+L".action = move-column-right;
-                "Mod+Ctrl+K".action = move-window-up;
-                "Mod+Ctrl+J".action = move-window-down;
+                # Move windows/columns around in a workspace
+                "Mod+Shift+H".action = move-column-left;
+                "Mod+Shift+L".action = move-column-right;
+                "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
+                "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
               };
 
             layout = {
