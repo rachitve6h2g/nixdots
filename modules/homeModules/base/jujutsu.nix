@@ -10,6 +10,8 @@
           };
         };
       };
+
+      jjui.enable = true;
     };
   };
 }
