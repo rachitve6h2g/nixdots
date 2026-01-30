@@ -15,6 +15,7 @@
       ];
 
       home.packages = with pkgs; [
+        wl-clipboard
         brightnessctl
         libnotify
       ];
