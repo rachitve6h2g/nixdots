@@ -1,0 +1,33 @@
+-- Don't autostart markdown preview, However, once it is open, if we change
+-- buffers, open the markdown file in the same file.
+vim.g.mkdp_auto_start = 0
+vim.g.mkdp_auto_close = 0
+vim.g.mkdp_combine_preview = 1
+
+-- Opens markdown preview in a new Firefox window
+vim.cmd([[
+  function OpenMarkdownPreview(url)
+    execute "silent ! firefox --new-window " . a:url
+  endfunction
+]])
+
+vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
+
+require("render-markdown").setup({
+  enabled = true,
+  code = {
+    sign = false,
+    width = "block",
+    right_pad = 1,
+  },
+
+  heading = {
+    sign = false,
+    icons = {},
+  },
+
+  checkbox = { enabled = false },
+  file_types = { "markdown", "quarto" },
+
+  render_modes = { "n", "c", "t" },
+})
