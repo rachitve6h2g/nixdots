@@ -121,6 +121,7 @@
                   action = spawn [
                     "${pkgs.cliphist}/bin/cliphist-fuzzel-img"
                   ];
+                  hotkey-overlay.title = "Open clipboard";
                 };
 
                 "Mod+Return" = {

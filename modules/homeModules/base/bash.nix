@@ -107,9 +107,6 @@
         zoxide = {
           enable = true;
           enableBashIntegration = true;
-          options = [
-            "--cmd cd"
-          ];
         };
       };
 
@@ -130,6 +127,23 @@
         enableCompletion = true;
         enableVteIntegration = false;
 
+        historyIgnore = [
+          "ls"
+          "cd"
+          "exit"
+        ];
+
+        historySize = 100000;
+        historyFileSize = 10000;
+
+        shellOptions = lib.mkAfter [
+          "cdspell"
+          "histappend"
+          "extglob"
+          "globstar"
+          "checkjobs"
+        ];
+
         shellAliases = {
           nixcon = "cd /etc/nixos";
           ".." = "cd ..";
@@ -148,6 +162,9 @@
 
         bashrcExtra =
           let
+            setOpts = /* bash */ ''
+              set -o vi
+            '';
             interactive_dangers = # bash
               ''
                 rm() { command rm -i "''${@}"; }
@@ -179,6 +196,7 @@
           in
           lib.mkMerge (
             [
+              setOpts
               interactive_dangers
             ]
             ++ (

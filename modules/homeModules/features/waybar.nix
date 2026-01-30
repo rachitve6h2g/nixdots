@@ -10,16 +10,7 @@
         waybar = {
           enable = true;
 
-          package = (
-            pkgs.waybar.override {
-              evdevSupport = false;
-              gpsSupport = false;
-              mpdSupport = false;
-              mprisSupport = false;
-              sndioSupport = false;
-              cavaSupport = false;
-            }
-          );
+          package = pkgs.waybar;
 
           systemd = {
             enable = true;

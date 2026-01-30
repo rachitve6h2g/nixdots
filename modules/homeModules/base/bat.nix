@@ -18,7 +18,7 @@
         };
         # Set MANPAGER to batman
         bash.bashrcExtra = ''
-          eval $(${pkgs.bat-extras.batman}/bin/batman --export-env)
+          eval "$(${pkgs.bat-extras.batman}/bin/batman --export-env)"
         '';
       };
     };

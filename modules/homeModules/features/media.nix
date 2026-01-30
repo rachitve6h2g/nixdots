@@ -7,6 +7,7 @@
 
         mpd = {
           enable = true;
+          enableSessionVariables = true;
           musicDirectory = "${config.home.homeDirectory}/Music";
           playlistDirectory = "${config.xdg.configHome}/mpd/playlists";
           dbFile = "${config.xdg.configHome}/mpd/database";
@@ -35,6 +36,7 @@
       };
 
       programs = {
+        rmpc.enable = true;
         # MPV
         mpv.enable = true;
 
@@ -62,6 +64,7 @@
           };
         };
       };
+      stylix.targets.cava.rainbow.enable = true;
     };
 
 }
