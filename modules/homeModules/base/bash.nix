@@ -16,8 +16,6 @@
           "$(tput setaf 3)"
           "$USER$(tput sgr0): "
         ];
-
-        EDITOR = "nvim";
       };
     in
     {
@@ -162,15 +160,11 @@
 
         bashrcExtra =
           let
-            setOpts = /* bash */ ''
-              set -o vi
-            '';
             interactive_dangers = # bash
               ''
                 rm() { command rm -i "''${@}"; }
                 cp() { command cp -i "''${@}"; }
                 mv() { command mv -i "''${@}"; }
-                trash() { command trash -i "''${@}"; }
               '';
 
             yt-playlist = /* bash */ ''
@@ -196,7 +190,6 @@
           in
           lib.mkMerge (
             [
-              setOpts
               interactive_dangers
             ]
             ++ (

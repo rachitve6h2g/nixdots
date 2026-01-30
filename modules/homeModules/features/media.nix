@@ -7,8 +7,6 @@
       };
 
       programs = {
-        cmus.enable = true;
-
         # MPV
         mpv.enable = true;
 

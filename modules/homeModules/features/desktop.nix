@@ -11,8 +11,6 @@
 
       imports = [
         self.homeModules.firefox
-        self.homeModules.jrnl
-        self.homeModules.zathura
       ];
 
       home.packages = with pkgs; [
