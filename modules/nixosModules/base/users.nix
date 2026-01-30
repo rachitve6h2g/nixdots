@@ -16,6 +16,7 @@
           "wheel"
           "systemd-journal"
           "video"
+          "audio"
           "greeter"
           "networkmanager"
         ]; # Enable ‘sudo’ for the user.

@@ -7,8 +7,10 @@
       services = {
         pipewire = {
           enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
+          alsa = {
+            enable = true;
+            support32Bit = false;
+          };
           pulse.enable = true;
           wireplumber.enable = true;
           # If you want to use JACK applications, uncomment this
