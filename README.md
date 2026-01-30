@@ -1,17 +1,19 @@
 <h1 align="center">
 <div align="center">
 <img src="./.github/images/nixos.svg" width="100px" />
-<img src="./.github/images/neovim.svg" width="80px" />
+<a href="https://www.gnu.org/software/emacs/">
+<img src="./.github/images/emacs.svg" width="100px" />
+</a>
 </div>
 <br>
 <p>Rachit's NixOS System Configuration</p>
 <div align="center">
 <p></p>
 <div align="center">
-<a href="https://neovim.io/">
-<img src="https://img.shields.io/badge/NEOVIM-mnw?style=for-the-badge&logo=neovim&logoColor=a6e3a1&labelColor=1e1e2e&color=1e1e2e">
+<a href="https://orgmode.org/">
+<img src="https://img.shields.io/badge/org_mode-9.7-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=org&logoColor=a6e3a1&color=1e1e2e">
 </a>
-<a = href="https://nixos.org">
+<a href="https://nixos.org">
 <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=NixOS&logoColor=89b4fa&color=1e1e2e">
 </a>
 <a href="https://github.com/rachitve6h2g/nixdots/blob/master/LICENSE">
