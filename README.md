@@ -81,7 +81,7 @@ $ cd /tmp/nixdots/modules/nixosModules/hosts/nixpavilion
 ```
 
 For now, use the [disko-config for
-nixpavilion](modules/nixosModules/hosts/nixpavilion/disko.nix) for installation.
+nixpavilion](modules/nixosModules/hosts/nixpavilion/disko-config.nix) for installation.
 
 ``` bash
 $ nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
