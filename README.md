@@ -226,6 +226,8 @@ in installation section\].
 
 - [ ] Use import-tree and flake-parts to manage config as flake modules.
 
+- [ ] Create fzf scripts for powermenu, emoji selector, and launcher.
+
 # 👀 Eyes on These
 
 - [Hyprlauncher](https://github.com/hyprwm/hyprlauncher): App launcher
