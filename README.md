@@ -212,8 +212,6 @@ be followed.
 
 # 🚧 Work In Progress
 
-- [X] Bring emacs configuration under same repo.
-
 - [X] Manage stylix themes from one place. Only
 things that need to be centralized is `stylix.base16Scheme`,
 so that it\'s not written. \[The way it\'s done is weird, but it\'s
