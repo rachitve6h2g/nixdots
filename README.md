@@ -22,7 +22,7 @@
 </div>
 </h1>
 
->!NOTE
+>[!note]
 >See the [steps to install niri using binary
 cache.](#when-using-the-niri-wm) This repo uses niri from the
 [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
