@@ -63,8 +63,8 @@
                 xkb = {
                   layout = "us";
                   variant = "colemak_dh";
-                  options = "ctrl:swapcaps"; # When using Emacs
-                  # options = "caps:swapescape"; # When using neovim
+                  # options = "ctrl:swapcaps"; # When using Emacs
+                  options = "caps:swapescape"; # When using neovim
                 };
               };
               touchpad = {
@@ -133,15 +133,15 @@
                   hotkey-overlay.title = "Spawn Kitty Terminal";
                 };
 
-                "Mod+Shift+Return" = {
-                  action = spawn [
-                    "emacsclient"
-                    "-a \"\""
-                    "-c"
-                  ];
+                # "Mod+Shift+Return" = {
+                #   action = spawn [
+                #     "emacsclient"
+                #     "-a \"\""
+                #     "-c"
+                #   ];
 
-                  hotkey-overlay.title = "Spawn Emacsclient";
-                };
+                #   hotkey-overlay.title = "Spawn Emacsclient";
+                # };
 
                 "Mod+Q" = {
                   action = close-window;
@@ -279,17 +279,17 @@
                   allow-when-locked = true;
                 };
 
-                # Move around windows in a workspace using emacs keys.
-                "Mod+B".action = focus-column-left-or-last;
-                "Mod+F".action = focus-column-right-or-first;
-                "Mod+P".action = focus-window-or-workspace-up;
-                "Mod+N".action = focus-window-or-workspace-down;
+                # Move around windows in a workspace using vim keys.
+                "Mod+H".action = focus-column-left-or-last;
+                "Mod+L".action = focus-column-right-or-first;
+                "Mod+K".action = focus-window-or-workspace-up;
+                "Mod+J".action = focus-window-or-workspace-down;
 
                 # Move windows/columns around in a workspace
-                "Mod+Shift+B".action = move-column-left;
-                "Mod+Shift+F".action = move-column-right;
-                "Mod+Shift+P".action = move-window-up-or-to-workspace-up;
-                "Mod+Shift+N".action = move-window-down-or-to-workspace-down;
+                "Mod+Shift+H".action = move-column-left;
+                "Mod+Shift+L".action = move-column-right;
+                "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+                "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
               };
 
             layout = {

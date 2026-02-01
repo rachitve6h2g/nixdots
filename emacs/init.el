@@ -557,3 +557,9 @@
 (use-package saveplace-pdf-view
   :after (:any doc-view pdf-tools)
   :demand t)
+
+(use-package xclip
+  :custom
+  (xclip-method 'wl-copy)
+  :config
+  (xclip-mode t))

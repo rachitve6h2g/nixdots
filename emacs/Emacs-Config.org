@@ -755,3 +755,13 @@ Saveplace PDF for saving the last visited page in the pdf
 ** Vertico and Completion
 
 Find resources for customizing and enhancing completion ui and frameworks [[https://github.com/minad/vertico?tab=readme-ov-file#resources][here]] on the official website.
+
+* Clipboard
+Using X-Clip for wayland.
+#+begin_src emacs-lisp
+  (use-package xclip
+    :custom
+    (xclip-method 'wl-copy)
+    :config
+    (xclip-mode t))
+#+end_src
