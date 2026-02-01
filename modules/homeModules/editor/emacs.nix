@@ -81,6 +81,7 @@
             emacs # Apparently there's a emacs package inside emacs
             embark # Perform actions from the minibuffer
             embark-consult # embark integration with consult
+            emms # Play music from emacs
             exec-path-from-shell # take $PATH from non-emacs default shell
             forge # Project management
             ligature # For rendering ligatures rightly

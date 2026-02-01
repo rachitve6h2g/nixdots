@@ -18,6 +18,7 @@
         inputs.niri.homeModules.niri
 
         # Modules to use with niri
+        self.homeModules.avizo
         self.homeModules.fuzzel
         self.homeModules.swayidle
         self.homeModules.swaylock
@@ -106,9 +107,9 @@
             binds =
               with config.lib.niri.actions;
               let
-                sound = spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@";
+                # sound = spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@";
                 playerctl = spawn "playerctl";
-                brightness = spawn "brightnessctl" "-e4" "-n2" "set";
+                # brightness = spawn "brightnessctl" "-e4" "-n2" "set";
               in
               {
                 "Mod+D" = {
@@ -205,28 +206,60 @@
                 "Mod+O".action = toggle-overview;
 
                 XF86AudioRaiseVolume = {
-                  action = sound "5%+";
+                  # action = sound "5%+";
+                  action = spawn [
+                    "volumectl"
+                    "-u"
+                    "up"
+                  ];
+
                   allow-when-locked = true;
                 };
                 XF86AudioLowerVolume = {
-                  action = sound "5%-";
+                  # action = sound "5%-";
+                  action = spawn [
+                    "volumectl"
+                    "-u"
+                    "down"
+                  ];
+
                   allow-when-locked = true;
                 };
                 XF86AudioMute = {
+                  /*
+                    action = spawn [
+                      "wpctl"
+                      "set-mute"
+                      "@DEFAULT_AUDIO_SINK@"
+                      "toggle"
+                    ];
+                  */
+
                   action = spawn [
-                    "wpctl"
-                    "set-mute"
-                    "@DEFAULT_AUDIO_SINK@"
-                    "toggle"
+                    "volumectl"
+                    "toggle-mute"
                   ];
+
                   allow-when-locked = true;
                 };
                 XF86MonBrightnessUp = {
-                  action = brightness "5%+";
+                  # action = brightness "5%+";
+
+                  action = spawn [
+                    "lightctl"
+                    "up"
+                  ];
+
                   allow-when-locked = true;
                 };
                 XF86MonBrightnessDown = {
-                  action = brightness "5%-";
+                  # action = brightness "5%-";
+
+                  action = spawn [
+                    "lightctl"
+                    "down"
+                  ];
+                  
                   allow-when-locked = true;
                 };
                 XF86AudioNext = {
