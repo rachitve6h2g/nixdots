@@ -11,6 +11,10 @@
 
       home = {
         packages = with pkgs; [
+          # For Org-Mode Fonts
+          cantarell-fonts
+
+          # For Nix Development
           nixfmt
           nixd
 
@@ -68,7 +72,6 @@
           epkgs: with epkgs; [
             cape # completion provider
             catppuccin-theme # I know right?
-            command-log-mode # Not necessary but okay
             consult # Perform very useful actions like find and ripgrep, etc
             corfu # completion ui
             dashboard # A good startup is a good thing
@@ -90,11 +93,13 @@
             nerd-icons-ibuffer # for ibuffer
             nixfmt # For formatting nix code
             nix-mode # nix major mode, not built-in in emacs
+            no-littering # Keep ~/.emacs.d or $XDG_CONFIG_HOME/emacs free of garbage
             orderless # completion
             org # Not going to live without this!
             org-auto-tangle # auto-tangle org files
             org-bullets # For the bullets
-            org-ql
+            org-ql # For org-ql files
+            page-break-lines # Recommended by dashboard
             pdf-tools # For viewing pdfs inside of emacs
             pretty-sha-path # Useful for guix/nix users
             pulsar
@@ -111,6 +116,7 @@
 
             vertico # Goes with orderless, cape, consult, marginalia
             visual-fill-column # center org files
+            vterm # A better terminal
             which-key # Better key combo UI
             xclip # For clipbard
           ];

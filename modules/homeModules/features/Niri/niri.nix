@@ -246,17 +246,17 @@
                   allow-when-locked = true;
                 };
 
-                # Move around windows in a workspace using vim keys.
-                "Mod+H".action = focus-column-left-or-last;
-                "Mod+L".action = focus-column-right-or-first;
-                "Mod+K".action = focus-window-or-workspace-up;
-                "Mod+J".action = focus-window-or-workspace-down;
+                # Move around windows in a workspace using emacs keys.
+                "Mod+B".action = focus-column-left-or-last;
+                "Mod+F".action = focus-column-right-or-first;
+                "Mod+P".action = focus-window-or-workspace-up;
+                "Mod+N".action = focus-window-or-workspace-down;
 
                 # Move windows/columns around in a workspace
-                "Mod+Shift+H".action = move-column-left;
-                "Mod+Shift+L".action = move-column-right;
-                "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
-                "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+                "Mod+Shift+B".action = move-column-left;
+                "Mod+Shift+F".action = move-column-right;
+                "Mod+Shift+P".action = move-window-up-or-to-workspace-up;
+                "Mod+Shift+N".action = move-window-down-or-to-workspace-down;
               };
 
             layout = {
@@ -388,13 +388,18 @@
                     app-id = "thunar$";
                     title = ".*Thunar.*";
                   }
+
+                  {
+                    app-id = "thunar$";
+                    title = ".*File Operation Progress.*";
+                  }
                 ];
                 open-floating = true;
                 default-column-width = {
-                  fixed = 903;
+                  fixed = 1029;
                 };
                 default-window-height = {
-                  fixed = 497;
+                  fixed = 683;
                 };
               }
             ];

@@ -230,6 +230,8 @@ in installation section\].
 
 - [ ] Create fzf scripts for powermenu, emoji selector, and launcher.
 
+- [ ] Move to dired once setup and remove yazi
+
 # 👀 Eyes on These
 
 - [Hyprlauncher](https://github.com/hyprwm/hyprlauncher): App launcher
