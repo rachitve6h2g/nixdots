@@ -236,6 +236,19 @@ be followed.
 
 - [Hyprlauncher](https://github.com/hyprwm/hyprlauncher): App launcher
   for hyprland.
+  
+# F.A.Q
+
+## Why Emacs?
+I am sort of writing this as a personal note:
+1. Org-Mode:
+Rather than having three to four different applications to manage notes, calendars, todo's and stuff, just have one and rock on.
+
+2. A computing environment.
+Some may not like it but emacs is, really at it's heart, unix with a powerful lisp interpreter. Emacs doesn't use anything more than it's lisp interpreter. Everything that might be considered bloat is actually GNU Coreutils at it's heart with some emacs-lisp function calling it. Yeah elisp may be slow. But other editors are editors, not a computing environment. Managing everything from todo's to emails and code, done in a unified way, is really powerful and beats the "slowness" out.
+
+3. Magit
+Really, it's no hype! Emacs has had this long standing feature and it's still the best. 
 
 # 📃 License
 
