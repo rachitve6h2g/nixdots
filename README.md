@@ -228,7 +228,10 @@ be followed.
 
 - [ ] Use import-tree and flake-parts to manage config as flake modules.
 
-- [ ] Create fzf scripts for powermenu, emoji selector, and launcher.
+- [ ] Create fuzzel scripts 
+  - [ ] fuzzel_supermenu.sh - This will give a menu of menus.
+  - [ ] fuzzel_powermenu.sh - For poweroff and suspend and stuff. 
+  - [ ] fuzzel_emoji.sh     - For showing emoji selection.
 
 - [ ] Move to dired once setup and remove yazi
 
