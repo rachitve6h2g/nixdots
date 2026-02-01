@@ -214,11 +214,11 @@ be followed.
 
 # 🚧 Work In Progress
 
-- [X] Manage stylix themes from one place. Only
-things that need to be centralized is `stylix.base16Scheme`,
-so that it\'s not written. \[The way it\'s done is weird, but it\'s
-done. See [instructions](#-changing-user-and-host-(and-possibly-theme))
-in installation section\].
+- [ ] Manage stylix themes from one place.
+  - [ ] Place conditionals:
+	- [ ] Wallpaper
+	- [ ] Icon Theme
+	- [ ] Cursor Theme
 
 - [ ] Manage DE/WM
 
