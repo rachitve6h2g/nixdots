@@ -40,7 +40,10 @@
       # Don't frickin' change it!!!
       system.stateVersion = "26.05";
 
-      documentation.man.generateCaches = false;
+      documentation = {
+        man.generateCaches = false;
+        info.enable = false;
+      };
 
       # Enable touchpad support (enabled default in most desktopManager).
       services.libinput.enable = true;
@@ -64,8 +67,8 @@
           "zswap.enabled=1" # enables zswap
           "zswap.compressor=zstd" # compression algorithm
           "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
-          "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure           
-	"xe.force_probe=a7a0"
+          "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+          "xe.force_probe=a7a0"
         ];
       };
 

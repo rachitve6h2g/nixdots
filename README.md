@@ -227,11 +227,11 @@ be followed.
 
 - [ ] Move to using wrappers.
 
-- [ ] Use import-tree and flake-parts to manage config as flake modules.
+- [X] Use import-tree and flake-parts to manage config as flake modules.
 
 - [ ] Create fuzzel scripts
   - [ ] fuzzel_supermenu.sh - This will give a menu of menus.
-  - [ ] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
+  - [X] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
   - [ ] fuzzel_emoji.sh     - For showing emoji selection.
 
 - [ ] Flesh out neovim configuration.

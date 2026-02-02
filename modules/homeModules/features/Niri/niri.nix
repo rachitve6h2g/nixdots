@@ -103,6 +103,17 @@
               };
             };
 
+            spawn-at-startup = [
+              {
+                argv = [
+                  "${pkgs.pipewire}/bin/pw-play"
+                  "--volume"
+                  "0.5"
+                  "${pkgs.kdePackages.ocean-sound-theme}/share/sounds/ocean/stereo/desktop-login.oga"
+                ];
+              }
+            ];
+
             binds =
               with config.lib.niri.actions;
               let

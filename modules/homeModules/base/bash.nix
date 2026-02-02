@@ -145,9 +145,6 @@
         shellAliases = {
           nixcon = "cd /etc/nixos";
           ".." = "cd ..";
-
-          # btop = "btop --force-utf";
-
           kava = "kitten panel --edge=background --override background_opacity=0.0 cava";
           tp = "${pkgs.trashy}/bin/trash put";
         };
