@@ -63,7 +63,6 @@
                 xkb = {
                   layout = "us";
                   variant = "colemak_dh";
-                  # options = "ctrl:swapcaps"; # When using Emacs
                   options = "caps:swapescape"; # When using neovim
                 };
               };
@@ -132,16 +131,6 @@
                   ];
                   hotkey-overlay.title = "Spawn Kitty Terminal";
                 };
-
-                # "Mod+Shift+Return" = {
-                #   action = spawn [
-                #     "emacsclient"
-                #     "-a \"\""
-                #     "-c"
-                #   ];
-
-                #   hotkey-overlay.title = "Spawn Emacsclient";
-                # };
 
                 "Mod+Q" = {
                   action = close-window;
@@ -259,7 +248,7 @@
                     "lightctl"
                     "down"
                   ];
-                  
+
                   allow-when-locked = true;
                 };
                 XF86AudioNext = {

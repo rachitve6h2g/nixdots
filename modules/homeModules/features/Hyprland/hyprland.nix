@@ -105,7 +105,6 @@
             "$modSHIFT, M, fullscreen, 0" # occupy the fullscreen
 
             "$mod, T, exec, $terminal"
-            "$mod, Return, exec, ${pkgs.emacs-pgtk}/bin/emacsclient -a \"\" -c"
 
             "$mod, D, exec, $menu"
 

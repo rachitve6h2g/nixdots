@@ -27,7 +27,6 @@ in
             self.homeModules.niri
             self.homeModules.media
             self.homeModules.neovim
-            # self.homeModules.emacs
           ];
           nix = {
             settings = {
