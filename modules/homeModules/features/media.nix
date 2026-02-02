@@ -33,6 +33,8 @@
             };
           };
         };
+
+        cmus.enable = true;
       };
       stylix.targets.cava.rainbow.enable = true;
     };

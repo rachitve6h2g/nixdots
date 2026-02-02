@@ -1,5 +1,5 @@
 { pkgs }:
-let 
+let
   pkgsPlugins = with pkgs.vimPlugins; [
     aerial-nvim # for amazing code outline
 
@@ -33,4 +33,5 @@ let
 
     colorful-menu-nvim
   ];
-in pkgsPlugins
+in
+pkgsPlugins

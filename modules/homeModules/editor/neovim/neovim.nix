@@ -108,7 +108,7 @@
           neovim = pkgs.neovim-unwrapped;
           plugins = {
             startAttrs = {
-              "blink.cmp" = null;
+              "blink.cmp" = null; # Already loaded by opt plugins
             };
             start = import ./packages/_startPlugins.nix { inherit pkgs; };
             # start = import ./packages/treesitter.nix { inherit pkgs; };
