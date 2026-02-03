@@ -5,7 +5,10 @@
       programs = {
         qutebrowser = {
           enable = true;
-
+          package = pkgs.qutebrowser.override {
+            enableWideVine = true;
+            withPdfReader = false;
+          };
           settings = {
             # See the enableVulkan flag in the qutebrowser
             # overlay.

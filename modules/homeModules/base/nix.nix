@@ -9,6 +9,8 @@
     in
     {
       home.packages = [ ns ];
+
+      nixpkgs.config.allowUnfree = true;
       programs = {
         direnv = {
           enable = true;

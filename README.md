@@ -30,6 +30,12 @@
 cache.](#when-using-the-niri-wm) This repo uses niri from the
 [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
 
+>[!note]
+>I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf).
+>However, I have not put to use the wrappers configuration. I am still using
+>home-manager, because it solves a lot of problems that would rather need to be
+>solved manually when using wrappers.
+
 # 📔 Instructions for installation
 
 I am presuming that a bootable USB is already prepared. Boot into the

@@ -8,7 +8,25 @@
 
       programs = {
         # MPV
-        mpv.enable = true;
+        mpv = {
+          enable = true;
+
+          package = (
+            pkgs.mpv.override {
+              scripts = with pkgs.mpvScripts; [
+                uosc
+                sponsorblock
+              ];
+              mpv-unwrapped = pkgs.mpv-unwrapped.override {
+                ffmpeg = pkgs.ffmpeg-full;
+                bluraySupport = false;
+                x11Support = false;
+                waylandSupport = true;
+                vdpauSupport = false;
+              };
+            }
+          );
+        };
 
         # Cava audio visualizer
         cava = {
