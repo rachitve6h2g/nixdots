@@ -32,6 +32,7 @@
               ];
               modules-center = [
                 "clock"
+                "custom/tomat"
               ];
               modules-right = [
                 "group/tray-expander"
@@ -75,6 +76,17 @@
                   ];
                 };
               };
+
+              "custom/tomat" = {
+                exec = "tomat status";
+                interval = 1;
+                return-type = "json";
+                format = "{text}";
+                tooltip = true;
+                on-click = "tomat toggle";
+                on-click-right = "tomat skip";
+              };
+
               cpu = {
                 interval = 5;
                 format = "󰍛";
@@ -249,6 +261,12 @@
 
                 #custom-expand-icon {
                   margin-right: 12px;
+                }
+
+                #custom-tomat {
+                  padding: 0 10px;
+                  margin: 0 5px;
+                  border-radius: 5px;
                 }
 
                 tooltip {

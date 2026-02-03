@@ -18,9 +18,10 @@
           [[ -z "$choice" ]] && exit 0
 
           case "$choice" in
-          "Poweroff") notify-send "The computer will shutdown in 60 seconds" && sleep 60 && systemctl poweroff ;;
+          "Poweroff") notify-send "The computer will shutdown in 10 seconds" && sleep 60 && systemctl poweroff ;;
           "Restart") notify-send "The computer will reboot in 10 seconds" && sleep 10 && systemctl reboot ;;
           "Lock") loginctl lock-session ;;
+          "Suspend") notify-send "Going for quick nap!" && sleep 2 && systemctl suspend ;;
           esac
         '')
       ];

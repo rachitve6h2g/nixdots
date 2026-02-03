@@ -69,6 +69,8 @@ let
     toggleterm-nvim # Better loaded at startup
 
     nvim-colorizer-lua # for color color
+
+    competitest-nvim
   ];
 
   treeSitterGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (
