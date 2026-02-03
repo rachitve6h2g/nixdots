@@ -205,6 +205,9 @@
 
                 "Mod+O".action = toggle-overview;
 
+                # Run the fuzzel powermenu script
+                "Mod+X".action = spawn "fuzzel-powermenu";
+
                 XF86AudioRaiseVolume = {
                   # action = sound "5%+";
                   action = spawn [
