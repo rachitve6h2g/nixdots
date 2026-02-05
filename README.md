@@ -2,7 +2,7 @@
 <div align="center">
 <img src="./.github/images/nixos.svg" width="100px" />
 <a href="https://helix-editor.com/">
-<img src="./.github/images/helix.svg" width="80px" />
+<img src="./.github/images/helix.svg" width="60px" />
 </a>
 </div>
 <br>
@@ -25,9 +25,9 @@
 </div>
 </h1>
 
-> [!note] See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
+>[!note] See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
 
-> [!note] I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
+>[!note] I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
 
 >[!note] I have moved to [Helix](https://helix-editor.com) as my main editor. It's got a smaller codebase than Neovim and written in rust. It offers a lot of functionalities of Neovim. I might return to Neovim once the built-in package manager in [12.0+ version of Neovim](https://github.com/neovim/neovim/milestone/43) is integrated in Gerg-L's mnw.
 
