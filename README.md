@@ -1,8 +1,8 @@
 <h1 align="center">
 <div align="center">
 <img src="./.github/images/nixos.svg" width="100px" />
-<a href="https://neovim.io/">
-<img src="./.github/images/neovim.svg" width="80px" />
+<a href="https://helix-editor.com/">
+<img src="./.github/images/helix.svg" width="80px" />
 </a>
 </div>
 <br>
@@ -10,9 +10,9 @@
 <div align="center">
 <p></p>
 <div align="center">
-<a href="https://gerg-l.github.io/mnw/">
+<a href="https://helix-editor.com/">
 <!-- <img src="https://img.shields.io/badge/org_mode-9.7-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=org&logoColor=a6e3a1&color=1e1e2e"> -->
-<img src="https://img.shields.io/badge/neovim-lua?style=for-the-badge&logo=neovim&logoColor=a6e3a1&labelColor=1e1e2e&color=1e1e2e">
+<img src="https://img.shields.io/badge/helix-rust%20editor?style=for-the-badge&logo=helix&logoColor=white&labelColor=1e1e2e&color=1e1e2e">
 </a>
 <a href="https://nixos.org">
 <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=NixOS&logoColor=89b4fa&color=1e1e2e">
@@ -28,6 +28,8 @@
 > [!note] See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
 
 > [!note] I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
+
+>[!note] I have moved to [Helix](https://helix-editor.com) as my main editor. It's got a smaller codebase than Neovim and written in rust. It offers a lot of functionalities of Neovim. I might return to Neovim once the built-in package manager in [12.0+ version of Neovim](https://github.com/neovim/neovim/milestone/43) is integrated in Gerg-L's mnw.
 
 # 📔 Instructions for installation
 
@@ -182,7 +184,7 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
   - [X] fuzzel_emoji.sh - For showing emoji selection.
   - [X] fuzzel_tomat.sh - For tomat pomodoro timer
 
-- [ ] Flesh out neovim configuration.
+- HALT: Flesh out neovim configuration. (Testing out helix and waiting for newer version of neovim with built-in package manager)
 
 # 👀 Eyes on These
 
