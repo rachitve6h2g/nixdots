@@ -25,11 +25,14 @@
 </div>
 </h1>
 
->[!note] See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
+> [!NOTE]
+> See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
 
->[!note] I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
+> [!NOTE]
+> I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
 
->[!note] I have moved to [Helix](https://helix-editor.com) as my main editor. It's got a smaller codebase than Neovim and written in rust. It offers a lot of functionalities of Neovim. I might return to Neovim once the built-in package manager in [12.0+ version of Neovim](https://github.com/neovim/neovim/milestone/43) is integrated in Gerg-L's mnw.
+> [!NOTE]
+> I have moved to [Helix](https://helix-editor.com) as my main editor. It's got a smaller codebase than Neovim and written in rust. It offers a lot of functionalities of Neovim. I might return to Neovim once the built-in package manager in [12.0+ version of Neovim](https://github.com/neovim/neovim/milestone/43) is integrated in Gerg-L's mnw.
 
 # 📔 Instructions for installation
 
@@ -176,13 +179,13 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 
 - [ ] Move to using wrappers.
 
-- [X] Use import-tree and flake-parts to manage config as flake modules.
+- [x] Use import-tree and flake-parts to manage config as flake modules.
 
-- [X] Create fuzzel scripts
-  - [X] fuzzel_supermenu.sh - This will give a menu of menus.
-  - [X] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
-  - [X] fuzzel_emoji.sh - For showing emoji selection.
-  - [X] fuzzel_tomat.sh - For tomat pomodoro timer
+- [x] Create fuzzel scripts
+  - [x] fuzzel_supermenu.sh - This will give a menu of menus.
+  - [x] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
+  - [x] fuzzel_emoji.sh - For showing emoji selection.
+  - [x] fuzzel_tomat.sh - For tomat pomodoro timer
 
 - HALT: Flesh out neovim configuration. (Testing out helix and waiting for newer version of neovim with built-in package manager)
 
