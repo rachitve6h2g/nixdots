@@ -174,13 +174,13 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 
 - [ ] Move to using wrappers.
 
-- [x] Use import-tree and flake-parts to manage config as flake modules.
+- [X] Use import-tree and flake-parts to manage config as flake modules.
 
-- [ ] Create fuzzel scripts
-  - [ ] fuzzel_supermenu.sh - This will give a menu of menus.
-  - [x] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
-  - [ ] fuzzel_emoji.sh - For showing emoji selection.
-  - [ ] fuzzel_tomat.sh - For tomat pomodoro timer
+- [X] Create fuzzel scripts
+  - [X] fuzzel_supermenu.sh - This will give a menu of menus.
+  - [X] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
+  - [X] fuzzel_emoji.sh - For showing emoji selection.
+  - [X] fuzzel_tomat.sh - For tomat pomodoro timer
 
 - [ ] Flesh out neovim configuration.
 

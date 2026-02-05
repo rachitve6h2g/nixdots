@@ -124,7 +124,8 @@
               {
                 "Mod+D" = {
                   action = spawn [
-                    "${pkgs.fuzzel}/bin/fuzzel"
+                    # "${pkgs.fuzzel}/bin/fuzzel"
+                    "fuzzel_supermenu.sh"
                   ];
                   hotkey-overlay.title = "Run an Application: vicinae";
                 };

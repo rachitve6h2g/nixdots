@@ -9,8 +9,17 @@
           defaultEditor = true;
 
           extraPackages = with pkgs; [
+            # For bash
+            bash-language-server
+            shfmt
+            shellcheck
+
+            # For markdown
             ltex-ls-plus
             marksman
+            mpls
+
+            # For nix files
             nixd
             nixfmt
           ];
@@ -29,12 +38,14 @@
 
           languages = {
             language = [
+              # For nix
               {
                 name = "nix";
                 auto-format = true;
                 formatter.command = lib.getExe pkgs.nixfmt;
               }
 
+              # For markdown
               {
                 name = "markdown";
                 formatter = {
@@ -49,6 +60,7 @@
                 };
                 language-servers = [
                   "marksman"
+                  "mpls"
                   "ltex-ls-plus"
                 ];
                 soft-wrap = {
@@ -56,9 +68,23 @@
                   wrap-at-text-width = true;
                 };
               }
+
+              # For Bash
+              {
+                name = "bash";
+                auto-format = true;
+              }
             ];
 
             language-server = {
+              mpls = {
+                command = lib.getExe pkgs.mpls;
+                args = [
+                  "--theme"
+                  "tokyonight"
+                  "--enable-emoji"
+                ];
+              };
               ltex-ls-plus = {
                 config = {
                   ltex = {
