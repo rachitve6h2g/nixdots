@@ -12,9 +12,10 @@
         };
 
         timer = {
-          auto_advance = false;
+          auto_advance = true;
           break = 5;
           work = 25;
+          long_break = 25;
         };
       };
     };

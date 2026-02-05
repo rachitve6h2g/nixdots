@@ -17,7 +17,7 @@ require("lualine").setup({
       "%=", --[[ add your center components here in place of this comment ]]
       {
         "diff",
-        colored = false,
+        colored = true,
         diff_color = {
           -- Same color values as the general color option can be used here.
           added = "DiffAdd", -- Changes the diff's added color
@@ -88,7 +88,7 @@ require("lualine").setup({
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
+    lualine_c = { "filename", "sectioncount" },
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},

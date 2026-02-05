@@ -14,6 +14,7 @@
           package = (
             pkgs.mpv.override {
               scripts = with pkgs.mpvScripts; [
+                mpris
                 uosc
                 sponsorblock
               ];
@@ -26,6 +27,10 @@
               };
             }
           );
+
+          config = {
+            save-position-on-quit = true;
+          };
         };
 
         # Cava audio visualizer

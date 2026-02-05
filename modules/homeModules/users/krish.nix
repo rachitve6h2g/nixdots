@@ -24,9 +24,10 @@ in
             self.homeModules.general
             self.homeModules.shell
             self.homeModules.desktop
+            self.homeModules.helix
             self.homeModules.niri
             self.homeModules.media
-            self.homeModules.neovim
+            # self.homeModules.neovim
           ];
           nix = {
             settings = {

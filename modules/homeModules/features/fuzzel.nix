@@ -8,20 +8,20 @@
 
           choice="$(
             printf '%s\n' \
-              "Poweroff" \
-              "Restart" \
-              "Lock" \
-              "Suspend" |
-              fuzzel --dmenu
+              "1. Poweroff" \
+              "2. Restart" \
+              "3. Lock" \
+              "4. Suspend" |
+              fuzzel --dmenu --prompt="Say bye or good night!   " --lines=4
           )"
 
           [[ -z "$choice" ]] && exit 0
 
           case "$choice" in
-          "Poweroff") notify-send "The computer will shutdown in 10 seconds" && sleep 60 && systemctl poweroff ;;
-          "Restart") notify-send "The computer will reboot in 10 seconds" && sleep 10 && systemctl reboot ;;
-          "Lock") loginctl lock-session ;;
-          "Suspend") notify-send "Going for quick nap!" && sleep 2 && systemctl suspend ;;
+          "1. Poweroff") notify-send "The computer will shutdown in 3 seconds" && sleep 3 && systemctl poweroff ;;
+          "2. Restart") notify-send "The computer will reboot in 3 seconds" && sleep 3 && systemctl reboot ;;
+          "3. Lock") loginctl lock-session ;;
+          "4. Suspend") notify-send "Going for quick nap!" && sleep 2 && systemctl suspend ;;
           esac
         '')
       ];
