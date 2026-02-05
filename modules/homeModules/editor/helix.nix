@@ -28,6 +28,8 @@
             editor = {
               line-number = "relative";
               mouse = false;
+              cursorline = true;
+              cursorcolumn = true;
               cursor-shape = {
                 normal = "block";
                 insert = "bar";
