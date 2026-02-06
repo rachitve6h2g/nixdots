@@ -20,6 +20,8 @@
         wl-clipboard
         brightnessctl
         libnotify
+
+        gdu # For disk usage anlaysis
       ];
       services = {
         udiskie = {
