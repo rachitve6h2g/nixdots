@@ -33,15 +33,23 @@
 
       stylix = {
         enable = true;
+
+        # Obviously Cattppuccin
+        # image = (
+        #   pkgs.fetchurl {
+        #     url = "https://raw.githubusercontent.com/rachitve6h2g/Wallpapers/main/catppuccin-13.png";
+        #     hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
+        #   }
+        # );
+
         image = (
           pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/rachitve6h2g/Wallpapers/main/catppuccin-13.png";
-
-            hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
+            url = "https://raw.githubusercontent.com/atraxsrc/tokyonight-wallpapers/main/tokyonight_original.png";
+            hash = "sha256-VmIsHCWQBegiHNQ8BtQAmt3Da5cvR3aVc/sGHIIenEI=";
           }
         );
 
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
         polarity = "dark";
 
         fonts = {
@@ -62,12 +70,16 @@
 
         icons = {
           enable = true;
-          package = (
-            pkgs.catppuccin-papirus-folders.override {
-              flavor = "mocha";
-              accent = "mauve";
-            }
-          );
+          package = (pkgs.papirus-icon-theme.override { color = "blue"; });
+          /*
+            (
+              pkgs.catppuccin-papirus-folders.override {
+                flavor = "mocha";
+                accent = "mauve";
+              }
+            );
+          */
+
           light = "Papirus-Dark";
           dark = config.stylix.icons.light;
         };

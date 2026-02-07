@@ -284,6 +284,8 @@
                 };
 
                 # Move around windows in a workspace using vim keys.
+                # Vim movement keys are easier, since using the mod key
+                # is easier with vim keys
                 "Mod+H".action = focus-column-left-or-last;
                 "Mod+L".action = focus-column-right-or-first;
                 "Mod+K".action = focus-window-or-workspace-up;

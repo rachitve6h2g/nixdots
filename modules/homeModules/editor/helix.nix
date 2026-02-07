@@ -1,6 +1,10 @@
 {
   flake.homeModules.helix =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      ...
+    }:
     {
       programs = {
         bash.bashrcExtra = "set -o vi";

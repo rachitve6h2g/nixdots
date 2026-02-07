@@ -28,7 +28,7 @@
 
         # Fuzzel Browser search
         (pkgs.writeShellScriptBin "fuzzel_browser.sh" ''
-          ${pkgs.fuzzel}/bin/fuzzel --dmenu --lines 0 --placeholder "Type your search" | sed 's/^/\"/g;s/$/\"/g' | xargs ${pkgs.firefox}/bin/firefox --search
+          ${pkgs.fuzzel}/bin/fuzzel --dmenu --lines 0 --placeholder "Type your search" | sed 's/^/\"/g;s/$/\"/g' | xargs ${pkgs.qutebrowser}/bin/qutebrowser
         '')
 
         # Fuzzel Tomat Menu
