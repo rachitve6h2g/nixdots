@@ -113,7 +113,13 @@
               "ya" = "hint links spawn -vo ${pkgs.mpv}/bin/mpv --force-window --no-video {hint-url}";
             };
           };
+          extraConfig = /*python*/ ''
+            config.source('qutemacs/qutemacs.py')
+          '';       
         };
       };
+
+      # Use qutebrowser with emacs keybindings
+      xdg.configFile."qutebrowser/qutemacs/qutemacs.py".source = ./qutemacs.py;
     };
 }

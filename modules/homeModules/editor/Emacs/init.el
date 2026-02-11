@@ -126,6 +126,27 @@
   :init
   (marginalia-mode))
 
+(use-package dashboard
+  :custom
+  (initial-buffer-choice 'dashboard-open)
+  (dashboard-center-content t)
+  (dashboard-vertically-center-content t)
+  (dashboard-navigation-cycle t)
+
+  ;; Using icons in dashboard
+  (dashboard-display-icons-p t)
+  (dashboard-icon-type 'nerd-icons)
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+
+  (dashboard-projects-switch-function 'consult-projectile-switch-project)
+  
+  :hook
+  (server-after-make-frame . 'dashboard-open)
+  
+  :config
+  (dashboard-setup-startup-hook))
+
 (use-package no-littering)
 
 (defun my/org-mode-setup ()
@@ -225,10 +246,8 @@
   :custom
   (org-journal-dir "~/Documents/Journals/")
   (org-journal-date-format "%A, %d %B %Y")
-  
-  :bind
-  ("C-c j" . org-journal-prefix-key)
-  
+  (org-journal-prefix-key "C-c j")
+          
   :config
   ;; Add org-journal-dir to org-agenda-files
   (add-to-list 'org-agenda-files org-journal-dir))
@@ -250,6 +269,11 @@
 (use-package forge
   :after magit)
 
+(use-package diff-hl
+  :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
+	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
+	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
+
 (use-package lsp-mode
   :custom
   (lsp-keymap-prefix "C-c l")
@@ -257,6 +281,9 @@
   ((nix-mode . lsp-deferred)
    (lsp-mode . lsp-enable-which-key-integration)) ;; Enable which key integration
   :commands (lsp lsp-deferred))
+
+(use-package nixfmt
+  :hook (nix-mode . nixfmt-on-save-mode))
 
 (use-package xclip
   :custom

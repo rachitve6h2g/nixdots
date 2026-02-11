@@ -1,5 +1,5 @@
-#+AUTHOR: Rachit Kumar Verma
 #+TITLE: Emacs Configuration
+#+AUTHOR: Rachit Kumar Verma
 #+DATE:<2026-02-09 Mon>
 #+DESCRIPTION: Configuration for emacs
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yer
@@ -187,6 +187,33 @@ Configure font sizes and types
 
 #+end_src
 
+** Dashboard: A better startup view
+[[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]] is a better startup view.
+#+begin_src emacs-lisp
+
+  (use-package dashboard
+    :custom
+    (initial-buffer-choice 'dashboard-open)
+    (dashboard-center-content t)
+    (dashboard-vertically-center-content t)
+    (dashboard-navigation-cycle t)
+
+    ;; Using icons in dashboard
+    (dashboard-display-icons-p t)
+    (dashboard-icon-type 'nerd-icons)
+    (dashboard-set-heading-icons t)
+    (dashboard-set-file-icons t)
+
+    (dashboard-projects-switch-function 'consult-projectile-switch-project)
+    
+    :hook
+    (server-after-make-frame . 'dashboard-open)
+    
+    :config
+    (dashboard-setup-startup-hook))
+
+#+end_src
+
 * Keep Folders Clean
 [[https://github.com/emacscollective/no-littering.git][no-littering]] is currently not downloading in NixOS. IDK Why.
 #+begin_src emacs-lisp
@@ -343,10 +370,8 @@ Use [[https://github.com/bastibe/org-journal][org-journal]] for journaling.
     :custom
     (org-journal-dir "~/Documents/Journals/")
     (org-journal-date-format "%A, %d %B %Y")
-    
-    :bind
-    ("C-c j" . org-journal-prefix-key)
-    
+    (org-journal-prefix-key "C-c j")
+            
     :config
     ;; Add org-journal-dir to org-agenda-files
     (add-to-list 'org-agenda-files org-journal-dir))
@@ -396,9 +421,22 @@ Open magit on the same window.
 
 #+end_src
 
+
+*** Use diff-hl
+We can use [[https://github.com/dgutov/diff-hl][diff-hl]] package to see git changes and other changes inside dired and emacs buffer
+#+begin_src emacs-lisp
+
+  (use-package diff-hl
+    :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
+  	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
+  	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
+
+#+end_src
+
 ** LSP
 I am using [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] for setting up lsp instead of [[https://github.com/joaotavora/eglot][eglot]]. I don't know why, but a lot of people have using lsp-mode instead of eglot.
 #+begin_src emacs-lisp
+
   (use-package lsp-mode
     :custom
     (lsp-keymap-prefix "C-c l")
@@ -406,6 +444,18 @@ I am using [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] for setting up ls
     ((nix-mode . lsp-deferred)
      (lsp-mode . lsp-enable-which-key-integration)) ;; Enable which key integration
     :commands (lsp lsp-deferred))
+  
+#+end_src
+
+*** Languages
+
+**** Nix
+Use [[https://github.com/purcell/emacs-nixfmt][nixfmt]] package for formatting nix files.
+#+begin_src emacs-lisp
+
+  (use-package nixfmt
+    :hook (nix-mode . nixfmt-on-save-mode))
+  
 #+end_src
 
 * Clipboard
@@ -422,7 +472,7 @@ Xclip uses x11 as the primary backend for clipboard.
 
 #+end_src
 
-* TODO  Tasks
+* TODO Tasks
 - [ ] Refine the config. There's a lot of stuff that needs to be cleaned up and set properly.
 - [ ] Configure org-journal to follow org-capture and org-agenda for journaling.
   

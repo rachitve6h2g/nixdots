@@ -4,7 +4,7 @@
     {
       stylix.targets.emacs = {
         opacity.override = rec {
-          applications = 0.89;
+          applications = 0.90;
           desktop = applications;
         };
 
@@ -34,13 +34,15 @@
       programs = {
         bash = {
           shellAliases = {
-            ec = "emacsclient -a \"\" -c";
+            ec = ''emacsclient -a "" -c'';
             epkgs = "nix-env -f '<nixpkgs>' -qaP -A emacsPackages";
           };
         };
+
         emacs = {
           enable = true;
           package = pkgs.emacs-pgtk;
+          extraConfig = "(setq standard-indent 2)";
           extraPackages =
             epkgs: with epkgs; [
               ace-window
@@ -56,15 +58,17 @@
               consult-projectile
               consult-todo
               corfu
+              dashboard
+              diff-hl
               doom-modeline
               emacs
               embark
               embark-consult
               embark-org-roam
+              emms
               eshell-git-prompt
               eshell-vterm
-              forge # For managing git interactions
-              emms
+              forge
               json-mode
               ligature
               lsp-mode
@@ -80,6 +84,7 @@
               nerd-icons-grep
               nerd-icons-ibuffer
               nerd-icons-xref
+              nixfmt # https://github.com/purcell/emacs-nixfmt for editing nix
               nix-mode
               no-littering
               olivetti
@@ -90,8 +95,8 @@
               org-journal
               org-journal-list
               org-journal-tags
-              org-links
               org-link-beautify
+              org-links
               org-mind-map
               org-modern
 
@@ -102,6 +107,7 @@
 
               org-roam
               org-roam-ui
+              page-break-lines
               projectile
               projectile-ripgrep
               pulsar
@@ -110,15 +116,13 @@
               tab-line-nerd-icons
               use-package
               vertico
-              # visual-fill-column # Try out olivetti 
               vterm
               which-key
               with-editor
               with-emacs
-              xclip # For managing clipbaord
+              xclip
             ];
 
-          extraConfig = "(setq standard-indent 2)";
         };
       };
 
