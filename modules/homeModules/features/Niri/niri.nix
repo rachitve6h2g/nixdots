@@ -63,7 +63,7 @@
                 xkb = {
                   layout = "us";
                   variant = "colemak_dh";
-                  options = "caps:swapescape"; # When using neovim
+                  options = "ctrl:swapcaps"; # When using emacs
                 };
               };
               touchpad = {
@@ -142,6 +142,15 @@
                     "kitty"
                   ];
                   hotkey-overlay.title = "Spawn Kitty Terminal";
+                };
+
+                "Mod+Shift+Return" = {
+                  action = spawn [
+                    "${config.programs.emacs.package}/bin/emacsclient"
+                    "-a"
+                    "\"\""
+                    "-c"
+                  ];
                 };
 
                 "Mod+Q" = {

@@ -1,0 +1,428 @@
+#+AUTHOR: Rachit Kumar Verma
+#+TITLE: Emacs Configuration
+#+DATE:<2026-02-09 Mon>
+#+DESCRIPTION: Configuration for emacs
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yer
+#+STARTUP: overview
+#+auto_tangle: t
+
+* Introduction
+I am using Emacs with Nix Home-Manager, that too with stylix. Therefore, the theme and the fonts and other stuff about Emacs is already set by Stylix.
+
+This whole configuration has been inspired from [[https://github.com/daviwil/emacs-from-scratch][Davi Will's Emacs From Scratch series]]. The file can be found [[https://github.com/daviwil/emacs-from-scratch/raw/master/Emacs.org][here]]. I only reference a few things, since the tutorial is old and a lot of new packages has come in. However, the tutorial will help a lot in learning emacs, and it is greatly recommended.
+
+* Basic UI Configuration
+
+#+begin_src emacs-lisp
+
+  (setq inhibit-startup-message t)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  ;; (set-fringe-mode 10)
+  (menu-bar-mode -1)
+
+  (setq visible-bell t)
+
+  (column-number-mode)
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode t)
+
+  ;; Turn off line-numbers in some modes:
+  (dolist (mode '(org-mode-hook
+    		term-mode-hook
+    		shell-mode-hook
+    		treemacs-mode-hook
+    		eshell-mode-hook
+    		vterm-mode-hook
+    		pdf-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+#+end_src
+
+** Add Window Dividers and Frame Borders
+
+#+begin_src emacs-lisp
+
+  ;; Add frame borders and window dividers
+  (modify-all-frames-parameters
+   '((right-divider-width . 40)
+     (internal-border-width . 40)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+
+  (set-face-background 'fringe (face-attribute 'default :background))
+
+  (setq line-spacing 0.3) ;; Increase line-spacing a little
+
+#+end_src
+
+** Font Configuration
+
+Configure font sizes and types
+
+#+begin_src emacs-lisp
+
+  ;; Font size
+  (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
+
+  ;; Set the fixed pitch face
+  (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.0)
+
+  ;; Set the variable pitch face
+  (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 135 :weight 'regular)
+
+#+end_src
+
+** Ligatures Setup
+
+[[https://github.com/mickeynp/ligature.el/wiki][ligatures.el]] enables using ligatures in emacs.
+
+#+begin_src emacs-lisp
+  (use-package ligature
+    :config
+    (ligature-set-ligatures 'prog-mode '("--" "---" "==" "===" "!=" "!==" "=!="
+  				       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
+  				       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
+  				       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
+  				       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
+  				       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
+  				       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
+  				       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
+  				       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
+  				       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
+  				       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
+  				       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
+  				       "<:<" ";;;"))
+    (global-ligature-mode ))
+#+end_src
+
+* Advanced UI Configuration
+
+** Nerd Icons setup
+#+begin_src emacs-lisp
+
+  ;; General usage
+  (use-package nerd-icons)
+
+  ;; use with dired 
+  (use-package nerd-icons-dired
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
+
+  ;; Use in ibuffer
+  (use-package nerd-icons-ibuffer
+    :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+  ;; For completion in minibuffer
+  (use-package nerd-icons-completion
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode)
+    :hook (marginalia-mode nerd-icons-completion-marginalia-setup))
+
+#+end_src
+
+** Doom Modeline
+#+begin_src emacs-lisp
+
+  (use-package doom-modeline
+    :custom
+    (doom-modeline-hud t)
+    (doom-modeline-minor-modes t)
+    (doom-modeline-enable-word-count t)
+    :init
+    (doom-modeline-mode 1))
+
+#+end_src
+
+** Which Key
+#+begin_src emacs-lisp
+
+  (use-package which-key
+    :defer 0
+    :diminish which-key-mode
+    :custom
+    (which-key-idle-delay 1)
+    :config
+    (which-key-mode))
+
+#+end_src
+
+** Vertico
+#+begin_src emacs-lisp
+
+  ;; Enable vertico
+  (use-package vertico
+    :custom
+    (vertico-scroll-margin 0)
+    (vertico-count 10)
+    (vertico-resize t)
+    (vertico-cycle t)
+    :init
+    (vertico-mode))
+
+  ;; Presist history over emacs restarts.
+  (use-package savehist
+    :init
+    (savehist-mode))
+
+  ;; Orderless completions
+  (use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles partial-completion))))
+    (completion-category-defaults nil)
+    (completion-pcm-leading-wildcard t))
+
+  ;; Marginalia for margins
+  (use-package marginalia
+    :bind (:map minibuffer-local-map
+  	      ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
+
+#+end_src
+
+* Keep Folders Clean
+[[https://github.com/emacscollective/no-littering.git][no-littering]] is currently not downloading in NixOS. IDK Why.
+#+begin_src emacs-lisp
+
+  (use-package no-littering)
+
+#+end_src
+
+* Org Mode
+
+** Basic Setup
+A basic setup of org-mode.
+#+begin_src  emacs-lisp
+
+  (defun my/org-mode-setup ()
+    (variable-pitch-mode 1)
+    (visual-line-mode 1)
+    (org-indent-mode))
+
+  (defun my/org-font-setup ()
+    ;; Resize Org headings
+    (dolist (face '((org-level-1 . 1.35)
+                    (org-level-2 . 1.3)
+                    (org-level-3 . 1.2)
+                    (org-level-4 . 1.1)
+                    (org-level-5 . 1.1)
+                    (org-level-6 . 1.1)
+                    (org-level-7 . 1.1)
+                    (org-level-8 . 1.1)))
+      (set-face-attribute (car face) nil :font "Cantarell" :weight 'bold :height (cdr face)))
+
+    ;; Make the document title a bit bigger
+    (set-face-attribute 'org-document-title nil :font "Cantarell" :weight
+  		      'bold :height 1.8)
+    (require 'org-indent)
+    (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+    (set-face-attribute 'org-block nil            :foreground nil :inherit
+  		      'fixed-pitch :height 0.85)
+    (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
+    (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.85)
+    (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
+    (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face
+  							   fixed-pitch))
+    (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch))
+
+
+  (use-package org
+    :commands (org-capture org-agenda)
+    :hook (org-mode . my/org-mode-setup)
+    :custom
+    (org-hide-leading-stars t)
+    (org-adapt-indentation t)
+    (org-src-fontify-natively t) ;; native src fonts
+    (org-src-tab-acts-natively t) ;; let tab act as it would when writing code
+    (org-ellipsis "  ")
+    
+    :config
+
+    (my/org-font-setup)
+    
+    ;; Enable org templates
+    (require 'org-tempo)
+    (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp")))
+
+#+end_src
+    
+** Org Modern Setup
+This is [[https://github.com/rachitve6h2g/org-modern][org-modern]] for pretifying your org file setup.
+#+begin_src emacs-lisp
+
+  (use-package org-modern
+    :custom
+    (org-auto-align-tags t)
+    (org-tags-column 0)
+    (org-fold-catch-invisible-edits 'show-and-error)
+    (org-special-ctrl-a/e t)
+    (org-insert-heading-respect-content t)
+    
+    ;; Hide markups or not
+    (org-pretty-entities t)
+    (org-agenda-tags-column 0)
+    
+    :hook
+    
+    (org-mode . org-modern-mode)
+    (org-agenda-finalize . org-modern-agenda)
+    
+    :config
+    (global-org-modern-mode))
+
+  ;; Use org-modern indent for using org-indent with org-modern
+  (use-package org-modern-indent
+    :defer t
+    :custom (org-startup-indented t) ;; Adds a sort of '#+STARTUP: indent' to all org files
+    :hook (org-mode . org-modern-indent-mode))
+
+#+end_src
+
+** Org Auto Tangle
+
+Use auto tangle using [[https://github.com/yilkalargaw/org-auto-tangle][org-auto-tangle]] package. Just set =auto_tangle: t= as the header, and you're set.
+#+begin_src emacs-lisp
+
+  (use-package org-auto-tangle
+    :after org
+    :defer t
+    :hook (org-mode . org-auto-tangle-mode))
+
+#+end_src
+
+** Center Org Buffers
+
+#+begin_src emacs-lisp :tangle no
+
+  (use-package visual-fill-column
+    :custom
+    (visual-fill-column-width 110)
+    (visual-fill-column-center-text t)
+    :hook
+    (org-mode . visual-fill-column-mode)
+    (visual-line-mode . #'visual-fill-column-for-vline))
+
+#+end_src
+
+Or use olivetti:
+#+begin_src emacs-lisp
+
+  (use-package olivetti
+    :custom (olivetti-body-width 100)
+    :hook (org-mode . olivetti-mode))
+
+#+end_src
+
+** Babel Languages
+
+Babel languages make writing code blocks easier.
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t))))
+  
+#+end_src
+
+** Org Journal
+Use [[https://github.com/bastibe/org-journal][org-journal]] for journaling.
+#+begin_src emacs-lisp
+
+  (use-package org-journal
+    :defer t
+    :custom
+    (org-journal-dir "~/Documents/Journals/")
+    (org-journal-date-format "%A, %d %B %Y")
+    
+    :bind
+    ("C-c j" . org-journal-prefix-key)
+    
+    :config
+    ;; Add org-journal-dir to org-agenda-files
+    (add-to-list 'org-agenda-files org-journal-dir))
+
+#+end_src
+
+* Superior Window Switching
+Ace windows using[[https://github.com/abo-abo/ace-window][ ace-window]] package for superior window switching method.
+#+begin_src emacs-lisp
+
+  (use-package ace-window
+    :bind ("M-o" . ace-window))
+
+#+end_src
+
+* Terminal in Emacs
+Use [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] package to use terminal inside Emacs.
+#+begin_src emacs-lisp
+
+  (use-package vterm)
+
+#+end_src
+
+* Ibuffer Instead of Buffer List
+We can use the =ibuffer= in emacs instead of the default =buffer-list= with =C-x C-b=.
+#+begin_src emacs-lisp
+
+  (keymap-global-set "C-x C-b" #'ibuffer)
+
+#+end_src
+
+* Development
+
+** Magit
+Open magit on the same window.
+#+begin_src emacs-lisp
+
+  (use-package magit
+    :after nerd-icons
+    :commands magit-status
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (magit-format-file-function #'magit-format-file-nerd-icons))
+
+  (use-package forge
+    :after magit)
+
+#+end_src
+
+** LSP
+I am using [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] for setting up lsp instead of [[https://github.com/joaotavora/eglot][eglot]]. I don't know why, but a lot of people have using lsp-mode instead of eglot.
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :custom
+    (lsp-keymap-prefix "C-c l")
+    :hook
+    ((nix-mode . lsp-deferred)
+     (lsp-mode . lsp-enable-which-key-integration)) ;; Enable which key integration
+    :commands (lsp lsp-deferred))
+#+end_src
+
+* Clipboard
+Xclip uses x11 as the primary backend for clipboard.
+#+begin_src emacs-lisp
+
+  (use-package xclip
+    :custom
+    (xclip-program "wl-copy")
+    (select-enable-clipboard t)
+    (select-enable-primary nil)
+    :config
+    (xclip-mode 1))
+
+#+end_src
+
+* TODO  Tasks
+- [ ] Refine the config. There's a lot of stuff that needs to be cleaned up and set properly.
+- [ ] Configure org-journal to follow org-capture and org-agenda for journaling.
+  

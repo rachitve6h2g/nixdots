@@ -7,6 +7,8 @@
     }:
     {
       programs = {
+        zk.enable = true;
+
         bash.bashrcExtra = "set -o vi";
         helix = {
           enable = true;
@@ -21,7 +23,6 @@
             # For markdown
             ltex-ls-plus
             marksman
-            mpls
 
             # For nix files
             nixd
@@ -54,6 +55,7 @@
               # For markdown
               {
                 name = "markdown";
+                roots = [ ".zk" ];
                 formatter = {
                   command = lib.getExe pkgs.prettier;
                   args = [
@@ -65,8 +67,8 @@
                   auto-format = true;
                 };
                 language-servers = [
+                  "zk"
                   "marksman"
-                  "mpls"
                   "ltex-ls-plus"
                 ];
                 soft-wrap = {
@@ -83,14 +85,11 @@
             ];
 
             language-server = {
-              mpls = {
-                command = lib.getExe pkgs.mpls;
-                args = [
-                  "--theme"
-                  "tokyonight"
-                  "--enable-emoji"
-                ];
+              zk = {
+                command = lib.getExe pkgs.zk;
+                args = [ "lsp" ];
               };
+
               ltex-ls-plus = {
                 config = {
                   ltex = {

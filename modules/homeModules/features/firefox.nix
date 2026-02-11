@@ -383,10 +383,11 @@
                 packages = with pkgs.nur.repos.rycee.firefox-addons; [
                   localcdn
                   ublock-origin
-                  catppuccin-mocha-mauve
-                  catppuccin-web-file-icons
+                  # catppuccin-mocha-mauve
+                  # catppuccin-web-file-icons
                   facebook-container
                   darkreader
+                  tokyo-night-v2
                 ];
 
                 settings = {
@@ -437,7 +438,9 @@
                     "webRequestBlocking"
                   ];
 
-                  "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".permissions = [
+                  
+                  # This is the catppuccin theme configuration
+                  /*"{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".permissions = [
                     "storage"
                     "contextMenus"
                     "activeTab"
@@ -447,7 +450,7 @@
                     "*://github.com/*"
                     "*://gitlab.com/*"
                     "*://tangled.org/*"
-                  ];
+                  ];*/
 
                   "@contain-facebook".permissions = [
                     "<all_urls>"
