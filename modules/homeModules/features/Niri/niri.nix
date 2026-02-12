@@ -151,6 +151,7 @@
                     "\"\""
                     "-c"
                   ];
+                  hotkey-overlay.title = "Spawn Emacsclient Frame";
                 };
 
                 "Mod+Q" = {

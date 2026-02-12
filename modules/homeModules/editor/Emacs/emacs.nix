@@ -12,9 +12,11 @@
           applications = 11;
         };
       };
+
       home.packages = with pkgs; [
-        imagemagick # For rendering images inside org
         bash-language-server # bash-language server
+        ffmpegthumbnailer # For org-beautify links
+        imagemagick # For rendering images inside org
         nixd # nix server
         nixfmt # for formatting nix
         poppler # For pdf reading
@@ -45,19 +47,19 @@
           extraConfig = "(setq standard-indent 2)";
           extraPackages =
             epkgs: with epkgs; [
-              ace-window
-              babel
-              cape
-              consult
-              consult-codesearch
-              consult-dir
-              consult-gh
-              consult-lsp
-              consult-notes
+              ace-window # Better window navigation
+              aria2 # See all the download processes and aria2 processes
+              babel # Babel languages setup
+              cape # Provides Completion At Point Extensions
+              consult # Set up minibuffer actions and
+              consult-dir # Really good package to traverse long distance directories using minibuffer
+              consult-lsp # Lsp actions like diagnostics, finding symbols and other stuff
+              consult-notes # For managing notes
               consult-org-roam
-              consult-projectile
+              consult-projectile # Needed for consult-project-switch, I guess(?)
               consult-todo
-              corfu
+              corfu # Completion UI
+              dash # It's a library that's needed by emacs for a lot of things
               dashboard
               diff-hl
               doom-modeline
@@ -72,7 +74,6 @@
               json-mode
               ligature
               lsp-mode
-              lsp-ui
               magit
               marginalia
               markdown-mode
@@ -95,9 +96,6 @@
               org-journal
               org-journal-list
               org-journal-tags
-              org-link-beautify
-              org-links
-              org-mind-map
               org-modern
 
               (callPackage ./packages/_org-modern-indent.nix {
@@ -108,9 +106,11 @@
               org-roam
               org-roam-ui
               page-break-lines
+              pdf-tools # For opening pdf's inside of emacs
               projectile
               projectile-ripgrep
               pulsar
+              rainbow-delimiters
               ripgrep
               shfmt
               tab-line-nerd-icons
@@ -120,7 +120,6 @@
               which-key
               with-editor
               with-emacs
-              xclip
             ];
 
         };

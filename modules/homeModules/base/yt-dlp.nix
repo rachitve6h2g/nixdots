@@ -19,10 +19,19 @@
           settings = {
             continue = true;
             dir = "${config.xdg.userDirs.download}";
-            file-allocation = "none";
+            file-allocation = "trunc";
             log-level = "warn";
             max-connection-per-server = 4;
             min-split-size = "5M";
+
+            # For aria2 frontend
+            enable-rpc = true;
+            rpc-listen-all = false;
+            rpc-allow-origin-all = true;
+            rpc-listen-port = 6800;
+            auto-file-renaming = false; # Better resume and reusability
+            split = 4; # Better parallelism
+            daemon = true;
           };
         };
       };

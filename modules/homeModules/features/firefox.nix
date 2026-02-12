@@ -387,7 +387,9 @@
                   # catppuccin-web-file-icons
                   facebook-container
                   darkreader
-                  tokyo-night-v2
+                  # tokyo-night-v2
+
+                  gruvbox-dark-theme
                 ];
 
                 settings = {
@@ -438,19 +440,20 @@
                     "webRequestBlocking"
                   ];
 
-                  
                   # This is the catppuccin theme configuration
-                  /*"{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".permissions = [
-                    "storage"
-                    "contextMenus"
-                    "activeTab"
-                    "*://bitbucket.org/*"
-                    "*://codeberg.org/*"
-                    "*://gitea.com/*"
-                    "*://github.com/*"
-                    "*://gitlab.com/*"
-                    "*://tangled.org/*"
-                  ];*/
+                  /*
+                    "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".permissions = [
+                      "storage"
+                      "contextMenus"
+                      "activeTab"
+                      "*://bitbucket.org/*"
+                      "*://codeberg.org/*"
+                      "*://gitea.com/*"
+                      "*://github.com/*"
+                      "*://gitlab.com/*"
+                      "*://tangled.org/*"
+                    ];
+                  */
 
                   "@contain-facebook".permissions = [
                     "<all_urls>"

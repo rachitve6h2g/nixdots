@@ -39,6 +39,7 @@ c.bindings.commands['normal'] = {
 	'<ctrl-x>b': 'cmd-set-text -s :buffer',
 	'<ctrl-x>k': 'tab-close',
 	'<ctrl-x><ctrl-c>': 'quit',
+        '<ctrl-x>l': 'hint',
 
 	# searching
 	'<ctrl-s>': 'cmd-set-text /',

@@ -36,21 +36,34 @@
         enable = true;
 
         # Obviously Cattppuccin
-        # image = (
-        #   pkgs.fetchurl {
-        #     url = "https://raw.githubusercontent.com/rachitve6h2g/Wallpapers/main/catppuccin-13.png";
-        #     hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
-        #   }
-        # );
+        /*
+          image = (
+            pkgs.fetchurl {
+              url = "https://raw.githubusercontent.com/rachitve6h2g/Wallpapers/main/catppuccin-13.png";
+              hash = "sha256-fYMzoY3un4qGOSR4DMqVUAFmGGil+wUze31rLLrjcAc=";
+            }
+          );
+        */
 
+        # This is for tokyo-night
+        /*
+          image = (
+            pkgs.fetchurl {
+              url = "https://raw.githubusercontent.com/atraxsrc/tokyonight-wallpapers/main/tokyonight_original.png";
+              hash = "sha256-VmIsHCWQBegiHNQ8BtQAmt3Da5cvR3aVc/sGHIIenEI=";
+            }
+          );
+        */
+
+        # This is for gruvbox
         image = (
           pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/atraxsrc/tokyonight-wallpapers/main/tokyonight_original.png";
-            hash = "sha256-VmIsHCWQBegiHNQ8BtQAmt3Da5cvR3aVc/sGHIIenEI=";
+            url = "https://gruvbox-wallpapers.pages.dev/wallpapers/mix/Powerline.png";
+            hash = "sha256-pXlwsQrcfIXFMoLBAvViaStQY/BozRuLHLgxoAbu0SI=";
           }
         );
 
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
         polarity = "dark";
 
         fonts = {
@@ -71,7 +84,9 @@
 
         icons = {
           enable = true;
-          package = (pkgs.papirus-icon-theme.override { color = "blue"; });
+          package = (pkgs.gruvbox-plus-icons.override { folder-color = "violet"; });
+          # package = (pkgs.papirus-icon-theme.override { color = "blue"; }); # For tokyonight
+
           /*
             (
               pkgs.catppuccin-papirus-folders.override {
@@ -81,7 +96,8 @@
             );
           */
 
-          light = "Papirus-Dark";
+          # light = "Papirus-Dark"; # For any papirus theme in linux
+          light = "Gruvbox-Plus-Dark";
           dark = config.stylix.icons.light;
         };
 

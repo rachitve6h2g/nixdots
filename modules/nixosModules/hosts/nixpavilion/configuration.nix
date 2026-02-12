@@ -68,7 +68,7 @@
           "zswap.compressor=zstd" # compression algorithm
           "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
           "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
-          "xe.force_probe=a7a0"
+          "xe.force_probe=a7a0" # For enabling the xe driver
         ];
       };
 
@@ -98,12 +98,18 @@
           ];
         };
       };
-      environment.sessionVariables = {
-        ANV_VIDEO_DECODE = 1;
-        LIBVA_DRIVER_NAME = "iHD";
-        NIXOS_OZONE_WL = 1;
-        ANV_DEBUG = "video-decode,video-encode";
-        WLR_RENDERER = "vulkan"; # For wayland backend rendering.
+      environment = {
+        sessionVariables = {
+          ANV_DEBUG = "video-decode,video-encode";
+          ANV_VIDEO_DECODE = 1;
+          LIBVA_DRIVER_NAME = "iHD";
+          NIXOS_OZONE_WL = 1;
+          WLR_RENDERER = "vulkan";
+        };
+
+        systemPackages = with pkgs; [
+          bluetui
+        ];
       };
     };
 }

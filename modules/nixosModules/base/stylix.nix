@@ -16,7 +16,7 @@
 
       stylix = {
         enable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
 
         # This is for managing fonts for programs
         # like kmscon. Otherwise, we would have to change
