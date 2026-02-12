@@ -314,23 +314,20 @@
 
 (use-package corfu
   :custom
+  (corfu-auto nil)
   (corfu-cycle t)
-  (corfu-quit-at-boundary nil)
-
-  ;; Enable auto-completion
-  (corfu-auto t)
   (corfu-preselect 'prompt)
+  (corfu-quit-no-match 'separator)
   
   :init
   (global-corfu-mode 1)
   
   :bind
   (:map corfu-map
-	("TAB" . corfu-mode)
-	([tab] . corfu-next)
-	("S-TAB" . corfu-previous)
-	([backtab] . corfu-previous)))
-
+	("RET" . corfu-insert)
+	 ("TAB" . corfu-next)
+	 ("S-TAB" . corfu-previous)))
+	
 (use-package cape
   ;; Bind prefix keymap providing all Cape commands under a menmonic key.
   :bind ("C-c c" . cape-prefix-map)
