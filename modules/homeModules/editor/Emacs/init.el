@@ -563,6 +563,10 @@ targets."
   :init
   (pdf-tools-install t))
 
+(use-package saveplace-pdf-view
+  :after (:any doc-view pdf-tools)
+  :demand t)
+
 (use-package aria2
   :commands (aria2-add-uris
 	     aria2-downloads-list)

@@ -112,6 +112,7 @@
               pulsar
               rainbow-delimiters
               ripgrep
+              saveplace-pdf-view # To save the last visited information in pdf-mode
               shfmt
               tab-line-nerd-icons
               use-package
