@@ -596,14 +596,8 @@ targets."
   (pdf-tools-install t))
 
 (use-package saveplace-pdf-view
-  :after (:any doc-view pdf-tools)
-  :demand t)
+  :after (:any doc-view pdf-tools))
 
 (use-package aria2
-  :commands (aria2-add-uris
-	     aria2-downloads-list)
   :custom
-  ;; RPC endpoint
-  (aria2-rpc-host "localhost")
-  (aria2-rpc-url "http://localhost:6800/jsonrpc")
-  (aria2-rpc-secret nil))
+  (aria2-download-directory (expand-file-name "~/Downloads/")))

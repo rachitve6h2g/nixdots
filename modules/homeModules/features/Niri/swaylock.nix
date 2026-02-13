@@ -8,10 +8,11 @@
 
         settings = {
           clock = true;
+          font-size = 25;
           effect-blur = "7x5";
           daemonize = true;
           timestr = "%I:%M:%S %p";
-          indicator-radius = 70;
+          indicator-radius = 100;
         };
       };
     };

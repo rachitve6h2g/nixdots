@@ -1,7 +1,7 @@
 #+TITLE: Emacs Configuration
+SUBTITLE: Configuration for emacs
 #+AUTHOR: Rachit Kumar Verma
 #+DATE:<2026-02-09 Mon>
-#+DESCRIPTION: Configuration for emacs
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 #+STARTUP: overview
 #+auto_tangle: t
@@ -868,25 +868,19 @@ Save the last visited page in pdf-view using [[https://github.com/nicolaisingh/s
 #+begin_src emacs-lisp
 
   (use-package saveplace-pdf-view
-    :after (:any doc-view pdf-tools)
-    :demand t)
-
+    :after (:any doc-view pdf-tools))
+    
 #+end_src
 
 * Aria2 Downloader
 [[https://github.com/ukaszg/aria2][aria2]] is a emacs package for emacs as a frontend aria2 process listing helper.
 #+begin_src emacs-lisp
 
-  (use-package aria2
-    :commands (aria2-add-uris
-  	     aria2-downloads-list)
-    :custom
-    ;; RPC endpoint
-    (aria2-rpc-host "localhost")
-    (aria2-rpc-url "http://localhost:6800/jsonrpc")
-    (aria2-rpc-secret nil))
-
-#+end_src
+      (use-package aria2
+        :custom
+        (aria2-download-directory (expand-file-name "~/Downloads/")))
+      
+    #+end_src
 
 * Elfeed Setup
 Elfeed is a rss reader for emacs. 
