@@ -6,7 +6,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-;; (set-fringe-mode 10)
+(set-fringe-mode 10)
 (menu-bar-mode -1)
 
 (setq visible-bell t)
@@ -37,7 +37,10 @@
 
 (set-face-background 'fringe (face-attribute 'default :background))
 
-(setq line-spacing 0.3) ;; Increase line-spacing a little
+;; This function is called in the font setup block,
+;; because emacs client is not calling it propely.
+(defun my/variables-custom ()
+  (setq line-spacing 0.2)) ;; Increase line-spacing a little
 
 (defun my/set-font-faces ()
   (message "Set Font Faces!")
@@ -52,11 +55,12 @@
 
 ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
 (if (daemonp)
-  (add-hook 'after-make-frame-functions
-            (lambda (frame)
-              (setq doom-modeline-icon t)
-              (with-selected-frame frame
-                (my/set-font-faces))))
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+		(setq doom-modeline-icon t)
+		(with-selected-frame frame
+                  (my/set-font-faces)
+		    (my/variables-custom))))
   (my/set-font-faces))
 
 (use-package ligature
@@ -181,6 +185,23 @@
           ("IDEA"  . "#a9b665") ; green
           )))
 
+(use-package pulsar
+  :bind
+  ( :map global-map
+    ("C-x l" . pulsar-pulse-line) ;; overrides 'count-lines-page'
+    ("C-x L" . pulsar-highlight-permanently-dwim))
+  :init
+  (pulsar-global-mode 1)
+  :config
+  (setq pulsar-delay 0.055)
+  (setq pulsar-iterations 5)
+  (setq pulsar-face 'pulsar-green)
+  (setq pulsar-region-face 'pulsar-yellow)
+  (setq pulsar-highlight-face 'pulsar-magenta)
+  :hook
+  (next-error . #'pulsar-pulse-line)
+(minibuffer-setup-hook . #'pulsar-pulse-line))
+
 (use-package no-littering)
 
 (defun my/org-mode-setup ()
@@ -283,7 +304,8 @@
   
   :config
   (setq org-journal-dir "~/Documents/Journals/"
-	org-journal-date-format "%A, %d %B %Y")
+	org-journal-date-format "%A, %d %B %Y"
+	org-journal-file-type 'yearly)
   
   ;; Add org-journal-dir to org-agenda-files
   (add-to-list 'org-agenda-files org-journal-dir))
@@ -291,8 +313,20 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
-(use-package vterm
-  :bind ("C-v" . vterm))
+(use-package vterm)
+
+;; Use Multi vterm to create multiple vterm buffers
+(use-package multi-vterm
+  :config
+  (setq multi-vterm-dedicated-window-height 50))
+
+(use-package vterm-toggle
+  :bind
+  (:map global-map
+	      ("C-c v v" . vterm-toggle-cd))
+  (:map vterm-mode-map
+	("s-n" . vterm-toggle-forward)
+	("s-p" . vterm-toggle-backward)))
 
 (keymap-global-set "C-x C-b" #'ibuffer)
 
@@ -585,18 +619,6 @@ targets."
 (setopt select-enable-clipboard 't)
 (setopt select-enable-primary nil)
 (setopt interprogram-cut-function #'gui-select-text)
-
-(use-package pdf-tools
-  :hook
-  (pdf-view-mode . #'pdf-view-roll-minor-mode) ;; Gives smoother scrolling.
-
-  ;; disable line-numbers using this mode.
-  (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
-  :init
-  (pdf-tools-install t))
-
-(use-package saveplace-pdf-view
-  :after (:any doc-view pdf-tools))
 
 (use-package aria2
   :custom

@@ -4,7 +4,7 @@
     {
       stylix.targets.emacs = {
         opacity.override = rec {
-          applications = 0.90;
+          applications = 0.95;
           desktop = applications;
         };
 
@@ -19,7 +19,10 @@
         imagemagick # For rendering images inside org
         nixd # nix server
         nixfmt # for formatting nix
-        poppler # For pdf reading
+
+        # Not needed when using emacs-reader package
+        # poppler # For pdf reading
+
         shfmt # for formatting bash
 
         # Emacsclient needs to be restarted after every rebuild
@@ -84,6 +87,7 @@
               marginalia
               markdown-mode
               multiple-cursors
+              multi-vterm # Manage multiple vterm buffers
               nerd-icons
               nerd-icons-completion
               nerd-icons-corfu
@@ -109,10 +113,24 @@
                 inherit (epkgs) melpaBuild;
               })
 
+              /*
+                (callPackage ./packages/_emacs-reader.nix {
+                  inherit (pkgs)
+                    fetchFromGitea
+                    pkg-config
+                    gcc
+                    mupdf
+                    gnumake
+                    ;
+
+                  inherit (epkgs) melpaBuild;
+                })
+              */
+
               org-roam
               org-roam-ui
               page-break-lines
-              pdf-tools # For opening pdf's inside of emacs
+              # pdf-tools # For opening pdf's inside of emacs
               projectile
               projectile-ripgrep
               pulsar
@@ -124,6 +142,7 @@
               use-package
               vertico
               vterm
+              vterm-toggle
               which-key
               with-editor
               with-emacs

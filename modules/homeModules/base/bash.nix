@@ -20,7 +20,7 @@
     in
     {
       programs = {
-        info.enable = false;
+        info.enable = true;
         pandoc.enable = true;
 
         fzf = {

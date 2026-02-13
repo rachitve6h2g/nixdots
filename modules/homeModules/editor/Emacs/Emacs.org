@@ -31,7 +31,7 @@ The [[https://github.com/magnars/dash.el][dash]] library is required by a lot of
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (tooltip-mode -1)
-  ;; (set-fringe-mode 10)
+  (set-fringe-mode 10)
   (menu-bar-mode -1)
 
   (setq visible-bell t)
@@ -68,7 +68,10 @@ The [[https://github.com/magnars/dash.el][dash]] library is required by a lot of
 
   (set-face-background 'fringe (face-attribute 'default :background))
 
-  (setq line-spacing 0.3) ;; Increase line-spacing a little
+  ;; This function is called in the font setup block,
+  ;; because emacs client is not calling it propely.
+  (defun my/variables-custom ()
+    (setq line-spacing 0.2)) ;; Increase line-spacing a little
 
 #+end_src
 
@@ -77,26 +80,27 @@ The [[https://github.com/magnars/dash.el][dash]] library is required by a lot of
 Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-tips/using-the-emacs-daemon/][System Crafter's]] Emacs daemon mode configuration.
 
 #+begin_src emacs-lisp
-  
-  (defun my/set-font-faces ()
-    (message "Set Font Faces!")
-    ;; Font size
-    (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
 
-    ;; Set the fixed pitch face
-    (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.1)
+    (defun my/set-font-faces ()
+      (message "Set Font Faces!")
+      ;; Font size
+      (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
 
-    ;; Set the variable pitch face
-    (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.14 :weight 'regular))
+      ;; Set the fixed pitch face
+      (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.1)
 
-  ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
-  (if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (setq doom-modeline-icon t)
-                (with-selected-frame frame
-                  (my/set-font-faces))))
-    (my/set-font-faces))
+      ;; Set the variable pitch face
+      (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.14 :weight 'regular))
+
+    ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
+    (if (daemonp)
+        (add-hook 'after-make-frame-functions
+                  (lambda (frame)
+    		(setq doom-modeline-icon t)
+    		(with-selected-frame frame
+                      (my/set-font-faces)
+  		    (my/variables-custom))))
+      (my/set-font-faces))
 
 #+end_src
 
@@ -261,6 +265,29 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
 
 #+end_src
 
+** Pulsar
+Pulse the cursor using the [[https://protesilaos.com/emacs/pulsar][pulsar]] package.
+#+begin_src emacs-lisp
+
+        (use-package pulsar
+          :bind
+          ( :map global-map
+            ("C-x l" . pulsar-pulse-line) ;; overrides 'count-lines-page'
+            ("C-x L" . pulsar-highlight-permanently-dwim))
+          :init
+          (pulsar-global-mode 1)
+          :config
+          (setq pulsar-delay 0.055)
+          (setq pulsar-iterations 5)
+          (setq pulsar-face 'pulsar-green)
+          (setq pulsar-region-face 'pulsar-yellow)
+          (setq pulsar-highlight-face 'pulsar-magenta)
+          :hook
+          (next-error . #'pulsar-pulse-line)
+  	(minibuffer-setup-hook . #'pulsar-pulse-line))
+          
+#+end_src
+
 * Keep Folders Clean
 [[https://github.com/emacscollective/no-littering.git][no-littering]] is currently not downloading in NixOS. IDK Why.
 #+begin_src emacs-lisp
@@ -413,17 +440,18 @@ Babel languages make writing code blocks easier.
 Use [[https://github.com/bastibe/org-journal][org-journal]] for journaling.
 #+begin_src emacs-lisp
 
-  (use-package org-journal
-    :defer t
-    :init
-    (setq org-journal-prefix-key "C-c j")
-    
-    :config
-    (setq org-journal-dir "~/Documents/Journals/"
-  	org-journal-date-format "%A, %d %B %Y")
-    
-    ;; Add org-journal-dir to org-agenda-files
-    (add-to-list 'org-agenda-files org-journal-dir))
+    (use-package org-journal
+      :defer t
+      :init
+      (setq org-journal-prefix-key "C-c j")
+      
+      :config
+      (setq org-journal-dir "~/Documents/Journals/"
+    	org-journal-date-format "%A, %d %B %Y"
+  	org-journal-file-type 'yearly)
+      
+      ;; Add org-journal-dir to org-agenda-files
+      (add-to-list 'org-agenda-files org-journal-dir))
 
 #+end_src
 
@@ -440,8 +468,31 @@ Ace windows using[[https://github.com/abo-abo/ace-window][ ace-window]] package 
 Use [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] package to use terminal inside Emacs. Use =C-v= keymap to open vterm in emacs.
 #+begin_src emacs-lisp
 
-    (use-package vterm
-      :bind ("C-v" . vterm))
+  (use-package vterm)
+
+      #+end_src
+
+** Multiple Vterm Buffers
+#+begin_src emacs-lisp
+
+  ;; Use Multi vterm to create multiple vterm buffers
+  (use-package multi-vterm
+    :config
+    (setq multi-vterm-dedicated-window-height 50))
+  
+#+end_src
+
+** Toggle Vterm with Ease
+Use the keychord =C-c v= to toggle vterm using the [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]] package.
+#+begin_src emacs-lisp
+
+    (use-package vterm-toggle
+      :bind
+      (:map global-map
+    	      ("C-c v v" . vterm-toggle-cd))
+      (:map vterm-mode-map
+    	("s-n" . vterm-toggle-forward)
+    	("s-p" . vterm-toggle-backward)))
 
 #+end_src
 
@@ -851,7 +902,7 @@ On wayland we can use this snippet from [[https://www.emacswiki.org/emacs/CopyAn
 
 * PDF Reading
 Use [[https://github.com/vedang/pdf-tools][pdf-tools]] package for reading pdfs inside emacs.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 
   (use-package pdf-tools
     :hook
@@ -865,11 +916,20 @@ Use [[https://github.com/vedang/pdf-tools][pdf-tools]] package for reading pdfs 
 #+end_src
 
 Save the last visited page in pdf-view using [[https://github.com/nicolaisingh/saveplace-pdf-view][saveplace-pdf-view]].
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 
   (use-package saveplace-pdf-view
     :after (:any doc-view pdf-tools))
     
+#+end_src
+
+Use the new [[https://codeberg.org/MonadicSheep/emacs-reader][emacs-reader]] package which uses the =mupdf= backend instead of =poppler= backend.
+#+begin_src emacs-lisp :tangle no
+
+      (use-package reader
+        :hook
+        (reader-mode . (lambda () (display-line-numbers-mode -1))))
+
 #+end_src
 
 * Aria2 Downloader
@@ -891,3 +951,5 @@ Elfeed is a rss reader for emacs.
 - [ ] Configure org-journal to follow org-capture and org-agenda for journaling.
 - [ ] Set up org-roam and consult-notes.
 - [X] Figure out why font rendering doesn't work in org-mode when emacs starts in daemon mode.
+
+** FIXME Emacsclient stuffs like Fonts and line-spacing vars don't work.

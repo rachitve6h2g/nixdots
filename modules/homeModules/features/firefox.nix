@@ -106,6 +106,9 @@
 
               # For xdg-desktop-portal-termfilechooser
               "widget.use-xdg-desktop-portal.file-picker" = 1;
+
+              # Picked from https://wiki.nixos.org/wiki/COSMIC#Theming_and_Firefox
+              "widget.gtk.libadwaita-colors.enabled" = false;
             };
           };
 

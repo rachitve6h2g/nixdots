@@ -42,7 +42,7 @@
 
       documentation = {
         man.generateCaches = false;
-        info.enable = false;
+        info.enable = true;
       };
 
       # Enable touchpad support (enabled default in most desktopManager).
