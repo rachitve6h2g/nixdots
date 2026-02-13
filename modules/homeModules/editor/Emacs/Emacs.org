@@ -488,7 +488,7 @@ We can use [[https://github.com/dgutov/diff-hl][diff-hl]] package to see git cha
 Highlight todo keywords in magit.
 #+begin_src emacs-lisp
 
-  (use-package magit-todo
+  (use-package magit-todos
     :after magit
     :config (magit-todos-mode 1))
 

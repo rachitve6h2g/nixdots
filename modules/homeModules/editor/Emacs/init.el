@@ -311,7 +311,7 @@
 	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
 	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
 
-(use-package magit-todo
+(use-package magit-todos
   :after magit
   :config (magit-todos-mode 1))
 
