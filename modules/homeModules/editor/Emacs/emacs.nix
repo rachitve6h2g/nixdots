@@ -63,6 +63,9 @@
               dashboard
               diff-hl
               doom-modeline
+              elfeed
+              elfeed-dashboard
+              elfeed-org
               emacs
               embark
               embark-consult
@@ -70,11 +73,14 @@
               emms
               eshell-git-prompt
               eshell-vterm
+              exec-path-from-shell
               forge
+              hl-todo
               json-mode
               ligature
               lsp-mode
               magit
+              magit-todos
               marginalia
               markdown-mode
               multiple-cursors

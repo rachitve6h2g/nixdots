@@ -156,6 +156,31 @@
   :config
   (dashboard-setup-startup-hook))
 
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+	hl-todo-keyword-faces
+	'(
+          ;; Critical
+          ("FIXME" . "#ea6962") ; red
+          ("BUG"   . "#ea6962")
+
+          ;; Urgent but not broken
+          ("TODO"  . "#e78a4e") ; orange
+
+          ;; Suspicious / tech debt
+          ("HACK"  . "#d8a657") ; yellow
+          ("XXX"   . "#d8a657")
+
+          ;; Informational
+          ("NOTE"  . "#7daea3") ; aqua
+          ("INFO"  . "#7daea3")
+
+          ;; Future ideas
+          ("IDEA"  . "#a9b665") ; green
+          )))
+
 (use-package no-littering)
 
 (defun my/org-mode-setup ()
@@ -286,6 +311,10 @@
 	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
 	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
 
+(use-package magit-todo
+  :after magit
+  :config (magit-todos-mode 1))
+
 (use-package projectile
   :init
   (projectile-mode +1)
@@ -312,22 +341,25 @@
 (use-package shmft
   :hook (sh-mode . shfmt-on-save-mode))
 
+;; TAB-only configuration
 (use-package corfu
   :custom
-  (corfu-auto nil)
-  (corfu-cycle t)
-  (corfu-preselect 'prompt)
-  (corfu-quit-no-match 'separator)
-  
+  (corfu-auto t)               ;; Enable auto completion
+  (corfu-preselect 'directory) ;; Select the first candidate, except for directories
+
   :init
-  (global-corfu-mode 1)
-  
-  :bind
-  (:map corfu-map
-	("RET" . corfu-insert)
-	 ("TAB" . corfu-next)
-	 ("S-TAB" . corfu-previous)))
-	
+  (global-corfu-mode)
+
+  :config
+  ;; Free the RET key for less intrusive behavior.
+  ;; Option 1: Unbind RET completely
+  ;; (keymap-unset corfu-map "RET")
+  ;; Option 2: Use RET only in shell modes
+  (keymap-set corfu-map "RET" `( menu-item "" nil :filter
+                                 ,(lambda (&optional _)
+                                    (and (derived-mode-p 'eshell-mode 'comint-mode)
+                                         #'corfu-send)))))
+
 (use-package cape
   ;; Bind prefix keymap providing all Cape commands under a menmonic key.
   :bind ("C-c c" . cape-prefix-map)
