@@ -25,11 +25,8 @@ in
             self.homeModules.shell
             self.homeModules.desktop
             self.homeModules.emacs
-            # self.homeModules.helix
-            self.homeModules.niri
             self.homeModules.media
-            # self.homeModules.neovim
-            # self.homeModules.vscode
+            self.homeModules.niri
           ];
           nix = {
             settings = {

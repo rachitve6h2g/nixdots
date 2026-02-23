@@ -18,17 +18,11 @@
           cantarell-fonts
         ];
 
-        sessionVariables = {
-          QT_QPA_PLATFORM = "wayland";
-        };
+        sessionVariables.QT_QPA_PLATFORM = "wayland";
       };
 
       # Extra fonts installed from home.packages are not detected unless:
-      fonts = {
-        fontconfig = {
-          enable = true;
-        };
-      };
+      fonts.fontconfig.enable = true;
 
       qt.enable = true;
 
@@ -87,16 +81,13 @@
 
         base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
 
-        override = {
-          base00 = "141617";
-        };
+        override.base00 = "141617";
 
         polarity = "dark";
 
         fonts = {
-          sizes = {
-            terminal = 12;
-          };
+          sizes.terminal = 12;
+
           monospace = {
             package = pkgs.maple-mono.NF;
             name = "Maple Mono NF";

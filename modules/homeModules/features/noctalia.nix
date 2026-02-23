@@ -14,6 +14,8 @@
       home = {
         file.".face".source = image;
         packages = [
+          pkgs.mission-center # For a system monitor
+          pkgs.kdePackages.qttools # For kdeconnect plugin
           # Use it to just see the diff and move the differences here.
           (pkgs.writeShellScriptBin "noctalia-diff" ''
             nix shell nixpkgs#jq nixpkgs#colordiff \
@@ -43,6 +45,10 @@
               sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
             };
             pomodoro = {
+              enabled = true;
+              sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            };
+            kde-connect = {
               enabled = true;
               sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
             };
@@ -88,39 +94,15 @@
             sortByMostUsed = true;
             terminalCommand = "kitty -e";
             useApp2Unit = false;
-            viewMode = "grid";
-          };
-
-          desktopWidgets = {
-            enabled = true;
-            gridSnap = false;
-            monitorWidgets = [
-              {
-                name = "eDP-1";
-                widgets = [
-                  {
-                    clockColor = "none";
-                    clockStyle = "minimal";
-                    customFont = "";
-                    format = "hh:mm A\\nd MMMM yyyy";
-                    id = "Clock";
-                    roundedCorners = true;
-                    showBackground = true;
-                    useCustomFont = false;
-                    x = 1742;
-                    y = 996;
-                  }
-                ];
-              }
-            ];
+            viewMode = "list";
           };
 
           audio = {
             cavaFrameRate = 30;
             mprisBlacklist = [ ];
             preferredPlayer = "";
-            visualizerType = "linear";
-            volumeFeedback = false;
+            visualizerType = "wave";
+            volumeFeedback = true;
             volumeOverdrive = false;
             volumeStep = 5;
           };
@@ -156,7 +138,7 @@
             marginVertical = 4;
             monitors = [ ];
             outerCorners = true;
-            position = "left";
+            position = "right";
             screenOverrides = [ ];
             showCapsule = false;
             showOutline = false;
@@ -165,6 +147,10 @@
             general = {
               avatarImage = "/home/krish/.face";
               radiusRatio = 0.2;
+              lockScreenAnimations = true;
+              clockFormat = "hh\\nmm";
+              clockStyle = "digital";
+              animationDisabled = false;
             };
 
             dock = {
@@ -220,6 +206,8 @@
                   iconColor = "none";
                   textColor = "none";
                 }
+                { id = "Volume"; }
+                { id = "NotificationHistory"; }
               ];
 
               right = [
@@ -246,9 +234,9 @@
                   useCustomFont = false;
                 }
 
-                {
-                  id = "plugin:pomodoro";
-                }
+                { id = "plugin:pomodoro"; }
+
+                { id = "plugin:kde-connect"; }
               ];
             };
           };
@@ -260,9 +248,10 @@
           };
 
           location = {
-            analogClockInCalendar = true;
+            analogClockInCalendar = false;
             name = "Kolkata";
             showWeekNumberInCalendar = true;
+            weatherEnabled = false;
           };
 
           calendar = {
@@ -331,18 +320,18 @@
             };
             sounds = {
               criticalSoundFile = "";
-              enabled = false;
+              enabled = true;
               excludedApps = "discord,firefox,chrome,chromium,edge";
               lowSoundFile = "";
               normalSoundFile = "";
-              separateSounds = false;
+              separateSounds = true;
               volume = 0.5;
             };
-            # backgroundOpacity = 0.9; # Stylix Manages it
             criticalUrgencyDuration = 15;
             density = "default";
             enableBatteryToast = true;
             enableKeyboardLayoutToast = true;
+            clearDismissed = true;
             enableMediaToast = false;
             enabled = true;
             location = "top_right";

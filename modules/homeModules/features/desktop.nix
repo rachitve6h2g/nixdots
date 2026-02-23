@@ -9,11 +9,9 @@
     {
 
       imports = [
-        self.homeModules.firefox
+        self.homeModules.discord
         self.homeModules.noctalia
-        self.homeModules.qutebrowser
-        self.homeModules.tomat
-        self.homeModules.zathura
+        self.homeModules.zen-browser
       ];
 
       home.packages = with pkgs; [
@@ -104,7 +102,7 @@
         terminal-exec = {
           enable = true;
           settings = {
-            default = [ "kitty.desktop" ];
+            default = [ "footclient.desktop" ];
           };
         };
 

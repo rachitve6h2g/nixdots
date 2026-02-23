@@ -43,7 +43,7 @@
 
         # Emacsclient needs to be restarted after every rebuild
         (pkgs.writeShellScriptBin "remacs" ''
-          systemctl --user restart emacs                      
+          systemctl --user restart emacs
         '')
 
         # Alias for emacsclient

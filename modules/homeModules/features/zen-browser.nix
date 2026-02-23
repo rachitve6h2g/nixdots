@@ -1,16 +1,19 @@
-{ inputs, ... }:
 {
-  flake.homeModules.firefox =
-    { config, pkgs, ... }:
+  inputs,
+  ...
+}:
+{
+  flake.homeModules.zen-browser =
+    { pkgs, config, ... }:
     {
+      # Twilight gurantees reproducibility
+      imports = [ inputs.zen-browser.homeModules.twilight ];
       nixpkgs.overlays = [ inputs.nur.overlays.default ];
 
       programs = {
-        firefox = {
+        zen-browser = {
           enable = true;
-
-          package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { });
-
+          suppressXdgMigrationWarning = true; # It's alreay in $HOME/.config/zen
           enableGnomeExtensions = false;
 
           policies = {
@@ -103,6 +106,9 @@
               "browser.newtabpage.activity-stream.feeds.snippets" = false;
               "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
               "browser.newtabpage.activity-stream.showSponsored" = false;
+
+              # Zen-Browser specific mods
+              "zen.tabs.vertical.right-side" = true;
 
               # For xdg-desktop-portal-termfilechooser
               "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -485,8 +491,8 @@
         };
       };
 
-      # firefox stylix module:
-      stylix.targets.firefox = {
+      # zen-browser stylix module:
+      stylix.targets.zen-browser = {
         profileNames = [ "krish" ];
       };
     };

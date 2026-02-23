@@ -7,7 +7,6 @@
       };
 
       programs = {
-        # MPV
         mpv = {
           enable = true;
 
@@ -57,8 +56,6 @@
             };
           };
         };
-
-        # cmus.enable = true; # Using emacs already
       };
       stylix.targets.cava.rainbow.enable = true;
     };

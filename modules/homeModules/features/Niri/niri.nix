@@ -9,6 +9,30 @@
     }:
     let
       colors = config.lib.stylix.colors.withHashtag;
+
+      mkMenu =
+        menu:
+        let
+          configFile = pkgs.writeText "config.yaml" (
+            lib.generators.toYAML { } {
+              # A little bit of style
+              font = "${config.stylix.fonts.monospace.name}";
+              background = "${colors.base00}d0";
+              color = "${colors.base05}";
+              border = "${colors.base09}";
+              separator = " ➜ ";
+              border_width = 2;
+              corner_r = 10;
+              padding = 15;
+              anchor = "bottom-right";
+              inherit menu;
+            }
+          );
+
+        in
+        pkgs.writeShellScriptBin "my-menu" ''
+          exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
+        '';
     in
     {
       imports = [
@@ -57,7 +81,7 @@
                 xkb = {
                   layout = "us";
                   variant = "colemak_dh";
-                  options = "ctrl:swapcaps"; # When using emacs
+                  options = "ctrl:swapcaps"; # When using vim
                 };
               };
               touchpad = {
@@ -99,58 +123,58 @@
 
             spawn-at-startup = [
               {
-                argv = [
-                  "${pkgs.pipewire}/bin/pw-play"
-                  "--volume"
-                  "0.5"
-                  "${pkgs.kdePackages.ocean-sound-theme}/share/sounds/ocean/stereo/desktop-login.oga"
-                ];
+                sh = "${pkgs.pipewire}/bin/pw-play --volume 0.5 ${pkgs.kdePackages.ocean-sound-theme}/share/sounds/ocean/stereo/desktop-login.oga";
               }
             ];
 
             binds =
               with config.lib.niri.actions;
               let
-                # sound = spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@";
-                playerctl = spawn "playerctl";
-                # brightness = spawn "brightnessctl" "-e4" "-n2" "set";
-                noctalia =
-                  cmd:
-                  [
-                    "noctalia-shell"
-                    "ipc"
-                    "call"
-                  ]
-                  ++ (pkgs.lib.splitString " " cmd);
+                noctalia = cmd: "noctalia-shell ipc call ${cmd}";
               in
               {
                 "Mod+D" = {
-                  action.spawn = noctalia "launcher toggle";
+                  action.spawn-sh = pkgs.lib.getExe (mkMenu [
+                    {
+                      key = "c";
+                      desc = "Clipboard";
+                      cmd = noctalia "launcher clipboard";
+                    }
+
+                    {
+                      key = "m";
+                      desc = "Menu";
+                      cmd = noctalia "launcher toggle";
+                    }
+                  ]);
                 };
 
-                "Mod+G" = {
-                  action = spawn [
-                    "${pkgs.cliphist}/bin/cliphist-fuzzel-img"
-                  ];
-                  hotkey-overlay.title = "Open clipboard";
-                };
+                "Mod+F".action.spawn-sh = pkgs.lib.getExe (mkMenu [
+                  {
+                    key = "z";
+                    desc = "Zen-Browser";
+                    cmd = "zen-twilight";
+                  }
 
-                "Mod+Shift+Return" = {
-                  action = spawn [
-                    "kitty"
-                  ];
-                  hotkey-overlay.title = "Spawn Kitty Terminal";
-                };
+                  {
+                    key = "d";
+                    desc = "Vesktop";
+                    cmd = "vesktop";
+                  }
+                ]);
 
-                "Mod+Return" = {
-                  action = spawn [
-                    "${config.programs.emacs.package}/bin/emacsclient"
-                    "-a"
-                    "\"\""
-                    "-c"
-                  ];
-                  hotkey-overlay.title = "Spawn Emacsclient Frame";
-                };
+                "Mod+Return".action.spawn-sh = pkgs.lib.getExe (mkMenu [
+                  {
+                    key = "e";
+                    desc = "Emacsclient";
+                    cmd = "${config.programs.emacs.package}/bin/emacsclient -a \"emacs\" -c";
+                  }
+                  {
+                    key = "t";
+                    desc = "Terminal";
+                    cmd = "footclient"; # TODO: Change to foot
+                  }
+                ]);
 
                 "Mod+Q" = {
                   action = close-window;
@@ -217,54 +241,43 @@
 
                 "Mod+O".action = toggle-overview;
 
-                # Run the fuzzel powermenu script
-                "Mod+X".action = spawn "fuzzel-powermenu";
-
                 XF86AudioRaiseVolume = {
-                  # action = sound "5%+";
-                  action.spawn = noctalia "volume increase";
-
+                  action.spawn-sh = noctalia "volume increase";
                   allow-when-locked = true;
                 };
                 XF86AudioLowerVolume = {
-                  # action = sound "5%-";
-                  action.spawn = noctalia "volume decrease";
-
+                  action.spawn-sh = noctalia "volume decrease";
                   allow-when-locked = true;
                 };
                 XF86AudioMute = {
-                  action.spawn = noctalia "volume muteOutput";
-
+                  action.spawn-sh = noctalia "volume muteOutput";
                   allow-when-locked = true;
                 };
                 XF86MonBrightnessUp = {
                   # action = brightness "5%+";
 
-                  action.spawn = noctalia "brightness increase";
+                  action.spawn-sh = noctalia "brightness increase";
 
                   allow-when-locked = true;
                 };
                 XF86MonBrightnessDown = {
-                  # action = brightness "5%-";
-
-                  action.spawn = noctalia "brightness decrease";
-
+                  action.spawn-sh = noctalia "brightness decrease";
                   allow-when-locked = true;
                 };
                 XF86AudioNext = {
-                  action = playerctl "next";
+                  action.spawn-sh = noctalia "media next";
                   allow-when-locked = true;
                 };
                 XF86AudioPause = {
-                  action = playerctl "play-pause";
+                  action.spawn-sh = noctalia "media playPause";
                   allow-when-locked = true;
                 };
                 XF86AudioPlay = {
-                  action = playerctl "play-pause";
+                  action.spawn-sh = noctalia "media playPause";
                   allow-when-locked = true;
                 };
                 XF86AudioPrev = {
-                  action = playerctl "play-pause";
+                  action.spawn-sh = noctalia "media previous";
                   allow-when-locked = true;
                 };
 
@@ -338,12 +351,6 @@
             layer-rules = [
               {
                 matches = [
-                  # When using a normal Wallpaper tool
-                  /*
-                    {
-                      namespace = "^wallpaper$";
-                    }
-                  */
                   # Using the noctalia wallpaper setting.
                   {
                     namespace = "^noctalia-wallpaper*";
@@ -434,10 +441,11 @@
                 };
               }
 
-              # Open Emacs with maximization to edges
               {
                 matches = [
-                  { app-id = "emacs$"; }
+                  { app-id = "^emacs*"; }
+                  { app-id = "zen-twilight$"; } # Maximize Zen-Browser
+                  { app-id = "vesktop$"; }
                 ];
                 # TODO: Set open-maximized to open-maximized-to-edges
                 # See https://github.com/niri-wm/niri/wiki/Fullscreen-and-Maximize
