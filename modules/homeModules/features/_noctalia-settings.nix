@@ -385,8 +385,9 @@
       0
       1
       2
+      3
     ];
-    location = "top_right";
+    location = "bottom";
     monitors = [ ];
     overlayLayer = true;
   };
