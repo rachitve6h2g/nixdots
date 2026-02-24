@@ -241,6 +241,8 @@
     colorizeIcons = false;
     deadOpacity = 0.6;
     displayMode = "auto_hide";
+    groupApps = true;
+    showLauncherIcon = true;
     dockType = "floating";
     enabled = true;
     floatingRatio = 1;
@@ -286,6 +288,7 @@
     lockScreenCountdownDuration = 10000;
     lockScreenMonitors = [ ];
     lockScreenTint = 0;
+    passwordChars = true;
     radiusRatio = 1;
     reverseScroll = false;
     scaleRatio = 1;
@@ -319,7 +322,7 @@
     showCalendarEvents = true;
     showCalendarWeather = true;
     showWeekNumberInCalendar = true;
-    use12hourFormat = false;
+    use12hourFormat = true;
     useFahrenheit = false;
     weatherEnabled = false;
     weatherShowEffects = true;

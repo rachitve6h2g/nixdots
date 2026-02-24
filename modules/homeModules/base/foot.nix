@@ -6,6 +6,7 @@
 
       settings = {
         mouse.hide-when-typing = true;
+        desktop-notifications.command = "notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}";
       };
     };
   };

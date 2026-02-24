@@ -20,6 +20,7 @@
       home.packages = with pkgs; [
         bash-language-server # bash-language server
         clang-tools # For C development format
+        emacs-lsp-booster # Dependency for eglot-booster
         ffmpegthumbnailer # For ready-player
         ffmpeg-full # For ready-player
         imagemagick # For rendering images inside org
@@ -68,10 +69,12 @@
             epkgs: with epkgs; [
               ace-window # Better window navigation
               babel # Babel languages setup
+              breadcrumb # Works well with eglot
               cape # Provides Completion At Point Extensions
               consult # Set up minibuffer actions and
               consult-dir # Really good package to traverse long distance directories using minibuffer
-              consult-lsp # Lsp actions like diagnostics, finding symbols and other stuff
+              consult-eglot # Consult+eglot
+              consult-eglot-embark # Consult + embark + eglot
               consult-notes # For managing notes
               consult-org-roam
               consult-projectile # Needed for consult-project-switch, I guess(?)
@@ -82,6 +85,8 @@
               diff-hl
               dirvish # best dired extension, no mini-packages
               doom-modeline
+              eglot # Lightweight lsp engine
+              eglot-booster # Make eglot faster
               elfeed
               elfeed-dashboard
               elfeed-org
@@ -89,18 +94,17 @@
               embark
               embark-consult
               embark-org-roam
+              emms # For Music player
               envrc # Integrate emacs with direnv
               eshell-git-prompt
               eshell-vterm
               exec-path-from-shell
               forge
               hl-todo # Highlight the TODO keywords in a lot of buffers
+              indent-bars # Indentation guide bars
               info-colors # Prettify info mode
               json-mode
               ligature
-              lsp-mode
-              lsp-treemacs # For treemacs compatibility
-              lsp-ui
               magit
               marginalia
               markdown-mode
@@ -148,9 +152,8 @@
               # pdf-tools # For opening pdf's inside of emacs
               projectile
               projectile-ripgrep
-              pulsar
-              rainbow-delimiters
-              ready-player # Music player for Emacs
+              pulsar # Cool cursor animations in emacs when changing b/w contexts
+              rainbow-delimiters # colorful delimiters
               ripgrep
               saveplace-pdf-view # To save the last visited information in pdf-mode
               shfmt
@@ -168,12 +171,12 @@
                 ]
               ))
 
-              use-package
-              vertico
-              vterm
+              use-package # Basic necessity
+              vertico # completion ui
+              vterm # Terminal inside emacs
               vterm-toggle
-              which-key
-              with-editor
+              which-key # YKI
+              with-editor # handle $EDITOR in different in-emacs environment
               with-emacs
               yasnippet
             ];

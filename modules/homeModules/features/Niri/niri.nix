@@ -133,27 +133,45 @@
                 noctalia = cmd: "noctalia-shell ipc call ${cmd}";
               in
               {
-                "Mod+D" = {
-                  action.spawn-sh = pkgs.lib.getExe (mkMenu [
-                    {
-                      key = "c";
-                      desc = "Clipboard";
-                      cmd = noctalia "launcher clipboard";
-                    }
+                # Open the clipboard
+                "Mod+G".action.spawn-sh = noctalia "launcher clipboard";
 
+                /*
+                  "Mod+D" = {
+                    action.spawn-sh = pkgs.lib.getExe (mkMenu [
+                      {
+                        key = "m";
+                        desc = "Menu";
+                        cmd = noctalia "launcher toggle";
+                      }
+                    ]);
+                  };
+                */
+
+                "Mod+D".action.spawn-sh = noctalia "launcher toggle";
+
+                # Filemanagers
+                "Mod+E".action.spawn-sh = pkgs.lib.getExe (mkMenu [
+                  {
+                    key = "t";
+                    desc = "Thunar";
+                    cmd = "Thunar";
+                  }
+
+                  /*
                     {
-                      key = "m";
-                      desc = "Menu";
-                      cmd = noctalia "launcher toggle";
+                      key = "e";
+                      desc = "Emacs Dirvish";
+                      cmd = "${config.programs.emacs.package}/bin/emacsclient -n -c -e '(progn (select-frame-set-input-focus (selected-frame)) (dirvish))'";
                     }
-                  ]);
-                };
+                  */
+                ]);
 
                 "Mod+F".action.spawn-sh = pkgs.lib.getExe (mkMenu [
                   {
-                    key = "z";
-                    desc = "Zen-Browser";
-                    cmd = "zen-twilight";
+                    key = "f";
+                    desc = "Firefox";
+                    cmd = "firefox";
                   }
 
                   {
@@ -423,7 +441,7 @@
               {
                 matches = [
                   {
-                    app-id = "thunar$";
+                    app-id = "(?i).*thunar.*";
                     title = ".*Thunar.*";
                   }
 
@@ -444,7 +462,7 @@
               {
                 matches = [
                   { app-id = "^emacs*"; }
-                  { app-id = "zen-twilight$"; } # Maximize Zen-Browser
+                  { app-id = "firefox$"; } # Maximize Firefox
                   { app-id = "vesktop$"; }
                 ];
                 # TODO: Set open-maximized to open-maximized-to-edges

@@ -1,32 +1,33 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package dash
-   :init
-   (global-dash-fontify-mode))
+  :init
+  (global-dash-fontify-mode))
 
 (let ((backup-dir (expand-file-name "backups/" user-emacs-directory))
       (autosave-dir (expand-file-name "auto-saves/" user-emacs-directory)))
 
   (make-directory backup-dir t)
   (make-directory autosave-dir t)
-      
-;; Backups
-(setq backup-directory-alist
-      `(("." . ,backup-dir))
-      backup-by-copying t
-      delete-old-versions t
-      kept-new-versions 10
-      kept-old-versions 5
-      version-control t)
+  
+  ;; Backups
+  (setq backup-directory-alist
+	`(("." . ,backup-dir))
+	backup-by-copying t
+	delete-old-versions t
+	kept-new-versions 10
+	kept-old-versions 5
+	version-control t)
 
-;; Auto-saves
-(setq auto-save-file-name-transforms
-      `((".*" ,autosave-dir t))))
+  ;; Auto-saves
+  (setq auto-save-file-name-transforms
+	`((".*" ,autosave-dir t))))
 
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq visible-bell t)
 (fringe-mode 0)
+(global-hl-line-mode 1) ;; Cursorcolumn like equivalent in emacs
 
 ;; Use Relative Line Numbers
 (column-number-mode)
@@ -40,14 +41,14 @@
   		treemacs-mode-hook
   		eshell-mode-hook
   		vterm-mode-hook
-  		pdf-mode-hook
-		ready-player-mode-hook))
+  		pdf-mode-hook))
+
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Add frame borders and window dividers
 (modify-all-frames-parameters
- '((right-divider-width . 20)
-   (internal-border-width . 20)))
+ '((right-divider-width . 10)
+   (internal-border-width . 10)))
 (dolist (face '(window-divider
                 window-divider-first-pixel
                 window-divider-last-pixel))
@@ -124,8 +125,8 @@
    '(("h" "~/"                          "Home")
      ("d" "~/Downloads/"                "Downloads")
      ("m" "/mnt/"                       "Drives")
-     ("s" "/ssh:my-remote-server")      "SSH server"
-     ("e" "/sudo:root@localhost:/etc")  "Modify program settings"
+     ("s" "/ssh:my-remote-server"      "SSH server")
+     ("e" "/sudo:root@localhost:/etc"  "Modify program settings")
      ("t" "~/.local/share/Trash/files/" "TrashCan")))
 
   :config
@@ -227,7 +228,7 @@
 
 (use-package dashboard
   :custom
-  (initial-buffer-choice 'dashboard-open)
+  (initial-buffer-choice 'dashboard-open) ;; When using emacsclient
   (dashboard-center-content t)
   (dashboard-vertically-center-content t)
   (dashboard-navigation-cycle t)
@@ -241,7 +242,8 @@
   (dashboard-projects-switch-function 'consult-projectile-switch-project)
   
   :hook
-  (server-after-make-frame . 'dashboard-open)
+  (server-after-make-frame . 'dashboard-open) ;; When using emacsclient
+  (dashboard-mode . page-break-lines-mode)
   
   :config
   (dashboard-setup-startup-hook))
@@ -286,7 +288,7 @@
   (setq pulsar-highlight-face 'pulsar-magenta)
   :hook
   (next-error . #'pulsar-pulse-line)
-(minibuffer-setup-hook . #'pulsar-pulse-line))
+  (minibuffer-setup-hook . #'pulsar-pulse-line))
 
 (use-package info-colors
   :hook (Info-selection . info-colors-fontify-node))
@@ -449,7 +451,7 @@
 (use-package vterm-toggle
   :bind
   (:map global-map
-	      ("C-c v v" . vterm-toggle-cd))
+	("C-c v v" . vterm-toggle-cd))
   (:map vterm-mode-map
 	("s-n" . vterm-toggle-forward)
 	("s-p" . vterm-toggle-backward)))
@@ -465,6 +467,8 @@
 
 (use-package forge
   :after magit)
+
+(use-package with-editor :ensure nil)
 
 (use-package diff-hl
   :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
@@ -491,21 +495,29 @@
   ;; load default config
   (require 'smartparens-config))
 
-(use-package lsp-mode
-  :custom
-  (lsp-keymap-prefix "C-c l")
-  (lsp-headerline-breadcrumb-icons-enable t)
-  
-  :hook
-  ((nix-ts-mode . lsp-deferred)
-   (sh-mode . lsp-deferred)
-   (c-mode . lsp-deferred)
-   
-   (lsp-mode . lsp-enable-which-key-integration)) ;; Enable which key integration
-  :commands (lsp lsp-deferred))
+(use-package eglot
+  :ensure nil
+  :hook ((c-mode c++-mode python-mode nix-ts-mode) . eglot-ensure)
+  :config
+  ;; Optional performance tuning
+  (setq eglot-autoshutdown t
+	eglot-send-changes-idle-time 0.5))
 
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package eglot-booster
+  :after eglot
+  :config (eglot-booster-mode))
+
+(use-package breadcrumb
+  :init (breadcrumb-mode)
+  :config
+  (setq which-func-functions #'(breadcrumb-imenu-crumbs))
+  (setq breadcrumb-imenu-crumb-separator "  "))
+
+
+(use-package imenu
+  :ensure nil
+  :config
+  (setq imenu-auto-rescan t))
 
 (use-package nixfmt
   :hook (nix-ts-mode . nixfmt-on-save-mode))
@@ -677,9 +689,9 @@
 
 (use-package consult-notes
   :commands (consult-notes
-	 consult-notes-search-in-all-notes
-	 consult-notes-org-roam-find-node
-	 consult-notes-org-roam-find-node-relation))
+	     consult-notes-search-in-all-notes
+	     consult-notes-org-roam-find-node
+	     consult-notes-org-roam-find-node-relation))
 
 (use-package embark
   :bind
@@ -757,6 +769,9 @@ targets."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+(use-package indent-bars
+  :hook ((prog-mode nix-ts-mode) . indent-bars-mode)) ; or whichever modes you prefer
+
 ;; credit: Lukas Barth at https://www.lukas-barth.net/blog/emacs-wsl-copy-clipboard/
 (setopt select-active-regions nil)
 
@@ -773,19 +788,6 @@ targets."
 
 ;; The new version is still expecting a function that it does not provide.
 (with-eval-after-load 'reader
- (unless (fboundp 'reader-current-doc-pagenumber)
+  (unless (fboundp 'reader-current-doc-pagenumber)
     (defalias 'reader-current-doc-pagenumber
       #'reader-dyn--current-doc-pagenumber)))
-
-(use-package ready-player
-  :init
-  (ready-player-mode 1)
-  :custom
-  (ready-player-thumbnail-max-pixel-height 200)
-  (ready-player-autoplay nil)
-  (ready-player-repeat t)
-  (ready-player-shuffle t)
-  (ready-player-open-playback-commands
-   '(
-     ("mpv" "--audio-display=no")
-     )))

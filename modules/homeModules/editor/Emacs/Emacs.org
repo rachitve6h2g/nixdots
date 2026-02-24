@@ -19,9 +19,9 @@ The [[https://github.com/magnars/dash.el][dash]] library is required by a lot of
   ;; -*- lexical-binding: t; -*-
 
   (use-package dash
-     :init
-     (global-dash-fontify-mode))
-   
+    :init
+    (global-dash-fontify-mode))
+
 #+end_src
 
 ** Backup Directory
@@ -35,19 +35,19 @@ By Default random backup files are generated all through out the work directory.
 
     (make-directory backup-dir t)
     (make-directory autosave-dir t)
-        
-  ;; Backups
-  (setq backup-directory-alist
-        `(("." . ,backup-dir))
-        backup-by-copying t
-        delete-old-versions t
-        kept-new-versions 10
-        kept-old-versions 5
-        version-control t)
+    
+    ;; Backups
+    (setq backup-directory-alist
+  	`(("." . ,backup-dir))
+  	backup-by-copying t
+  	delete-old-versions t
+  	kept-new-versions 10
+  	kept-old-versions 5
+  	version-control t)
 
-  ;; Auto-saves
-  (setq auto-save-file-name-transforms
-        `((".*" ,autosave-dir t))))
+    ;; Auto-saves
+    (setq auto-save-file-name-transforms
+  	`((".*" ,autosave-dir t))))
 
 #+end_src
 
@@ -58,7 +58,7 @@ By Default random backup files are generated all through out the work directory.
 This goes to [[file:early-init.el][early-init.el]] file.
 
 #+begin_src emacs-lisp :tangle ./early-init.el :mkdirp yes
-  
+
   (tool-bar-mode -1)
   (tooltip-mode -1)
   (menu-bar-mode -1)
@@ -78,6 +78,7 @@ This goes to [[file:early-init.el][early-init.el]] file.
   (setq inhibit-startup-message t)
   (setq visible-bell t)
   (fringe-mode 0)
+  (global-hl-line-mode 1) ;; Cursorcolumn like equivalent in emacs
 
   ;; Use Relative Line Numbers
   (column-number-mode)
@@ -91,8 +92,8 @@ This goes to [[file:early-init.el][early-init.el]] file.
     		treemacs-mode-hook
     		eshell-mode-hook
     		vterm-mode-hook
-    		pdf-mode-hook
-  		ready-player-mode-hook))
+    		pdf-mode-hook))
+
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 #+end_src
@@ -103,8 +104,8 @@ This goes to [[file:early-init.el][early-init.el]] file.
 
   ;; Add frame borders and window dividers
   (modify-all-frames-parameters
-   '((right-divider-width . 20)
-     (internal-border-width . 20)))
+   '((right-divider-width . 10)
+     (internal-border-width . 10)))
   (dolist (face '(window-divider
                   window-divider-first-pixel
                   window-divider-last-pixel))
@@ -147,26 +148,26 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
 
 #+begin_src emacs-lisp :tangle no
 
-    (defun my/set-font-faces ()
-      (message "Set Font Faces!")
-      ;; Font size
-      (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
+  (defun my/set-font-faces ()
+    (message "Set Font Faces!")
+    ;; Font size
+    (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
 
-      ;; Set the fixed pitch face
-      (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.1)
+    ;; Set the fixed pitch face
+    (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.1)
 
-      ;; Set the variable pitch face
-      (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.14 :weight 'regular))
+    ;; Set the variable pitch face
+    (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.14 :weight 'regular))
 
-    ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
-    (if (daemonp)
-        (add-hook 'after-make-frame-functions
-                  (lambda (frame)
-    		(setq doom-modeline-icon t)
-    		(with-selected-frame frame
-                      (my/set-font-faces)
-  		    (my/variables-custom))))
-      (my/set-font-faces))
+  ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+  		(setq doom-modeline-icon t)
+  		(with-selected-frame frame
+                    (my/set-font-faces)
+  		  (my/variables-custom))))
+    (my/set-font-faces))
 
 #+end_src
 
@@ -202,7 +203,7 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
   ;; General usage
   (use-package nerd-icons)
 
-  
+
 
   ;; Use in ibuffer
   (use-package nerd-icons-ibuffer
@@ -238,8 +239,8 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
      '(("h" "~/"                          "Home")
        ("d" "~/Downloads/"                "Downloads")
        ("m" "/mnt/"                       "Drives")
-       ("s" "/ssh:my-remote-server")      "SSH server"
-       ("e" "/sudo:root@localhost:/etc")  "Modify program settings"
+       ("s" "/ssh:my-remote-server"      "SSH server")
+       ("e" "/sudo:root@localhost:/etc"  "Modify program settings")
        ("t" "~/.local/share/Trash/files/" "TrashCan")))
 
     :config
@@ -327,7 +328,7 @@ Use [[https://github.com/jumper047/media-progress/tree/master][media-progress-di
 :END:
 
 #+begin_src emacs-lisp
-  
+
   ;; use nerd fonts with dired 
   (use-package nerd-icons-dired
     :hook
@@ -337,7 +338,7 @@ Use [[https://github.com/jumper047/media-progress/tree/master][media-progress-di
     :hook
     (dired-mode . dired-omit-mode) ;; hide dotfiles 
     :bind (:map dired-mode-map
-  		("." . dired-omit-mode)) ;; use "." to show dotfiles
+  	      ("." . dired-omit-mode)) ;; use "." to show dotfiles
     :custom
     (dired-omit-files (rx (seq bol "."))) ;; hide dotfiles
     :config
@@ -444,7 +445,7 @@ Open files according to extensions.
     :init
     (savehist-mode))
 
-  
+
 
   ;; Marginalia for margins
   (use-package marginalia
@@ -461,7 +462,7 @@ Open files according to extensions.
 
   (use-package dashboard
     :custom
-    (initial-buffer-choice 'dashboard-open)
+    (initial-buffer-choice 'dashboard-open) ;; When using emacsclient
     (dashboard-center-content t)
     (dashboard-vertically-center-content t)
     (dashboard-navigation-cycle t)
@@ -475,7 +476,8 @@ Open files according to extensions.
     (dashboard-projects-switch-function 'consult-projectile-switch-project)
     
     :hook
-    (server-after-make-frame . 'dashboard-open)
+    (server-after-make-frame . 'dashboard-open) ;; When using emacsclient
+    (dashboard-mode . page-break-lines-mode)
     
     :config
     (dashboard-setup-startup-hook))
@@ -516,23 +518,23 @@ Open files according to extensions.
 Pulse the cursor using the [[https://protesilaos.com/emacs/pulsar][pulsar]] package.
 #+begin_src emacs-lisp
 
-        (use-package pulsar
-          :bind
-          ( :map global-map
-            ("C-x l" . pulsar-pulse-line) ;; overrides 'count-lines-page'
-            ("C-x L" . pulsar-highlight-permanently-dwim))
-          :init
-          (pulsar-global-mode 1)
-          :config
-          (setq pulsar-delay 0.055)
-          (setq pulsar-iterations 5)
-          (setq pulsar-face 'pulsar-green)
-          (setq pulsar-region-face 'pulsar-yellow)
-          (setq pulsar-highlight-face 'pulsar-magenta)
-          :hook
-          (next-error . #'pulsar-pulse-line)
-  	(minibuffer-setup-hook . #'pulsar-pulse-line))
-          
+  (use-package pulsar
+    :bind
+    ( :map global-map
+      ("C-x l" . pulsar-pulse-line) ;; overrides 'count-lines-page'
+      ("C-x L" . pulsar-highlight-permanently-dwim))
+    :init
+    (pulsar-global-mode 1)
+    :config
+    (setq pulsar-delay 0.055)
+    (setq pulsar-iterations 5)
+    (setq pulsar-face 'pulsar-green)
+    (setq pulsar-region-face 'pulsar-yellow)
+    (setq pulsar-highlight-face 'pulsar-magenta)
+    :hook
+    (next-error . #'pulsar-pulse-line)
+    (minibuffer-setup-hook . #'pulsar-pulse-line))
+
 #+end_src
 
 ** Pretty Info
@@ -543,7 +545,7 @@ Info mode by default looks arcane. Use[[https://github.com/ubolonton/info-colors
 
   (use-package info-colors
     :hook (Info-selection . info-colors-fontify-node))
-    
+
 #+end_src
 
 * Keep Folders Clean
@@ -708,7 +710,7 @@ Use auto tangle using [[https://github.com/yilkalargaw/org-auto-tangle][org-auto
 
 ** Center Org Buffers
 
- Use olivetti:
+Use olivetti:
  
 #+begin_src emacs-lisp
 
@@ -764,7 +766,7 @@ Use [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] package to use 
 
   (use-package vterm)
 
-      #+end_src
+#+end_src
 
 ** Multiple Vterm Buffers
 
@@ -774,7 +776,7 @@ Use [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] package to use 
   (use-package multi-vterm
     :config
     (setq multi-vterm-dedicated-window-height 50))
-  
+
 #+end_src
 
 ** Toggle Vterm with Ease
@@ -783,13 +785,13 @@ Use the keychord =C-c v= to toggle vterm using the [[https://github.com/jixiuf/v
 
 #+begin_src emacs-lisp
 
-    (use-package vterm-toggle
-      :bind
-      (:map global-map
-    	      ("C-c v v" . vterm-toggle-cd))
-      (:map vterm-mode-map
-    	("s-n" . vterm-toggle-forward)
-    	("s-p" . vterm-toggle-backward)))
+  (use-package vterm-toggle
+    :bind
+    (:map global-map
+  	("C-c v v" . vterm-toggle-cd))
+    (:map vterm-mode-map
+  	("s-n" . vterm-toggle-forward)
+  	("s-p" . vterm-toggle-backward)))
 
 #+end_src
 
@@ -817,6 +819,8 @@ Open magit on the same window.
 
   (use-package forge
     :after magit)
+
+  (use-package with-editor :ensure nil)
 
 #+end_src
 
@@ -873,32 +877,46 @@ Integrate direnv with Emax
 
 ** LSP
 
-I am using [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] for setting up lsp instead of [[https://github.com/joaotavora/eglot][eglot]]. I don't know why, but a lot of people have using lsp-mode instead of eglot.
+*** Eglot
 
 #+begin_src emacs-lisp
 
-  (use-package lsp-mode
-    :custom
-    (lsp-keymap-prefix "C-c l")
-    (lsp-headerline-breadcrumb-icons-enable t)
-    
-    :hook
-    ((nix-ts-mode . lsp-deferred)
-     (sh-mode . lsp-deferred)
-     (c-mode . lsp-deferred)
-     
-     (lsp-mode . lsp-enable-which-key-integration)) ;; Enable which key integration
-    :commands (lsp lsp-deferred))
+  (use-package eglot
+    :ensure nil
+    :hook ((c-mode c++-mode python-mode nix-ts-mode) . eglot-ensure)
+    :config
+    ;; Optional performance tuning
+    (setq eglot-autoshutdown t
+  	eglot-send-changes-idle-time 0.5))
 
 #+end_src
 
+**** Booster
 
+Make eglot load faster
 
-*** Lsp UI
 #+begin_src emacs-lisp
 
-  ;; optionally
-  (use-package lsp-ui :commands lsp-ui-mode)
+  (use-package eglot-booster
+    :after eglot
+    :config (eglot-booster-mode))
+
+#+end_src
+
+*** Breadcrumbs
+
+#+begin_src emacs-lisp
+  (use-package breadcrumb
+    :init (breadcrumb-mode)
+    :config
+    (setq which-func-functions #'(breadcrumb-imenu-crumbs))
+    (setq breadcrumb-imenu-crumb-separator "  "))
+
+
+  (use-package imenu
+    :ensure nil
+    :config
+    (setq imenu-auto-rescan t))
 
 #+end_src
 
@@ -910,7 +928,7 @@ Use [[https://github.com/purcell/emacs-nixfmt][nixfmt]] package for formatting n
 
   (use-package nixfmt
     :hook (nix-ts-mode . nixfmt-on-save-mode))
-  
+
 #+end_src
 
 **** Shell
@@ -919,7 +937,7 @@ Use [[https://github.com/purcell/emacs-shfmt][shfmt]] package for formatting she
 
   (use-package shmft
     :hook (sh-mode . shfmt-on-save-mode))
-  
+
 #+end_src
 
 **** Treesitter
@@ -1004,7 +1022,7 @@ Enable [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]] pack
 
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
-  
+
 #+end_src
 
 ** Consult
@@ -1134,9 +1152,9 @@ Using [[https://github.com/mclear-tools/consult-notes][consult-notes]] for easie
 
   (use-package consult-notes
     :commands (consult-notes
-  	 consult-notes-search-in-all-notes
-  	 consult-notes-org-roam-find-node
-  	 consult-notes-org-roam-find-node-relation))
+  	     consult-notes-search-in-all-notes
+  	     consult-notes-org-roam-find-node
+  	     consult-notes-org-roam-find-node-relation))
 
 #+end_src
 
@@ -1221,6 +1239,15 @@ Using [[https://github.com/mclear-tools/consult-notes][consult-notes]] for easie
 
 #+end_src
 
+** Indent Bars
+
+#+begin_src emacs-lisp
+
+  (use-package indent-bars
+    :hook ((prog-mode nix-ts-mode) . indent-bars-mode)) ; or whichever modes you prefer
+
+#+end_src
+
 * Clipboard
 On wayland we can use this snippet from [[https://www.emacswiki.org/emacs/CopyAndPaste][EmacsWiki]].
 #+begin_src emacs-lisp
@@ -1247,7 +1274,7 @@ Use [[https://github.com/vedang/pdf-tools][pdf-tools]] package for reading pdfs 
     (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
     :init
     (pdf-tools-install t))
-  
+
 #+end_src
 
 Save the last visited page in pdf-view using [[https://github.com/nicolaisingh/saveplace-pdf-view][saveplace-pdf-view]].
@@ -1255,7 +1282,7 @@ Save the last visited page in pdf-view using [[https://github.com/nicolaisingh/s
 
   (use-package saveplace-pdf-view
     :after (:any doc-view pdf-tools))
-    
+
 #+end_src
 
 Use the new [[https://codeberg.org/MonadicSheep/emacs-reader][emacs-reader]] package which uses the =mupdf= backend instead of =poppler= backend.
@@ -1270,7 +1297,7 @@ Use the new [[https://codeberg.org/MonadicSheep/emacs-reader][emacs-reader]] pac
 
   ;; The new version is still expecting a function that it does not provide.
   (with-eval-after-load 'reader
-   (unless (fboundp 'reader-current-doc-pagenumber)
+    (unless (fboundp 'reader-current-doc-pagenumber)
       (defalias 'reader-current-doc-pagenumber
         #'reader-dyn--current-doc-pagenumber)))
 
@@ -1281,33 +1308,17 @@ Use the new [[https://codeberg.org/MonadicSheep/emacs-reader][emacs-reader]] pac
 Elfeed is a rss reader for emacs.
 
 *  Music Listening
-[[https://github.com/emacsmirror/emms][Emms]] (Emacs Multi-Media System) is a system to listen to music.
+[[https://github.com/emacsmirror/emms][Emms]] (Emacs Multi-Media System) is a system to listen to music. The config is taken from [[https://emacs.stackexchange.com/a/3741][this comment on StackExchange]].
 #+begin_src emacs-lisp :tangle no
 
   (use-package emms
-    :init (emms-all)
-    :config
-    (setq emms-player-list '(emms-player-mpv)
-  	emms-info-functions '(emms-info-native)))
-
-#+end_src
-
-There's another one more presentable: [[https://github.com/xenodium/ready-player][ready-player]].
-
-#+begin_src emacs-lisp
-
-  (use-package ready-player
-    :init
-    (ready-player-mode 1)
+    :init (emms-standard)
     :custom
-    (ready-player-thumbnail-max-pixel-height 200)
-    (ready-player-autoplay nil)
-    (ready-player-repeat t)
-    (ready-player-shuffle t)
-    (ready-player-open-playback-commands
-     '(
-       ("mpv" "--audio-display=no")
-       )))
+    (emms-player-list '(emms-player-mpv))
+    (emms-info-functions '(emms-info-native))
+    (emms-source-file-default-directory "~/Music/")
+    (emms-info-asynchronously t)
+    (emms-show-format "♪ %s"))
 
 #+end_src
 

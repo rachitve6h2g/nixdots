@@ -7,14 +7,14 @@
         self.nixosModules.battery
         self.nixosModules.clamav
         self.nixosModules.console
-        self.nixosModules.gaming
-        # self.nixosModules.greeter
+        # self.nixosModules.gaming
+        self.nixosModules.greeter
         self.nixosModules.kdeconnect
         self.nixosModules.keymap
         self.nixosModules.kmscon
         self.nixosModules.locale
         self.nixosModules.nix
-        self.nixosModules.sddm
+        # self.nixosModules.sddm
         self.nixosModules.sound
       ];
       programs = {

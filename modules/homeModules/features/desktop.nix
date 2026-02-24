@@ -11,7 +11,7 @@
       imports = [
         self.homeModules.discord
         self.homeModules.noctalia
-        self.homeModules.zen-browser
+        self.homeModules.firefox
       ];
 
       home.packages = with pkgs; [
