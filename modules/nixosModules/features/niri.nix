@@ -1,19 +1,14 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
   flake.nixosModules.niri =
     {
       pkgs,
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
-      nixpkgs.overlays = [
-        inputs.niri.overlays.niri
-      ];
-
-      imports = [
-        inputs.niri.nixosModules.niri
-      ];
-
       programs = {
         niri = {
           # To use the binary cache first let
@@ -25,12 +20,14 @@
 
           # Use niri-stable and niri-unstable from sodiboo's cache
           # use niri from nixpkgs.
-          package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+          package = selfpkgs.niri;
         };
       };
 
+      # environment.systemPackages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.niri ];
+
       # Use the niri polkit
-      systemd.user.services.niri-flake-polkit.enable = true;
+      # systemd.user.services.niri-flake-polkit.enable = true;
 
       # Enable swaylock pam authentication support
       security.pam.services.swaylock = { };
@@ -39,7 +36,7 @@
       # if you wanna use niri from Sodiboo's cache
       # See how it's done here
       # https://github.com/sodiboo/niri-flake#binary-cache
-      niri-flake.cache.enable = false;
+      # niri-flake.cache.enable = false;
 
       # Gets enabled by the niri-flake by default
       services.gnome.gnome-keyring.enable = true;

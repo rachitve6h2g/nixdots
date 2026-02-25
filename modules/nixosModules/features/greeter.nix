@@ -1,9 +1,13 @@
+{ self, ... }:
 {
   flake.nixosModules.greeter =
     {
       pkgs,
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       services = {
         greetd = {
@@ -22,7 +26,7 @@
               let
                 tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
                 # hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-                niri-session = "${pkgs.niri}/share/wayland-sessions";
+                niri-session = "${selfpkgs.niri}/share/wayland-sessions";
               in
               {
                 command = "${tuigreet} --time --remember --remember-session --sessions ${niri-session}";

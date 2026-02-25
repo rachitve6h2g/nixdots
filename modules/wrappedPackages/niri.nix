@@ -40,14 +40,100 @@ in
         '';
     in
     {
-      apply = true;
+      # apply = true;
       imports = [ wlib.wrapperModules.niri ];
-
+      passthru = {
+        providedSessions = [ "niri" ];
+      };
+      filesToPatch = [
+        "share/wayland-sessions/*.desktop"
+        "share/applications/*.desktop"
+        "share/systemd/user/niri.service"
+        "share/systemd/user/*.target"
+      ];
       settings =
         let
           noctalia = cmd: "noctalia-shell ipc call ${cmd}";
         in
         {
+          input = {
+            keyboard = {
+              xkb = {
+                layout = "us";
+                variant = "colemak_dh";
+                options = "ctrl:swapcaps";
+              };
+              repeat-delay = 600;
+              repeat-rate = 25;
+              track-layout = "global";
+            };
+            touchpad = {
+              tap = null;
+              dwt = null;
+              dwtp = null;
+              natural-scroll = null;
+            };
+
+            warp-mouse-to-focus = null;
+            focus-follows-mouse._attrs = {
+              max-scroll-amount = "0%";
+            };
+            workspace-auto-back-and-forth = null;
+          };
+          clipboard.disable-primary = null;
+          hotkey-overlay.skip-at-startup = null;
+
+          animations = rec {
+            config-notification-open-close = {
+              spring._attrs = {
+                damping-ratio = 1.0;
+                epsilon = 0.001;
+                stiffness = 1000;
+              };
+            };
+
+            horizontal-view-movement = config-notification-open-close;
+            overview-open-close = {
+              spring._attrs = {
+                damping-ratio = 1.0;
+                epsilon = 0.001;
+                stiffness = 900;
+              };
+            };
+            screenshot-ui-open = {
+              duration-ms = 300;
+              curve = "ease-out-quad";
+            };
+            window-close = {
+              duration-ms = 200;
+              curve = "ease-out-cubic";
+            };
+            window-movement = config-notification-open-close;
+            window-open = {
+              duration-ms = 200;
+              curve = "ease-out-quad";
+            };
+            workspace-switch = config-notification-open-close;
+          };
+          xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+          debug.honor-xdg-activation-with-invalid-serial = null;
+
+          outputs = {
+            eDP-1 = {
+              focus-at-startup = null;
+              transform = "normal";
+              mode = "1920x1080@60.056";
+            };
+          };
+
+          prefer-no-csd = null;
+          overview.workspace-shadow.off = null;
+
+          cursor = {
+            xcursor-theme = "Bibata-Modern-Ice";
+            xcursor-size = 24;
+          };
+
           binds = {
             "Mod+G".spawn-sh = noctalia "launcher clipboard"; # Clipboard
             "Mod+D".spawn-sh = noctalia "launcher toggle"; # Launcher
@@ -124,31 +210,39 @@ in
 
             XF86AudioRaiseVolume = {
               spawn-sh = noctalia "volume increase";
+              _attrs.allow-when-locked = true;
             };
             XF86AudioLowerVolume = {
               spawn-sh = noctalia "volume decrease";
-
+              _attrs.allow-when-locked = true;
             };
             XF86AudioMute = {
               spawn-sh = noctalia "volume muteOutput";
+              _attrs.allow-when-locked = true;
             };
             XF86MonBrightnessUp = {
               spawn-sh = noctalia "brightness increase";
+              _attrs.allow-when-locked = true;
             };
             XF86MonBrightnessDown = {
               spawn-sh = noctalia "brightness decrease";
+              _attrs.allow-when-locked = true;
             };
             XF86AudioNext = {
               spawn-sh = noctalia "media next";
+              _attrs.allow-when-locked = true;
             };
             XF86AudioPause = {
               spawn-sh = noctalia "media playPause";
+              _attrs.allow-when-locked = true;
             };
             XF86AudioPlay = {
               spawn-sh = noctalia "media playPause";
+              _attrs.allow-when-locked = true;
             };
             XF86AudioPrev = {
               spawn-sh = noctalia "media previous";
+              _attrs.allow-when-locked = true;
             };
 
             # Move around windows in a workspace using vim keys.
@@ -157,7 +251,9 @@ in
             "Mod+H".focus-column-left-or-last = null;
             "Mod+L".focus-column-right-or-first = null;
             "Mod+K".focus-window-or-workspace-up = null;
-            "Mod+J".focus-window-or-workspace-down = null;
+            "Mod+J" = {
+              focus-window-or-workspace-down = null;
+            };
 
             # Move windows/columns around in a workspace
             "Mod+Shift+H".move-column-left = null;
@@ -180,6 +276,163 @@ in
                 }
               ) 10
             ));
+
+          layout = {
+            gaps = 12;
+            focus-ring.off = null;
+            border = {
+              active-gradient = {
+                _attrs = {
+                  angle = 45;
+                  from = "#d3869b";
+                  "in" = "oklch shorter hue";
+                  relative-to = "workspace-view";
+                  to = "#7daea3";
+                };
+              };
+              inactive-color = "#504945";
+            };
+            background-color = "transparent";
+            center-focused-column = "on-overflow";
+            always-center-single-column = null;
+            empty-workspace-above-first = null;
+
+            preset-column-widths = [
+              { proportion = 1. / 3.; }
+              { proportion = 1. / 2.; }
+              { proportion = 2. / 3.; }
+            ];
+
+            default-column-width.proportion = 0.5;
+
+            shadow = {
+              on = null;
+              offset = {
+                _attrs = {
+                  x = 0;
+                  y = 5;
+                };
+              };
+              softness = 30;
+              spread = 5;
+              draw-behind-window = false;
+              color = "#00000070";
+            };
+
+            tab-indicator = {
+              gap = 5.0;
+              width = 4.0;
+              length = {
+                _attrs = {
+                  total-proportion = 0.5;
+                };
+              };
+              position = "top";
+              gaps-between-tabs = 10;
+              corner-radius = 0.0;
+            };
+          };
+
+          layer-rules = [
+            {
+              matches = [
+                # Using the noctalia wallpaper setting.
+                {
+                  namespace = "^noctalia-wallpaper*";
+                }
+                {
+                  namespace = "^noctalia-desktop-widgets*";
+                }
+              ];
+              place-within-backdrop = true;
+            }
+          ];
+
+          window-rules = [
+            {
+              draw-border-with-background = false;
+              # Enable rounded borders
+              geometry-corner-radius =
+                let
+                  r = 20.0;
+                in
+                [
+                  r
+                  r
+                  r
+                  r
+                ];
+              clip-to-geometry = true;
+            }
+
+            {
+              matches = [ { is-floating = true; } ];
+              geometry-corner-radius =
+                let
+                  r = 15.0;
+                in
+                [
+                  r
+                  r
+                  r
+                  r
+                ];
+            }
+
+            {
+              matches = [
+                {
+                  # app-id = "firefox$";
+                  title = "^Picture-in-Picture$";
+                }
+              ];
+              open-floating = true;
+              default-column-width = {
+                fixed = 480;
+              };
+              default-window-height = {
+                fixed = 270;
+              };
+            }
+
+            {
+              matches = [ { is-floating = false; } ];
+              shadow.off = null;
+            }
+
+            # Open thunar in floating
+            {
+              matches = [
+                {
+                  app-id = "(?i).*thunar.*";
+                  title = ".*Thunar.*";
+                }
+
+                {
+                  app-id = "thunar$";
+                  title = ".*File Operation Progress.*";
+                }
+              ];
+              open-floating = true;
+              default-column-width = {
+                fixed = 1029;
+              };
+              default-window-height = {
+                fixed = 683;
+              };
+            }
+
+            {
+              matches = [
+                { app-id = "^emacs.*"; }
+                { app-id = "firefox$"; } # Maximize Firefox
+                { app-id = "vesktop$"; }
+              ];
+              # TODO: Set open-maximized to open-maximized-to-edges
+              # See https://github.com/niri-wm/niri/wiki/Fullscreen-and-Maximize
+              open-maximized = true;
+            }
+          ];
         };
     };
 }

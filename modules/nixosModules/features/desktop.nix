@@ -15,7 +15,6 @@
         self.nixosModules.kmscon
         self.nixosModules.locale
         self.nixosModules.nix
-        # self.nixosModules.sddm
         self.nixosModules.sound
       ];
       programs = {
