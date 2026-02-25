@@ -157,14 +157,7 @@
                     desc = "Thunar";
                     cmd = "Thunar";
                   }
-
-                  /*
-                    {
-                      key = "e";
-                      desc = "Emacs Dirvish";
-                      cmd = "${config.programs.emacs.package}/bin/emacsclient -n -c -e '(progn (select-frame-set-input-focus (selected-frame)) (dirvish))'";
-                    }
-                  */
+                  # TODO: create a bind to open emacs dirvish
                 ]);
 
                 "Mod+F".action.spawn-sh = pkgs.lib.getExe (mkMenu [
@@ -207,17 +200,6 @@
 
                 # "Mod+Ctrl+U".action = move-workspace-down;
                 # "Mod+Ctrl+I".action = move-workspace-up;
-
-                "Mod+1".action = focus-workspace 1;
-                "Mod+2".action = focus-workspace 2;
-                "Mod+3".action = focus-workspace 3;
-                "Mod+4".action = focus-workspace 4;
-                "Mod+5".action = focus-workspace 5;
-                "Mod+6".action = focus-workspace 6;
-                "Mod+7".action = focus-workspace 7;
-                "Mod+8".action = focus-workspace 8;
-                "Mod+9".action = focus-workspace 9;
-                "Mod+0".action = focus-workspace 10;
 
                 "Mod+BracketLeft".action = consume-or-expel-window-left;
                 "Mod+BracketRight".action = consume-or-expel-window-right;
@@ -312,7 +294,22 @@
                 "Mod+Shift+L".action = move-column-right;
                 "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
                 "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
-              };
+              }
+              //
+                # Change workspaces using Mod+<1-0>
+                (builtins.listToAttrs (
+                  builtins.genList (
+                    i:
+                    let
+                      n = i + 1;
+                      key = if n == 10 then "Mod+0" else "Mod+${toString n}";
+                    in
+                    {
+                      name = key;
+                      value.action = focus-workspace n;
+                    }
+                  ) 10
+                ));
 
             layout = {
               gaps = 12;
@@ -375,9 +372,6 @@
                   }
                   {
                     namespace = "^noctalia-desktop-widgets*";
-                  }
-                  {
-                    namespace = "kitty-panel";
                   }
                 ];
                 place-within-backdrop = true;

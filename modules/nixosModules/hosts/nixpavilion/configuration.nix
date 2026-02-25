@@ -41,7 +41,6 @@
       system.stateVersion = "26.05";
 
       documentation = {
-        man.generateCaches = false;
         info.enable = true;
       };
 

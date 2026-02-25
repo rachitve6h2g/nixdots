@@ -1312,13 +1312,12 @@ Elfeed is a rss reader for emacs.
 #+begin_src emacs-lisp :tangle no
 
   (use-package emms
-    :init (emms-standard)
-    :custom
-    (emms-player-list '(emms-player-mpv))
-    (emms-info-functions '(emms-info-native))
-    (emms-source-file-default-directory "~/Music/")
-    (emms-info-asynchronously t)
-    (emms-show-format "♪ %s"))
+    :init
+    (require 'emms-setup)
+    (emms-standard)
+    (emms-default-players)
+    :config
+    (setq emms-source-file-default-directory "~/Music/"))
 
 #+end_src
 

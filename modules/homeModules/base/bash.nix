@@ -138,9 +138,7 @@
         shellAliases = {
           nixcon = "cd /etc/nixos";
           ".." = "cd ..";
-          kava = "kitten panel --edge=background --override background_opacity=0.0 cava";
           tp = "${pkgs.trashy}/bin/trash put";
-
           jctl = "journalctl --user -xeu";
         };
         sessionVariables = userVars;

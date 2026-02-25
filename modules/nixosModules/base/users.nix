@@ -5,7 +5,7 @@
       ...
     }:
     {
-      documentation.man.generateCaches = false; # from NixOS wiki on fish
+      documentation.man.cache.enable = false; # from NixOS wiki on fish
 
       # When installing, remember to use 'nixos-install --no-root-passwd'
       # to use the initialPassword. However, post-installation always change

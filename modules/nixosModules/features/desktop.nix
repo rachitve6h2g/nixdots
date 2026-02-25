@@ -31,6 +31,13 @@
         dconf.enable = true;
       };
 
+      environment.systemPackages = [
+        # Wrapped packages
+        self.packages.${pkgs.stdenv.hostPlatform.system}.btop
+        self.packages.${pkgs.stdenv.hostPlatform.system}.foot
+        self.packages.${pkgs.stdenv.hostPlatform.system}.cava
+      ];
+
       xdg = {
         sounds.enable = true;
         portal.wlr.enable = true;

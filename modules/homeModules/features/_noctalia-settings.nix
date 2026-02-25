@@ -21,7 +21,7 @@
     showCategories = true;
     showIconBackground = false;
     sortByMostUsed = true;
-    terminalCommand = "kitty -e";
+    terminalCommand = "footclient -e";
     useApp2Unit = false;
     viewMode = "list";
   };
@@ -51,7 +51,7 @@
     marginVertical = 4;
     monitors = [ ];
     outerCorners = true;
-    position = "right";
+    position = "bottom";
     screenOverrides = [ ];
     showCapsule = false;
     showOutline = false;
@@ -77,11 +77,7 @@
           showLabelsOnlyWhenOccupied = true;
           unfocusedIconsOpacity = 1;
         }
-        {
-          iconColor = "none";
-          id = "KeepAwake";
-          textColor = "none";
-        }
+
       ];
       left = [
         {
@@ -93,6 +89,28 @@
           id = "ControlCenter";
           useDistroLogo = true;
         }
+        {
+          iconColor = "none";
+          id = "KeepAwake";
+          textColor = "none";
+        }
+        {
+          defaultSettings = {
+            autoStartBreaks = false;
+            autoStartWork = false;
+            longBreakDuration = 15;
+            sessionsBeforeLongBreak = 4;
+            shortBreakDuration = 5;
+            workDuration = 25;
+          };
+          id = "plugin:pomodoro";
+        }
+        {
+          defaultSettings = { };
+          id = "plugin:kde-connect";
+        }
+      ];
+      right = [
         {
           displayMode = "onhover";
           iconColor = "none";
@@ -120,8 +138,6 @@
           showUnreadBadge = true;
           unreadBadgeColor = "primary";
         }
-      ];
-      right = [
         {
           deviceNativePath = "__default__";
           displayMode = "graphic-clean";
@@ -140,21 +156,7 @@
           tooltipFormat = "hh:mm A ddd, MMM dd";
           useCustomFont = false;
         }
-        {
-          defaultSettings = {
-            autoStartBreaks = false;
-            autoStartWork = false;
-            longBreakDuration = 15;
-            sessionsBeforeLongBreak = 4;
-            shortBreakDuration = 5;
-            workDuration = 25;
-          };
-          id = "plugin:pomodoro";
-        }
-        {
-          defaultSettings = { };
-          id = "plugin:kde-connect";
-        }
+
       ];
     };
   };

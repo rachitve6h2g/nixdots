@@ -15,7 +15,7 @@
 
       };
 
-      environment.systemPackages = [ pkgs.kitty ];
+      environment.systemPackages = [ pkgs.foot ];
 
       security = {
         # When using hyprlock from home-manager, must use this.

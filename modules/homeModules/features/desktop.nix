@@ -76,7 +76,7 @@
               "application/zip" = "7zz";
               "image/png" = "swayimg.desktop";
               "image/jpeg" = "swayimg.desktop";
-              "x-scheme-handler/terminal" = "kitty.desktop";
+              "x-scheme-handler/terminal" = "footclient.desktop";
               "text/html" = defaultBrowser;
               "x-scheme-handler/http" = defaultBrowser;
               "x-scheme-handler/https" = defaultBrowser;

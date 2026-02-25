@@ -11,3 +11,8 @@ We can [[https://github.com/theobori/nix-converter][nix-converter]], but recentl
 #+end_src
 
 Just place the name of the json file in place of =file.json=.
+
+* Eyes on These
+
+** Cavasik
+[[https://github.com/TheWisker/Cavasik][Cavasik]] is a great replacement for cava.
