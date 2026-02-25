@@ -135,18 +135,6 @@
                 # Open the clipboard
                 "Mod+G".action.spawn-sh = noctalia "launcher clipboard";
 
-                /*
-                  "Mod+D" = {
-                    action.spawn-sh = pkgs.lib.getExe (mkMenu [
-                      {
-                        key = "m";
-                        desc = "Menu";
-                        cmd = noctalia "launcher toggle";
-                      }
-                    ]);
-                  };
-                */
-
                 "Mod+D".action.spawn-sh = noctalia "launcher toggle";
 
                 # Filemanagers

@@ -176,10 +176,11 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 - [ ] Move to using wrappers.
   - [X] btop
   - [X] cava
-  - [ ] firefox
+  - [X] firefox
   - [X] foot
   - [ ] niri
   - [ ] noctalia
+  - [ ] Shell
   
 - [x] Use import-tree and flake-parts to manage config as flake modules.
 

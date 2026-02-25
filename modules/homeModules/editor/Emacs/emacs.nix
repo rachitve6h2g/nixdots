@@ -7,7 +7,7 @@
           enable = true;
 
           opacity.override = rec {
-            applications = 0.9;
+            applications = 1;
             desktop = applications;
           };
 

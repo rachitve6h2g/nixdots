@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.nixosModules.niri =
     {
@@ -25,7 +25,7 @@
 
           # Use niri-stable and niri-unstable from sodiboo's cache
           # use niri from nixpkgs.
-          package = pkgs.niri;
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
         };
       };
 
