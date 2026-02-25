@@ -174,21 +174,14 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 - [ ] Managing desktop environment and window manager from one place.
 
 - [ ] Move to using wrappers.
-
-- [x] Use import-tree and flake-parts to manage config as flake modules.
-
-- [x] Create fuzzel scripts
-  - [x] fuzzel_supermenu.sh - This will give a menu of menus.
-  - [x] fuzzel_powermenu.sh - For poweroff and suspend and stuff.
-  - [x] fuzzel_emoji.sh - For showing emoji selection.
-  - [x] fuzzel_tomat.sh - For tomat pomodoro timer
-  - [ ] fuzzel_fnottctl.sh - for fnott actions
+  - [X] btop
+  - [X] cava
+  - [ ] firefox
+  - [X] foot
+  - [ ] niri
+  - [ ] noctalia
   
-- HALT: Flesh out neovim configuration. (Testing out helix and waiting for newer version of neovim with built-in package manager)
-
-# 👀 Eyes on These
-
-- [Hyprlauncher](https://github.com/hyprwm/hyprlauncher): App launcher for hyprland.
+- [x] Use import-tree and flake-parts to manage config as flake modules.
 
 # 📃 License
 

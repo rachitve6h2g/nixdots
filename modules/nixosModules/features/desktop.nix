@@ -7,6 +7,7 @@
         self.nixosModules.battery
         self.nixosModules.clamav
         self.nixosModules.console
+        # self.nixosModules.foot
         # self.nixosModules.gaming
         self.nixosModules.greeter
         self.nixosModules.kdeconnect

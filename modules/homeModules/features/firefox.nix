@@ -131,6 +131,31 @@
                     definedAliases = [ "@nw" ];
                   };
 
+                  nixos-options = {
+                    name = "NixOS Options";
+                    urls = [
+                      {
+                        template = "https://search.nixos.org/options";
+                        params = [
+                          {
+                            name = "type";
+                            value = "options";
+                          }
+                          {
+                            name = "channel";
+                            value = "unstable";
+                          }
+                          {
+                            name = "query";
+                            value = "{searchTerms}";
+                          }
+                        ];
+                      }
+                    ];
+                    icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                    definedAliases = [ "@no" ];
+                  };
+
                   nix-packages = {
                     name = "Nix Packages";
                     urls = [
@@ -140,6 +165,10 @@
                           {
                             name = "type";
                             value = "packages";
+                          }
+                          {
+                            name = "channel";
+                            value = "unstable";
                           }
                           {
                             name = "query";

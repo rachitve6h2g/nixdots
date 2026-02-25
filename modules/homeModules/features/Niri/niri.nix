@@ -8,8 +8,7 @@
       ...
     }:
     let
-      colors = config.lib.stylix.colors.withHashtag;
-
+      colors = self.theme; # NOTE: Previously using stylix.colors
       mkMenu =
         menu:
         let

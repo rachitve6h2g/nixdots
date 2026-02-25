@@ -11,6 +11,10 @@ We can [[https://github.com/theobori/nix-converter][nix-converter]], but recentl
 #+end_src
 
 Just place the name of the json file in place of =file.json=.
+Better still use the new =nix eval= commands.
+
+* Foot Wrapper
+(yeah I get the name) The systemd services and sockets have to be enabled.
 
 * Eyes on These
 
