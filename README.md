@@ -178,7 +178,7 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
   - [X] cava
   - [X] firefox
   - [X] foot
-  - [ ] niri
+  - [X] niri
   - [ ] noctalia
   - [ ] Shell
   
