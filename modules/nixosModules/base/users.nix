@@ -5,6 +5,7 @@
     {
 
       pkgs,
+      lib,
       ...
     }:
     let
@@ -34,13 +35,13 @@
         completion = {
           enable = true;
         };
-        /*
-          interactiveShellInit = ''
-                 if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
-                   exec nu
-                 fi
-               '';
-        */
+
+        interactiveShellInit = ''
+          if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
+            exec ${selfpkgs.nushell}/bin/nu
+          fi
+        '';
+
       };
 
       services.userborn.enable = true;
@@ -51,6 +52,8 @@
         "/share/sounds"
         "/"
       ];
-      # environment.shells = [ selfpkgs.nushell ];
+      # TODO: Fix this lib.getExe
+      # https://github.com/nitdn/nixos-machine/blob/012737eeff05f908de30d3d258007cfab255eb8c/modules/nushell/default.nix#L54
+      environment.shells = [ (lib.getExe selfpkgs.nushell) ];
     };
 }

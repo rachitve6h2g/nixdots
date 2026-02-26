@@ -182,6 +182,15 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
   - [ ] mpv
   - [ ] noctalia
   - [ ] shell tools
+	- [X] Bash -> nushell
+	- [ ] Zoxide
+	- [ ] Fzf
+	- [ ] Git
+		- [ ] Global Ignore file
+		- [X] Global Config
+	- [ ] Ripgrep
+	- [ ] bat
+	- [ ] Starship (optional)
   
 - [x] Use import-tree and flake-parts to manage config as flake modules.
 
