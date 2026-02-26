@@ -1,9 +1,15 @@
+{ self, ... }:
+
 {
   flake.nixosModules.users =
     {
+
       pkgs,
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       documentation.man.cache.enable = false; # from NixOS wiki on fish
 
@@ -22,13 +28,19 @@
         ]; # Enable ‘sudo’ for the user.
 
         initialPassword = "1234";
-        shell = pkgs.bashInteractive;
       };
       programs.bash = {
         enable = true;
         completion = {
           enable = true;
         };
+        /*
+          interactiveShellInit = ''
+                 if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
+                   exec nu
+                 fi
+               '';
+        */
       };
 
       services.userborn.enable = true;
@@ -39,5 +51,6 @@
         "/share/sounds"
         "/"
       ];
+      # environment.shells = [ selfpkgs.nushell ];
     };
 }

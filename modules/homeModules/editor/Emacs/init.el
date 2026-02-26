@@ -66,11 +66,11 @@
   (with-selected-frame frame
     (set-face-attribute 'fixed-pitch frame
                         :family "Maple Mono NF"
-                        :height 1.0)
+                        :height 0.9)
 
     (set-face-attribute 'variable-pitch frame
                         :family "Cantarell"
-                        :height 1.14
+                        :height 1.13
                         :weight 'regular)))
 
 (add-hook 'after-make-frame-functions #'my/frame-face-setup)
@@ -474,6 +474,15 @@
   :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
 	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
 	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
+
+(use-package colorful-mode
+  :custom
+  (colorful-use-prefix t)
+  (colorful-only-strings 'only-prog)
+  (css-fontify-colors nil)
+  :config
+  (global-colorful-mode t)
+  (add-to-list 'global-colorful-modes 'helpful-mode))
 
 (use-package envrc
   :hook (after-init . envrc-global-mode))

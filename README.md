@@ -179,8 +179,9 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
   - [X] firefox
   - [X] foot
   - [X] niri
+  - [ ] mpv
   - [ ] noctalia
-  - [ ] Shell
+  - [ ] shell tools
   
 - [x] Use import-tree and flake-parts to manage config as flake modules.
 

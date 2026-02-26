@@ -71,6 +71,7 @@
               babel # Babel languages setup
               breadcrumb # Works well with eglot
               cape # Provides Completion At Point Extensions
+              colorful-mode # Highlight CSS Colors
               consult # Set up minibuffer actions and
               consult-dir # Really good package to traverse long distance directories using minibuffer
               consult-eglot # Consult+eglot

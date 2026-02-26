@@ -66,7 +66,7 @@ This goes to [[file:early-init.el][early-init.el]] file.
   (setq frame-inhibit-implied-resize t)
 
   (setq default-frame-alist
-        '((font . "Maple Mono NF-12")))
+        '((font . "Maple Mono NF-11")))
 
 #+end_src
 
@@ -131,11 +131,11 @@ In emacsclient, the fonts need to be loaded based on frames.
     (with-selected-frame frame
       (set-face-attribute 'fixed-pitch frame
                           :family "Maple Mono NF"
-                          :height 1.0)
+                          :height 0.9)
 
       (set-face-attribute 'variable-pitch frame
                           :family "Cantarell"
-                          :height 1.14
+                          :height 1.13
                           :weight 'regular)))
 
   (add-hook 'after-make-frame-functions #'my/frame-face-setup)
@@ -833,6 +833,20 @@ We can use [[https://github.com/dgutov/diff-hl][diff-hl]] package to see git cha
     :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
   	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
   	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
+
+#+end_src
+
+** Colorful Mode
+#+begin_src emacs-lisp
+
+  (use-package colorful-mode
+    :custom
+    (colorful-use-prefix t)
+    (colorful-only-strings 'only-prog)
+    (css-fontify-colors nil)
+    :config
+    (global-colorful-mode t)
+    (add-to-list 'global-colorful-modes 'helpful-mode))
 
 #+end_src
 

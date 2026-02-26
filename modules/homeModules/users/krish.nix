@@ -25,8 +25,6 @@ in
             self.homeModules.shell
             self.homeModules.desktop
             self.homeModules.emacs
-            self.homeModules.media
-            # self.homeModules.niri
           ];
           nix = {
             settings = {

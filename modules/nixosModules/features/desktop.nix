@@ -1,7 +1,11 @@
 { self, ... }:
+
 {
   flake.nixosModules.desktop =
     { pkgs, ... }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       imports = [
         self.nixosModules.battery
@@ -33,9 +37,9 @@
 
       environment.systemPackages = [
         # Wrapped packages
-        self.packages.${pkgs.stdenv.hostPlatform.system}.btop
-        self.packages.${pkgs.stdenv.hostPlatform.system}.foot
-        self.packages.${pkgs.stdenv.hostPlatform.system}.cava
+        selfpkgs.foot
+        selfpkgs.mpv
+        selfpkgs.git
       ];
 
       xdg = {
@@ -46,6 +50,7 @@
       security.polkit.enable = true;
 
       services = {
+        playerctld.enable = true;
         locate = {
           enable = true;
           package = pkgs.plocate;
