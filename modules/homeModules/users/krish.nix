@@ -21,7 +21,6 @@ in
         { pkgs, ... }:
         {
           imports = [
-            self.homeModules.general
             self.homeModules.shell
             self.homeModules.desktop
             self.homeModules.emacs

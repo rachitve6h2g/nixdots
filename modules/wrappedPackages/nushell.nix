@@ -5,7 +5,6 @@
   flake.wrappers.nushell =
     {
       pkgs,
-      lib,
       wlib,
       ...
     }:
@@ -17,7 +16,29 @@
         selfpkgs.btop
         selfpkgs.cava
         selfpkgs.git
+
+        (pkgs.writeShellScriptBin "ytmusic" ''
+          yt-music() {
+          	yt-dlp \
+          		-x \
+          		-f bestaudio \
+          		"$@"
+          }
+
+        '')
+
+        (pkgs.writeShellScriptBin "ytplaylist" ''
+          yt-playlist() {
+          	yt-dlp \
+          		--ignore-errors \
+          		--continue \
+          		--no-overwrites \
+          		--download-archive progress.txt \
+          		"$@"
+          }
+        '')
       ];
+
       imports = [ wlib.wrapperModules.nushell ];
 
       "config.nu".content = ''

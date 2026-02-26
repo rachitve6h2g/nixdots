@@ -188,7 +188,7 @@
     manualSunrise = "06:30";
     manualSunset = "18:30";
     monitorForColors = "";
-    predefinedScheme = "Noctalia (default)";
+    predefinedScheme = "Kanagawa";
     schedulingMode = "off";
     useWallpaperColors = false;
   };
@@ -240,7 +240,7 @@
   dock = {
     animationSpeed = 1;
     backgroundOpacity = 0.9;
-    colorizeIcons = false;
+    colorizeIcons = true;
     deadOpacity = 0.6;
     displayMode = "auto_hide";
     groupApps = true;
@@ -433,6 +433,10 @@
         enabled = true;
         keybind = "6";
       }
+      {
+        action = "rebootToUefi";
+        enabled = true;
+      }
     ];
     showHeader = true;
     showKeybinds = true;
@@ -469,9 +473,9 @@
     bluetoothDetailsViewMode = "grid";
     bluetoothHideUnnamedDevices = false;
     boxBorderEnabled = false;
-    fontDefault = "Maple Mono NF";
+    fontDefault = "JetBrainsMono Nerd Font";
     fontDefaultScale = 1;
-    fontFixed = "Maple Mono NF";
+    fontFixed = "JetBrainsMono Nerd Font";
     fontFixedScale = 1;
     networkPanelView = "wifi";
     panelBackgroundOpacity = 0.9;
@@ -499,7 +503,7 @@
     showHiddenFiles = false;
     skipStartupTransition = false;
     solidColor = "#1a1a2e";
-    sortOrder = "name";
+    sortOrder = "date_desc";
     transitionDuration = 1500;
     transitionEdgeSmoothness = 0.05;
     transitionType = "random";

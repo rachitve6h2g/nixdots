@@ -66,7 +66,22 @@ This goes to [[file:early-init.el][early-init.el]] file.
   (setq frame-inhibit-implied-resize t)
 
   (setq default-frame-alist
-        '((font . "Maple Mono NF-11")))
+        '((font . "JetBrainsMono Nerd Font-11")))
+
+#+end_src
+
+** Theme
+#+begin_src emacs-lisp
+
+  (use-package kanagawa-themes
+    :custom
+    (kanagawa-themes-org-agenda-height t)
+    (kanagawa-themes-org-bold t)
+    (kanagawa-themes-org-height t)
+    (kanagawa-themes-org-highlight t)
+    (kanagawa-themes-org-priority-bold t)
+    :config
+    (load-theme 'kanagawa-dragon t))
 
 #+end_src
 
@@ -92,7 +107,7 @@ This goes to [[file:early-init.el][early-init.el]] file.
     		treemacs-mode-hook
     		eshell-mode-hook
     		vterm-mode-hook
-    		pdf-mode-hook))
+    		reader-mode-hook))
 
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -130,11 +145,11 @@ In emacsclient, the fonts need to be loaded based on frames.
   (defun my/frame-face-setup (frame)
     (with-selected-frame frame
       (set-face-attribute 'fixed-pitch frame
-                          :family "Maple Mono NF"
-                          :height 0.9)
+                          :family "JetBrainsMono Nerd Font"
+                          :height 1.0)
 
       (set-face-attribute 'variable-pitch frame
-                          :family "Cantarell"
+                          :family "Inter"
                           :height 1.13
                           :weight 'regular)))
 
@@ -151,13 +166,13 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
   (defun my/set-font-faces ()
     (message "Set Font Faces!")
     ;; Font size
-    (set-face-attribute 'default nil :font "Maple Mono NF" :height 120)
+    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 120)
 
     ;; Set the fixed pitch face
-    (set-face-attribute 'fixed-pitch nil :family "Maple Mono NF" :height 1.1)
+    (set-face-attribute 'fixed-pitch nil :family "JetBrainsMono Nerd Font" :height 1.0)
 
     ;; Set the variable pitch face
-    (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.14 :weight 'regular))
+    (set-face-attribute 'variable-pitch nil :font "Inter" :height 1.14 :weight 'regular))
 
   ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
   (if (daemonp)
@@ -579,27 +594,49 @@ A basic setup of org-mode.
                     (org-level-6 . 1.1)
                     (org-level-7 . 1.1)
                     (org-level-8 . 1.1)))
-      (set-face-attribute (car face) nil :font "Cantarell" :weight 'bold :height (cdr face)))
+      (set-face-attribute (car face) nil
+  			:font "Inter"
+  			:weight 'bold
+  			:height (cdr face)))
 
     ;; Make the document title a bit bigger
-    (set-face-attribute 'org-document-title nil :font "Cantarell" :weight
-      		      'bold :height 1.8)
+    (set-face-attribute 'org-document-title nil
+  		      :font "Inter"
+  		      :weight 'bold
+  		      :height 1.8)
+    
     (require 'org-indent)
-    (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-    (set-face-attribute 'org-block nil            :foreground 'unspecified :inherit
-      		      'fixed-pitch :height 0.85)
-    (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face
-      							   fixed-pitch))
-    (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
-    (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch))
+    
+    (set-face-attribute 'org-indent nil
+  		      :inherit '(org-hide fixed-pitch))
+    
+    (set-face-attribute 'org-block nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-code nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-verbatim nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-special-keyword nil
+  		      :inherit '(font-lock-comment-face fixed-pitch))
+    
+    (set-face-attribute 'org-meta-line nil
+  		      :inherit '(font-lock-comment-face fixed-pitch))
+    
+    (set-face-attribute 'org-checkbox nil
+  		      :inherit 'fixed-pitch))
 
 
   (use-package org
     :commands (org-capture org-agenda)
-    :hook (org-mode . my/org-mode-setup)
+    :hook
+    (org-mode . my/org-mode-setup)
+    (org-mode . my/org-font-setup)
     :custom
     (org-hide-leading-stars t)
     (org-adapt-indentation t)
@@ -609,9 +646,6 @@ A basic setup of org-mode.
     (org-link-descriptive t)
     
     :config
-
-    (my/org-font-setup)
-    
     ;; Enable org templates
     (require 'org-tempo)
     (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
@@ -1323,15 +1357,20 @@ Elfeed is a rss reader for emacs.
 
 *  Music Listening
 [[https://github.com/emacsmirror/emms][Emms]] (Emacs Multi-Media System) is a system to listen to music. The config is taken from [[https://emacs.stackexchange.com/a/3741][this comment on StackExchange]].
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp 
 
   (use-package emms
+    :custom
+    (emms-player-list '(emms-player-mpv))
+    (emms-source-file-default-directory "~/Music/")
+    (emms-show-format "Playing: %s")
+    (emms-info-functions '(emms-info-native))
+    (emms-browser-covers #'emms-browser-cache-thumbnail-async)
+    (emms-browser-thumbnail-small-size 64)
+    (emms-browser-thumbnail-medium-size 128)
     :init
     (require 'emms-setup)
-    (emms-standard)
-    (emms-default-players)
-    :config
-    (setq emms-source-file-default-directory "~/Music/"))
+    (emms-all))
 
 #+end_src
 

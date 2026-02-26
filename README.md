@@ -24,12 +24,6 @@
 </div>
 </h1>
 
-> [!NOTE]
-> See the [steps to install niri using binary cache.](#when-using-the-niri-wm) This repo uses niri from the [nixpkgs](https://github.com/NixOS/nixpkgs) repository.
-
-> [!NOTE]
-> I have taken a heavy inspiration from [vimjoyer's nixconf repo](https://github.com/vimjoyer/nixconf). However, I have not put to use the wrapper's configuration. I am still using home-manager, because it solves a lot of problems that would rather need to be solved manually when using wrappers.
-
 # 📔 Instructions for installation
 
 I am presuming that a bootable USB is already prepared. Boot into the computer.
@@ -152,10 +146,6 @@ Reboot for the environment variables to set. (In my experience, environment vari
 
    Some Firefox extensions need to enabled manually. Some features are still not implemented by me. For example the Nord Extension has to be enabled manually.
 
-## When Using the Niri Window Manager
-
-For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](https://github.com/sodiboo). It's popular and works well. To use niri-stable package from the binary cache of the author [these instructions](https://github.com/sodiboo/niri-flake#binary-cache) must be followed.
-
 # Common issues
 
 - On changing git repo, it may just stop working. Don't worry, remove all backup files and just rebuild.
@@ -174,12 +164,14 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 - [ ] Managing desktop environment and window manager from one place.
 
 - [ ] Move to using wrappers.
+  - [X] aria2
+  - [ ] yt-dlp
   - [X] btop
   - [X] cava
   - [X] firefox
   - [X] foot
   - [X] niri
-  - [ ] mpv
+  - [X] mpv
   - [ ] noctalia
   - [ ] shell tools
 	- [X] Bash -> nushell
@@ -190,9 +182,16 @@ For niri I use [niri-flake](https://github.com/sodiboo/niri-flake) by [sodiboo](
 		- [X] Global Config
 	- [ ] Ripgrep
 	- [ ] bat
-	- [ ] Starship (optional)
-  
+	- [ ] DEPRECATE: Starship (not needed in nushell as it provides "prompt engineering") 
+ - [X] Remove stylix
+   - [X] Set GTK Theme using NixOS configuration module
+   - [X] Set Fonts using NixOS module
+	 - [X] Remove Home-Manager stylix font modules
+
 - [x] Use import-tree and flake-parts to manage config as flake modules.
+
+# 📚 Resources
+- [Wallpapers Repo by krishna4a6av](https://github.com/krishna4a6av/Wallpapers "For credits")
 
 # 📃 License
 

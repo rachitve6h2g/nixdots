@@ -47,7 +47,8 @@
         (extension "ublock-origin" "uBlock0@raymondhill.net")
         (extension "4263531" "myallychou@gmail.com")
         (extension "darkreader" "addon@darkreader.org")
-        (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
+        # (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
+        (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
       ];
     in
     {
@@ -127,13 +128,13 @@
                 # NixOS Related
                 {
                   Name = "nixpkgs packages";
-                  URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+                  URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
                   IconURL = "https://wiki.nixos.org/favicon.ico";
                   Alias = "@np";
                 }
                 {
                   Name = "NixOS options";
-                  URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+                  URLTemplate = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
                   IconURL = "https://wiki.nixos.org/favicon.ico";
                   Alias = "@no";
                 }

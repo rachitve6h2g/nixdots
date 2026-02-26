@@ -5,4 +5,4 @@
 (setq frame-inhibit-implied-resize t)
 
 (setq default-frame-alist
-      '((font . "Maple Mono NF-11")))
+      '((font . "JetBrainsMono Nerd Font-11")))

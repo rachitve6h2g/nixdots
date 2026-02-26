@@ -5,7 +5,6 @@
     {
       imports = [
         self.nixosModules.networking
-        self.nixosModules.stylix
       ];
 
       # Tmp on ram

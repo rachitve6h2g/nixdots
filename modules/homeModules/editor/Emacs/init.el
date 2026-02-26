@@ -23,6 +23,16 @@
   (setq auto-save-file-name-transforms
 	`((".*" ,autosave-dir t))))
 
+(use-package kanagawa-themes
+  :custom
+  (kanagawa-themes-org-agenda-height t)
+  (kanagawa-themes-org-bold t)
+  (kanagawa-themes-org-height t)
+  (kanagawa-themes-org-highlight t)
+  (kanagawa-themes-org-priority-bold t)
+  :config
+  (load-theme 'kanagawa-dragon t))
+
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq visible-bell t)
@@ -41,7 +51,7 @@
   		treemacs-mode-hook
   		eshell-mode-hook
   		vterm-mode-hook
-  		pdf-mode-hook))
+  		reader-mode-hook))
 
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -65,11 +75,11 @@
 (defun my/frame-face-setup (frame)
   (with-selected-frame frame
     (set-face-attribute 'fixed-pitch frame
-                        :family "Maple Mono NF"
-                        :height 0.9)
+                        :family "JetBrainsMono Nerd Font"
+                        :height 1.0)
 
     (set-face-attribute 'variable-pitch frame
-                        :family "Cantarell"
+                        :family "Inter"
                         :height 1.13
                         :weight 'regular)))
 
@@ -310,27 +320,49 @@
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Cantarell" :weight 'bold :height (cdr face)))
+    (set-face-attribute (car face) nil
+			:font "Inter"
+			:weight 'bold
+			:height (cdr face)))
 
   ;; Make the document title a bit bigger
-  (set-face-attribute 'org-document-title nil :font "Cantarell" :weight
-    		      'bold :height 1.8)
+  (set-face-attribute 'org-document-title nil
+		      :font "Inter"
+		      :weight 'bold
+		      :height 1.8)
+  
   (require 'org-indent)
-  (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-  (set-face-attribute 'org-block nil            :foreground 'unspecified :inherit
-    		      'fixed-pitch :height 0.85)
-  (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
-  (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.85)
-  (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
-  (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face
-    							   fixed-pitch))
-  (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch))
+  
+  (set-face-attribute 'org-indent nil
+		      :inherit '(org-hide fixed-pitch))
+  
+  (set-face-attribute 'org-block nil
+		      :inherit 'fixed-pitch
+		      :height 0.9)
+  
+  (set-face-attribute 'org-code nil
+		      :inherit 'fixed-pitch
+		      :height 0.9)
+  
+  (set-face-attribute 'org-verbatim nil
+		      :inherit 'fixed-pitch
+		      :height 0.9)
+  
+  (set-face-attribute 'org-special-keyword nil
+		      :inherit '(font-lock-comment-face fixed-pitch))
+  
+  (set-face-attribute 'org-meta-line nil
+		      :inherit '(font-lock-comment-face fixed-pitch))
+  
+  (set-face-attribute 'org-checkbox nil
+		      :inherit 'fixed-pitch))
 
 
 (use-package org
   :commands (org-capture org-agenda)
-  :hook (org-mode . my/org-mode-setup)
+  :hook
+  (org-mode . my/org-mode-setup)
+  (org-mode . my/org-font-setup)
   :custom
   (org-hide-leading-stars t)
   (org-adapt-indentation t)
@@ -340,9 +372,6 @@
   (org-link-descriptive t)
   
   :config
-
-  (my/org-font-setup)
-  
   ;; Enable org templates
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
@@ -800,3 +829,16 @@ targets."
   (unless (fboundp 'reader-current-doc-pagenumber)
     (defalias 'reader-current-doc-pagenumber
       #'reader-dyn--current-doc-pagenumber)))
+
+(use-package emms
+  :custom
+  (emms-player-list '(emms-player-mpv))
+  (emms-source-file-default-directory "~/Music/")
+  (emms-show-format "Playing: %s")
+  (emms-info-functions '(emms-info-native))
+  (emms-browser-covers #'emms-browser-cache-thumbnail-async)
+  (emms-browser-thumbnail-small-size 64)
+  (emms-browser-thumbnail-medium-size 128)
+  :init
+  (require 'emms-setup)
+  (emms-all))

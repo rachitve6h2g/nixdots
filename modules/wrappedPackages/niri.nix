@@ -22,7 +22,7 @@ in
             with theme;
             lib.generators.toYAML { } {
               # A little bit of style
-              # font = "${config.stylix.fonts.monospace.name}"; # TODO: Change font here
+              font = "JetBrainsMono Nerd Font";
               background = "${base00}d0";
               color = "${base05}";
               border = "${base09}";

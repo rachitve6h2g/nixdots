@@ -16,6 +16,15 @@ Better still use the new =nix eval= commands.
 * Foot Wrapper
 (yeah I get the name) The systemd services and sockets have to be enabled.
 
+** Post-Config Changes
+The already running server needs to be disabled and then re-enabled
+#+begin_src bash
+
+  $systemctl --user disable --now foot-server
+  $systemctl --user enable --now foot-server
+
+#+end_src
+
 * Eyes on These
 
 ** Cavasik

@@ -12,11 +12,12 @@
         self.nixosModules.clamav
         self.nixosModules.console
         self.nixosModules.firefox
+        self.nixosModules.fonts
         # self.nixosModules.gaming
         self.nixosModules.greeter
+        self.nixosModules.gtk
         self.nixosModules.kdeconnect
         self.nixosModules.keymap
-        self.nixosModules.kmscon
         self.nixosModules.locale
         self.nixosModules.nix
         self.nixosModules.sound
@@ -37,6 +38,7 @@
 
       environment.systemPackages = [
         # Wrapped packages
+        selfpkgs.aria2
         selfpkgs.foot
         selfpkgs.mpv
         selfpkgs.git

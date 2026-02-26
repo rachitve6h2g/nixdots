@@ -2,20 +2,20 @@
   flake.homeModules.emacs =
     { pkgs, config, ... }:
     {
-      stylix = {
-        targets.emacs = {
-          enable = true;
+      # stylix = {
+      #   targets.emacs = {
+      #     enable = true;
 
-          opacity.override = rec {
-            applications = 1;
-            desktop = applications;
-          };
+      #     opacity.override = rec {
+      #       applications = 1;
+      #       desktop = applications;
+      #     };
 
-          fonts.override = {
-            applications = 11;
-          };
-        };
-      };
+      #     fonts.override = {
+      #       applications = 11;
+      #     };
+      #   };
+      # };
 
       home.packages = with pkgs; [
         bash-language-server # bash-language server
@@ -51,16 +51,13 @@
         (pkgs.writeShellScriptBin "ec" ''
           ${config.programs.emacs.package}/bin/emacsclient -a \"\" -c $@
         '')
+
+        (pkgs.writeShellScriptBin "epkgs" ''
+          nix-env -f '<nixpkgs>' -qaP -A emacsPackages
+        '')
       ];
 
       programs = {
-        bash = {
-          shellAliases = {
-            ec = ''emacsclient -a "" -c'';
-            epkgs = "nix-env -f '<nixpkgs>' -qaP -A emacsPackages";
-          };
-        };
-
         emacs = {
           enable = true;
           package = pkgs.emacs-pgtk;
@@ -105,6 +102,7 @@
               indent-bars # Indentation guide bars
               info-colors # Prettify info mode
               json-mode
+              kanagawa-themes # The awesome kanawaga themes
               ligature
               magit
               marginalia
