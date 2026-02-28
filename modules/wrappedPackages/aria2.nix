@@ -53,7 +53,6 @@
           "--conf-path" = configFile;
         };
         flagSeparator = "=";
-        meta.platforms = [ "x86_64-linux" ];
       };
     };
 

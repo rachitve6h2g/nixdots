@@ -9,7 +9,6 @@
     {
 
       imports = [
-        self.homeModules.discord
         self.homeModules.noctalia
       ];
 

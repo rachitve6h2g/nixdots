@@ -20,6 +20,7 @@
         self.nixosModules.keymap
         self.nixosModules.locale
         self.nixosModules.nix
+        self.nixosModules.social
         self.nixosModules.sound
       ];
       programs = {
@@ -28,7 +29,6 @@
           plugins = with pkgs; [
             thunar-archive-plugin
             thunar-volman
-
             thunar-vcs-plugin
             thunar-media-tags-plugin
           ];
@@ -46,6 +46,10 @@
 
         pkgs.wl-clipboard
         pkgs.brightnessctl
+        pkgs.libnotify
+        pkgs.gdu
+        pkgs.udiskie
+        pkgs.polkit_gnome
       ];
 
       xdg = {

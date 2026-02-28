@@ -30,11 +30,6 @@ in
             };
             package = pkgs.lix;
           };
-          nixpkgs.config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (lib.getName pkg) [
-              "7zz"
-            ];
 
           home = {
             username = "krish";

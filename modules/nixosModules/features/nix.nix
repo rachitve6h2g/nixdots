@@ -20,7 +20,11 @@
       };
 
       nixpkgs = {
-        config.allowUnfree = true;
+        config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "7zz"
+          ];
       };
 
       programs = {

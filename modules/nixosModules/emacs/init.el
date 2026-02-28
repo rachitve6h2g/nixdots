@@ -110,8 +110,6 @@
 ;; General usage
 (use-package nerd-icons)
 
-
-
 ;; Use in ibuffer
 (use-package nerd-icons-ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
@@ -201,7 +199,8 @@
   :config
   (treemacs-nerd-icons-config))
 
-(use-package dired-open-with :ensure nil)
+(use-package dired-open-with
+  :after dirvish)
 
 (use-package doom-modeline
   :custom
@@ -256,7 +255,45 @@
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
 
-  (dashboard-projects-switch-function 'consult-projectile-switch-project)
+  ;; (setq dashboard-projects-switch-function (lambda (&rest _) consult-projectile-switch-project))
+  
+  (dashboard-projects-switch-function #'projectile-switch-project)
+  (dashboard-startup-banner "~/.face")
+  (dashboard-image-banner-max-heigth 200)
+  (dashboard-image-banner-max-width 200)
+  (dashboard-banner-logo-title "おかえり")
+
+  ;; Customize which items are displayed
+  (dashboard-items '((recents   . 5)
+                     (bookmarks . 5)
+                     (projects  . 5)
+                     (agenda    . 5)
+                     (registers . 5)))
+  
+  ;; Customize item shortcuts
+  (dashboard-item-shortcuts '((recents   . "r")
+                              (bookmarks . "m")
+                              (projects  . "p")
+                              (agenda    . "a")
+                              (registers . "e")))
+
+  ;; Customize the widgets on the dashboard
+  (dashboard-startupify-list '(dashboard-insert-banner
+                               dashboard-insert-newline
+                               dashboard-insert-banner-title
+                               dashboard-insert-newline
+                               dashboard-insert-navigator
+                               dashboard-insert-newline
+                               dashboard-insert-init-info
+                               dashboard-insert-items
+                               dashboard-insert-newline
+                               dashboard-insert-footer))
+  
+  ;; modify icon height and vertical adjust
+  ;; (dashboard-icon-file-height 1.75)
+  ;; (dashboard-icon-file-v-adjust -0.125)
+  ;; (dashboard-heading-icon-height 1.75)
+  ;; (dashboard-heading-icon-v-adjust -0.125)
   
   :hook
   (server-after-make-frame . 'dashboard-open) ;; When using emacsclient
@@ -529,10 +566,13 @@
   
   :custom
   (projectile-project-search-path '("~/Development/"
-				    "~/nixdots/"))
+  				    "~/nixdots/"))
   
   :bind (:map projectile-mode-map
-	      ("C-c p" . projectile-command-map)))
+  	      ("C-c p" . projectile-command-map)))
+
+;; Also use consult-projectile
+(use-package consult-projectile)
 
 (use-package smartparens
   :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
@@ -567,8 +607,14 @@
 (use-package nixfmt
   :hook (nix-ts-mode . nixfmt-on-save-mode))
 
-(use-package shmft
-  :hook (sh-mode . shfmt-on-save-mode))
+(use-package shfmt
+  :hook (sh-mode . shfmt-on-save-mode)
+  :custom
+  ;; Use 2 spaces for indentation
+  (shfmt-indent 2)
+
+  ;; Optional but sane defaults
+  (shfmt-arguments '("-i" "2" "-ci")))
 
 (use-package nix-ts-mode
   :mode "\\.nix\\'"

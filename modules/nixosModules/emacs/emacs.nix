@@ -106,7 +106,6 @@
               nerd-icons
               nerd-icons-completion
               nerd-icons-corfu
-              # nerd-icons-dired # Dirvish handles it
               nerd-icons-grep
               nerd-icons-ibuffer
               nerd-icons-xref
