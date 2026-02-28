@@ -3,9 +3,6 @@ let
   inherit (self) theme;
 in
 {
-  perSystem = {
-    wrappers.packages.cava = true;
-  };
   flake.wrappers.cava =
     {
       wlib,

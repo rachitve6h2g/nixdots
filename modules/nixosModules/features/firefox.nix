@@ -28,6 +28,8 @@
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.startup.page" = 3; # Restore last closed tabs and windows
+        "browser.sessionstore.resume_from_crash" = true; # NOTE: in case of any problem, try commenting this line out
 
         # For xdg-desktop-portal-termfilechooser
         "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -47,8 +49,10 @@
         (extension "ublock-origin" "uBlock0@raymondhill.net")
         (extension "4263531" "myallychou@gmail.com")
         (extension "darkreader" "addon@darkreader.org")
+
         # (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
-        (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
+        # (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
+        (extension "tokyo-night-dark-theme" "{cebd391d-f568-473f-bb6e-698d08ec81ec}")
       ];
     in
     {

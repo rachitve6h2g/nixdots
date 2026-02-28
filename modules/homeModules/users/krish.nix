@@ -18,12 +18,10 @@ in
 
     homeModules = {
       krish =
-        { pkgs, ... }:
+        { pkgs, lib, ... }:
         {
           imports = [
-            self.homeModules.shell
             self.homeModules.desktop
-            self.homeModules.emacs
           ];
           nix = {
             settings = {
@@ -32,6 +30,11 @@ in
             };
             package = pkgs.lix;
           };
+          nixpkgs.config.allowUnfreePredicate =
+            pkg:
+            builtins.elem (lib.getName pkg) [
+              "7zz"
+            ];
 
           home = {
             username = "krish";

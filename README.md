@@ -164,15 +164,23 @@ Reboot for the environment variables to set. (In my experience, environment vari
 - [ ] Managing desktop environment and window manager from one place.
 
 - [ ] Move to using wrappers.
-  - [X] aria2
-  - [ ] yt-dlp
+  - [ ] set preferences options to make font, icon and theme name globally available
+  - [ ] HALT: aria2 (Facing problems in wrapping the binary)
+	- [ ] Fix file:modules/wrappedPackages/aria2.nix
+	- [ ] Fix file:modules/wrappedPackages/yt-dlp.nix
+	- [ ] Fix file:modules/nixosModules/features/desktop.nix
+  - [X] NEXT: yt-dlp
   - [X] btop
   - [X] cava
   - [X] firefox
   - [X] foot
   - [X] niri
+  - [ ] Swayidle 
+	- [ ] wrap the config around the binary 
+	- [ ] create a systemd service to run the binary
   - [X] mpv
   - [ ] noctalia
+	- [ ] Use Stylix's base16 modules to integrate with own theme set
   - [ ] shell tools
 	- [X] Bash -> nushell
 	- [ ] Zoxide

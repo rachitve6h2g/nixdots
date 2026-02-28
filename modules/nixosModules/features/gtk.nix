@@ -2,11 +2,22 @@
   flake.nixosModules.gtk =
     { pkgs, ... }:
     let
-      theme-name = "Kanagawa-BL"; # Borderless
-      theme-package = pkgs.kanagawa-gtk-theme;
+      theme-name = "Tokyonight-Purple-Dark"; # Borderless
+      theme-package = pkgs.tokyonight-gtk-theme.override {
+        gnome-shell = null; # Don't install Gnome Shell
+        gnome-themes-extra = null; # Don't install gnome-themes-extra
+        colorVariants = [ "dark" ];
+        sizeVariants = [ "standard" ];
+        themeVariants = [ "purple" ];
+        tweakVariants = [
+          "macos"
+          "black"
+        ];
+        iconVariants = [ "Dark" ];
+      };
 
-      icon-theme-package = pkgs.kanagawa-icon-theme;
-      icon-theme-name = "Kanagawa";
+      # icon-theme-package = pkgs.kanagawa-icon-theme;
+      icon-theme-name = "Tokyonight-Dark";
 
       cursor-package = pkgs.bibata-cursors;
       cursor-name = "Bibata-Modern-Ice";
@@ -15,7 +26,7 @@
         [Settings]
         gtk-cursor-theme-name=${cursor-name}
         gtk-cursor-theme-size=24
-        gtk-font-name=JetBrainsMono Nerd Font 12
+        gtk-font-name=Iosevka Nerd Font 12
         gtk-icon-theme-name=${icon-theme-name}
         gtk-theme-name=${theme-name}
       '';
@@ -46,7 +57,8 @@
         };
         systemPackages = [
           theme-package
-          icon-theme-package
+          # icon-theme-package
+          cursor-package
           pkgs.gtk3
           pkgs.gtk4
         ];
@@ -59,7 +71,7 @@
             user = {
               databases = [
                 {
-                  lockAll = false;
+                  lockAll = true;
                   settings = {
                     "org/gnome/desktop/interface" = {
                       gtk-theme = theme-name;

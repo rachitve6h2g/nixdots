@@ -23,15 +23,25 @@
   (setq auto-save-file-name-transforms
 	`((".*" ,autosave-dir t))))
 
-(use-package kanagawa-themes
+(use-package doom-themes
+  :ensure t
   :custom
-  (kanagawa-themes-org-agenda-height t)
-  (kanagawa-themes-org-bold t)
-  (kanagawa-themes-org-height t)
-  (kanagawa-themes-org-highlight t)
-  (kanagawa-themes-org-priority-bold t)
+  ;; Global settings (defaults)
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; for treemacs users
+  (doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
   :config
-  (load-theme 'kanagawa-dragon t))
+  (load-theme 'doom-tokyo-night t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (nerd-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
@@ -75,7 +85,7 @@
 (defun my/frame-face-setup (frame)
   (with-selected-frame frame
     (set-face-attribute 'fixed-pitch frame
-                        :family "JetBrainsMono Nerd Font"
+                        :family "Iosevka Nerd Font"
                         :height 1.0)
 
     (set-face-attribute 'variable-pitch frame
@@ -86,21 +96,16 @@
 (add-hook 'after-make-frame-functions #'my/frame-face-setup)
 
 (use-package ligature
+  :load-path "path-to-ligature-repo"
   :config
-  (ligature-set-ligatures 'prog-mode '("--" "---" "==" "===" "!=" "!==" "=!="
-				       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
-				       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
-				       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
-				       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
-				       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
-				       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
-				       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
-				       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
-				       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
-				       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
-				       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
-				       "<:<" ";;;"))
-  (global-ligature-mode ))
+  ;; Enable all Iosevka ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->" "<--->" "<---->" "<!--"
+                                       "<==" "<===" "<=" "=>" "=>>" "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+                                       "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+                                       ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:" "=:" "<******>" "++" "+++"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
 
 ;; General usage
 (use-package nerd-icons)

@@ -1,5 +1,4 @@
 {
-  perSystem.wrappers.packages.aria2 = true;
   flake.wrappers.aria2 =
     {
       wlib,
@@ -22,6 +21,7 @@
     in
     {
       imports = [ wlib.modules.default ];
+
       options = {
         settings = lib.mkOption {
           type =
@@ -41,15 +41,20 @@
             max-connection-per-server = 4;
             min-split-size = "5M";
             on-download-complete = "exit";
+            auto-file-renaming = false;
           };
           description = "Settings to be wrapped with aria2 binary";
         };
       };
       config = {
         package = pkgs.aria2;
+        # exePath = ;
         flags = {
           "--conf-path" = configFile;
         };
+        flagSeparator = "=";
+        meta.platforms = [ "x86_64-linux" ];
       };
     };
+
 }

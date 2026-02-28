@@ -11,8 +11,8 @@
         enable = true;
         fonts = [
           {
-            name = "JetBrainsMono Nerd Font";
-            package = pkgs.nerd-fonts.jetbrains-mono;
+            name = "Iosevka Nerd Font";
+            package = pkgs.nerd-fonts.iosevka;
           }
         ];
         extraOptions = "--term xterm-256color";
@@ -34,7 +34,7 @@
           noto-fonts-color-emoji
 
           # Nerd Fonts
-          nerd-fonts.jetbrains-mono
+          nerd-fonts.iosevka
           nerd-fonts.symbols-only
 
           # For document-like fonts
@@ -61,7 +61,7 @@
               "Noto Sans CJK"
             ];
             monospace = [
-              "JetBrainsMono Nerd Font"
+              "Iosevka Nerd Font"
               "Noto Sans Mono"
             ];
             emoji = [ "Noto Color Emoji" ];

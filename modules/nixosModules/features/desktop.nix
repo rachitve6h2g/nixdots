@@ -38,10 +38,14 @@
 
       environment.systemPackages = [
         # Wrapped packages
-        selfpkgs.aria2
+        selfpkgs.aria2.out # FIXME: fix the binary wrapper problem
         selfpkgs.foot
         selfpkgs.mpv
         selfpkgs.git
+        selfpkgs.yt-dlp
+
+        pkgs.wl-clipboard
+        pkgs.brightnessctl
       ];
 
       xdg = {

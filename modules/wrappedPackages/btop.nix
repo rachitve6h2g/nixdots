@@ -3,10 +3,6 @@ let
   inherit (self) theme;
 in
 {
-  perSystem = {
-    wrappers.control_type = "build";
-    wrappers.packages.btop = true;
-  };
   flake.wrappers.btop =
     {
       wlib,

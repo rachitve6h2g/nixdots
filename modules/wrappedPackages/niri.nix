@@ -3,10 +3,6 @@ let
   inherit (self) theme;
 in
 {
-  perSystem = {
-    wrappers.packages.niri = true;
-  };
-
   flake.wrappers.niri =
     {
       wlib,
@@ -22,7 +18,7 @@ in
             with theme;
             lib.generators.toYAML { } {
               # A little bit of style
-              font = "JetBrainsMono Nerd Font";
+              font = "Iosevka Nerd Font";
               background = "${base00}d0";
               color = "${base05}";
               border = "${base09}";
@@ -55,6 +51,7 @@ in
         let
           noctalia = cmd: "noctalia-shell ipc call ${cmd}";
         in
+        with theme;
         {
           input = {
             keyboard = {
@@ -281,16 +278,17 @@ in
             gaps = 12;
             focus-ring.off = null;
             border = {
+              width = 3;
               active-gradient = {
                 _attrs = {
                   angle = 45;
-                  from = "#d3869b";
+                  from = "${base0E}";
                   "in" = "oklch shorter hue";
                   relative-to = "workspace-view";
-                  to = "#7daea3";
+                  to = "${base0D}";
                 };
               };
-              inactive-color = "#504945";
+              inactive-color = "${base02}";
             };
             background-color = "transparent";
             center-focused-column = "on-overflow";

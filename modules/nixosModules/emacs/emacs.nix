@@ -1,23 +1,13 @@
 {
-  flake.homeModules.emacs =
+  flake.nixosModules.emacs =
     { pkgs, config, ... }:
     {
-      # stylix = {
-      #   targets.emacs = {
-      #     enable = true;
 
-      #     opacity.override = rec {
-      #       applications = 1;
-      #       desktop = applications;
-      #     };
+      environment.systemPackages = with pkgs; [
+        fd
+        ripgrep
+        ripgrep-all
 
-      #     fonts.override = {
-      #       applications = 11;
-      #     };
-      #   };
-      # };
-
-      home.packages = with pkgs; [
         bash-language-server # bash-language server
         clang-tools # For C development format
         emacs-lsp-booster # Dependency for eglot-booster
@@ -39,6 +29,7 @@
         shfmt # for formatting bash
         mupdf
 
+        unzip # For Unzipping zip files
         vips # Has vlpsthumbnail for image preview in dirvish
         _7zz-rar # for archive files preview
 
@@ -49,20 +40,21 @@
 
         # Alias for emacsclient
         (pkgs.writeShellScriptBin "ec" ''
-          ${config.programs.emacs.package}/bin/emacsclient -a \"\" -c $@
+          ${config.services.emacs.package}/bin/emacsclient -a \"\" -c $@
         '')
 
         (pkgs.writeShellScriptBin "epkgs" ''
-          nix-env -f '<nixpkgs>' -qaP -A emacsPackages
+          nix-env -f '<nixpkgs>' -qaP -A services
         '')
       ];
+      services.emacs = {
+        enable = true;
+        install = true;
+        defaultEditor = true;
 
-      programs = {
-        emacs = {
-          enable = true;
-          package = pkgs.emacs-pgtk;
-          extraConfig = "(setq standard-indent 2)";
-          extraPackages =
+        package =
+          with pkgs;
+          ((emacsPackagesFor emacs-pgtk).emacsWithPackages (
             epkgs: with epkgs; [
               ace-window # Better window navigation
               babel # Babel languages setup
@@ -83,6 +75,7 @@
               diff-hl
               dirvish # best dired extension, no mini-packages
               doom-modeline
+              doom-themes # For tokyo-night theme
               eglot # Lightweight lsp engine
               eglot-booster # Make eglot faster
               elfeed
@@ -102,7 +95,6 @@
               indent-bars # Indentation guide bars
               info-colors # Prettify info mode
               json-mode
-              kanagawa-themes # The awesome kanawaga themes
               ligature
               magit
               marginalia
@@ -178,26 +170,8 @@
               with-editor # handle $EDITOR in different in-emacs environment
               with-emacs
               yasnippet
-            ];
-
-        };
-      };
-
-      services = {
-        emacs = {
-          enable = true;
-          defaultEditor = true;
-          socketActivation.enable = true;
-
-          client = {
-            enable = true;
-            arguments = [
-              "-a"
-              "\"\""
-              "-c"
-            ];
-          };
-        };
+            ]
+          ));
       };
     };
 }

@@ -66,12 +66,14 @@ This goes to [[file:early-init.el][early-init.el]] file.
   (setq frame-inhibit-implied-resize t)
 
   (setq default-frame-alist
-        '((font . "JetBrainsMono Nerd Font-11")))
+        '((font . "Iosevka Nerd Font-11.5")))
 
 #+end_src
 
 ** Theme
-#+begin_src emacs-lisp
+
+Kanagawa theme
+#+begin_src emacs-lisp :tangle no
 
   (use-package kanagawa-themes
     :custom
@@ -82,6 +84,32 @@ This goes to [[file:early-init.el][early-init.el]] file.
     (kanagawa-themes-org-priority-bold t)
     :config
     (load-theme 'kanagawa-dragon t))
+
+#+end_src
+
+Doom Themes: Tokyo-night
+
+#+begin_src emacs-lisp
+
+  (use-package doom-themes
+    :ensure t
+    :custom
+    ;; Global settings (defaults)
+    (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+    (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    ;; for treemacs users
+    (doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
+    :config
+    (load-theme 'doom-tokyo-night t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (nerd-icons must be installed!)
+    (doom-themes-neotree-config)
+    ;; or for treemacs users
+    (doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
 
 #+end_src
 
@@ -145,7 +173,7 @@ In emacsclient, the fonts need to be loaded based on frames.
   (defun my/frame-face-setup (frame)
     (with-selected-frame frame
       (set-face-attribute 'fixed-pitch frame
-                          :family "JetBrainsMono Nerd Font"
+                          :family "Iosevka Nerd Font"
                           :height 1.0)
 
       (set-face-attribute 'variable-pitch frame
@@ -166,13 +194,20 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
   (defun my/set-font-faces ()
     (message "Set Font Faces!")
     ;; Font size
-    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 120)
+    (set-face-attribute 'default nil
+  		      :font "Iosevka Nerd Font"
+  		      :height 120)
 
     ;; Set the fixed pitch face
-    (set-face-attribute 'fixed-pitch nil :family "JetBrainsMono Nerd Font" :height 1.0)
+    (set-face-attribute 'fixed-pitch nil
+  		      :family "Iosevka Nerd Font"
+  		      :height 1.0)
 
     ;; Set the variable pitch face
-    (set-face-attribute 'variable-pitch nil :font "Inter" :height 1.14 :weight 'regular))
+    (set-face-attribute 'variable-pitch nil
+  		      :font "Inter"
+  		      :height 1.14
+  		      :weight 'regular))
 
   ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
   (if (daemonp)
@@ -190,23 +225,21 @@ Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-ti
 
 [[https://github.com/mickeynp/ligature.el/wiki][ligatures.el]] enables using ligatures in emacs.
 
+For Iosevka Nerd Font
 #+begin_src emacs-lisp
+
   (use-package ligature
+    :load-path "path-to-ligature-repo"
     :config
-    (ligature-set-ligatures 'prog-mode '("--" "---" "==" "===" "!=" "!==" "=!="
-  				       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
-  				       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
-  				       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
-  				       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
-  				       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
-  				       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
-  				       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
-  				       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
-  				       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
-  				       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
-  				       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
-  				       "<:<" ";;;"))
-    (global-ligature-mode ))
+    ;; Enable all Iosevka ligatures in programming modes
+    (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->" "<--->" "<---->" "<!--"
+                                         "<==" "<===" "<=" "=>" "=>>" "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+                                         "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+                                         ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:" "=:" "<******>" "++" "+++"))
+    ;; Enables ligature checks globally in all buffers. You can also do it
+    ;; per mode with `ligature-mode'.
+    (global-ligature-mode t))
+
 #+end_src
 
 * Advanced UI Configuration

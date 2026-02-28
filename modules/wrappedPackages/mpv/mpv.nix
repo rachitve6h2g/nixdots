@@ -3,10 +3,6 @@ let
   inherit (self) themeNoHash;
 in
 {
-  perSystem = {
-    wrappers.packages.mpv = true;
-  };
-
   flake.wrappers.mpv =
     { wlib, pkgs, ... }:
     {

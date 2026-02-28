@@ -1,6 +1,4 @@
 {
-  perSystem.wrappers.packages.git = true;
-
   flake.wrappers.git =
     { wlib, ... }:
     {
@@ -29,7 +27,7 @@
       };
 
       env = rec {
-        GIT_AUTHOR_NAME = "krish";
+        GIT_AUTHOR_NAME = "rachitvrma";
         GIT_AUTHOR_EMAIL = "rachitve6h2g@users.noreply.github.com";
         GIT_COMMITTER_NAME = GIT_AUTHOR_NAME;
         GIT_COMMITTER_EMAIL = GIT_AUTHOR_EMAIL;

@@ -188,7 +188,7 @@
     manualSunrise = "06:30";
     manualSunset = "18:30";
     monitorForColors = "";
-    predefinedScheme = "Kanagawa";
+    predefinedScheme = "Tokyo Night";
     schedulingMode = "off";
     useWallpaperColors = false;
   };
@@ -453,7 +453,7 @@
     diskCriticalThreshold = 90;
     diskWarningThreshold = 80;
     enableDgpuMonitoring = false;
-    externalMonitor = "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor";
+    externalMonitor = "missioncenter";
     gpuCriticalThreshold = 90;
     gpuWarningThreshold = 80;
     memCriticalThreshold = 90;
@@ -473,9 +473,9 @@
     bluetoothDetailsViewMode = "grid";
     bluetoothHideUnnamedDevices = false;
     boxBorderEnabled = false;
-    fontDefault = "JetBrainsMono Nerd Font";
+    fontDefault = "Iosevka NF";
     fontDefaultScale = 1;
-    fontFixed = "JetBrainsMono Nerd Font";
+    fontFixed = "Iosevka NFM";
     fontFixedScale = 1;
     networkPanelView = "wifi";
     panelBackgroundOpacity = 0.9;
