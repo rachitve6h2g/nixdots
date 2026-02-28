@@ -169,7 +169,7 @@ Reboot for the environment variables to set. (In my experience, environment vari
 	- [ ] Fix file:modules/wrappedPackages/aria2.nix
 	- [ ] Fix file:modules/wrappedPackages/yt-dlp.nix
 	- [ ] Fix file:modules/nixosModules/features/desktop.nix
-  - [X] NEXT: yt-dlp
+  - [X] yt-dlp
   - [X] btop
   - [X] cava
   - [X] firefox
