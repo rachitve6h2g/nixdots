@@ -73,6 +73,7 @@
               dash # It's a library that's needed by emacs for a lot of things
               dashboard
               diff-hl
+              dired-open-with # Open files with external programs form dired
               dirvish # best dired extension, no mini-packages
               doom-modeline
               doom-themes # For tokyo-night theme

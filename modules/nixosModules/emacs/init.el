@@ -201,6 +201,8 @@
   :config
   (treemacs-nerd-icons-config))
 
+(use-package dired-open-with :ensure nil)
+
 (use-package doom-modeline
   :custom
   (doom-modeline-hud t)

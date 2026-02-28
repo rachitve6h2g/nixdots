@@ -370,6 +370,16 @@ Use [[https://github.com/jumper047/media-progress/tree/master][media-progress-di
 
 #+end_src
 
+*** Open Programs
+
+Open files using external programs using [[https://github.com/FrostyX/dired-open-with][dired-open-with]].
+
+#+begin_src emacs-lisp
+
+  (use-package dired-open-with :ensure nil)
+
+#+end_src
+
 ** Dired
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle no
