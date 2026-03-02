@@ -406,6 +406,14 @@ in
                 {
                   app-id = "thunar$";
                   title = ".*File Operation Progress.*";
+                  /*
+                    should have been something like
+                     Layout:
+                        Tile size: 739 x 164
+                        Workspace-view position: 79, 297
+                        Window size: 733 x 158
+                        Window offset in tile: 3 x 3
+                  */
                 }
               ];
               open-floating = true;
