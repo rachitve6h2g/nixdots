@@ -15,7 +15,7 @@
 <img src="https://img.shields.io/badge/org_mode-9.7-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=org&logoColor=a6e3a1&color=1e1e2e">
 </a>
 <a href="https://nixos.org">
-<img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=NixOS&logoColor=89b4fa&color=1e1e2e">
+<img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&colorA=1e1e2e&colorB=8ba4b0&logo=NixOS&logoColor=89b4fa&color=1e1e2e">
 </a>
 <a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
 <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=GPL&colorA=1e1e2e&colorB=f38ba8&logo=unlicense&logoColor=f9e2af&%22"/>
