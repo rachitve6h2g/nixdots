@@ -1,0 +1,292 @@
+#+begin_html
+  <h1 align="center">
+#+end_html
+
+#+begin_html
+  <p>
+#+end_html
+
+Rachit's NixOS System Configuration
+
+#+begin_html
+  </p>
+#+end_html
+
+#+begin_html
+  <p>
+#+end_html
+
+#+begin_html
+  </p>
+#+end_html
+
+#+begin_html
+  </h1>
+#+end_html
+
+* 📔 Instructions for installation
+:PROPERTIES:
+:CUSTOM_ID: instructions-for-installation
+:END:
+I am presuming that a bootable USB is already prepared. Boot into the
+computer.
+
+** 🧪Enable Experimental Features
+:PROPERTIES:
+:CUSTOM_ID: enable-experimental-features
+:END:
+Experimental features are not enabled in NixOS by default. It can be
+enabled by exporting the =NIX_CONFIG= variable. It can also be enabled
+by passing the =--extra-experimental-features= flag to =nix= command
+utility in NixOS.
+
+First enter into a root shell.
+
+#+begin_src sh
+$ sudo -i
+#+end_src
+
+Run this to enable flakes and the nix-command utility.
+
+#+begin_src sh
+$ export NIX_CONFIG="experimental-features = nix-command flakes"
+#+end_src
+
+** ↙️ Clone this Repo
+:PROPERTIES:
+:CUSTOM_ID: clone-this-repo
+:END:
+Clone it into =/tmp=.
+
+#+begin_src sh
+$ mkdir -p /tmp
+$ cd /tmp
+$ git clone --depth=1 https://github.com/rachitve6h2g/nixdots.git
+#+end_src
+
+** 💾 Run Disko to Prepare Disks
+:PROPERTIES:
+:CUSTOM_ID: run-disko-to-prepare-disks
+:END:
+Disko is available in the [[https://github.com/NixOS/nixpkgs][nixpkgs]]
+repository. But it is advisable to run the latest commit from the
+[[https://github.com/nix-community/disko][nix-community]] github repo.
+This repository has the ability to support multiple users and hosts.
+Make sure that the =disko-config.nix= belongs to the correct host. By
+default, it's for
+[[file:modules/nixosModules/hosts/nixpavilion/][nixpavilion]], the
+default host machine that I use. Every host has a =disko-config.nix=
+file, which is a hard-coded disk layout configuration for each host.
+There may be a future configuration where I might enable multiple disk
+layouts. But it's not a very common thing that users choose different
+disk layouts for the same host every time they re-install for the same
+host.
+
+#+begin_src sh
+$ cd /tmp/nixdots/modules/nixosModules/hosts/nixpavilion
+#+end_src
+
+For now, use the
+[[file:modules/nixosModules/hosts/nixpavilion/disko-config.nix][disko-config
+for nixpavilion]] for installation.
+
+#+begin_src sh
+$ nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
+#+end_src
+
+This will prompt for a password for the disk encryption set in the
+=disko-config.nix=.
+
+** 🐧 OS Installation
+:PROPERTIES:
+:CUSTOM_ID: os-installation
+:END:
+Copy the cloned repo into =/mnt/etc/nixos=.
+
+#+begin_src sh
+$ mkdir -p /mnt/etc
+$ cp -r /tmp/nixdots /mnt/etc/nixos
+#+end_src
+
+Run the =nixos-install= command. It can be run with many flags. See
+=nixos-install --help= for useful flags. It is advisable to enable the
+=--no-root-passwd= in =nixos-install= if
+=users.users.<username>.initialPassword= option is set in
+=configuration.nix=.
+
+#+begin_src sh
+$ nixos-install --no-root-passwd --root /mnt --cores 8 --max-jobs 1 --flake /mnt/etc/nixos#nixpavilion
+#+end_src
+
+It will not prompt for the password. Reboot after unmounting.
+
+#+begin_src sh
+$ umount -R /mnt
+$ reboot
+#+end_src
+
+You will land on the greeter. Follow the instructions further down.
+
+** 💻 Post-OS-Installation
+:PROPERTIES:
+:CUSTOM_ID: post-os-installation
+:END:
+Home-Manager needs to be run first. Use =nh home switch= for installing
+our =user= level packages and =dotfiles=. In my personal experience,
+starting a desktop environment or a window manager (Hyprland in my
+default case) creates files that conflict with home-manager's generated
+files later on. It can be fixed instantly, either by running
+=nh home switch -- -b backup= or by manually deleting the conflicting
+files. I like to just jump to another tty, login and run
+=nh home switch= from there. However, follow these instructions in
+sequence.
+
+*** 🔒 Change user password
+:PROPERTIES:
+:CUSTOM_ID: change-user-password
+:END:
+Remember that the password is global and hasn't changed. There's no root
+user yet. Change the current user password
+
+#+begin_src sh
+$ passwd $USER
+#+end_src
+
+It will prompt for the current user password and for the new ones.
+
+*** 🏠 Bring =/etc/nixos= to =$HOME/nixdots=
+:PROPERTIES:
+:CUSTOM_ID: bring-etcnixos-to-homenixdots
+:END:
+=nh home switch= or =home-manager switch= will not run if the flake
+directory does not have user permission. By default, it's =root:root=.
+Link =$HOME/nixdots= to =/etc/nixos= so that the canonical structure is
+followed without being a hindrance.
+
+#+begin_src sh
+$ cp -r /etc/nixos $HOME/nixdots
+$ sudo rm -rf /etc/nixos
+$ sudo ln -sf /home/$USER/nixdots /etc/nixos
+#+end_src
+
+Link =$HOME/nixdots= to =$HOME/.config/home-manager= so that it follows
+the canonical structure for =home-manager= commands like
+=home-manager news=, which is very handy for seeing new modules and
+options and stuff.
+
+#+begin_src sh
+$ ln -sf $HOME/nixdots $HOME/.config/home-manager
+#+end_src
+
+Make sure that the home-manager option for =nh=
+i.e. =programs.nh.homeFlake= is still =/home/krish/nixdots=.
+
+*** Run the =nh home switch= command
+:PROPERTIES:
+:CUSTOM_ID: run-the-nh-home-switch-command
+:END:
+Now that it is set up, run the =nh home switch= command to set up our
+=$HOME=.
+
+#+begin_src sh
+$ nh home switch
+#+end_src
+
+Reboot for the environment variables to set. (In my experience,
+environment variables were never sourced when I logged out and just
+logged in).
+
+*** 🚶‍♂️ Further Steps.
+:PROPERTIES:
+:CUSTOM_ID: further-steps.
+:END:
+1. Git actions
+
+   Change the link from https://github.com/rachitve6h2g/nixdots.git to
+   git@github.com:rachitve6h2g/nixdots.
+
+2. Firefox
+
+   Some Firefox extensions need to enabled manually. Some features are
+   still not implemented by me. For example the Nord Extension has to be
+   enabled manually.
+
+* Common issues
+:PROPERTIES:
+:CUSTOM_ID: common-issues
+:END:
+- On changing git repo, it may just stop working. Don't worry, remove
+  all backup files and just rebuild.
+- My NixOS bootloader malfunctioned once. I put up a query on
+  [[https://discourse.nixos.org/][NixOS discourse]]. Here's
+  [[https://discourse.nixos.org/t/nixos-could-not-sync-boot-after-rebuild/74333/2?u=woodenallen][the
+  solution]].
+
+* 🚧 Work In Progress
+:PROPERTIES:
+:CUSTOM_ID: work-in-progress
+:END:
+- [ ] Manage stylix themes from one place.
+
+  - [ ] Place conditionals:
+  - [ ] Wallpaper
+  - [ ] Icon Theme
+  - [ ] Cursor Theme
+
+- [ ] Manage DE/WM
+
+- [ ] Managing desktop environment and window manager from one place.
+
+- [ ] Move to using wrappers.
+
+  - [ ] set preferences options to make font, icon and theme name
+    globally available
+  - [ ] HALT: aria2 (Facing problems in wrapping the binary)
+    - [ ] Fix file:modules/wrappedPackages/aria2.nix
+    - [ ] Fix file:modules/wrappedPackages/yt-dlp.nix
+    - [ ] Fix file:modules/nixosModules/features/desktop.nix
+  - [X] yt-dlp
+  - [X] btop
+  - [X] cava
+  - [X] firefox
+  - [X] foot
+  - [X] niri
+  - [ ] Swayidle
+    - [ ] wrap the config around the binary
+    - [ ] create a systemd service to run the binary
+  - [X] mpv
+  - [ ] noctalia
+    - [ ] Use Stylix's base16 modules to integrate with own theme set
+  - [ ] shell tools
+    - [X] Bash -> nushell
+    - [ ] Zoxide
+    - [ ] Fzf
+    - [ ] Git
+      - [ ] Global Ignore file
+      - [X] Global Config
+    - [ ] Ripgrep
+    - [ ] bat
+    - [ ] DEPRECATE: Starship (not needed in nushell as it provides
+      "prompt engineering")
+
+- [X] Remove stylix
+
+  - [X] Set GTK Theme using NixOS configuration module
+  - [X] Set Fonts using NixOS module
+    - [X] Remove Home-Manager stylix font modules
+
+- [X] Use import-tree and flake-parts to manage config as flake modules.
+
+* 📚 Resources
+:PROPERTIES:
+:CUSTOM_ID: resources
+:END:
+- [[https://github.com/krishna4a6av/Wallpapers][Wallpapers Repo by
+  krishna4a6av]]
+
+* 📃 License
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
+This project is licensed under the GNU General Public License v3.0. See
+the [[file:LICENSE]] file for details

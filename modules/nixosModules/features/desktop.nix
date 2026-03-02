@@ -37,8 +37,7 @@
       };
 
       environment.systemPackages = [
-        # Wrapped packages
-        selfpkgs.aria2.out # FIXME: fix the binary wrapper problem
+        selfpkgs.aria2 # TRACK: https://github.com/BirdeeHub/nix-wrapper-modules/discussions/317#discussioncomment-15975516
         selfpkgs.foot
         selfpkgs.mpv
         selfpkgs.noctalia-shell

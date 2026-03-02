@@ -93,21 +93,6 @@
           id = "KeepAwake";
           textColor = "none";
         }
-        {
-          defaultSettings = {
-            autoStartBreaks = false;
-            autoStartWork = false;
-            longBreakDuration = 15;
-            sessionsBeforeLongBreak = 4;
-            shortBreakDuration = 5;
-            workDuration = 25;
-          };
-          id = "plugin:pomodoro";
-        }
-        {
-          defaultSettings = { };
-          id = "plugin:kde-connect";
-        }
       ];
       right = [
         {
@@ -162,7 +147,6 @@
     brightnessStep = 5;
     enableDdcSupport = false;
     enforceMinimum = true;
-    syncAllMonitors = false;
   };
   calendar = {
     cards = [
@@ -244,7 +228,6 @@
     dockType = "floating";
     enabled = true;
     floatingRatio = 1;
-    groupApps = true;
     inactiveIndicators = false;
     monitors = [ ];
     onlySameOutput = true;
@@ -252,7 +235,6 @@
     pinnedStatic = false;
     position = "bottom";
     showFrameIndicator = true;
-    showLauncherIcon = true;
     sitOnFrame = false;
     size = 1;
   };
@@ -288,7 +270,6 @@
     lockScreenCountdownDuration = 10000;
     lockScreenMonitors = [ ];
     lockScreenTint = 0;
-    passwordChars = true;
     radiusRatio = 1;
     reverseScroll = false;
     scaleRatio = 1;
@@ -519,5 +500,47 @@
     wallhavenResolutionWidth = "";
     wallhavenSorting = "relevance";
     wallpaperChangeMode = "random";
+  };
+
+  state = {
+    barVisible = true;
+    changelogState = {
+      lastSeenVersion = "v4.5.0";
+    };
+    colorSchemesList = {
+      schemes = [ ];
+      timestamp = 0;
+    };
+    desktopWidgetsEditMode = false;
+    display = {
+      eDP-1 = {
+        connected = true;
+        height = 1080;
+        name = "eDP-1";
+        physical_height = 190;
+        physical_width = 340;
+        refresh_rate = 60056;
+        scale = 1;
+        transform = "Normal";
+        vrr_enabled = false;
+        vrr_supported = false;
+        width = 1920;
+        x = 0;
+        y = 0;
+      };
+    };
+    doNotDisturb = false;
+    lockScreenActive = false;
+    noctaliaPerformanceMode = false;
+    notificationsState = {
+      lastSeenTs = 0;
+    };
+    openedPanel = "";
+    ui = {
+      settingsSidebarExpanded = true;
+    };
+    wallpapers = {
+      eDP-1 = "/home/krish/Pictures/Wallpapers/mima.jpg";
+    };
   };
 }

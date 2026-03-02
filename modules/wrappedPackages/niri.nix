@@ -53,6 +53,7 @@ in
         in
         with theme;
         {
+          spawn-at-startup = [ "${pkgs.lib.getExe (self.wrappers.noctalia-shell.wrap { inherit pkgs; })}" ];
           input = {
             keyboard = {
               xkb = {
@@ -406,22 +407,14 @@ in
                 {
                   app-id = "thunar$";
                   title = ".*File Operation Progress.*";
-                  /*
-                    should have been something like
-                     Layout:
-                        Tile size: 739 x 164
-                        Workspace-view position: 79, 297
-                        Window size: 733 x 158
-                        Window offset in tile: 3 x 3
-                  */
                 }
               ];
               open-floating = true;
               default-column-width = {
-                fixed = 733;
+                fixed = 1030;
               };
               default-window-height = {
-                fixed = 158;
+                fixed = 160;
               };
             }
 

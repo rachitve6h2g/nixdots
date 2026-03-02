@@ -16,7 +16,7 @@
         embed-subs = true;
       };
       extraPackages = [
-        (self.wrappers.aria2.wrap { inherit pkgs; })
+        (self.packages.${pkgs.stdenv.hostPlatform.system}.aria2)
       ];
     };
 }

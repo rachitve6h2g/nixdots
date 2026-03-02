@@ -1,4 +1,3 @@
-{ self, ... }:
 {
   flake.wrappers.noctalia-shell =
     {
@@ -35,17 +34,6 @@
         env = {
           "NOCTALIA_SETTINGS_FILE" = jsonFormat.generate "config.json" config.settings;
         };
-
-        extraPackages = [
-          (pkgs.writeShellApplication {
-            name = "dump-noctalia-shell";
-            text = ''
-              noctalia-shell ipc call state all \
-              | nix eval --impure --expr 'builtins.fromJSON (builtins.readFile /dev/stdin)'
-            '';
-          })
-        ];
-
       };
     };
 }

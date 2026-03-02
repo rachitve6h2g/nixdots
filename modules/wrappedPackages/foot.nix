@@ -23,7 +23,7 @@ in
         desktop-notifications.command = "notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}command=notify-send -a \${app-id} -i \${app-id} \${title} \${body}";
 
         colors = with themeNoHash; {
-          alpha = 0.9;
+          alpha = 0.85;
           foreground = "${base07}";
           background = "${base00}";
           regular0 = "${base00}"; # black

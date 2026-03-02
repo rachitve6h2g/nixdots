@@ -16,7 +16,7 @@
         "${n}=${formatValue v}";
 
       configFile = pkgs.writeText "aria2Wrapped.conf" (
-        lib.concatStringsSep "\n" (lib.mapAttrsToList formatLine config.settings) + "\n"
+        lib.concatStringsSep "\n" (lib.mapAttrsToList formatLine config.settings)
       );
     in
     {
@@ -48,11 +48,18 @@
       };
       config = {
         package = pkgs.aria2;
-        # exePath = ;
         flags = {
           "--conf-path" = configFile;
         };
         flagSeparator = "=";
+        drv = {
+          buildPhase = ''
+            runHook preBuild
+            rm $bin/bin/aria2c
+            cp $out/bin/aria2c $bin/bin
+            runHook postBuild
+          '';
+        };
       };
     };
 
