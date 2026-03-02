@@ -43,6 +43,8 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq visible-bell t)
@@ -261,7 +263,7 @@
   (dashboard-startup-banner "~/.face")
   (dashboard-image-banner-max-heigth 200)
   (dashboard-image-banner-max-width 200)
-  (dashboard-banner-logo-title "おかえり")
+  (dashboard-banner-logo-title "お帰りなさい!")
 
   ;; Customize which items are displayed
   (dashboard-items '((recents   . 5)

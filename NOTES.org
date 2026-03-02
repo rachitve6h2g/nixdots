@@ -11,7 +11,14 @@ We can [[https://github.com/theobori/nix-converter][nix-converter]], but recentl
 #+end_src
 
 Just place the name of the json file in place of =file.json=.
+
 Better still use the new =nix eval= commands.
+
+#+begin_src bash
+
+  $nix eval --impure --expr "builtins.fromJSON (builtins.readFile ./file.json)"
+
+#+end_src
 
 * Foot Wrapper
 (yeah I get the name) The systemd services and sockets have to be enabled.
@@ -24,6 +31,9 @@ The already running server needs to be disabled and then re-enabled
   $systemctl --user enable --now foot-server
 
 #+end_src
+
+* Emacs
+On rebuilding I have to disable the running service and then re-enable it to renew the service file links in =$HOME/.config/systemd/user/= directory. It's because on rebuild =$WAYLAND_DISPLAY=.
 
 * Eyes on These
 

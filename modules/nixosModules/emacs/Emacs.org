@@ -113,6 +113,14 @@ Doom Themes: Tokyo-night
 
 #+end_src
 
+** Transparency
+
+#+begin_src emacs-lisp
+
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
+
+#+end_src
+
 ** Other Basics
 
 #+begin_src emacs-lisp
@@ -536,7 +544,7 @@ Open files according to extensions.
     (dashboard-startup-banner "~/.face")
     (dashboard-image-banner-max-heigth 200)
     (dashboard-image-banner-max-width 200)
-    (dashboard-banner-logo-title "おかえり")
+    (dashboard-banner-logo-title "お帰りなさい!")
 
     ;; Customize which items are displayed
     (dashboard-items '((recents   . 5)

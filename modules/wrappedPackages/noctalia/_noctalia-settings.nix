@@ -77,7 +77,6 @@
           showLabelsOnlyWhenOccupied = true;
           unfocusedIconsOpacity = 1;
         }
-
       ];
       left = [
         {
@@ -156,7 +155,6 @@
           tooltipFormat = "hh:mm A ddd, MMM dd";
           useCustomFont = false;
         }
-
       ];
     };
   };
@@ -243,11 +241,10 @@
     colorizeIcons = true;
     deadOpacity = 0.6;
     displayMode = "auto_hide";
-    groupApps = true;
-    showLauncherIcon = true;
     dockType = "floating";
     enabled = true;
     floatingRatio = 1;
+    groupApps = true;
     inactiveIndicators = false;
     monitors = [ ];
     onlySameOutput = true;
@@ -255,6 +252,7 @@
     pinnedStatic = false;
     position = "bottom";
     showFrameIndicator = true;
+    showLauncherIcon = true;
     sitOnFrame = false;
     size = 1;
   };

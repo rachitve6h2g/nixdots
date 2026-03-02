@@ -38,8 +38,9 @@
 
       # Put "hyprland" here when using Hyprland
       environment.etc."greetd/environments".text = ''
-        	niri
-          bash
+        niri
+        bash
+        nu
       '';
     };
 }

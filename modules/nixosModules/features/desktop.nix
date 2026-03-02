@@ -41,6 +41,7 @@
         selfpkgs.aria2.out # FIXME: fix the binary wrapper problem
         selfpkgs.foot
         selfpkgs.mpv
+        selfpkgs.noctalia-shell
         selfpkgs.git
         selfpkgs.yt-dlp
 

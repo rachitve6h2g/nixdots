@@ -12,27 +12,12 @@
 
     import-tree.url = "github:vic/import-tree"; # Used with flake parts.
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     wrappers = {
       url = "github:BirdeeHub/nix-wrapper-modules";

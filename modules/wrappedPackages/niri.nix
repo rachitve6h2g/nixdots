@@ -141,7 +141,7 @@ in
               {
                 key = "f";
                 desc = "Firefox";
-                cmd = "firefox";
+                cmd = "firefox"; # TODO: See how to get the wrapped firefox output
               }
               {
                 key = "d";
@@ -154,13 +154,12 @@ in
               {
                 key = "e";
                 desc = "Emacsclient";
-                # TODO: Change interpolation to take from emacs wrapper
-                cmd = "${pkgs.emacs-pgtk}/bin/emacsclient -a \"emacs\" -c";
+                cmd = "${pkgs.lib.getExe' pkgs.emacs-pgtk "emacsclient"} -a \"emacs\" -c";
               }
               {
                 key = "t";
                 desc = "Terminal";
-                cmd = "footclient"; # TODO: Change to foot
+                cmd = "${pkgs.lib.getExe' pkgs.foot "footclient"}";
               }
             ]);
 
@@ -175,10 +174,8 @@ in
             "Mod+Shift+R".switch-preset-window-height = null;
             "Mod+Ctrl+R".reset-window-height = null;
 
-            # TODO: set to maximize-window-to-edges.
-            # It's still not implemented in sodiboo/niri-flake.
-            "Mod+M".maximize-column = null;
-            "Mod+Shift+M".fullscreen-window = null;
+            "Mod+M".maximize-window-to-edges = null;
+            "Mod+Shift+M".maximize-column = null;
             "Mod+Ctrl+M".expand-column-to-available-width = null;
 
             "Mod+C".center-column = null;
@@ -426,9 +423,7 @@ in
                 { app-id = "firefox$"; } # Maximize Firefox
                 { app-id = "vesktop$"; }
               ];
-              # TODO: Set open-maximized to open-maximized-to-edges
-              # See https://github.com/niri-wm/niri/wiki/Fullscreen-and-Maximize
-              open-maximized = true;
+              open-maximized-to-edges = true;
             }
           ];
         };

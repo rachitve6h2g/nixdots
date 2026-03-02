@@ -4,6 +4,7 @@
     {
       pkgs,
       wlib,
+      lib,
       ...
     }:
     let
@@ -19,7 +20,7 @@
         (pkgs.writeShellApplication {
           name = "yt-music";
           text = ''
-                        ${selfpkgs.yt-dlp}/bin/yt-dlp \
+                        ${lib.getExe selfpkgs.yt-dlp} \
                           -x \
                           -f "bestaudio/best" \
             	      --audio-format "flac" \
@@ -31,7 +32,7 @@
         (pkgs.writeShellApplication {
           name = "yt-playlist";
           text = ''
-            ${selfpkgs.yt-dlp}/bin/yt-dlp \
+            ${lib.getExe selfpkgs.yt-dlp} \
               --ignore-errors \
               --continue \
               --no-overwrites \
@@ -42,9 +43,7 @@
       ];
 
       imports = [ wlib.wrapperModules.nushell ];
-      filesToPatch = [
-        "bin/nu"
-      ];
+
       "config.nu".path = ./config.nu;
     };
 }

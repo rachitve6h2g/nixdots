@@ -47,6 +47,7 @@
           nix-env -f '<nixpkgs>' -qaP -A services
         '')
       ];
+
       services.emacs = {
         enable = true;
         install = true;
@@ -151,6 +152,7 @@
               smartparens # For auto-parenthesis
               tab-line-nerd-icons
               transient # Used for improving UI
+              treemacs # For the side line filemanager
               treemacs-nerd-icons # For icons in header line
 
               # Tree-sitter

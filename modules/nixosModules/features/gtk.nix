@@ -54,6 +54,7 @@
         };
         variables = {
           GTK_THEME = theme-name;
+          XCURSOR_THEME = theme-name;
         };
         systemPackages = [
           theme-package
