@@ -418,10 +418,10 @@ in
               ];
               open-floating = true;
               default-column-width = {
-                fixed = 1029;
+                fixed = 733;
               };
               default-window-height = {
-                fixed = 683;
+                fixed = 158;
               };
             }
 
