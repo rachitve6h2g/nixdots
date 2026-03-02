@@ -17,7 +17,7 @@
 <a href="https://nixos.org">
 <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=1e1e2e&logo=NixOS&logoColor=89b4fa&color=1e1e2e">
 </a>
-<a href="https://github.com/rachitve6h2g/nixdots/blob/master/LICENSE">
+<a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
 <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=GPL&colorA=1e1e2e&colorB=f38ba8&logo=unlicense&logoColor=f9e2af&%22"/>
 </a>
 </div>
@@ -63,7 +63,7 @@ Clone it into =/tmp=.
 #+begin_src sh
 $ mkdir -p /tmp
 $ cd /tmp
-$ git clone --depth=1 https://github.com/rachitve6h2g/nixdots.git
+$ git clone --depth=1 https://github.com/rachitvrma/nixdots.git
 #+end_src
 
 ** 💾 Run Disko to Prepare Disks
@@ -133,15 +133,6 @@ You will land on the greeter. Follow the instructions further down.
 :PROPERTIES:
 :CUSTOM_ID: post-os-installation
 :END:
-Home-Manager needs to be run first. Use =nh home switch= for installing
-our =user= level packages and =dotfiles=. In my personal experience,
-starting a desktop environment or a window manager (Hyprland in my
-default case) creates files that conflict with home-manager's generated
-files later on. It can be fixed instantly, either by running
-=nh home switch -- -b backup= or by manually deleting the conflicting
-files. I like to just jump to another tty, login and run
-=nh home switch= from there. However, follow these instructions in
-sequence.
 
 *** 🔒 Change user password
 :PROPERTIES:
@@ -160,10 +151,6 @@ It will prompt for the current user password and for the new ones.
 :PROPERTIES:
 :CUSTOM_ID: bring-etcnixos-to-homenixdots
 :END:
-=nh home switch= or =home-manager switch= will not run if the flake
-directory does not have user permission. By default, it's =root:root=.
-Link =$HOME/nixdots= to =/etc/nixos= so that the canonical structure is
-followed without being a hindrance.
 
 #+begin_src sh
 $ cp -r /etc/nixos $HOME/nixdots
@@ -171,41 +158,14 @@ $ sudo rm -rf /etc/nixos
 $ sudo ln -sf /home/$USER/nixdots /etc/nixos
 #+end_src
 
-Link =$HOME/nixdots= to =$HOME/.config/home-manager= so that it follows
-the canonical structure for =home-manager= commands like
-=home-manager news=, which is very handy for seeing new modules and
-options and stuff.
-
-#+begin_src sh
-$ ln -sf $HOME/nixdots $HOME/.config/home-manager
-#+end_src
-
-Make sure that the home-manager option for =nh=
-i.e. =programs.nh.homeFlake= is still =/home/krish/nixdots=.
-
-*** Run the =nh home switch= command
-:PROPERTIES:
-:CUSTOM_ID: run-the-nh-home-switch-command
-:END:
-Now that it is set up, run the =nh home switch= command to set up our
-=$HOME=.
-
-#+begin_src sh
-$ nh home switch
-#+end_src
-
-Reboot for the environment variables to set. (In my experience,
-environment variables were never sourced when I logged out and just
-logged in).
-
 *** 🚶‍♂️ Further Steps.
 :PROPERTIES:
 :CUSTOM_ID: further-steps.
 :END:
 1. Git actions
 
-   Change the link from https://github.com/rachitve6h2g/nixdots.git to
-   git@github.com:rachitve6h2g/nixdots.
+   Change the link from https://github.com/rachitvrma/nixdots.git to
+   git@github.com:rachitvrma/nixdots.
 
 2. Firefox
 
@@ -257,7 +217,7 @@ logged in).
     - [ ] wrap the config around the binary
     - [ ] create a systemd service to run the binary
   - [X] mpv
-  - [ ] noctalia
+  - [X] noctalia [PARTIAL]
     - [ ] Use Stylix's base16 modules to integrate with own theme set
   - [ ] shell tools
     - [X] Bash -> nushell
