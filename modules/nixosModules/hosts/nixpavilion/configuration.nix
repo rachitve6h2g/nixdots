@@ -17,6 +17,9 @@
         self.nixosModules.emacs
         self.nixosModules.niri
 
+        # For printers
+        # self.nixosModules.printing
+
         # All the base stuff
         self.nixosModules.base
 

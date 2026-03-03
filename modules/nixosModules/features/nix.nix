@@ -25,6 +25,10 @@
           builtins.elem (lib.getName pkg) [
             "7zz"
             "uasm"
+
+            # Proprietary printer drivers
+            "hplip"
+            "hplipWithPlugin"
           ];
       };
 
