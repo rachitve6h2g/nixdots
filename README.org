@@ -190,19 +190,14 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
 :PROPERTIES:
 :CUSTOM_ID: work-in-progress
 :END:
-- [ ] Manage stylix themes from one place.
-
+- [ ] Manage stylix themes from one place. [DEPRECATE not using stylix anymore]
   - [ ] Place conditionals:
   - [ ] Wallpaper
   - [ ] Icon Theme
   - [ ] Cursor Theme
-
 - [ ] Manage DE/WM
-
 - [ ] Managing desktop environment and window manager from one place.
-
 - [ ] Move to using wrappers.
-
   - [ ] set preferences options to make font, icon and theme name
     globally available
   - [ ] HALT: aria2 (Facing problems in wrapping the binary)
@@ -232,9 +227,6 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [ ] bat
     - [ ] DEPRECATE: Starship (not needed in nushell as it provides
       "prompt engineering")
-
-- [X] Remove stylix
-
   - [X] Set GTK Theme using NixOS configuration module
   - [X] Set Fonts using NixOS module
     - [X] Remove Home-Manager stylix font modules
