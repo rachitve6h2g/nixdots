@@ -217,6 +217,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [X] noctalia [PARTIAL]
     - [ ] Use Stylix's base16 modules to integrate with own theme set
   - [ ] shell tools
+    - [ ] nh wrapper
     - [X] Bash -> nushell
     - [ ] Zoxide
     - [ ] Fzf

@@ -11,9 +11,9 @@
         self.nixosModules.battery
         self.nixosModules.clamav
         self.nixosModules.console
+        self.nixosModules.extra_hjem
         self.nixosModules.firefox
         self.nixosModules.fonts
-        # self.nixosModules.gaming
         self.nixosModules.greeter
         self.nixosModules.gtk
         self.nixosModules.kdeconnect
