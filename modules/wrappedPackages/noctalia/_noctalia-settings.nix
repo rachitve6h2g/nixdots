@@ -21,7 +21,7 @@
     showCategories = true;
     showIconBackground = false;
     sortByMostUsed = true;
-    terminalCommand = "footclient -e";
+    # terminalCommand = "footclient -e";
     useApp2Unit = false;
     viewMode = "list";
   };

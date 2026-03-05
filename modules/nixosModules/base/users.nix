@@ -1,11 +1,8 @@
 { self, ... }:
-
 {
   flake.nixosModules.users =
     {
-
       pkgs,
-      lib,
       ...
     }:
     let
@@ -30,31 +27,53 @@
 
         initialPassword = "1234";
       };
-      programs.bash = {
-        enable = true;
-        completion = {
-          enable = true;
+
+      programs = {
+        fzf = {
+          fuzzyCompletion = true;
         };
+        zoxide = {
+          enable = true;
+          enableFishIntegration = true;
+          enableBashIntegration = true;
+        };
+        # fish = {
+        #   enable = true;
+        #   vendor = {
+        #     functions.enable = true;
+        #     config.enable = true;
+        #     completions.enable = true;
+        #   };
+        #   useBabelfish = true;
+        # };
+        bash = {
+          enable = true;
+          completion = {
+            enable = true;
+          };
 
-        interactiveShellInit = ''
-          if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
-            exec ${lib.getExe selfpkgs.nushell}
-          fi
-        '';
-
+          interactiveShellInit = ''
+            if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+            then
+              shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+              exec ${selfpkgs.fish}/bin/fish $LOGIN_OPTION
+            fi
+          '';
+        };
       };
 
       services.userborn.enable = true;
 
       # Link paths to /run/current-system/sw
-      environment.pathsToLink = [
-        "/share"
-        "/share/sounds"
-        "/"
-      ];
-      # Add wrapped nushell to environment shells
-      environment.shells = [
-        selfpkgs.nushell
-      ];
+      environment = {
+        pathsToLink = [
+          "/share"
+          "/share/sounds"
+          "/"
+        ];
+        shells = [
+          selfpkgs.fish
+        ];
+      };
     };
 }

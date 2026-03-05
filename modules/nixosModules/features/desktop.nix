@@ -35,22 +35,29 @@
         };
         dconf.enable = true;
       };
+      environment = {
+        # TOOD: move all the wrapped packages into their own modules
+        sessionVariables = {
+          EDITOR = "hx";
+          VISUAL = "hx";
+        };
+        systemPackages = [
+          selfpkgs.aria2 # TRACK: https://github.com/BirdeeHub/nix-wrapper-modules/discussions/317#discussioncomment-15975516
+          selfpkgs.mpv
+          selfpkgs.noctalia-shell
+          selfpkgs.wezterm
+          selfpkgs.git
+          selfpkgs.helix
+          selfpkgs.yt-dlp
 
-      environment.systemPackages = [
-        selfpkgs.aria2 # TRACK: https://github.com/BirdeeHub/nix-wrapper-modules/discussions/317#discussioncomment-15975516
-        selfpkgs.foot
-        selfpkgs.mpv
-        selfpkgs.noctalia-shell
-        selfpkgs.git
-        selfpkgs.yt-dlp
-
-        pkgs.wl-clipboard
-        pkgs.brightnessctl
-        pkgs.libnotify
-        pkgs.gdu
-        pkgs.udiskie
-        pkgs.polkit_gnome
-      ];
+          pkgs.wl-clipboard
+          pkgs.brightnessctl
+          pkgs.libnotify
+          pkgs.gdu
+          pkgs.udiskie
+          pkgs.polkit_gnome
+        ];
+      };
 
       xdg = {
         sounds.enable = true;

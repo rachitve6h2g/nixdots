@@ -34,6 +34,7 @@ in
         pkgs.writeShellScriptBin "my-menu" ''
           exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
         '';
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
     in
     {
       # apply = true;
@@ -59,7 +60,7 @@ in
               xkb = {
                 layout = "us";
                 variant = "colemak_dh";
-                options = "ctrl:swapcaps";
+                options = "caps:swapescape";
               };
               repeat-delay = 600;
               repeat-rate = 25;
@@ -151,18 +152,7 @@ in
               }
             ]);
 
-            "Mod+Return".spawn-sh = pkgs.lib.getExe (mkMenu [
-              {
-                key = "e";
-                desc = "Emacsclient";
-                cmd = "${pkgs.lib.getExe' pkgs.emacs-pgtk "emacsclient"} -a \"emacs\" -c";
-              }
-              {
-                key = "t";
-                desc = "Terminal";
-                cmd = "${pkgs.lib.getExe' pkgs.foot "footclient"}";
-              }
-            ]);
+            "Mod+Return".spawn = [ "${lib.getExe selfpkgs.wezterm}" ];
 
             "Mod+Q".close-window = null;
             "Mod+BracketLeft".consume-or-expel-window-left = null;

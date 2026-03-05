@@ -29,6 +29,9 @@
             # Proprietary printer drivers
             "hplip"
             "hplipWithPlugin"
+
+            # For dictionaries
+            "aspell-dict-en-science"
           ];
       };
 

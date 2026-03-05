@@ -14,10 +14,6 @@
           formatValue = v: if builtins.isBool v then (if v then "true" else "false") else toString v;
         in
         "${n}=${formatValue v}";
-
-      configFile = pkgs.writeText "aria2Wrapped.conf" (
-        lib.concatStringsSep "\n" (lib.mapAttrsToList formatLine config.settings)
-      );
     in
     {
       imports = [ wlib.modules.default ];
@@ -48,13 +44,18 @@
       };
       config = {
         package = pkgs.aria2;
+        binName = "aria2c";
         flags = {
-          "--conf-path" = configFile;
+          "--conf-path" = "${placeholder "bin"}/${config.binName}-settings.conf";
         };
         flagSeparator = "=";
         drv = {
+          renderedSettings = lib.concatStringsSep "\n" (lib.mapAttrsToList formatLine config.settings);
+          passAsFile = [ "renderedSettings" ];
+
           buildPhase = ''
             runHook preBuild
+            cp $renderedSettingsPath "$bin/${config.binName}-settings.conf"
             rm $bin/bin/aria2c
             cp $out/bin/aria2c $bin/bin
             runHook postBuild
