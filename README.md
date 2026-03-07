@@ -180,6 +180,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [ ] wrap the config around the binary
     - [ ] create a systemd service to run the binary
   - [x] mpv
+  - [x] Zathura pdf reader
   - [x] noctalia \[PARTIAL\]
     - [ ] Use Stylix's base16 modules to integrate with own theme set
   - [ ] shell tools
@@ -192,7 +193,6 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
       - [x] Global Config
     - [ ] Ripgrep
     - [ ] bat
-    - [x] Zathura pdf reader
     - [ ] gitui
     - [ ] rmpc music player
     - [ ] [iamb](https://github.com/ulyssa/iamb)
