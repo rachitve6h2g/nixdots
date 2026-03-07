@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.wrappers.helix =
     {
@@ -6,6 +7,9 @@
       lib,
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       imports = [ wlib.wrapperModules.helix ];
       settings = {
@@ -32,6 +36,13 @@
           bufferline = "multiple";
           cursorline = true;
           line-number = "relative";
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics.cursor-line = "warning";
+          indent-guides = {
+            render = true;
+            character = "⸽";
+            skip-levels = 1;
+          };
         };
       };
       themes = {
@@ -73,6 +84,28 @@
             name = "fish";
             language-servers = [ "fish-lsp" ];
           }
+          {
+            name = "lua";
+            auto-format = true;
+          }
+
+          # Dprint formatter for markdown
+          {
+            name = "markdown";
+            soft-wrap = {
+              enable = true;
+              wrap-at-text-width = true;
+            };
+            auto-format = true;
+            formatter = {
+              command = lib.getExe selfpkgs.dprint;
+              args = [
+                "fmt"
+                "--stdin"
+                "md"
+              ];
+            };
+          }
         ];
         language-server = {
           bash-language-server = {
@@ -88,18 +121,23 @@
           };
         };
       };
-      extraPackages = with pkgs; [
-        lldb # Debug adapter for C/C++
-        clang-tools # For clangd c/c++ language server
-        marksman # For Markdown Language
-        nixd # For nix files
-        bash-language-server # For bash language server
-        fish-lsp # For the fish shell
-        lua-language-server # for lua
-        stylua # For formatting lua
-        vscode-json-languageserver # For JSON
-        vscode-css-languageserver # For CSS
-        systemd-lsp # For systemd service files
-      ];
+      extraPackages =
+        (with pkgs; [
+          lldb # Debug adapter for C/C++
+          clang-tools # For clangd c/c++ language server
+          marksman # For Markdown Language
+          markdown-oxide # For markdown
+          nixd # For nix files
+          bash-language-server # For bash language server
+          fennel-ls # Used for configuring xplr in fennel and lua alternative files
+          fnlfmt # Formatter for fennel files
+          fish-lsp # For the fish shell
+          lua-language-server # for lua
+          stylua # For formatting lua
+          vscode-json-languageserver # For JSON
+          vscode-css-languageserver # For CSS
+          systemd-lsp # For systemd service files
+        ])
+        ++ (with selfpkgs; [ dprint ]);
     };
 }

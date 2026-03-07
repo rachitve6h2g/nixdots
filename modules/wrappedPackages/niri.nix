@@ -143,12 +143,17 @@ in
               {
                 key = "f";
                 desc = "Firefox";
-                cmd = "firefox"; # TODO: See how to get the wrapped firefox output
+                cmd = "firefox";
               }
               {
                 key = "d";
                 desc = "Vesktop";
                 cmd = "vesktop";
+              }
+              {
+                key = "t";
+                desc = "Telegram";
+                cmd = "Telegram";
               }
             ]);
 
@@ -355,7 +360,7 @@ in
               matches = [ { is-floating = true; } ];
               geometry-corner-radius =
                 let
-                  r = 15.0;
+                  r = 30.0;
                 in
                 [
                   r
@@ -368,7 +373,7 @@ in
             {
               matches = [
                 {
-                  # app-id = "firefox$";
+                  app-id = "firefox$";
                   title = "^Picture-in-Picture$";
                 }
               ];
@@ -395,16 +400,16 @@ in
                 }
 
                 {
-                  app-id = "thunar$";
+                  app-id = "(?i).*thunar.*";
                   title = ".*File Operation Progress.*";
                 }
               ];
               open-floating = true;
               default-column-width = {
-                fixed = 1030;
+                fixed = 890;
               };
               default-window-height = {
-                fixed = 160;
+                fixed = 620;
               };
             }
 

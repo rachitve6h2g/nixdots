@@ -1,6 +1,28 @@
 {
   flake.wrappers.git =
-    { wlib, ... }:
+    {
+      wlib,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      commitMsgHook = pkgs.writeShellScript "commit-msg" ''
+        ${lib.getExe pkgs.gitlint} --msg-filename "$1"
+      '';
+      gitHooks = pkgs.runCommand "git-hooks" { } ''
+        mkdir -p $out
+        ln -s ${commitMsgHook} $out/commit-msg
+      '';
+      gitIgnores = [
+        "*.bak"
+        "*~"
+        "*.tmp"
+        ".direnv"
+      ];
+
+      globalIgnoreFiles = pkgs.writeText "global-gitignore" (lib.concatStringsSep "\n" gitIgnores + "\n");
+    in
     {
       imports = [ wlib.wrapperModules.git ];
       # TODO: use hjem for managing $XDG_CONFIG_HOME/git/ignore
@@ -24,6 +46,8 @@
           ss = "status --short --branch";
           ci = "commit";
         };
+        core.hooksPath = gitHooks;
+        core.excludesFile = globalIgnoreFiles;
       };
 
       env = rec {

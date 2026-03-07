@@ -23,12 +23,15 @@
           "audio"
           "greeter"
           "networkmanager"
+          "input"
+          "ydotool"
         ]; # Enable ‘sudo’ for the user.
 
         initialPassword = "1234";
       };
 
       programs = {
+        ydotool.enable = true;
         fzf = {
           fuzzyCompletion = true;
         };

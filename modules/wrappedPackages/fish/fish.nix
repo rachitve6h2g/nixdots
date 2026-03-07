@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.wrappers.fish =
     {
@@ -7,6 +8,9 @@
       lib,
       ...
     }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
     {
       imports = [ wlib.modules.default ];
       options = {
@@ -21,11 +25,14 @@
             end
 
             ${lib.getExe pkgs.zoxide} init fish | source
+
+            set -gx LS_COLORS (vivid generate tokyonight-night)
           '';
           type = wlib.types.file pkgs;
         };
       };
       config = {
+        filesToPatch = [ "share/fish/themes/*.theme" ];
         outputs = [
           "out"
           "doc"
@@ -33,16 +40,20 @@
         package = pkgs.fish;
         wrapperImplementation = "binary";
         passthru.shellPath = "/bin/fish";
-        extraPackages = with pkgs; [
-          microfetch
-          pandoc
-          fd
-          ripgrep
-          ripgrep-all
-          eza
-          fzf
-          vivid
-        ];
+        extraPackages =
+          (with pkgs; [
+            microfetch
+            pandoc
+            fd
+            ripgrep
+            ripgrep-all
+            vivid
+            eza
+            fzf
+          ])
+          ++ (with selfpkgs; [
+            btop
+          ]);
         flags = {
           "-C" =
             /* fish */ "
@@ -51,16 +62,6 @@
             for c in \$fish_conf_source_path/*; source \$c; end
             ";
         };
-
-        # drv = {
-        #   fishConfig = builtins.readFile config."config.fish".path;
-        #   passAsFile = [ "fishConfig" ];
-        #   buildPhase = ''
-        #     runHook preBuild
-        #     cp $fishConfigPath "$out/etc/fish/conf.d/fishy-fish.fish"
-        #     runHook postBuild
-        #   '';
-        # };
       };
     };
 }

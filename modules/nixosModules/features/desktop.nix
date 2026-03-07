@@ -49,6 +49,8 @@
           selfpkgs.git
           selfpkgs.helix
           selfpkgs.yt-dlp
+          selfpkgs.xplr
+          selfpkgs.zathura
 
           pkgs.wl-clipboard
           pkgs.brightnessctl

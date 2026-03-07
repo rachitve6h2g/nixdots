@@ -1,6 +1,7 @@
-{ ... }:
+{ lib, ... }:
 let
   theme = {
+
     # Gruvbox Material
     /*
       base00 = "#141617"; # bg
@@ -60,17 +61,30 @@ let
     base0F = "#F7768E";
   };
 
-  stripHash =
-    str:
-    if builtins.substring 0 1 str == "#" then
-      builtins.substring 1 (builtins.stringLength str - 1) str
-    else
-      str;
+  stripHash = str: if lib.hasPrefix "#" str then lib.removePrefix "#" str else str;
 
-  themeNoHash = builtins.mapAttrs (_: v: stripHash v) theme;
+  # Helper to get decimal string from hex pair
+  hexToDecStr = hex: toString (lib.trivial.fromHexString hex);
+
+  # Transform the theme into a flat set with -rgb-r, etc.
+  processedTheme = lib.concatMapAttrs (
+    name: value:
+    let
+      h = stripHash value;
+      r = hexToDecStr (builtins.substring 0 2 h);
+      g = hexToDecStr (builtins.substring 2 2 h);
+      b = hexToDecStr (builtins.substring 4 2 h);
+    in
+    {
+      "${name}" = h;
+      "${name}-rgb-r" = r;
+      "${name}-rgb-g" = g;
+      "${name}-rgb-b" = b;
+    }
+  ) theme;
 in
 {
-  flake = {
-    inherit theme themeNoHash;
-  };
+  # If using flake-parts, this puts it in 'self.themeNoHash'
+  flake.themeNoHash = processedTheme;
+  flake = { inherit theme; };
 }
