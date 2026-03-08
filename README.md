@@ -8,7 +8,7 @@
     <a href="https://neovim.io/">
       <img
         src="./.github/images/nvim.png"
-        width="95"
+        width="90"
         alt="Neovim Logo"
       >
     </a>
