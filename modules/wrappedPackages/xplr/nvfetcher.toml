@@ -1,0 +1,6 @@
+[tree-view]
+src.github = "sayanarijit/tree-view.xplr"
+fetch.github = "sayanarijit/tree-view.xplr"
+[zoxide]
+src.git = "https://github.com/sayanarijit/zoxide.xplr"
+fetch.github = "sayanarijit/zoxide.xplr"

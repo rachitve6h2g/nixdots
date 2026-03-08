@@ -40,6 +40,12 @@
         "webgl.disabled" = false;
         "devtools.chrome.enabled" = true;
         "devtools.debugger.remote-enabled" = true;
+
+        # Can ocassionally break layout in niche sites
+        "privacy.resistFingerprinting" = true;
+
+        # Disable firefox looking for IPs of links that I haven't clicked yet
+        "network.dns.disablePrefetch" = true;
       };
 
       extensions = [
@@ -53,6 +59,11 @@
         # (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
         # (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
         (extension "tokyo-night-dark-theme" "{cebd391d-f568-473f-bb6e-698d08ec81ec}")
+
+        (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+        (extension "clearurls" "{747302f2-fd31-4d06-bdc3-efb4d995951f}")
+        (extension "violentmonkey" "{77d2c305-3ee3-4309-b021-34a0239084ef}")
+        (extension "tabliss" "extension@tabliss.io")
       ];
     in
     {
@@ -91,6 +102,17 @@
               Cryptomining = true;
               Fingerprinting = true;
               EmailTracking = true;
+            };
+
+            # Privacy
+            HttpsOnlyMode = "force_enabled";
+
+            # Disable "What's new" and "Feature Tour" after updates
+            UserMessaging = {
+              ExtensionRecommendations = false;
+              SkipOnboarding = true;
+              WhatsNew = false;
+              FeatureRecommendations = false;
             };
 
             # Access Restrictions
@@ -189,6 +211,12 @@
                   URLTemplate = "https://www.perplexity.ai/?q={searchTerms}";
                   IconURL = "https://www.perplexity.ai/favicon.ico";
                   Alias = "@perplex";
+                }
+                {
+                  Name = "Gemini";
+                  URLTemplate = "https://gemini.google.com/app?q={searchTerms}";
+                  IconURL = "https://www.gstatic.com/lamda/images/favicon_v1_150160d1398865466e00.png";
+                  Alias = "@gem";
                 }
 
                 # YouTube

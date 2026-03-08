@@ -58,6 +58,8 @@
           pkgs.gdu
           pkgs.udiskie
           pkgs.polkit_gnome
+          pkgs._7zz-rar
+          pkgs.nvfetcher # For updating sources of custom packages
         ];
       };
 

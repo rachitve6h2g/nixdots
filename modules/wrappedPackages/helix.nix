@@ -1,4 +1,4 @@
-{ self, ... }:
+{ inputs, ... }:
 {
   flake.wrappers.helix =
     {
@@ -8,7 +8,62 @@
       ...
     }:
     let
-      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+      dprintWrapped = inputs.wrappers.lib.wrapPackage (
+        { config, ... }:
+        let
+          dprintSettings = {
+            markdown = {
+              lineWidth = 120;
+            };
+            # HTML files
+            markup = {
+              indentWidth = 2;
+            };
+            # CSS files
+            malva = {
+              indentWidth = 2;
+            };
+            json = {
+              indentWidth = 2;
+              trailingCommas = "never";
+            };
+            excludes = [ ];
+            # NOTE: Remember to update plugins on your own, or better still package them using nix
+            plugins = [
+              "https://plugins.dprint.dev/markdown-0.21.1.wasm" # For markdown
+              "https://plugins.dprint.dev/toml-0.7.0.wasm" # For toml formatting
+              "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm" # For yaml
+              "https://plugins.dprint.dev/g-plane/malva-v0.15.2.wasm" # For css
+              "https://plugins.dprint.dev/g-plane/markup_fmt-v0.26.0.wasm" # For HTML
+              "https://plugins.dprint.dev/json-0.21.1.wasm" # For JSON/JSONC Formatting
+            ];
+          };
+        in
+        {
+          inherit pkgs;
+
+          package = pkgs.dprint;
+          flags = {
+            "--config" = "${placeholder "out"}/${config.binName}-config/dprint.json";
+          };
+          env = {
+            DPRINT_MAX_THREADS = "4";
+            DPRINT_EDITOR = "hx";
+            DPRINT_CONFIG_DIR = "${placeholder "out"}/${config.binName}-config/";
+          };
+          binName = "dprint";
+          drv = {
+            dprintConfig = (pkgs.formats.json { }).generate "dprint.json" dprintSettings;
+            passAsFile = [ "dprintConfig" ];
+            buildPhase = ''
+              runHook preBuild
+              mkdir -p "$out/${config.binName}-config"
+              cp "$(cat "$dprintConfigPath")" "$out/${config.binName}-config/dprint.json"
+              runHook postBuild
+            '';
+          };
+        }
+      );
     in
     {
       imports = [ wlib.wrapperModules.helix ];
@@ -27,6 +82,10 @@
           end = "no_op";
         };
         editor = {
+          smart-tab = {
+            enable = true;
+            supersede-menu = true;
+          };
           cursor-shape = {
             insert = "bar";
             normal = "block";
@@ -98,13 +157,59 @@
             };
             auto-format = true;
             formatter = {
-              command = lib.getExe selfpkgs.dprint;
+              command = lib.getExe dprintWrapped;
               args = [
                 "fmt"
                 "--stdin"
                 "md"
               ];
             };
+          }
+
+          # For HTML and CSS
+          {
+            name = "html";
+            auto-format = true;
+            formatter = {
+              command = lib.getExe dprintWrapped;
+              args = [
+                "fmt"
+                "--stdin"
+                "html"
+              ];
+            };
+          }
+          {
+            name = "css";
+            auto-format = true;
+            formatter = {
+              command = lib.getExe dprintWrapped;
+              args = [
+                "fmt"
+                "--stdin"
+                "css"
+              ];
+            };
+          }
+
+          # For JSON formatting
+          {
+            name = "json";
+            formatter = {
+              command = lib.getExe dprintWrapped;
+              args = [
+                "fmt"
+                "--stdin"
+                "json"
+              ];
+            };
+          }
+
+          # For fennel, used to set up xplr files
+          {
+            name = "fennel";
+            auto-format = true;
+            injection-regex = "fennel";
           }
         ];
         language-server = {
@@ -121,23 +226,23 @@
           };
         };
       };
-      extraPackages =
-        (with pkgs; [
-          lldb # Debug adapter for C/C++
-          clang-tools # For clangd c/c++ language server
-          marksman # For Markdown Language
-          markdown-oxide # For markdown
-          nixd # For nix files
-          bash-language-server # For bash language server
-          fennel-ls # Used for configuring xplr in fennel and lua alternative files
-          fnlfmt # Formatter for fennel files
-          fish-lsp # For the fish shell
-          lua-language-server # for lua
-          stylua # For formatting lua
-          vscode-json-languageserver # For JSON
-          vscode-css-languageserver # For CSS
-          systemd-lsp # For systemd service files
-        ])
-        ++ (with selfpkgs; [ dprint ]);
+      extraPackages = with pkgs; [
+        lldb # Debug adapter for C/C++
+        clang-tools # For clangd c/c++ language server
+        marksman # For Markdown Language
+        markdown-oxide # For markdown
+        nil # For nix! yeah two is better than one
+        nixd # For nix files
+        bash-language-server # For bash language server
+        fennel-ls # Used for configuring xplr in fennel and lua alternative files
+        fnlfmt # Formatter for fennel files
+        fish-lsp # For the fish shell
+        lua-language-server # for lua
+        stylua # For formatting lua
+        vscode-langservers-extracted # For html, css, jSON, and ESLint
+        superhtml # Language server for HTML
+        systemd-lsp # For systemd service files
+        dprintWrapped
+      ];
     };
 }

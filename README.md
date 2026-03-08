@@ -1,27 +1,36 @@
-<h1 align="center">Rachit's NixOS System Configuration</h1>
-&#10;<p align="center">
-<img src="./.github/images/nixos.svg" width="95px" />
-&nbsp;&nbsp;&nbsp;
-<a href="https://www.gnu.org/software/emacs/">
-<img src="./.github/images/emacs.svg" width="95px" />
-</a>
-</p>
-&#10;<p align="center">
-<a href="https://orgmode.org/">
-<img src="https://img.shields.io/static/v1?style=for-the-badge&label=Org%20Mode&message=9.7&colorA=1e1e2e&colorB=a6e3a1&logo=org&logoColor=f9e2af" />
-</a>
-&nbsp;
-<a href="https://nixos.org">
-<img src="https://img.shields.io/static/v1?style=for-the-badge&label=NixOS&message=unstable&colorA=1e1e2e&colorB=89b4fa&logo=NixOS&logoColor=f9e2af" />
-</a>
-&nbsp;
-<a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
-<img src="https://img.shields.io/static/v1?style=for-the-badge&label=License&message=GPL&colorA=1e1e2e&colorB=f38ba8&logo=gnu&logoColor=f9e2af" />
-</a>
-</p>
-&#10;<p align="center">
-<i>Declarative. Reproducible. Minimal.</i>
-</p>
+<div style="text-align: center">
+  <h1>Rachit's NixOS System Configuration</h1>
+
+<p>
+    <a href="https://nixos.org">
+      <img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
+    </a>
+    <a href="https://helix-editor.com/">
+      <img
+        src="https://helix-editor.com/static/helix-logo.svg"
+        width="95"
+        alt="Helix Editor Logo"
+      >
+    </a>
+  </p>
+
+<p>
+    <a href="https://nixos.org">
+      <img
+        src="https://img.shields.io/static/v1?style=for-the-badge&label=NixOS&message=unstable&colorA=1e1e2e&colorB=89b4fa&logo=NixOS&logoColor=f9e2af"
+        alt="NixOS Unstable Badge"
+      >
+    </a>
+    <a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
+      <img
+        src="https://img.shields.io/static/v1?style=for-the-badge&label=License&message=GPL&colorA=1e1e2e&colorB=f38ba8&logo=gnu&logoColor=f9e2af"
+        alt="GPL License Badge"
+      >
+    </a>
+  </p>
+
+<p><i>Declarative. Reproducible. Minimal.</i></p>
+</div>
 
 # 📔 Instructions for installation
 
@@ -165,6 +174,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [ ] noctalia shell
   - [ ] poweralertd
 - [ ] Move to using wrappers.
+  - [ ] [taskwarrior](https://taskwarrior.org/)
   - [ ] Set up [xplr](https://github.com/sayanarijit/xplr)
     - [ ] Key for bookmarks
     - [ ] For visiting history
@@ -186,6 +196,8 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [ ] shell tools
     - [ ] nh wrapper
     - [ ] fish
+      - [ ] Set up useful fish plugins
+      - [ ] Set up useful fish functions
     - [ ] Zoxide
     - [ ] Fzf
     - [x] Git
