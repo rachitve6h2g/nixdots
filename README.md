@@ -5,11 +5,11 @@
     <a href="https://nixos.org">
       <img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
     </a>
-    <a href="https://helix-editor.com/">
+    <a href="https://neovim.io/">
       <img
-        src="https://helix-editor.com/static/helix-logo.svg"
+        src="./.github/images/nvim.png"
         width="95"
-        alt="Helix Editor Logo"
+        alt="Neovim Logo"
       >
     </a>
   </p>
