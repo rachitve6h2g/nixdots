@@ -1,4 +1,28 @@
+{ self, ... }:
 {
+  perSystem =
+    { pkgs, lib, ... }:
+    let
+      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+      dump-noctalia-shell = pkgs.writeShellApplication {
+        name = "dump-noctalia-shell";
+        text = ''
+          ${lib.getExe selfpkgs.noctalia-shell} ipc call state all \
+          | nix eval --impure --expr 'builtins.fromJSON (builtins.readFile /dev/stdin)'
+        '';
+      };
+    in
+    {
+      packages = {
+        noctalia-bundle = pkgs.symlinkJoin {
+          name = "noctalia-bundle";
+          paths = [
+            dump-noctalia-shell
+            selfpkgs.noctalia-shell
+          ];
+        };
+      };
+    };
   flake.wrappers.noctalia-shell =
     {
       wlib,

@@ -182,9 +182,14 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [x] aria2
   - [x] yt-dlp
   - [x] btop
+  - [ ] [bottom](https://github.com/ClementTsang/bottom)
   - [x] cava
   - [x] firefox
-  - [x] foot
+  - [ ] Wezterm
+    - [ ] Configure plugins
+    - [ ] [bar.wezterm](https://github.com/adriankarlen/bar.wezterm)
+    - [ ] [Tab Bar plugins for aesthetics](https://github.com/michaelbrusegard/awesome-wezterm?tab=readme-ov-file#tab-bar)
+    - [ ] When using neovim: [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) and [wezterm-config.nvim](https://github.com/mrjones2014/smart-splits.nvim)
   - [x] niri
   - [ ] Swayidle
     - [ ] wrap the config around the binary
@@ -203,21 +208,31 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [x] Git
       - [x] Global Ignore file
       - [x] Global Config
+      - [ ] gitui
+      - [ ] gh
+        - [ ] gh-dash
     - [ ] Ripgrep
     - [ ] bat
-    - [ ] gitui
     - [ ] rmpc music player
+    - [ ] [kew music player](https://codeberg.org/ravachol/kew)
     - [ ] [iamb](https://github.com/ulyssa/iamb)
     - [ ] [feedo](https://github.com/ricardodantas/feedo)
+    - [ ] [discordo](https://github.com/ayn2op/discordo) and [endcord](https://github.com/sparklost/endcord)
   - [x] Set GTK Theme using NixOS configuration module
   - [x] Set Fonts using NixOS module
     - [x] Remove Home-Manager stylix font modules
 - [x] Use import-tree and flake-parts to manage config as flake modules.
 
+## Todo
+
+- [ ] Move all shell tools into a package called in environment (like in [Vimjoyer's Configuration](https://github.com/goxore/nixconf)). And use it in `users.users.krish.shell`
+- [ ] Learn [jj](https://github.com/jj-vcs/jj) and move to [jjui](https://github.com/idursun/jjui)
+
 # 📚 Resources
 
 - [Wallpapers Repo by krishna4a6av](https://github.com/krishna4a6av/Wallpapers)
 - [Wrapper Configurations](https://tangled.org/ladas552.me/Flake-ocean/blob/master/modules/wrappers/fish/flake-outputs.nix)
+- [List of TUIs for the terminally addicted](https://github.com/rothgar/awesome-tuis)
 
 # 📃 License
 

@@ -13,7 +13,7 @@
         let
           dprintSettings = {
             markdown = {
-              lineWidth = 120;
+              lineWidth = 500;
             };
             # HTML files
             markup = {
@@ -96,7 +96,7 @@
           cursorline = true;
           line-number = "relative";
           end-of-line-diagnostics = "hint";
-          inline-diagnostics.cursor-line = "warning";
+          # inline-diagnostics.cursor-line = "warning";
           indent-guides = {
             render = true;
             character = "⸽";
@@ -136,6 +136,13 @@
                 "-kp"
               ];
             };
+          }
+
+          # For ron file formats
+          {
+            name = "ron";
+            injection-regex = "ron";
+            language-servers = [ "ron-lsp" ];
           }
 
           # For fish
@@ -224,6 +231,10 @@
               "fish_lsp_show_client_popups" = "false";
             };
           };
+          ron-lsp = {
+            command = lib.getExe pkgs.ron-lsp;
+            # args = []
+          };
         };
       };
       extraPackages = with pkgs; [
@@ -242,7 +253,8 @@
         vscode-langservers-extracted # For html, css, jSON, and ESLint
         superhtml # Language server for HTML
         systemd-lsp # For systemd service files
-        dprintWrapped
+        dprintWrapped # for formatting various filetypes
+        ron-lsp # For ron file formats
       ];
     };
 }

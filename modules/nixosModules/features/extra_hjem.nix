@@ -1,10 +1,11 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.extra_hjem =
-    { pkgs, lib, ... }:
-    let
-      selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
-    in
+    {
+      pkgs,
+      # lib,
+      ...
+    }:
     {
       imports = [ inputs.hjem.nixosModules.default ];
       hjem = {

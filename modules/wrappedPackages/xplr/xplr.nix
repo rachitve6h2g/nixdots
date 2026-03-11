@@ -128,7 +128,7 @@
         };
 
         # For tree view
-        tree-view = {
+        tree-view = mkPluginCfg {
           plugin = xplrPlugins.tree-view;
           opts = {
             mode = "switch_layout";
@@ -138,17 +138,56 @@
             toggle_layout_mode = "default";
             toggle_layout_key = "esc";
 
+            # Press backspace to close all and back and close
             close_all_and_back_mode = "default";
             close_all_and_back_key = "backspace";
 
+            # Toggle expansion without entering
             toggle_expansion_mode = "default";
             toggle_expansion_key = "o";
 
+            # Toggle expansion of all the nodes under $PWD
             toggle_expansion_all_mode = "default";
             toggle_expansion_all_key = "O";
-          };
-          data = ''
 
+            # Focus on the next visible line,
+            # not compatible with up/down action
+            focus_next_mode = "default";
+            focus_next_key = "]";
+
+            # Focus on the previous visible line,
+            # not compatible with up/down action
+            focus_prev_mode = "default";
+            focus_prev_key = "[";
+
+            # Go to the next deep level directory that's open
+            goto_next_open_mode = "default";
+            goto_next_open_key = ")";
+
+            # Go to the previous deep level directory that's open
+            goto_prev_open_mode = "default";
+            goto_prev_open_key = "(";
+
+            # Whether to display the tree in fulfullscreen
+            fullscreen = false;
+
+            # Indent for the branches of the tree
+            indent = "  ";
+
+            # Start xplr with the tree-view level
+            as_initial_layout = false;
+
+            # Disables toggling layout
+            as_default_layout = false;
+
+            # Automatically fallback to this layout for better performance if the
+            # branch contains # of nodes more than the threshold value
+            fallback_layout = "Table";
+            fallback_threshold = 500;
+          };
+          data = /* fennel */ ''
+            (_G.nix-info.call-setup :tree-view opts)
+            nil
           '';
         };
       };

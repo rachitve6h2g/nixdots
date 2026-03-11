@@ -17,6 +17,8 @@
         ''set ${n}	"${formatValue v}"'';
 
       formatMapLine = n: v: "map ${n}   ${toString v}";
+
+      mkZathuraPlugins = ps: builtins.concatStringsSep ":" (map (v: "${v}/lib/zathura") ps);
     in
     {
       imports = [ wlib.modules.default ];
@@ -66,9 +68,26 @@
           type = with lib.types; attrsOf str;
           default = { };
         };
+
+        plugins = lib.mkOption {
+          type = with lib.types; listOf package;
+          default = with pkgs; [
+            zathuraPkgs.zathura_cb
+          ];
+        };
       };
       config = {
-        package = pkgs.zathura;
+        prefixVar = [
+          [
+            "ZATHURA_PLUGINS_PATH"
+            ":"
+            # "${lib.makeLibraryPath (config.plugins)}"
+            "${mkZathuraPlugins config.plugins}"
+          ]
+        ];
+        package = pkgs.zathura.override {
+          zathura_pdf_poppler = null;
+        };
         flags = {
           "--config-dir" = "${placeholder "out"}/config";
         };

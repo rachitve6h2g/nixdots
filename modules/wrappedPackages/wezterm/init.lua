@@ -5,12 +5,12 @@ local wezterm = require("wezterm")
 config.initial_rows = 28 --]]
 
 config.font = wezterm.font("Iosevka Nerd Font")
-config.font_size = 11
+config.font_size = 11.5
 config.color_scheme = "Tokyo Night"
 config.window_background_opacity = 0.8
 
 config.hide_tab_bar_if_only_one_tab = true
-config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
+-- config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 
 config.window_padding = { left = 0, right = -1, top = 0, bottom = -5, }
 

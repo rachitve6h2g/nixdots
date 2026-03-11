@@ -21,7 +21,7 @@
     showCategories = true;
     showIconBackground = false;
     sortByMostUsed = true;
-    # terminalCommand = "footclient -e";
+    terminalCommand = "wezterm -e"; # TODO: Place preferred terminal here passed from a glob attrset
     useApp2Unit = false;
     viewMode = "list";
   };
@@ -319,7 +319,7 @@
     wifiEnabled = true;
   };
   nightLight = {
-    autoSchedule = true;
+    autoSchedule = false;
     dayTemp = "6500";
     enabled = true;
     forced = false;

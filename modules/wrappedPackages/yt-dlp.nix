@@ -14,9 +14,40 @@
         format = "bestvideo+bestaudio/best";
         embed-thumbnail = true;
         embed-subs = true;
+        embed-metadata = true;
       };
       extraPackages = [
         (self.packages.${pkgs.stdenv.hostPlatform.system}.aria2)
       ];
+
+      wrapperVariants = {
+        yt-dlp = {
+          binName = "yt-music";
+          addFlag = [
+            "-x"
+            [
+              "--audio-format"
+              "flac"
+            ]
+            [
+              "--audio-quality"
+              "0"
+            ]
+            [
+              "--write-subs"
+              "--convert-subs"
+              "lrc"
+            ]
+            [
+              "--parse-metadata"
+              "playlist_index:%(track_number)s"
+            ]
+            [
+              "-o"
+              "~/Music/%(artist,uploader)s/%(album,playlist_title)s/%(track_number)02d - %(title)s.%(ext)s"
+            ]
+          ];
+        };
+      };
     };
 }
