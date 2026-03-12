@@ -102,6 +102,11 @@
 
             # For YouTube
             pkgs.gophertube # TODO: wrap the config
+
+            # The taskwarrior cli
+            # TODO: Wrap all cli/tui in the environment package
+            pkgs.taskwarrior3
+            pkgs.taskwarrior-tui
           ];
         };
 

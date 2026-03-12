@@ -4,8 +4,8 @@ local wezterm = require("wezterm")
 --[[ config.initial_cols = 120
 config.initial_rows = 28 --]]
 
-config.font = wezterm.font("Iosevka Nerd Font")
-config.font_size = 11.5
+config.font = wezterm.font("Maple Mono NF")
+config.font_size = 11
 config.color_scheme = "Tokyo Night"
 config.window_background_opacity = 0.8
 

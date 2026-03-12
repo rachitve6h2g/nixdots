@@ -1,25 +1,4 @@
 {
-    "tree-view": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "tree-view",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "sayanarijit",
-            "repo": "tree-view.xplr",
-            "rev": "v0.1.4",
-            "sha256": "sha256-4iuJPNenHFX7izZXFSlP4DXG3qKkvFbR7+9zP4UzanQ=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "v0.1.4"
-    },
     "zoxide": {
         "cargoLock": null,
         "date": "2023-01-11",

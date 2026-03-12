@@ -175,6 +175,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [ ] poweralertd
 - [ ] Move to using wrappers.
   - [ ] [taskwarrior](https://taskwarrior.org/)
+    - [ ] Also integrate taskwarrior with neovim
   - [ ] Set up [xplr](https://github.com/sayanarijit/xplr)
     - [ ] Key for bookmarks
     - [ ] For visiting history

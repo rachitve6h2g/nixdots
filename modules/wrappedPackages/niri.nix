@@ -18,7 +18,7 @@ in
             with theme;
             lib.generators.toYAML { } {
               # A little bit of style
-              font = "Iosevka Nerd Font";
+              font = "Maple Mono NF";
               background = "${base00}d0";
               color = "${base05}";
               border = "${base09}";

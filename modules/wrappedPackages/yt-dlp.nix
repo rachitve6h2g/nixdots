@@ -15,6 +15,7 @@
         embed-thumbnail = true;
         embed-subs = true;
         embed-metadata = true;
+        sub-langs = "all,-live_chat"; # Excludes live_chat from being downloaded as subtitle
       };
       extraPackages = [
         (self.packages.${pkgs.stdenv.hostPlatform.system}.aria2)

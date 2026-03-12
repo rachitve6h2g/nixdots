@@ -47,11 +47,11 @@
         "smfh": "smfh"
       },
       "locked": {
-        "lastModified": 1773021298,
-        "narHash": "sha256-erwV+kMqRX/KhopMRq1B0MuyAGip4OkDG1nVJdW0nv8=",
+        "lastModified": 1773176535,
+        "narHash": "sha256-SxJl+VllncXrqOv045TulgPHZSEiow7ItsA7GLcJq48=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "f484cac67cfaa6329e1d1fe00be57929ae744b25",
+        "rev": "0290776d1418a475b785c1eacc91f655d11f331b",
         "type": "github"
       },
       "original": {
@@ -226,11 +226,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773106882,
-        "narHash": "sha256-Fwj6U+CuVQtXDNJeOWOqHUmNmBlTeNxuaA1knbyzQc8=",
+        "lastModified": 1773249306,
+        "narHash": "sha256-TcDoqi8rgjd1B4ResydxxkqDWKDWVV+xN25Gh+i3pII=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "b485665d7d1be76d17ae3b6cc2603ed4e1bb089a",
+        "rev": "f207ef414d76e542864ab09b55502e864feb8928",
         "type": "github"
       },
       "original": {

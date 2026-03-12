@@ -19,21 +19,6 @@ in
       options =
         let
           inherit (lib) mkOption;
-          commitMsgHook = pkgs.writeShellScript "commit-msg" ''
-            ${lib.getExe pkgs.gitlint} --msg-filename "$1"
-          '';
-          gitHooks = pkgs.runCommand "git-hooks" { } ''
-            mkdir -p $out
-            ln -s ${commitMsgHook} $out/commit-msg
-          '';
-          gitIgnores = [
-            "*.bak"
-            "*~"
-            "*.tmp"
-            ".direnv"
-          ];
-
-          globalIgnoreFiles = pkgs.writeText "global-gitignore" (lib.concatStringsSep "\n" gitIgnores + "\n");
         in
         {
           keyConfig = mkOption {
@@ -120,9 +105,10 @@ in
         };
 
       config = {
-        env.GIT_CONFIG_GLOBAL = config.gitconfig.configFile.path;
+        env.GIT_CONFIG_GLOBAL = pkgs.writeText "gitconfig" (
+          pkgs.lib.generators.toGitINI config.gitconfig.settings + "\n" + config.gitconfig.configFile.content
+        );
         package = pkgs.gitui;
-        extraPackages = [ config.gitconfig.wrapper ];
         flags = {
           "--key-bindings" = config.keyConfig.path;
           "--theme" = config.theme.path;

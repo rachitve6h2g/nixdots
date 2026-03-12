@@ -31,6 +31,12 @@
                   }
                 );
               };
+
+              # # TODO: Use home-manager's functions to do this https://github.com/nix-community/home-manager/blob/master/modules/xresources.nix
+              # ".Xresources" = {
+              #   text = /* Xresources */ "
+              #     ";
+              # };
             };
           };
         };

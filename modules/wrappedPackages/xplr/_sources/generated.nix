@@ -6,17 +6,6 @@
   dockerTools,
 }:
 {
-  tree-view = {
-    pname = "tree-view";
-    version = "v0.1.4";
-    src = fetchFromGitHub {
-      owner = "sayanarijit";
-      repo = "tree-view.xplr";
-      rev = "v0.1.4";
-      fetchSubmodules = false;
-      sha256 = "sha256-4iuJPNenHFX7izZXFSlP4DXG3qKkvFbR7+9zP4UzanQ=";
-    };
-  };
   zoxide = {
     pname = "zoxide";
     version = "e50fd35db5c05e750a74c8f54761922464c1ad5f";

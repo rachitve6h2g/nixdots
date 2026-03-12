@@ -452,9 +452,9 @@
     bluetoothDetailsViewMode = "grid";
     bluetoothHideUnnamedDevices = false;
     boxBorderEnabled = false;
-    fontDefault = "Iosevka NF";
+    fontDefault = "Maple Mono NF";
     fontDefaultScale = 1;
-    fontFixed = "Iosevka NFM";
+    fontFixed = "Maple Mono NF";
     fontFixedScale = 1;
     networkPanelView = "wifi";
     panelBackgroundOpacity = 0.9;
