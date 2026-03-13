@@ -200,7 +200,8 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [x] mpv
   - [x] Zathura pdf reader
   - [x] noctalia \[PARTIAL\]
-    - [ ] Use Stylix's base16 modules to integrate with own theme set
+    - [X] Use Stylix's base16 modules to integrate with own theme set
+    - [ ] See [this PR](https://github.com/BirdeeHub/nix-wrapper-modules/pull/337)
   - [ ] shell tools
     - [ ] nh wrapper
     - [ ] fish
