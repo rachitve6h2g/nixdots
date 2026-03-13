@@ -1,18 +1,23 @@
+{ self, ... }:
+let
+  inherit (self) theme;
+in
+with theme;
 {
-  mError = "#f7768e";
-  mHover = "#9ece6a";
-  mOnError = "#16161e";
-  mOnHover = "#16161e";
-  mOnPrimary = "#16161e";
-  mOnSecondary = "#16161e";
-  mOnSurface = "#c0caf5";
-  mOnSurfaceVariant = "#9aa5ce";
-  mOnTertiary = "#16161e";
-  mOutline = "#353d57";
-  mPrimary = "#7aa2f7";
-  mSecondary = "#bb9af7";
-  mShadow = "#15161e";
-  mSurface = "#1a1b26";
-  mSurfaceVariant = "#24283b";
-  mTertiary = "#9ece6a";
+  mPrimary = base0D;
+  mOnPrimary = base00;
+  mSecondary = base0E;
+  mOnSecondary = base00;
+  mTertiary = base0C;
+  mOnTertiary = base00;
+  mError = base08;
+  mOnError = base00;
+  mSurface = base00;
+  mOnSurface = base05;
+  mHover = base0C;
+  mOnHover = base00;
+  mSurfaceVariant = base01;
+  mOnSurfaceVariant = base04;
+  mOutline = base03;
+  mShadow = base00;
 }

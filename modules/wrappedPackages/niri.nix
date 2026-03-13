@@ -54,7 +54,7 @@ in
         in
         with theme;
         {
-          spawn-at-startup = [ "${pkgs.lib.getExe (self.wrappers.noctalia-shell.wrap { inherit pkgs; })}" ];
+          spawn-at-startup = [ "${lib.getExe' selfpkgs.noctalia-bundle "noctalia-shell"}" ];
           input = {
             keyboard = {
               xkb = {
@@ -142,8 +142,8 @@ in
             "Mod+F".spawn-sh = pkgs.lib.getExe (mkMenu [
               {
                 key = "f";
-                desc = "Firefox";
-                cmd = "firefox";
+                desc = "Zen Browser";
+                cmd = "zen";
               }
               {
                 key = "d";
@@ -373,7 +373,7 @@ in
             {
               matches = [
                 {
-                  app-id = "firefox$";
+                  app-id = "zen$";
                   title = "^Picture-in-Picture$";
                 }
               ];
@@ -415,11 +415,18 @@ in
 
             {
               matches = [
-                { app-id = "^emacs.*"; }
-                { app-id = "firefox$"; } # Maximize Firefox
                 { app-id = "vesktop$"; }
               ];
               open-maximized-to-edges = true;
+            }
+
+            # Open zen and wezterm in 0.75 proportion
+            {
+              matches = [
+                { app-id = "zen$"; }
+                { app-id = "^org\.wezfurlong\.wezterm$"; }
+              ];
+              open-maximized = true;
             }
           ];
         };

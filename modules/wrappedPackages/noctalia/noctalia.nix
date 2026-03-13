@@ -4,6 +4,9 @@
     { pkgs, lib, ... }:
     let
       selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+
+      # Whatever dump-noctalia-shell gives, only the settings of the settings block (and not the state block)
+      # should enter the _noctalia-settings.nix file
       dump-noctalia-shell = pkgs.writeShellApplication {
         name = "dump-noctalia-shell";
         text = ''
@@ -23,40 +26,59 @@
         };
       };
     };
+
   flake.wrappers.noctalia-shell =
     {
       wlib,
       lib,
-      pkgs,
       config,
+      pkgs,
       ...
     }:
     let
-      jsonFormat = pkgs.formats.json { };
+      jsonFmt = pkgs.formats.json { };
+      conf = jsonFmt.generate "noctalia-config" config.settings;
+      plugins = jsonFmt.generate "noctalia-plugins" config.plugins;
+      colors = jsonFmt.generate "noctalia-colors" config.colors;
     in
     {
       imports = [ wlib.modules.default ];
       options = {
         settings = lib.mkOption {
-          # NOTE: Just taking jsonFormat
-          type = with lib.types; oneOf [ jsonFormat.type ];
-          default = import ./_noctalia-settings.nix;
-          description = /* text */ ''
-                Noctalia Shell configuration to be wrapped to with noctalia.
-            	Could be a path, a Json string or 
-          '';
+          inherit (jsonFmt) type;
+          default = import ./_noctalia-settings.nix { inherit self pkgs; };
         };
-
-        # TODO: package plugins and colors along
-        # See https://github.com/noctalia-dev/noctalia-shell/blob/main/nix/home-module.nix
-        # plugins = lib.mkOption { };
-        # colors = lib.mkOption { };
+        plugins = lib.mkOption {
+          inherit (jsonFmt) type;
+          default = import ./_noctalia-plugins.nix;
+        };
+        colors = lib.mkOption {
+          inherit (jsonFmt) type;
+          default = import ./_colors.nix { inherit self; };
+        };
       };
-
       config = {
         package = pkgs.noctalia-shell;
         env = {
-          "NOCTALIA_SETTINGS_FILE" = jsonFormat.generate "config.json" config.settings;
+          XDG_CONFIG_HOME = toString (
+            pkgs.linkFarm "noctalia-merged-config" (
+              map
+                (a: {
+                  inherit (a) path;
+                  name = "noctalia/" + a.name;
+                })
+                (
+                  let
+                    entry = name: path: { inherit name path; };
+                  in
+                  [
+                    (entry "settings.json" conf)
+                    (entry "plugins.json" plugins)
+                    (entry "colors.json" colors)
+                  ]
+                )
+            )
+          );
         };
       };
     };

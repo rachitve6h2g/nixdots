@@ -21,12 +21,19 @@
             set fish_greeting
 
             function fish_prompt
-                string join "" -- (set_color red) "[" (set_color yellow) $USER (set_color green) "@" (set_color blue) $hostname (set_color magenta) " " $(prompt_pwd) (set_color red) ']' (set_color normal) "\$ "
+                string join "" -- \
+                (set_color red) "[" \
+                (set_color yellow) $USER \
+                (set_color green) "@" \
+                (set_color blue) $hostname \
+                (set_color magenta) " " \
+                $(prompt_pwd) (set_color red) ']' \
+                (set_color normal) "\$ "
             end
 
             ${lib.getExe pkgs.zoxide} init fish | source
 
-            set -gx LS_COLORS (vivid generate tokyonight-night)
+            set -gx LS_COLORS (vivid generate gruvbox-dark-hard)
           '';
           type = wlib.types.file pkgs;
         };
@@ -50,9 +57,12 @@
             vivid
             eza
             fzf
+            taskwarrior-tui
           ])
           ++ (with selfpkgs; [
             btop
+            bottom
+            taskwarrior
           ]);
         flags = {
           "-C" =

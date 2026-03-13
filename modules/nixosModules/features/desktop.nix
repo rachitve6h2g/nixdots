@@ -78,7 +78,7 @@
 
             # For git
             selfpkgs.git
-            pkgs.gh # TODO: Wrap gh
+            selfpkgs.gh # TODO: Wrap gh
             pkgs.gh-dash # TODO: Wrap gh-dash with gh
             selfpkgs.gitui # TODO: Wrap gitui
 
@@ -103,10 +103,6 @@
             # For YouTube
             pkgs.gophertube # TODO: wrap the config
 
-            # The taskwarrior cli
-            # TODO: Wrap all cli/tui in the environment package
-            pkgs.taskwarrior3
-            pkgs.taskwarrior-tui
           ];
         };
 

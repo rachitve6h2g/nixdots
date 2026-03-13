@@ -3,16 +3,24 @@ local wezterm = require("wezterm")
 
 --[[ config.initial_cols = 120
 config.initial_rows = 28 --]]
-
 config.font = wezterm.font("Maple Mono NF")
 config.font_size = 11
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Gruvbox Material (Gogh)"
 config.window_background_opacity = 0.8
 
 config.hide_tab_bar_if_only_one_tab = true
 -- config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 
-config.window_padding = { left = 0, right = -1, top = 0, bottom = -5, }
+config.window_padding = {
+  --[[ left = 0,
+  right = -1,
+  top = 0,
+  bottom = -5, --]]
+  left = 20,
+  right = 20,
+  top = 20,
+  bottom = 20,
+}
 
 config.enable_kitty_keyboard = true -- Enable kitty's keyboard configuration
 config.keys = {}                    -- disable default keys

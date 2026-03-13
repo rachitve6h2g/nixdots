@@ -23,20 +23,6 @@
                   }
                 );
               };
-              "Pictures/Wallpapers/mima.jpg" = {
-                source = (
-                  pkgs.fetchurl {
-                    url = "https://raw.githubusercontent.com/rachitvrma/Wallpapers/main/mima.jpg";
-                    hash = "sha256-OkpWJVD26niTLHeHU74akdhYc8O7ThTQHVIUWcgJk9Y=";
-                  }
-                );
-              };
-
-              # # TODO: Use home-manager's functions to do this https://github.com/nix-community/home-manager/blob/master/modules/xresources.nix
-              # ".Xresources" = {
-              #   text = /* Xresources */ "
-              #     ";
-              # };
             };
           };
         };

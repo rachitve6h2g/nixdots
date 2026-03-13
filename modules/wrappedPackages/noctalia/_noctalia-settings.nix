@@ -1,3 +1,20 @@
+{ pkgs, self, ... }:
+let
+  inherit (self) theme;
+  wallpaper = pkgs.fetchurl {
+    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/mix/Powerline.png";
+    hash = "sha256-pXlwsQrcfIXFMoLBAvViaStQY/BozRuLHLgxoAbu0SI=";
+  };
+  wallpaper2 = pkgs.fetchurl {
+    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruvbox_astro.jpg";
+    hash = "sha256-YTxyI+vaC5CGQzqMm1enfPh9/1YoqNXAX7TmAscz1U0=";
+  };
+  wallpaperDir = pkgs.runCommand "wallpaper-dir" { } ''
+    mkdir -p $out
+    cp ${wallpaper} $out
+    cp ${wallpaper2} $out
+  '';
+in
 {
   appLauncher = {
     autoPasteClipboard = false;
@@ -6,7 +23,7 @@
     clipboardWrapText = true;
     customLaunchPrefix = "";
     customLaunchPrefixEnabled = false;
-    density = "default";
+    density = "comfortable";
     enableClipPreview = true;
     enableClipboardHistory = true;
     enableSessionSearch = true;
@@ -21,7 +38,7 @@
     showCategories = true;
     showIconBackground = false;
     sortByMostUsed = true;
-    terminalCommand = "wezterm -e"; # TODO: Place preferred terminal here passed from a glob attrset
+    terminalCommand = "wezterm -e";
     useApp2Unit = false;
     viewMode = "list";
   };
@@ -92,6 +109,46 @@
           iconColor = "none";
           id = "KeepAwake";
           textColor = "none";
+        }
+        {
+          compactMode = true;
+          diskPath = "/";
+          iconColor = "none";
+          id = "SystemMonitor";
+          showCpuFreq = true;
+          showCpuTemp = true;
+          showCpuUsage = true;
+          showDiskAvailable = false;
+          showDiskUsage = false;
+          showDiskUsageAsPercent = false;
+          showGpuTemp = true;
+          showLoadAverage = true;
+          showMemoryAsPercent = true;
+          showMemoryUsage = true;
+          showNetworkStats = false;
+          showSwapUsage = false;
+          textColor = "none";
+          useMonospaceFont = true;
+          usePadding = true;
+        }
+        {
+          compactMode = false;
+          compactShowAlbumArt = true;
+          compactShowVisualizer = false;
+          hideMode = "hidden";
+          hideWhenIdle = false;
+          id = "MediaMini";
+          maxWidth = 145;
+          panelShowAlbumArt = true;
+          panelShowVisualizer = true;
+          scrollingMode = "hover";
+          showAlbumArt = true;
+          showArtistFirst = true;
+          showProgressRing = true;
+          showVisualizer = true;
+          textColor = "none";
+          useFixedWidth = false;
+          visualizerType = "linear";
         }
       ];
       right = [
@@ -170,7 +227,7 @@
     manualSunrise = "06:30";
     manualSunset = "18:30";
     monitorForColors = "";
-    predefinedScheme = "Tokyo Night";
+    predefinedScheme = "";
     schedulingMode = "off";
     useWallpaperColors = false;
   };
@@ -420,7 +477,7 @@
     showHeader = true;
     showKeybinds = true;
   };
-  settingsVersion = 53;
+  settingsVersion = 0;
   systemMonitor = {
     batteryCriticalThreshold = 5;
     batteryWarningThreshold = 20;
@@ -465,7 +522,7 @@
   };
   wallpaper = {
     automationEnabled = false;
-    directory = "/home/krish/Pictures/Wallpapers";
+    directory = wallpaperDir;
     enableMultiMonitorDirectories = false;
     enabled = true;
     favorites = [ ];
@@ -481,7 +538,7 @@
     setWallpaperOnAllMonitors = true;
     showHiddenFiles = false;
     skipStartupTransition = false;
-    solidColor = "#1a1a2e";
+    solidColor = theme.base00;
     sortOrder = "date_desc";
     transitionDuration = 1500;
     transitionEdgeSmoothness = 0.05;
@@ -500,47 +557,5 @@
     wallhavenResolutionWidth = "";
     wallhavenSorting = "relevance";
     wallpaperChangeMode = "random";
-  };
-
-  state = {
-    barVisible = true;
-    changelogState = {
-      lastSeenVersion = "v4.5.0";
-    };
-    colorSchemesList = {
-      schemes = [ ];
-      timestamp = 0;
-    };
-    desktopWidgetsEditMode = false;
-    display = {
-      eDP-1 = {
-        connected = true;
-        height = 1080;
-        name = "eDP-1";
-        physical_height = 190;
-        physical_width = 340;
-        refresh_rate = 60056;
-        scale = 1;
-        transform = "Normal";
-        vrr_enabled = false;
-        vrr_supported = false;
-        width = 1920;
-        x = 0;
-        y = 0;
-      };
-    };
-    doNotDisturb = false;
-    lockScreenActive = false;
-    noctaliaPerformanceMode = false;
-    notificationsState = {
-      lastSeenTs = 0;
-    };
-    openedPanel = "";
-    ui = {
-      settingsSidebarExpanded = true;
-    };
-    wallpapers = {
-      eDP-1 = "/home/krish/Pictures/Wallpapers/mima.jpg";
-    };
   };
 }

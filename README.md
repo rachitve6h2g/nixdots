@@ -192,6 +192,8 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [ ] [Tab Bar plugins for aesthetics](https://github.com/michaelbrusegard/awesome-wezterm?tab=readme-ov-file#tab-bar)
     - [ ] When using neovim: [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) and [wezterm-config.nvim](https://github.com/mrjones2014/smart-splits.nvim)
   - [x] niri
+  - [ ] neovim
+    - [ ] Also install [note.nvim](https://github.com/gsuuon/note.nvim) to link notes to a code line or take quick notes
   - [ ] Swayidle
     - [ ] wrap the config around the binary
     - [ ] create a systemd service to run the binary

@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.firefox =
     {
@@ -46,6 +47,9 @@
 
         # Disable firefox looking for IPs of links that I haven't clicked yet
         "network.dns.disablePrefetch" = true;
+
+        # Shift zen's tab list to ther right
+        "zen.tabs.vertical.right-side" = true;
       };
 
       extensions = [
@@ -54,188 +58,193 @@
         # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
         (extension "ublock-origin" "uBlock0@raymondhill.net")
         (extension "4263531" "myallychou@gmail.com")
-        (extension "darkreader" "addon@darkreader.org")
+        # (extension "darkreader" "addon@darkreader.org")
 
         # (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
         # (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
-        (extension "tokyo-night-dark-theme" "{cebd391d-f568-473f-bb6e-698d08ec81ec}")
+        # (extension "tokyo-night-dark-theme" "{cebd391d-f568-473f-bb6e-698d08ec81ec}")
 
-        (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-        (extension "clearurls" "{747302f2-fd31-4d06-bdc3-efb4d995951f}")
-        (extension "violentmonkey" "{77d2c305-3ee3-4309-b021-34a0239084ef}")
-        (extension "tabliss" "extension@tabliss.io")
+        # (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+        # (extension "clearurls" "{747302f2-fd31-4d06-bdc3-efb4d995951f}")
+        # (extension "violentmonkey" "{77d2c305-3ee3-4309-b021-34a0239084ef}")
+        # (extension "tabliss" "extension@tabliss.io")
       ];
     in
     {
       environment.systemPackages = [
-        (pkgs.wrapFirefox pkgs.firefox-unwrapped {
-          extraPrefs = lib.concatLines (
-            lib.mapAttrsToList (
-              name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value})"
-            ) prefs
-          );
+        # To use firefox, in place of inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+        # place pkgs.firefox-unwrapped
+        (pkgs.wrapFirefox
+          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+          {
+            extraPrefs = lib.concatLines (
+              lib.mapAttrsToList (
+                name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value})"
+              ) prefs
+            );
 
-          extraPolicies = {
-            ExtensionSettings = builtins.listToAttrs extensions;
+            extraPolicies = {
+              ExtensionSettings = builtins.listToAttrs extensions;
 
-            # Updates and background services
-            AppAutoUpdate = false;
-            DisableAppUpdate = true;
-            BackgroundAppUpdate = false;
+              # Updates and background services
+              AppAutoUpdate = false;
+              DisableAppUpdate = true;
+              BackgroundAppUpdate = false;
 
-            # Feature Disabling
-            DisableTelemetry = true;
-            DisableBuiltinPDFViewer = true;
-            DisableFirefoxStudies = true;
-            DisableFirefoxScreenshots = true;
-            DisableFormHistory = true;
-            DisableForgetButton = true;
-            DisableMasterPasswordCreation = true;
-            DisableProfileImport = true;
-            DisableProfileRefresh = true;
-            DisablePocket = true;
-            DisableSetDesktopBackground = true;
-            DontCheckDefaultBrowser = true;
-            EnableTrackingProtection = {
-              Value = true;
-              Locked = true;
-              Cryptomining = true;
-              Fingerprinting = true;
-              EmailTracking = true;
-            };
-
-            # Privacy
-            HttpsOnlyMode = "force_enabled";
-
-            # Disable "What's new" and "Feature Tour" after updates
-            UserMessaging = {
-              ExtensionRecommendations = false;
-              SkipOnboarding = true;
-              WhatsNew = false;
-              FeatureRecommendations = false;
-            };
-
-            # Access Restrictions
-            BlockAboutConfig = false;
-            BlockAboutProfiles = true;
-            BlockAboutSupport = true;
-
-            # DefaultDownloadDirectory = "${config.xdg.userDirs.download}";
-
-            ExtensionUpdate = true;
-            HardwareAcceleration = true;
-            PDFjs = {
-              Enabled = false;
-              EnablePermissions = false;
-            };
-
-            Permissions = {
-              Camera = {
-                Allow = [ ];
-                BlockNewRequests = true;
+              # Feature Disabling
+              DisableTelemetry = true;
+              DisableBuiltinPDFViewer = true;
+              DisableFirefoxStudies = true;
+              DisableFirefoxScreenshots = true;
+              DisableFormHistory = true;
+              DisableForgetButton = true;
+              DisableMasterPasswordCreation = true;
+              DisableProfileImport = true;
+              DisableProfileRefresh = true;
+              DisablePocket = true;
+              DisableSetDesktopBackground = true;
+              DontCheckDefaultBrowser = true;
+              EnableTrackingProtection = {
+                Value = true;
                 Locked = true;
+                Cryptomining = true;
+                Fingerprinting = true;
+                EmailTracking = true;
               };
 
-              Microphone = {
-                Allow = [ ];
-                BlockNewRequests = true;
-                Locked = true;
+              # Privacy
+              HttpsOnlyMode = "force_enabled";
+
+              # Disable "What's new" and "Feature Tour" after updates
+              UserMessaging = {
+                ExtensionRecommendations = false;
+                SkipOnboarding = true;
+                WhatsNew = false;
+                FeatureRecommendations = false;
               };
-              Location = {
-                Allow = [ ];
-                BlockNewRequests = true;
-                Locked = true;
+
+              # Access Restrictions
+              BlockAboutConfig = false;
+              BlockAboutProfiles = true;
+              BlockAboutSupport = true;
+
+              # DefaultDownloadDirectory = "${config.xdg.userDirs.download}";
+
+              ExtensionUpdate = true;
+              HardwareAcceleration = true;
+              PDFjs = {
+                Enabled = false;
+                EnablePermissions = false;
+              };
+
+              Permissions = {
+                Camera = {
+                  Allow = [ ];
+                  BlockNewRequests = true;
+                  Locked = true;
+                };
+
+                Microphone = {
+                  Allow = [ ];
+                  BlockNewRequests = true;
+                  Locked = true;
+                };
+                Location = {
+                  Allow = [ ];
+                  BlockNewRequests = true;
+                  Locked = true;
+                };
+              };
+
+              SearchEngines = {
+                Default = "ddg";
+                Add = [
+                  # NixOS Related
+                  {
+                    Name = "nixpkgs packages";
+                    URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
+                    IconURL = "https://wiki.nixos.org/favicon.ico";
+                    Alias = "@np";
+                  }
+                  {
+                    Name = "NixOS options";
+                    URLTemplate = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
+                    IconURL = "https://wiki.nixos.org/favicon.ico";
+                    Alias = "@no";
+                  }
+                  {
+                    Name = "NixOS Wiki";
+                    URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
+                    IconURL = "https://wiki.nixos.org/favicon.ico";
+                    Alias = "@nw";
+                  }
+                  {
+                    Name = "noogle";
+                    URLTemplate = "https://noogle.dev/q?term={searchTerms}";
+                    IconURL = "https://noogle.dev/favicon.ico";
+                    Alias = "@ng";
+                  }
+
+                  # Non-NixOS
+                  {
+                    Name = "Arch Wiki";
+                    URLTemplate = "https://wiki.archlinux.org/index.php?search={searchTerms}";
+                    IconURL = "https://archlinux.org/favicon.ico";
+                    Alias = "@alwiki";
+                  }
+
+                  # Github shortcuts
+                  {
+                    Name = "Git Repos";
+                    URLTemplate = "https://github.com/search?q={searchTerms}&type=repositories";
+                    IconURL = "https://github.com/favicon.ico";
+                    Alias = "@gitrepo";
+                  }
+                  {
+                    Name = "Git Code";
+                    URLTemplate = "https://github.com/search?q={searchTerms}&type=code";
+                    IconURL = "https://github.com/favicon.ico";
+                    Alias = "@gitcode";
+                  }
+
+                  # AI for use
+                  {
+                    Name = "ChatGPT";
+                    URLTemplate = "https://chatgpt.com/?q={searchTerms}";
+                    IconURL = "https://chatgpt.com/favicon.ico";
+                    Alias = "@gpt";
+                  }
+                  {
+                    Name = "Perplexity";
+                    URLTemplate = "https://www.perplexity.ai/?q={searchTerms}";
+                    IconURL = "https://www.perplexity.ai/favicon.ico";
+                    Alias = "@perplex";
+                  }
+                  {
+                    Name = "Gemini";
+                    URLTemplate = "https://gemini.google.com/app?q={searchTerms}";
+                    IconURL = "https://www.gstatic.com/lamda/images/favicon_v1_150160d1398865466e00.png";
+                    Alias = "@gem";
+                  }
+
+                  # YouTube
+                  {
+                    Name = "YouTube Music";
+                    URLTemplate = "https://music.youtube.com/search?q={searchTerms}";
+                    IconURL = "https://music.youtube.com/favicon.ico";
+                    Alias = "@ytm";
+                  }
+                  {
+                    Name = "YouTube";
+                    URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
+                    IconURL = "https://www.youtube.com/favicon.ico";
+                    Alias = "@ytv";
+                  }
+                ];
               };
             };
-
-            SearchEngines = {
-              Default = "ddg";
-              Add = [
-                # NixOS Related
-                {
-                  Name = "nixpkgs packages";
-                  URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
-                  IconURL = "https://wiki.nixos.org/favicon.ico";
-                  Alias = "@np";
-                }
-                {
-                  Name = "NixOS options";
-                  URLTemplate = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
-                  IconURL = "https://wiki.nixos.org/favicon.ico";
-                  Alias = "@no";
-                }
-                {
-                  Name = "NixOS Wiki";
-                  URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
-                  IconURL = "https://wiki.nixos.org/favicon.ico";
-                  Alias = "@nw";
-                }
-                {
-                  Name = "noogle";
-                  URLTemplate = "https://noogle.dev/q?term={searchTerms}";
-                  IconURL = "https://noogle.dev/favicon.ico";
-                  Alias = "@ng";
-                }
-
-                # Non-NixOS
-                {
-                  Name = "Arch Wiki";
-                  URLTemplate = "https://wiki.archlinux.org/index.php?search={searchTerms}";
-                  IconURL = "https://archlinux.org/favicon.ico";
-                  Alias = "@alwiki";
-                }
-
-                # Github shortcuts
-                {
-                  Name = "Git Repos";
-                  URLTemplate = "https://github.com/search?q={searchTerms}&type=repositories";
-                  IconURL = "https://github.com/favicon.ico";
-                  Alias = "@gitrepo";
-                }
-                {
-                  Name = "Git Code";
-                  URLTemplate = "https://github.com/search?q={searchTerms}&type=code";
-                  IconURL = "https://github.com/favicon.ico";
-                  Alias = "@gitcode";
-                }
-
-                # AI for use
-                {
-                  Name = "ChatGPT";
-                  URLTemplate = "https://chatgpt.com/?q={searchTerms}";
-                  IconURL = "https://chatgpt.com/favicon.ico";
-                  Alias = "@gpt";
-                }
-                {
-                  Name = "Perplexity";
-                  URLTemplate = "https://www.perplexity.ai/?q={searchTerms}";
-                  IconURL = "https://www.perplexity.ai/favicon.ico";
-                  Alias = "@perplex";
-                }
-                {
-                  Name = "Gemini";
-                  URLTemplate = "https://gemini.google.com/app?q={searchTerms}";
-                  IconURL = "https://www.gstatic.com/lamda/images/favicon_v1_150160d1398865466e00.png";
-                  Alias = "@gem";
-                }
-
-                # YouTube
-                {
-                  Name = "YouTube Music";
-                  URLTemplate = "https://music.youtube.com/search?q={searchTerms}";
-                  IconURL = "https://music.youtube.com/favicon.ico";
-                  Alias = "@ytm";
-                }
-                {
-                  Name = "YouTube";
-                  URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
-                  IconURL = "https://www.youtube.com/favicon.ico";
-                  Alias = "@ytv";
-                }
-              ];
-            };
-          };
-        })
+          }
+        )
       ];
     };
 }

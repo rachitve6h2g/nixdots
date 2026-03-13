@@ -44,12 +44,12 @@
 
           package = pkgs.dprint;
           flags = {
-            "--config" = "${placeholder "out"}/${config.binName}-config/dprint.json";
+            "--config" = "${placeholder config.outputName}/${config.binName}-config/dprint.json";
           };
           env = {
             DPRINT_MAX_THREADS = "4";
             DPRINT_EDITOR = "hx";
-            DPRINT_CONFIG_DIR = "${placeholder "out"}/${config.binName}-config/";
+            DPRINT_CONFIG_DIR = "${placeholder config.outputName}/${config.binName}-config/";
           };
           binName = "dprint";
           drv = {
@@ -57,8 +57,8 @@
             passAsFile = [ "dprintConfig" ];
             buildPhase = ''
               runHook preBuild
-              mkdir -p "$out/${config.binName}-config"
-              cp "$(cat "$dprintConfigPath")" "$out/${config.binName}-config/dprint.json"
+              mkdir -p "${config.outputName}/${config.binName}-config"
+              cp "$(cat "$dprintConfigPath")" "${config.outputName}/${config.binName}-config/dprint.json"
               runHook postBuild
             '';
           };
@@ -68,7 +68,7 @@
     {
       imports = [ wlib.wrapperModules.helix ];
       settings = {
-        theme = "tokyonight_transparent";
+        theme = "gruvbox-material_transparent";
         keys.insert = {
           # Force learn modal editing
           # Disable arrow keys in insert mode
@@ -95,8 +95,6 @@
           bufferline = "multiple";
           cursorline = true;
           line-number = "relative";
-          end-of-line-diagnostics = "hint";
-          # inline-diagnostics.cursor-line = "warning";
           indent-guides = {
             render = true;
             character = "⸽";
@@ -107,6 +105,10 @@
       themes = {
         tokyonight_transparent = {
           "inherits" = "tokyonight";
+          "ui.background" = { };
+        };
+        gruvbox-material_transparent = {
+          "inherits" = "gruvbox-material";
           "ui.background" = { };
         };
       };

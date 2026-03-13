@@ -25,11 +25,6 @@
     in
     {
       imports = [ wlib.wrapperModules.git ];
-      # TODO: use hjem for managing $XDG_CONFIG_HOME/git/ignore
-      # *~
-      # #*#
-      # .#*
-      # *.swp
 
       settings = {
         remote = {
@@ -45,6 +40,14 @@
           s = "status";
           ss = "status --short --branch";
           ci = "commit";
+          br = "branch";
+
+          # Sync local main with upstream and update your fork (origin)
+          sync = "!f() { git checkout main && git pull upstream main && git push origin main; }; f";
+          # Update current branch by rebasing onto the remote to avoid merge bubbles
+          up = "pull --rebase --autostash";
+          # Quick stash including untracked files
+          stsh = "stash push -u -m";
         };
         core.hooksPath = gitHooks;
         core.excludesFile = globalIgnoreFiles;
