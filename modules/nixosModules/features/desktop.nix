@@ -97,7 +97,7 @@
             pkgs.nvfetcher # For updating sources of custom packages
 
             # For music
-            pkgs.kew # TODO: Wrap it
+            selfpkgs.kew # WIP: Wrap it
             pkgs.lrcget # Get the lyrics for any song
 
             # For YouTube
