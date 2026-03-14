@@ -11,13 +11,50 @@ in
       ...
     }:
     let
-      base16Yaml = (pkgs.formats.yaml { }).generate "weztermBase16.yaml" (
-        { scheme = "My Generated Theme"; } // theme
-      );
+      base16Toml = with theme; {
+        colors = {
+          cursor_fg = base00;
+          foreground = base05;
+          indexed = {
+            "18" = base01;
+            "19" = base02;
+            "20" = base04;
+            "21" = base06;
+            "16" = base09;
+            "17" = base0F;
+          };
+          background = base00;
+          cursor_border = base05;
+          selection_bg = base05;
+          selection_fg = base00;
+          ansi = [
+            base00
+            base08
+            base0B
+            base0A
+            base0D
+            base0E
+            base0C
+            base05
+          ];
+          brights = [
+            base03
+            base08
+            base0B
+            base0A
+            base0D
+            base0E
+            base0C
+            base07
+          ];
+          cursor_bg = base05;
+        };
+      };
+      base16TomlTheme = (pkgs.formats.toml { }).generate "base16Wez.toml" base16Toml;
       wezThemesDir = (
         pkgs.runCommand "wezterm-themes-dir" { } ''
           mkdir -p $out
-          cp ${base16Yaml} "$out/base16Wez.yaml"
+          cp ${base16TomlTheme} "$out/base16Wez.toml"
         ''
       );
     in

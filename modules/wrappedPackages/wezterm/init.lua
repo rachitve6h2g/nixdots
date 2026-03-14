@@ -5,7 +5,8 @@ local wezterm = require("wezterm")
 config.initial_rows = 28 --]]
 config.font = wezterm.font("Maple Mono NF")
 config.font_size = 11
-config.color_scheme = "Gruvbox Material (Gogh)"
+-- config.color_scheme = "Gruvbox Material (Gogh)"
+config.color_scheme = "base16Wez"
 config.window_background_opacity = 0.8
 
 config.hide_tab_bar_if_only_one_tab = true

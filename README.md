@@ -191,6 +191,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [ ] [bar.wezterm](https://github.com/adriankarlen/bar.wezterm)
     - [ ] [Tab Bar plugins for aesthetics](https://github.com/michaelbrusegard/awesome-wezterm?tab=readme-ov-file#tab-bar)
     - [ ] When using neovim: [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) and [wezterm-config.nvim](https://github.com/mrjones2014/smart-splits.nvim)
+    - [x] Apply base16 scheme to the wrapper and import from self's theme
   - [x] niri
   - [ ] neovim
     - [ ] Also install [note.nvim](https://github.com/gsuuon/note.nvim) to link notes to a code line or take quick notes
@@ -200,7 +201,7 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
   - [x] mpv
   - [x] Zathura pdf reader
   - [x] noctalia \[PARTIAL\]
-    - [X] Use Stylix's base16 modules to integrate with own theme set
+    - [x] Use Stylix's base16 modules to integrate with own theme set
     - [ ] See [this PR](https://github.com/BirdeeHub/nix-wrapper-modules/pull/337)
   - [ ] shell tools
     - [ ] nh wrapper

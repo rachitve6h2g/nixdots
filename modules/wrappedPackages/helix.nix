@@ -44,24 +44,14 @@
 
           package = pkgs.dprint;
           flags = {
-            "--config" = "${placeholder config.outputName}/${config.binName}-config/dprint.json";
+            "--config" = (pkgs.formats.json { }).generate "dprint.json" dprintSettings;
           };
           env = {
             DPRINT_MAX_THREADS = "4";
             DPRINT_EDITOR = "hx";
-            DPRINT_CONFIG_DIR = "${placeholder config.outputName}/${config.binName}-config/";
+            # DPRINT_CONFIG_DIR = "${placeholder config.outputName}/${config.binName}-config/";
           };
           binName = "dprint";
-          drv = {
-            dprintConfig = (pkgs.formats.json { }).generate "dprint.json" dprintSettings;
-            passAsFile = [ "dprintConfig" ];
-            buildPhase = ''
-              runHook preBuild
-              mkdir -p "${config.outputName}/${config.binName}-config"
-              cp "$(cat "$dprintConfigPath")" "${config.outputName}/${config.binName}-config/dprint.json"
-              runHook postBuild
-            '';
-          };
         }
       );
     in
@@ -220,6 +210,20 @@
             auto-format = true;
             injection-regex = "fennel";
           }
+
+          # For toml files
+          {
+            name = "toml";
+            auto-format = true;
+            formatter = {
+              command = lib.getExe dprintWrapped;
+              args = [
+                "fmt"
+                "--stdin"
+                "toml"
+              ];
+            };
+          }
         ];
         language-server = {
           bash-language-server = {
@@ -257,6 +261,12 @@
         systemd-lsp # For systemd service files
         dprintWrapped # for formatting various filetypes
         ron-lsp # For ron file formats
+
+        taplo # For toml
+        tombi # Again, for toml
+
+        yaml-language-server # For yaml language
+        ansible-language-server # For yaml
       ];
     };
 }
