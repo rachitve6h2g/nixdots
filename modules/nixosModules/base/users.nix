@@ -3,8 +3,10 @@
   flake.nixosModules.users =
     {
       pkgs,
+      config,
       ...
     }:
+
     let
       selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
     in
@@ -31,7 +33,6 @@
       };
 
       programs = {
-        ydotool.enable = true;
         fzf = {
           fuzzyCompletion = true;
         };
@@ -40,15 +41,6 @@
           enableFishIntegration = true;
           enableBashIntegration = true;
         };
-        # fish = {
-        #   enable = true;
-        #   vendor = {
-        #     functions.enable = true;
-        #     config.enable = true;
-        #     completions.enable = true;
-        #   };
-        #   useBabelfish = true;
-        # };
         bash = {
           enable = true;
           completion = {
@@ -59,7 +51,7 @@
             if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
             then
               shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-              exec ${selfpkgs.fish}/bin/fish $LOGIN_OPTION
+              exec ${selfpkgs.fishWrapped}/bin/fish $LOGIN_OPTION
             fi
           '';
         };
@@ -75,7 +67,7 @@
           "/"
         ];
         shells = [
-          selfpkgs.fish
+          selfpkgs.fishWrapped
         ];
       };
     };

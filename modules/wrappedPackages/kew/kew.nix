@@ -16,6 +16,10 @@
         [key bindings]
         ${lib.concatStringsSep "\n" bindLines} 
       '';
+      themeFiles = lib.mapAttrsToList (name: path: {
+        name = "kew/themes/${name}.theme";
+        inherit path;
+      }) config.themes;
     in
     {
       imports = [ wlib.modules.default ];
@@ -39,20 +43,26 @@
           type = lib.types.attrsOf lib.types.str;
           default = { };
         };
+
+        themes = lib.mkOption {
+          type = lib.types.attrsOf lib.types.path;
+          default = {
+            gruvbox = ./gruvbox.theme;
+          };
+        };
       };
       config = {
         package = pkgs.kew;
         env.XDG_CONFIG_HOME = toString (
-          pkgs.linkFarm "kewrc-merged-config" [
-            {
-              name = "kew/kewrc";
-              path = pkgs.writeText "kewrc" kewrc;
-            }
-            {
-              name = "kew/themes/gruvbox.theme";
-              path = ./gruvbox.theme;
-            }
-          ]
+          pkgs.linkFarm "kewrc-merged-config" (
+            [
+              {
+                name = "kew/kewrc";
+                path = pkgs.writeText "kewrc" kewrc;
+              }
+            ]
+            ++ themeFiles
+          )
         );
       };
     };

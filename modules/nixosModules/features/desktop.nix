@@ -71,16 +71,9 @@
           };
           systemPackages = [
             feedo
-            selfpkgs.aria2 # TRACK: https://github.com/BirdeeHub/nix-wrapper-modules/discussions/317#discussioncomment-15975516
             selfpkgs.mpv
             selfpkgs.noctalia-bundle
             selfpkgs.wezterm
-
-            # For git
-            selfpkgs.git
-            pkgs.gh # TODO: Wrap gh
-            pkgs.gh-dash # TODO: Wrap gh-dash with gh
-            selfpkgs.gitui # TODO: Wrap gitui
 
             selfpkgs.helix
             selfpkgs.yt-dlp
@@ -97,7 +90,6 @@
             pkgs.nvfetcher # For updating sources of custom packages
 
             # For music
-            selfpkgs.kew # WIP: Wrap it
             pkgs.lrcget # Get the lyrics for any song
 
             # For YouTube

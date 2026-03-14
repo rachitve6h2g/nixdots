@@ -165,6 +165,9 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
 
 # 🚧 Work In Progress
 
+- [ ] fish (NixOS module with [pkgs.wrapFish](https://noogle.dev/f/pkgs/wrapFish))
+  - [ ] Set up useful fish plugins
+  - [ ] Set up useful fish functions
 - [ ] Manage themes from one place. \[DEPRECATE not using stylix anymore\]
   - [ ] Place conditionals:
   - [ ] Wallpaper
@@ -205,9 +208,6 @@ $ sudo ln -sf /home/$USER/nixdots /etc/nixos
     - [ ] See [this PR](https://github.com/BirdeeHub/nix-wrapper-modules/pull/337)
   - [ ] shell tools
     - [ ] nh wrapper
-    - [ ] fish
-      - [ ] Set up useful fish plugins
-      - [ ] Set up useful fish functions
     - [ ] Zoxide
     - [ ] Fzf
     - [x] Git

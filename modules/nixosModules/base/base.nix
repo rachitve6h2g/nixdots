@@ -3,10 +3,7 @@
   flake.nixosModules.base =
     { pkgs, ... }:
     {
-      imports = [
-        self.nixosModules.networking
-      ];
-
+      imports = [ self.nixosModules.networking ];
       # Tmp on ram
       boot = {
         tmp = {
