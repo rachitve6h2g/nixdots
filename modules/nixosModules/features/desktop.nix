@@ -20,7 +20,7 @@
         self.nixosModules.keymap
         self.nixosModules.locale
         self.nixosModules.nix
-        self.nixosModules.social
+        self.nixosModules.commonPackages
         self.nixosModules.sound
       ];
       programs = {
@@ -75,26 +75,16 @@
             selfpkgs.noctalia-bundle
             selfpkgs.wezterm
 
-            selfpkgs.helix
-            selfpkgs.yt-dlp
-            selfpkgs.xplr
             selfpkgs.zathura
 
             pkgs.wl-clipboard
             pkgs.brightnessctl
             pkgs.libnotify
-            pkgs.gdu
             pkgs.udiskie
             pkgs.polkit_gnome
-            pkgs._7zz-rar
-            pkgs.nvfetcher # For updating sources of custom packages
 
             # For music
             pkgs.lrcget # Get the lyrics for any song
-
-            # For YouTube
-            pkgs.gophertube # TODO: wrap the config
-
           ];
         };
 

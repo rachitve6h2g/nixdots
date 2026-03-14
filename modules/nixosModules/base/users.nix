@@ -3,7 +3,6 @@
   flake.nixosModules.users =
     {
       pkgs,
-      config,
       ...
     }:
 
@@ -61,6 +60,9 @@
 
       # Link paths to /run/current-system/sw
       environment = {
+        systemPackages = [
+          pkgs._7zz-rar
+        ];
         pathsToLink = [
           "/share"
           "/share/sounds"

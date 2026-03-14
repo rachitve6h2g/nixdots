@@ -49,24 +49,24 @@
         # Enable vim keybindings
         fish_vi_key_bindings
 
-        # Fish prompt
-        # function fish_prompt
-        #   string join "" -- \
-        #     (set_color red) "[" \
-        #     (set_color yellow) $USER \
-        #     (set_color green) "@" \
-        #     (set_color blue) $hostname \
-        #     (set_color magenta) " " \
-        #     $(prompt_pwd) (set_color red) ']' \
-        #     (set_color normal) "\$ "
-        # end
-
         # Load plugins in fish shell
         ${lib.pipe
           (with pkgs.fishPlugins; [
             pure
             autopair-fish
             fzf-fish
+            foreign-env # For sourcing /etc/profile
+
+            (buildFishPlugin {
+              pname = "base16-fish";
+              version = "2021-08-01";
+              src = pkgs.fetchFromGitHub {
+                hash = "sha256-PebymhVYbL8trDVVXxCvZgc0S5VxI7I1Hv4RMSquTpA=";
+                owner = "tomyun";
+                repo = "base16-fish";
+                rev = "2f6dd973a9075dabccd26f1cded09508180bf5fe";
+              };
+            })
           ])
           [
             (map (elem: "load_plugin ${elem}"))
@@ -77,7 +77,7 @@
         # Set LS_COLORS
         set -gx LS_COLORS (vivid generate gruvbox-dark-hard)
 
-        # fenv source /etc/profile
+        fenv source /etc/profile # Uses the foreign-env plugin
 
         # Nix direnv integration
         set -gx direnv_config_dir ${pkgs.nix-direnv}/share/nix-direnv/direnvrc
@@ -85,6 +85,8 @@
 
         # Zoxide integration
         ${lib.getExe pkgs.zoxide} init fish | source
+
+        set -a fish_function_path ${./functions}
       '';
     in
     {
@@ -107,41 +109,19 @@
           vivid
           eza
           fzf
+          zoxide
 
-          gophertube # Watch youtube in terminal
-
-          # Github-cli
-          gh
-          gh-dash
-
-          # Music player
-          moc
-
-          # Fetch sources for nix
-          nvfetcher
-
-          # Nix prefetchers
+          # For nix fetchers
           nix-prefetch
           nix-prefetch-github
 
-          # Zoxide of course
-          zoxide
+          nvfetcher
         ])
         ++ (with selfpkgs; [
-          aria2 # A better terminal downloader
-          btop # Python based system monitor
-          bottom # Rust based system monitor
-          kew # Music player (for trial)
-          taskwarrior # Terminal to-do list manager
-
-          # Git tools
-          git
-          gitui
-
-          helix # TODO: move to neovim
-
-          yt-dlp # youtube downloader
-          xplr # terminal filemanager
+          aria2
+          yt-dlp
+          bottom
+          btop
         ]);
         prefixVar = [
           [
