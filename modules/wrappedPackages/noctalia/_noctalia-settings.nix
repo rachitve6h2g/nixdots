@@ -132,7 +132,7 @@ in
           usePadding = true;
         }
         {
-          compactMode = false;
+          compactMode = true;
           compactShowAlbumArt = true;
           compactShowVisualizer = false;
           hideMode = "hidden";
@@ -148,7 +148,7 @@ in
           showVisualizer = true;
           textColor = "none";
           useFixedWidth = false;
-          visualizerType = "linear";
+          visualizerType = "wave";
         }
       ];
       right = [
@@ -312,13 +312,25 @@ in
     forceBlackScreenCorners = false;
     iRadiusRatio = 1;
     keybinds = {
-      keyDown = [ "Down" ];
+      keyDown = [
+        "Down"
+        "Ctrl+N"
+      ];
       keyEnter = [ "Return" ];
       keyEscape = [ "Esc" ];
-      keyLeft = [ "Left" ];
+      keyLeft = [
+        "Left"
+        "Ctrl+B"
+      ];
       keyRemove = [ "Del" ];
-      keyRight = [ "Right" ];
-      keyUp = [ "Up" ];
+      keyRight = [
+        "Right"
+        "Ctrl+F"
+      ];
+      keyUp = [
+        "Up"
+        "Ctrl+P"
+      ];
     };
     language = "";
     lockOnSuspend = true;

@@ -78,7 +78,7 @@
 
             # For git
             selfpkgs.git
-            selfpkgs.gh # TODO: Wrap gh
+            pkgs.gh # TODO: Wrap gh
             pkgs.gh-dash # TODO: Wrap gh-dash with gh
             selfpkgs.gitui # TODO: Wrap gitui
 

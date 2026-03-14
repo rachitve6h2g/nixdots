@@ -105,9 +105,8 @@ in
         };
 
       config = {
-        env.GIT_CONFIG_GLOBAL = pkgs.writeText "gitconfig" (
-          pkgs.lib.generators.toGitINI config.gitconfig.settings + "\n" + config.gitconfig.configFile.content
-        );
+        env.GIT_CONFIG_GLOBAL = "${config.gitconfig.wrapper}/${config.gitconfig.binName}config";
+
         package = pkgs.gitui;
         flags = {
           "--key-bindings" = config.keyConfig.path;
