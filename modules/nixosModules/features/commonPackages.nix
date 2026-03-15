@@ -20,10 +20,6 @@
           # Github-cli
           gh
           gh-dash
-
-          # Music player
-          moc
-
           # Nix Fetchers
           nix-prefetch
           nix-prefetch-github
@@ -42,6 +38,7 @@
             gitui
 
             helix # TODO: move to neovim
+            neovim # NOTE: Wrap it up!
 
             yt-dlp # youtube downloader
             xplr # terminal filemanager

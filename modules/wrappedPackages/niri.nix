@@ -146,6 +146,11 @@ in
                 cmd = "zen";
               }
               {
+                key = "w";
+                desc = "WhatsApp Web";
+                cmd = "zen 'web.whatsapp.com'";
+              }
+              {
                 key = "d";
                 desc = "Vesktop";
                 cmd = "vesktop";

@@ -20,17 +20,6 @@
         "extensions.autoDisableScopes" = 0;
         "extensions.pocket.enabled" = false;
         "extensions.pocket.showHome" = false;
-        "browser.newtabpage.activity-stream.discoverystream.saveToPocketCard.enabled" = false;
-        "browser.newtabpage.activity-stream.discoverystream.personalization.enabled" = false;
-        "browser.newtabpage.activity-stream.showSearch" = false;
-        "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
-        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-        "browser.newtabpage.activity-stream.feeds.snippets" = false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-        "browser.newtabpage.activity-stream.showSponsored" = false;
-        "browser.startup.page" = 3; # Restore last closed tabs and windows
-        "browser.sessionstore.resume_from_crash" = true; # NOTE: in case of any problem, try commenting this line out
 
         # For xdg-desktop-portal-termfilechooser
         "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -42,23 +31,34 @@
         "devtools.chrome.enabled" = true;
         "devtools.debugger.remote-enabled" = true;
 
-        # Can ocassionally break layout in niche sites
-        "privacy.resistFingerprinting" = true;
-
         # Disable firefox looking for IPs of links that I haven't clicked yet
         "network.dns.disablePrefetch" = true;
 
         # Shift zen's tab list to ther right
         "zen.tabs.vertical.right-side" = true;
-      };
 
+        "ui.systemUsesDarkTheme" = 1; # Signal to websites and UI that we prefer dark mode
+        "browser.theme.content-theme" = 2; # Force internal pages (about:config, etc.) to be dark
+        "layout.css.prefers-color-scheme.content-override" = 0; # Ensure web content respects the dark preference
+        "zen.view.grey-out-inactive-windows" = false; # Prevents window dimming when focus shifts (essential for Tiling WMs)
+        "zen.theme.content-element-separation" = 0; # Removes the border/gap around the web canvas for a flush look
+        "browser.tabs.allow_transparent_browser" = true; # Enables transparency support for Zen's blur/glass themes
+
+        "reader.parse-on-load.force-enabled" = true; # Forces Reader Mode availability on more sites
+
+        "privacy.resistFingerprinting" = false; # Disabled: zen manages this better; avoids layout bugs in Zen's UI
+
+        "browser.urlbar.suggest.engines" = false; # Don't show "Search with..." at the bottom of the URL bar
+        "browser.urlbar.suggest.topsites" = false; # Hide shortcuts in the URL bar dropdown
+        "browser.urlbar.suggest.openpage" = false; # Don't suggest tabs that are already open
+        "browser.aboutConfig.showWarning" = false; # Skip the "I'll be careful" prompt for about:config      };
+      };
       extensions = [
         # To add additional extensions, find it on addons.mozilla.org, find
         # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
         # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
         (extension "ublock-origin" "uBlock0@raymondhill.net")
         (extension "4263531" "myallychou@gmail.com")
-        # (extension "darkreader" "addon@darkreader.org")
 
         # (extension "material-gruvbox" "{818ee01c-662a-4214-bea9-ee3b02c5d950}")
         # (extension "kanagawa-dragon-dark-theme" "{a72ff906-b160-4ad5-a10a-5107f8f65846}")
@@ -92,16 +92,13 @@
               BackgroundAppUpdate = false;
 
               # Feature Disabling
-              DisableTelemetry = true;
               DisableBuiltinPDFViewer = true;
-              DisableFirefoxStudies = true;
               DisableFirefoxScreenshots = true;
               DisableFormHistory = true;
               DisableForgetButton = true;
               DisableMasterPasswordCreation = true;
               DisableProfileImport = true;
               DisableProfileRefresh = true;
-              DisablePocket = true;
               DisableSetDesktopBackground = true;
               DontCheckDefaultBrowser = true;
               EnableTrackingProtection = {
@@ -222,7 +219,7 @@
                   }
                   {
                     Name = "Gemini";
-                    URLTemplate = "https://gemini.google.com/app?q={searchTerms}";
+                    URLTemplate = "https://gemini.google.com/app?prompt={searchTerms}";
                     IconURL = "https://www.gstatic.com/lamda/images/favicon_v1_150160d1398865466e00.png";
                     Alias = "@gem";
                   }

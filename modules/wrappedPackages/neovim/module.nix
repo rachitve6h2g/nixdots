@@ -1,8 +1,7 @@
 {
   flake.wrappers.neovim =
-    { wlib, pkgs, ... }:
+    { wlib, ... }:
     {
       imports = [ wlib.wrapperModules.neovim ];
-
     };
 }
