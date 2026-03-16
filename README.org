@@ -2,7 +2,7 @@
 #+AUTHOR: Rachit Kumar Verma
 #+STARTUP: showall
 
-#+BEGIN_EXPORT html
+#+BEGIN_HTML
 <div align="center">
   <h1>Rachit's NixOS System Configuration</h1>
 
@@ -31,7 +31,7 @@
 
   <hr />
 </div>
-#+END_EXPORT
+#+END_HTML
 
 * 📔 Instructions for installation
 :PROPERTIES:

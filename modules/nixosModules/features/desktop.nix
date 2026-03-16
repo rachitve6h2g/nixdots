@@ -64,11 +64,6 @@
           };
         in
         {
-          # TOOD: move all the wrapped packages into their own modules
-          sessionVariables = {
-            EDITOR = "hx";
-            VISUAL = "hx";
-          };
           systemPackages = [
             feedo
             selfpkgs.mpv
