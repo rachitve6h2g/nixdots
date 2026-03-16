@@ -4,8 +4,6 @@
 
 #+BEGIN_HTML
 <div align="center">
-  <h1>Rachit's NixOS System Configuration</h1>
-
   <p>
     <a href="https://nixos.org">
       <img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
@@ -126,14 +124,10 @@ sudo ln -sf /home/$USER/nixdots /etc/nixos
 :CUSTOM_ID: work-in-progress
 :END:
 
-- [ ] *Fish Shell* (NixOS module with [[https://noogle.dev/f/pkgs/wrapFish][pkgs.wrapFish]])
-  - [ ] Set up useful fish plugins and functions
 - [ ] *Systemd User Services*
   - [ ] noctalia shell
   - [ ] poweralertd
 - [ ] *Wrappers & Tooling*
-  - [ ] [[https://taskwarrior.org/][Taskwarrior]] (Integrate with Emacs)
-  - [ ] [[https://github.com/sayanarijit/xplr][Xplr]] configuration
   - [X] yt-dlp, btop, cava, firefox
   - [X] niri, mpv, Zathura
   - [X] Git (Global ignore/config)
