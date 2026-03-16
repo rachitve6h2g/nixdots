@@ -1,13 +1,10 @@
-{ inputs, ... }:
 {
-  flake.nixosModules.extra_hjem =
+  flake.nixosModules.hjem =
     {
       pkgs,
-      # lib,
       ...
     }:
     {
-      imports = [ inputs.hjem.nixosModules.default ];
       hjem = {
         clobberByDefault = true;
         users = {

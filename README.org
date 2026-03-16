@@ -1,0 +1,154 @@
+#+TITLE: Rachit's NixOS System Configuration
+#+AUTHOR: Rachit Kumar Verma
+#+STARTUP: showall
+
+#+BEGIN_EXPORT html
+<div align="center">
+  <h1>Rachit's NixOS System Configuration</h1>
+
+  <p>
+    <a href="https://nixos.org">
+      <img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
+    </a>
+    <a href="https://www.gnu.org/software/emacs/">
+      <img src="./.github/images/emacs.svg" width="90" alt="Emacs Logo">
+    </a>
+  </p>
+
+  <p>
+    <a href="https://nixos.org">
+      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=NixOS&message=unstable&colorA=282828&colorB=a9b665&logo=NixOS&logoColor=d4be98" alt="NixOS Unstable Badge">
+    </a>
+    <a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
+      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=License&message=GPLv3&colorA=282828&colorB=ea6962&logo=gnu&logoColor=d4be98" alt="GPL License Badge">
+    </a>
+    <a href="https://www.gnu.org/software/emacs/">
+      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=Emacs&message=PGTK&colorA=282828&colorB=d3869b&logo=gnu&logoColor=d4be98" alt="Emacs PGTK Badge">
+    </a>
+  </p>
+
+  <p><i>Declarative. Reproducible. Minimal.</i></p>
+
+  <hr />
+</div>
+#+END_EXPORT
+
+* 📔 Instructions for installation
+:PROPERTIES:
+:CUSTOM_ID: instructions-for-installation
+:END:
+
+I am presuming that a bootable USB is already prepared. Boot into the computer.
+
+** 🧪 Enable Experimental Features
+:PROPERTIES:
+:CUSTOM_ID: enable-experimental-features
+:END:
+
+Experimental features are not enabled in NixOS by default. They can be enabled by exporting the =NIX_CONFIG= variable or by passing the =--extra-experimental-features= flag to the =nix= command utility.
+
+First, enter into a root shell:
+
+#+begin_src sh
+sudo -i
+#+end_src
+
+Run this to enable flakes and the nix-command utility:
+
+#+begin_src sh
+export NIX_CONFIG="experimental-features = nix-command flakes"
+#+end_src
+
+** ↙️ Clone this Repo
+:PROPERTIES:
+:CUSTOM_ID: clone-this-repo
+:END:
+
+Clone the repository into =/tmp=:
+
+#+begin_src sh
+mkdir -p /tmp
+cd /tmp
+git clone --depth=1 https://github.com/rachitvrma/nixdots.git
+#+end_src
+
+** 💾 Run Disko to Prepare Disks
+:PROPERTIES:
+:CUSTOM_ID: run-disko-to-prepare-disks
+:END:
+
+Disko is available in [[https://github.com/NixOS/nixpkgs][nixpkgs]], but it is advisable to run the latest commit from the [[https://github.com/nix-community/disko][nix-community]] repo. Make sure the =disko-config.nix= belongs to the correct host. By default, it's set for [[./modules/nixosModules/hosts/nixpavilion/][nixpavilion]].
+
+#+begin_src sh
+cd /tmp/nixdots/modules/nixosModules/hosts/nixpavilion
+nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
+#+end_src
+
+** 🐧 OS Installation
+:PROPERTIES:
+:CUSTOM_ID: os-installation
+:END:
+
+Copy the cloned repo into =/mnt/etc/nixos= and run the installation:
+
+#+begin_src sh
+mkdir -p /mnt/etc
+cp -r /tmp/nixdots /mnt/etc/nixos
+nixos-install --no-root-passwd --root /mnt --cores 8 --max-jobs 1 --flake /mnt/etc/nixos#nixpavilion
+#+end_src
+
+Reboot after unmounting:
+
+#+begin_src sh
+umount -R /mnt
+reboot
+#+end_src
+
+** 💻 Post-OS-Installation
+:PROPERTIES:
+:CUSTOM_ID: post-os-installation
+:END:
+
+*** 🔒 Change user password
+#+begin_src sh
+passwd $USER
+#+end_src
+
+*** 🏠 Bring =/etc/nixos= to =$HOME/nixdots=
+#+begin_src sh
+cp -r /etc/nixos $HOME/nixdots
+sudo rm -rf /etc/nixos
+sudo ln -sf /home/$USER/nixdots /etc/nixos
+#+end_src
+
+* 🚧 Work In Progress
+:PROPERTIES:
+:CUSTOM_ID: work-in-progress
+:END:
+
+- [ ] *Fish Shell* (NixOS module with [[https://noogle.dev/f/pkgs/wrapFish][pkgs.wrapFish]])
+  - [ ] Set up useful fish plugins and functions
+- [ ] *Systemd User Services*
+  - [ ] noctalia shell
+  - [ ] poweralertd
+- [ ] *Wrappers & Tooling*
+  - [ ] [[https://taskwarrior.org/][Taskwarrior]] (Integrate with Emacs)
+  - [ ] [[https://github.com/sayanarijit/xplr][Xplr]] configuration
+  - [X] yt-dlp, btop, cava, firefox
+  - [X] niri, mpv, Zathura
+  - [X] Git (Global ignore/config)
+
+* 📚 Resources
+:PROPERTIES:
+:CUSTOM_ID: resources
+:END:
+
+- [[https://github.com/krishna4a6av/Wallpapers][Wallpapers Repo]] by krishna4a6av.
+- [[https://github.com/rothgar/awesome-tuis][Awesome TUIs]] for the terminally addicted.
+
+* 📃 License
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
+
+This project is licensed under the GNU General Public License v3.0. See the [[./LICENSE][LICENSE]] file for details.

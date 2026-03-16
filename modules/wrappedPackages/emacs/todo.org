@@ -1,0 +1,4 @@
+* Emacs Lisp Learning Sources
+- [[https://learnxinyminutes.com/elisp/][Learn X in Y Minutes (Elisp)]]
+- [[https://systemcrafters.net/learning-emacs-lisp/][System Crafter's Learning Emacs Lisp]]
+  

@@ -30,18 +30,12 @@
             aria2 # A better terminal downloader
             btop # Python based system monitor
             bottom # Rust based system monitor
-            kew # Music player (for trial)
-            taskwarrior # Terminal to-do list manager
 
             # Git tools
             git
-            gitui
-
-            helix # TODO: move to neovim
-            neovim # NOTE: Wrap it up!
+            gitui # TODO: Do th wrapping and be done with it
 
             yt-dlp # youtube downloader
-            xplr # terminal filemanager
           ]);
     };
 }

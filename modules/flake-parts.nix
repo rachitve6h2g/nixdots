@@ -10,5 +10,8 @@
       "x86_64-linux"
     ];
     perSystem.wrappers.control_type = "exclude"; # Build every wrapper into packages.*.* by default
+    flake.nixosModules.hjem = {
+      imports = [ inputs.hjem.nixosModules.default ];
+    };
   };
 }

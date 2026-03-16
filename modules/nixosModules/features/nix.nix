@@ -1,5 +1,30 @@
-{ inputs, ... }:
+{ inputs, withSystem, ... }:
 {
+
+  perSystem =
+    { lib, system, ... }:
+    # Taken from https://flake.parts/system#approach-2-configure-pkgs-once-in-persystem
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config = {
+          allowUnfreePredicate =
+            pkg:
+            builtins.elem (lib.getName pkg) [
+              "7zz"
+              "uasm"
+
+              # Proprietary printer drivers
+              "hplip"
+              "hplipWithPlugin"
+
+              # For dictionaries
+              "aspell-dict-en-science"
+            ];
+        };
+      };
+    };
+
   flake.nixosModules.nix =
     {
       pkgs,
@@ -19,21 +44,9 @@
         pathsToLink = [ "/share/bash-completion" ];
       };
 
-      nixpkgs = {
-        config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (lib.getName pkg) [
-            "7zz"
-            "uasm"
-
-            # Proprietary printer drivers
-            "hplip"
-            "hplipWithPlugin"
-
-            # For dictionaries
-            "aspell-dict-en-science"
-          ];
-      };
+      # Takes from flake-parts module.
+      # See the perSystem module above
+      nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system ({ pkgs, ... }: pkgs);
 
       programs = {
         nh = {

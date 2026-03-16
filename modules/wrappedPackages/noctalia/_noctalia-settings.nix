@@ -317,7 +317,10 @@ in
         "Ctrl+N"
       ];
       keyEnter = [ "Return" ];
-      keyEscape = [ "Esc" ];
+      keyEscape = [
+        "Esc"
+        "Ctrl+G"
+      ];
       keyLeft = [
         "Left"
         "Ctrl+B"

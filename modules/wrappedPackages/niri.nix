@@ -60,7 +60,7 @@ in
               xkb = {
                 layout = "us";
                 variant = "colemak_dh";
-                options = "caps:swapescape";
+                options = "ctrl:swapcaps";
               };
               repeat-delay = 600;
               repeat-rate = 25;
@@ -162,7 +162,20 @@ in
               }
             ]);
 
-            "Mod+Return".spawn = [ "${lib.getExe selfpkgs.wezterm}" ];
+            # "Mod+Return".spawn = [ "${lib.getExe selfpkgs.wezterm}" ];
+
+            "Mod+Return".spawn-sh = pkgs.lib.getExe (mkMenu [
+              {
+                key = "e";
+                desc = "Emacsclient";
+                cmd = "${lib.getExe' selfpkgs.emacsBundle "emacseditor"}";
+              }
+              {
+                key = "w";
+                desc = "Wezterm";
+                cmd = "${lib.getExe selfpkgs.wezterm}";
+              }
+            ]);
 
             "Mod+Q".close-window = null;
             "Mod+BracketLeft".consume-or-expel-window-left = null;
@@ -421,6 +434,7 @@ in
             {
               matches = [
                 { app-id = "vesktop$"; }
+                { app-id = "emacs"; }
               ];
               open-maximized-to-edges = true;
             }

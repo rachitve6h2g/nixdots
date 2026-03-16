@@ -3,7 +3,7 @@
     services.xserver.xkb = {
       layout = "us";
       variant = "colemak_dh";
-      options = "caps:swapescape"; # For vim keybindings
+      options = "ctrl:swapcaps"; # For vim keybindings
     };
   };
 }

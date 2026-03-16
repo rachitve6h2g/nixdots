@@ -11,7 +11,7 @@
         self.nixosModules.battery
         self.nixosModules.clamav
         self.nixosModules.console
-        self.nixosModules.extra_hjem
+        self.nixosModules.hjem
         self.nixosModules.firefox
         self.nixosModules.fonts
         self.nixosModules.greeter
@@ -74,8 +74,6 @@
             selfpkgs.mpv
             selfpkgs.noctalia-bundle
             selfpkgs.wezterm
-
-            selfpkgs.zathura
 
             pkgs.wl-clipboard
             pkgs.brightnessctl

@@ -48,10 +48,7 @@
 
         "privacy.resistFingerprinting" = false; # Disabled: zen manages this better; avoids layout bugs in Zen's UI
 
-        "browser.urlbar.suggest.engines" = false; # Don't show "Search with..." at the bottom of the URL bar
-        "browser.urlbar.suggest.topsites" = false; # Hide shortcuts in the URL bar dropdown
-        "browser.urlbar.suggest.openpage" = false; # Don't suggest tabs that are already open
-        "browser.aboutConfig.showWarning" = false; # Skip the "I'll be careful" prompt for about:config      };
+        "browser.aboutConfig.showWarning" = false; # Skip the "I'll be careful" prompt for about:config
       };
       extensions = [
         # To add additional extensions, find it on addons.mozilla.org, find
