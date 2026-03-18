@@ -54,11 +54,11 @@ in
   bar = {
     autoHideDelay = 500;
     autoShowDelay = 150;
-    backgroundOpacity = 0.9;
+    backgroundOpacity = 1;
     barType = "simple";
     capsuleColorKey = "none";
-    capsuleOpacity = 0.9;
-    density = "mini";
+    capsuleOpacity = 1;
+    density = "compact";
     displayMode = "always_visible";
     floating = false;
     frameRadius = 12;
@@ -68,7 +68,7 @@ in
     marginVertical = 4;
     monitors = [ ];
     outerCorners = true;
-    position = "bottom";
+    position = "right";
     screenOverrides = [ ];
     showCapsule = false;
     showOutline = false;
@@ -278,7 +278,7 @@ in
   };
   dock = {
     animationSpeed = 1;
-    backgroundOpacity = 0.9;
+    backgroundOpacity = 1.0;
     colorizeIcons = true;
     deadOpacity = 0.6;
     displayMode = "auto_hide";
@@ -400,7 +400,7 @@ in
     nightTemp = "4000";
   };
   notifications = {
-    backgroundOpacity = 0.9;
+    backgroundOpacity = 1;
     clearDismissed = true;
     criticalUrgencyDuration = 15;
     density = "default";
@@ -432,7 +432,7 @@ in
   };
   osd = {
     autoHideMs = 2000;
-    backgroundOpacity = 0.9;
+    backgroundOpacity = 1.0;
     enabled = true;
     enabledTypes = [
       0
@@ -529,7 +529,7 @@ in
     fontFixed = "Maple Mono NF";
     fontFixedScale = 1;
     networkPanelView = "wifi";
-    panelBackgroundOpacity = 0.9;
+    panelBackgroundOpacity = 1.0;
     panelsAttachedToBar = true;
     settingsPanelMode = "attached";
     tooltipsEnabled = true;

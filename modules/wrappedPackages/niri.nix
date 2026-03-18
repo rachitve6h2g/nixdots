@@ -11,29 +11,6 @@ in
       ...
     }:
     let
-      mkMenu =
-        menu:
-        let
-          configFile = pkgs.writeText "config.yaml" (
-            with theme;
-            lib.generators.toYAML { } {
-              # A little bit of style
-              font = "Maple Mono NF";
-              background = "${base00}d0";
-              color = "${base05}";
-              border = "${base09}";
-              separator = " ➜ ";
-              border_width = 2;
-              corner_r = 10;
-              padding = 15;
-              anchor = "bottom-right";
-              inherit menu;
-            }
-          );
-        in
-        pkgs.writeShellScriptBin "my-menu" ''
-          exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
-        '';
       selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
     in
     {
@@ -139,7 +116,8 @@ in
 
             "Mod+E".spawn-sh = "Thunar";
 
-            "Mod+F".spawn-sh = pkgs.lib.getExe (mkMenu [
+            # It uses the wlr-which-key wrapper conifguration
+            "Mod+F".spawn-sh = self.mkWhichKeyExe pkgs [
               {
                 key = "f";
                 desc = "Zen Browser";
@@ -160,11 +138,9 @@ in
                 desc = "Telegram";
                 cmd = "Telegram";
               }
-            ]);
+            ];
 
-            # "Mod+Return".spawn = [ "${lib.getExe selfpkgs.wezterm}" ];
-
-            "Mod+Return".spawn-sh = pkgs.lib.getExe (mkMenu [
+            "Mod+Return".spawn-sh = self.mkWhichKeyExe pkgs [
               {
                 key = "e";
                 desc = "Emacsclient";
@@ -175,7 +151,7 @@ in
                 desc = "Wezterm";
                 cmd = "${lib.getExe selfpkgs.wezterm}";
               }
-            ]);
+            ];
 
             "Mod+Q".close-window = null;
             "Mod+BracketLeft".consume-or-expel-window-left = null;

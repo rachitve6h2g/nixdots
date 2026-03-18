@@ -4,30 +4,30 @@
 
 #+BEGIN_HTML
 <div align="center">
-  <p>
-    <a href="https://nixos.org">
-      <img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
-    </a>
-    <a href="https://www.gnu.org/software/emacs/">
-      <img src="./.github/images/emacs.svg" width="90" alt="Emacs Logo">
-    </a>
-  </p>
+<p>
+<a href="https://nixos.org">
+<img src="./.github/images/nixos.svg" width="95" alt="NixOS Logo">
+</a>
+<a href="https://www.gnu.org/software/emacs/">
+<img src="./.github/images/emacs.svg" width="90" alt="Emacs Logo">
+</a>
+</p>
 
-  <p>
-    <a href="https://nixos.org">
-      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=NixOS&message=unstable&colorA=282828&colorB=a9b665&logo=NixOS&logoColor=d4be98" alt="NixOS Unstable Badge">
-    </a>
-    <a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
-      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=License&message=GPLv3&colorA=282828&colorB=ea6962&logo=gnu&logoColor=d4be98" alt="GPL License Badge">
-    </a>
-    <a href="https://www.gnu.org/software/emacs/">
-      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=Emacs&message=PGTK&colorA=282828&colorB=d3869b&logo=gnu&logoColor=d4be98" alt="Emacs PGTK Badge">
-    </a>
-  </p>
+<p>
+<a href="https://nixos.org">
+<img src="https://img.shields.io/static/v1?style=for-the-badge&label=NixOS&message=unstable&colorA=282828&colorB=a9b665&logo=NixOS&logoColor=d4be98" alt="NixOS Unstable Badge">
+</a>
+<a href="https://github.com/rachitvrma/nixdots/blob/master/LICENSE">
+<img src="https://img.shields.io/static/v1?style=for-the-badge&label=License&message=GPLv3&colorA=282828&colorB=ea6962&logo=gnu&logoColor=d4be98" alt="GPL License Badge">
+</a>
+<a href="https://www.gnu.org/software/emacs/">
+<img src="https://img.shields.io/static/v1?style=for-the-badge&label=Emacs&message=PGTK&colorA=282828&colorB=d3869b&logo=gnu&logoColor=d4be98" alt="Emacs PGTK Badge">
+</a>
+</p>
 
-  <p><i>Declarative. Reproducible. Minimal.</i></p>
+<p><i>Declarative. Reproducible. Minimal.</i></p>
 
-  <hr />
+<hr />
 </div>
 #+END_HTML
 
@@ -48,13 +48,13 @@ Experimental features are not enabled in NixOS by default. They can be enabled b
 First, enter into a root shell:
 
 #+begin_src sh
-sudo -i
+  sudo -i
 #+end_src
 
 Run this to enable flakes and the nix-command utility:
 
 #+begin_src sh
-export NIX_CONFIG="experimental-features = nix-command flakes"
+  export NIX_CONFIG="experimental-features = nix-command flakes"
 #+end_src
 
 ** ↙️ Clone this Repo
@@ -65,9 +65,9 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 Clone the repository into =/tmp=:
 
 #+begin_src sh
-mkdir -p /tmp
-cd /tmp
-git clone --depth=1 https://github.com/rachitvrma/nixdots.git
+  mkdir -p /tmp
+  cd /tmp
+  git clone --depth=1 https://github.com/rachitvrma/nixdots.git
 #+end_src
 
 ** 💾 Run Disko to Prepare Disks
@@ -78,8 +78,8 @@ git clone --depth=1 https://github.com/rachitvrma/nixdots.git
 Disko is available in [[https://github.com/NixOS/nixpkgs][nixpkgs]], but it is advisable to run the latest commit from the [[https://github.com/nix-community/disko][nix-community]] repo. Make sure the =disko-config.nix= belongs to the correct host. By default, it's set for [[./modules/nixosModules/hosts/nixpavilion/][nixpavilion]].
 
 #+begin_src sh
-cd /tmp/nixdots/modules/nixosModules/hosts/nixpavilion
-nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
+  cd /tmp/nixdots/modules/nixosModules/hosts/nixpavilion
+  nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
 #+end_src
 
 ** 🐧 OS Installation
@@ -90,16 +90,16 @@ nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko
 Copy the cloned repo into =/mnt/etc/nixos= and run the installation:
 
 #+begin_src sh
-mkdir -p /mnt/etc
-cp -r /tmp/nixdots /mnt/etc/nixos
-nixos-install --no-root-passwd --root /mnt --cores 8 --max-jobs 1 --flake /mnt/etc/nixos#nixpavilion
+  mkdir -p /mnt/etc
+  cp -r /tmp/nixdots /mnt/etc/nixos
+  nixos-install --no-root-passwd --root /mnt --cores 8 --max-jobs 1 --flake /mnt/etc/nixos#nixpavilion
 #+end_src
 
 Reboot after unmounting:
 
 #+begin_src sh
-umount -R /mnt
-reboot
+  umount -R /mnt
+  reboot
 #+end_src
 
 ** 💻 Post-OS-Installation
@@ -109,14 +109,14 @@ reboot
 
 *** 🔒 Change user password
 #+begin_src sh
-passwd $USER
+  passwd $USER
 #+end_src
 
 *** 🏠 Bring =/etc/nixos= to =$HOME/nixdots=
 #+begin_src sh
-cp -r /etc/nixos $HOME/nixdots
-sudo rm -rf /etc/nixos
-sudo ln -sf /home/$USER/nixdots /etc/nixos
+  cp -r /etc/nixos $HOME/nixdots
+  sudo rm -rf /etc/nixos
+  sudo ln -sf /home/$USER/nixdots /etc/nixos
 #+end_src
 
 * 🚧 Work In Progress

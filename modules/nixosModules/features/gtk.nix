@@ -2,13 +2,16 @@
   flake.nixosModules.gtk =
     { pkgs, ... }:
     let
-      theme-name = "Tokyonight-Purple-Dark"; # Borderless
-      theme-package = pkgs.tokyonight-gtk-theme.override {
-        gnome-shell = null; # Don't install Gnome Shell
-        gnome-themes-extra = null; # Don't install gnome-themes-extra
+      # When using one of Fausto's themes, just change the theme name.
+      # So to change from tokyonight to gruvbox: just [Tt]okyonight to [Gg]ruvbox at certain places.
+      # No need to change the full name
+      theme-name = "Gruvbox-Dark";
+      theme-package = pkgs.gruvbox-gtk-theme.override {
+        # gnome-shell = null; # Don't install Gnome Shell, not present in gruvbox variant
+        # gnome-themes-extra = null; # Don't install gnome-themes-extra
         colorVariants = [ "dark" ];
         sizeVariants = [ "standard" ];
-        themeVariants = [ "purple" ];
+        # themeVariants = [ "purple" ];
         tweakVariants = [
           "macos"
           "black"
@@ -17,7 +20,7 @@
       };
 
       # icon-theme-package = pkgs.kanagawa-icon-theme;
-      icon-theme-name = "Tokyonight-Dark";
+      icon-theme-name = "Gruvbox-Dark";
 
       cursor-package = pkgs.bibata-cursors;
       cursor-name = "Bibata-Modern-Ice";

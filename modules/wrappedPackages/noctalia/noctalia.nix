@@ -11,7 +11,7 @@
         name = "dump-noctalia-shell";
         text = ''
           ${lib.getExe selfpkgs.noctalia-shell} ipc call state all \
-          | nix eval --impure --expr 'builtins.fromJSON (builtins.readFile /dev/stdin)'
+          | nix eval --impure --expr '(builtins.fromJSON (builtins.readFile /dev/stdin)).settings'
         '';
       };
     in
