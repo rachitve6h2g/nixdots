@@ -14,7 +14,6 @@
       imports = [
         # desktop stuff
         self.nixosModules.desktop
-        self.nixosModules.emacs
         self.nixosModules.niri
 
         # For printers

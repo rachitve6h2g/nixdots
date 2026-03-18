@@ -31,13 +31,13 @@ in
         in
         with theme;
         {
-          spawn-at-startup = [ "${lib.getExe' selfpkgs.noctalia-bundle "noctalia-shell"}" ];
+          spawn-at-startup = [ "${lib.getExe' selfpkgs.noctalia-mine "noctalia-shell"}" ];
           input = {
             keyboard = {
               xkb = {
                 layout = "us";
                 variant = "colemak_dh";
-                options = "ctrl:swapcaps";
+                options = "caps:swapescape";
               };
               repeat-delay = 600;
               repeat-rate = 25;
@@ -140,18 +140,7 @@ in
               }
             ];
 
-            "Mod+Return".spawn-sh = self.mkWhichKeyExe pkgs [
-              {
-                key = "e";
-                desc = "Emacsclient";
-                cmd = "${lib.getExe' selfpkgs.emacsBundle "emacseditor"}";
-              }
-              {
-                key = "w";
-                desc = "Wezterm";
-                cmd = "${lib.getExe selfpkgs.wezterm}";
-              }
-            ];
+            "Mod+Return".spawn = "${lib.getExe selfpkgs.wezterm}";
 
             "Mod+Q".close-window = null;
             "Mod+BracketLeft".consume-or-expel-window-left = null;
@@ -410,7 +399,6 @@ in
             {
               matches = [
                 { app-id = "vesktop$"; }
-                { app-id = "emacs"; }
               ];
               open-maximized-to-edges = true;
             }

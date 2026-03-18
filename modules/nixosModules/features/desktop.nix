@@ -38,7 +38,7 @@
       environment = {
         systemPackages = [
           selfpkgs.mpv
-          selfpkgs.noctalia-bundle
+          selfpkgs.noctalia-mine
           selfpkgs.wezterm
 
           pkgs.wl-clipboard

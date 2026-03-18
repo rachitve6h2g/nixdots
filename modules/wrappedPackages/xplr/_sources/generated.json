@@ -1,0 +1,23 @@
+{
+    "zoxide": {
+        "cargoLock": null,
+        "date": "2023-01-11",
+        "extract": null,
+        "name": "zoxide",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "sayanarijit",
+            "repo": "zoxide.xplr",
+            "rev": "e50fd35db5c05e750a74c8f54761922464c1ad5f",
+            "sha256": "sha256-ZiOupn9Vq/czXI3JHvXUlAvAFdXrwoO3NqjjiCZXRnY=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "e50fd35db5c05e750a74c8f54761922464c1ad5f"
+    }
+}

@@ -47,8 +47,8 @@
         end
 
         # Enable vim keybindings
-        # fish_vi_key_bindings
-        fish_default_key_bindings
+        fish_vi_key_bindings
+        # fish_default_key_bindings
 
         # Load plugins in fish shell
         ${lib.pipe

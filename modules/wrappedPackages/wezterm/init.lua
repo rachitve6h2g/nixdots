@@ -24,7 +24,18 @@ config.window_padding = {
 }
 
 config.enable_kitty_keyboard = true -- Enable kitty's keyboard configuration
-config.keys = {}                    -- disable default keys
+
+--- Keybindings ---
+config.keys = {
+  {
+    key = 's',
+    mods = 'ALT',
+    -- This triggers the "Ace-window" style picker
+    action = wezterm.action.PaneSelect {
+      alphabet = 'arstgmneioqwfpbjluuy',
+    },
+  },
+}
 
 config.enable_wayland = true
 config.warn_about_missing_glyphs = true
