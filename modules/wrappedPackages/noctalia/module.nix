@@ -11,9 +11,9 @@
     let
       hasOtherFiles =
         config.colors != { }
-        && config.plugins != { }
-        && config.user-templates != { }
-        && config.pluginSettings != { };
+        || config.plugins != { }
+        || config.user-templates != { }
+        || config.pluginSettings != { };
       constructToml = constructAttrs true;
       constructJson = constructAttrs false;
       constructAttrs =

@@ -1,24 +1,17 @@
-{ self, ... }:
+{
+  self,
+  # inputs,
+  ...
+}:
 {
   flake.wrappers.noctalia-mine =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [ self.wrapperModules.noctalia ];
-      plugins = {
-        sources = [
-          {
-            enabled = true;
-            name = "Noctalia Plugins";
-            url = "https://github.com/noctalia-dev/noctalia-plugins";
-          }
-        ];
-
-        states = {
-          pomodoro = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-        };
-      };
+      # outOfStoreConfig = "/home/krish/noctalia-conf";
+      colors = import ./_colors.nix { inherit self; };
+      settings = import ./_noctalia-settings.nix { inherit self pkgs; };
+      # plugins = import ./_noctalia-plugins.nix;
+      # preInstalledPlugins = import ./_noctalia-plugins_2.nix { inherit inputs; };
     };
 }

@@ -52,7 +52,7 @@ in
 
             warp-mouse-to-focus = null;
             focus-follows-mouse._attrs = {
-              max-scroll-amount = "0%";
+              max-scroll-amount = "10%";
             };
             workspace-auto-back-and-forth = null;
           };
@@ -374,13 +374,9 @@ in
               shadow.off = null;
             }
 
-            # Open thunar in floating
+            # Open Thunar File Operations in smaller window
             {
               matches = [
-                {
-                  app-id = "(?i).*thunar.*";
-                  title = ".*Thunar.*";
-                }
 
                 {
                   app-id = "(?i).*thunar.*";
@@ -389,11 +385,23 @@ in
               ];
               open-floating = true;
               default-column-width = {
-                fixed = 890;
+                fixed = 850;
               };
               default-window-height = {
-                fixed = 620;
+                fixed = 250;
               };
+            }
+            # Open thunar in floating
+            {
+              matches = [
+                {
+                  app-id = "(?i).*thunar.*";
+                  title = ".*Thunar.*";
+                }
+              ];
+              open-floating = true;
+              default-column-width.fixed = 850;
+              default-window-height.fixed = 650;
             }
 
             {

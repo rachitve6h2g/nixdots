@@ -29,6 +29,13 @@
           # Nix Fetchers
           nix-prefetch
           nix-prefetch-github
+
+          wget # TEST
+
+          taskwarrior3
+
+          nix-output-monitor # May conflict with the nom RSS feed reader
+          kew # TODO: find a way to wrap it, with the playlist data outside
         ])
         ++
           # Packages wrapped by me
@@ -46,6 +53,7 @@
             xplr # Refine the settings
 
             yt-dlp # youtube downloader
+            zathura # wrapped zathura with plugins and my colors
           ]);
     };
 }

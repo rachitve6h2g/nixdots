@@ -11,7 +11,6 @@
         self.nixosModules.battery
         self.nixosModules.clamav
         self.nixosModules.console
-        self.nixosModules.hjem
         self.nixosModules.firefox
         self.nixosModules.fonts
         self.nixosModules.greeter
@@ -22,6 +21,9 @@
         self.nixosModules.nix
         self.nixosModules.commonPackages
         self.nixosModules.sound
+
+        # Include all the hjem configuration
+        self.nixosModules.hjem
       ];
       programs = {
         thunar = {

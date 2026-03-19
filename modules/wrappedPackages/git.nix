@@ -55,7 +55,7 @@
 
       env = rec {
         GIT_AUTHOR_NAME = "rachitvrma";
-        GIT_AUTHOR_EMAIL = "rachitve6h2g@users.noreply.github.com";
+        GIT_AUTHOR_EMAIL = "155641117+rachitvrma@users.noreply.github.com";
         GIT_COMMITTER_NAME = GIT_AUTHOR_NAME;
         GIT_COMMITTER_EMAIL = GIT_AUTHOR_EMAIL;
         # GIT_CONFIG_GLOBAL = "";

@@ -445,7 +445,7 @@ in
     overlayLayer = true;
   };
   plugins = {
-    autoUpdate = false;
+    autoUpdate = true;
   };
   sessionMenu = {
     countdownDuration = 10000;

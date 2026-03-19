@@ -28,7 +28,8 @@
       config = {
         package = lib.mkDefault pkgs.gh;
         env = {
-          GH_CONFIG_DIR = "${placeholder config.outputName}/gh-config";
+          GH_EDITOR = "hx";
+
         };
         drv = {
           configYml = yamlFormat.generate "config.yml" config.settings;
