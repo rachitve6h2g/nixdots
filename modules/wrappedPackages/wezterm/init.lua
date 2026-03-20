@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 
 --[[ config.initial_cols = 120
 config.initial_rows = 28 --]]
-config.font = wezterm.font("Maple Mono NF")
+config.font = wezterm.font("Iosevka Nerd Font")
 config.font_size = 11
 -- config.color_scheme = "Gruvbox Material (Gogh)"
 config.color_scheme = "base16Wez"

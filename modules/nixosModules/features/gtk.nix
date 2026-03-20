@@ -29,7 +29,7 @@
         [Settings]
         gtk-cursor-theme-name=${cursor-name}
         gtk-cursor-theme-size=24
-        gtk-font-name=Maple Mono NF 12
+        gtk-font-name=Iosevka Nerd Font 12
         gtk-icon-theme-name=${icon-theme-name}
         gtk-theme-name=${theme-name}
       '';

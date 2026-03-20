@@ -16,6 +16,9 @@
         self.nixosModules.desktop
         self.nixosModules.niri
 
+        # For emacs
+        self.nixosModules.emacs
+
         # For printers
         # self.nixosModules.printing
 

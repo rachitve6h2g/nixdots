@@ -11,7 +11,7 @@ let
       inherit pkgs;
       settings = {
         inherit menu;
-        font = "Maple Mono NF 12";
+        font = "Iosevka Nerd Font 12";
         background = theme.base00;
         color = theme.base06;
         border = theme.base0F;

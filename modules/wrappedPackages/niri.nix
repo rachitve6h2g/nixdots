@@ -14,7 +14,6 @@ in
       selfpkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
     in
     {
-      # apply = true;
       imports = [ wlib.wrapperModules.niri ];
       passthru = {
         providedSessions = [ "niri" ];
@@ -31,13 +30,13 @@ in
         in
         with theme;
         {
-          spawn-at-startup = [ "${lib.getExe' selfpkgs.noctalia-mine "noctalia-shell"}" ];
+          spawn-at-startup = [ "${lib.getExe' selfpkgs.noctalia-shell "noctalia-shell"}" ];
           input = {
             keyboard = {
               xkb = {
                 layout = "us";
                 variant = "colemak_dh";
-                options = "caps:swapescape";
+                options = "ctrl:swapcaps";
               };
               repeat-delay = 600;
               repeat-rate = 25;
@@ -140,7 +139,18 @@ in
               }
             ];
 
-            "Mod+Return".spawn = "${lib.getExe selfpkgs.wezterm}";
+            "Mod+Return".spawn-sh = self.mkWhichKeyExe pkgs [
+              {
+                key = "e";
+                desc = "Emacs (client)";
+                cmd = lib.getExe' selfpkgs.emacsBundle "emacseditor";
+              }
+              {
+                key = "w";
+                desc = "Wezterm";
+                cmd = lib.getExe selfpkgs.wezterm;
+              }
+            ];
 
             "Mod+Q".close-window = null;
             "Mod+BracketLeft".consume-or-expel-window-left = null;
@@ -416,6 +426,7 @@ in
               matches = [
                 { app-id = "zen$"; }
                 { app-id = "^org\.wezfurlong\.wezterm$"; }
+                { app-id = "(?i).*emacs.*"; }
               ];
               open-maximized = true;
             }

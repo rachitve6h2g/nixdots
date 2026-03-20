@@ -11,8 +11,8 @@
         enable = true;
         fonts = [
           {
-            name = "Maple Mono NF";
-            package = pkgs.maple-mono.NF;
+            name = "Iosevka Nerd Font";
+            package = pkgs.nerd-fonts.iosevka;
           }
         ];
         extraOptions = "--term xterm-256color";
@@ -34,8 +34,8 @@
           noto-fonts-color-emoji
 
           # Nerd Fonts
-          maple-mono.NF
           nerd-fonts.symbols-only
+          nerd-fonts.iosevka
 
           # For document-like fonts
           inter
@@ -61,7 +61,7 @@
               "Noto Sans CJK"
             ];
             monospace = [
-              "Maple Mono NF"
+              "Iosevka Nerd Font"
               "Noto Sans Mono"
             ];
             emoji = [ "Noto Color Emoji" ];

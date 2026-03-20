@@ -5,9 +5,6 @@
       ...
     }:
     {
-      imports = [
-        ./_kew
-      ];
       hjem = {
         clobberByDefault = true;
         users = {

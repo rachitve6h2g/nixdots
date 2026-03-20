@@ -1,0 +1,1503 @@
+#+TITLE: Emacs Configuration
+SUBTITLE: Configuration for emacs
+#+AUTHOR: Rachit Kumar Verma
+#+DATE:<2026-02-09 Mon>
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
+#+auto_tangle: t
+
+* Introduction
+I am using Emacs with Nix Home-Manager, that too with stylix. Therefore, the theme and the fonts and other stuff about Emacs is already set by Stylix.
+
+This whole configuration has been inspired from [[https://github.com/daviwil/emacs-from-scratch][Davi Will's Emacs From Scratch series]]. The file can be found [[https://github.com/daviwil/emacs-from-scratch/raw/master/Emacs.org][here]]. I only reference a few things, since the tutorial is old and a lot of new packages has come in. However, the tutorial will help a lot in learning
+emacs, and it is greatly recommended.
+
+Here is some basic set up.
+
+The [[https://github.com/magnars/dash.el][dash]] library is required by a lot of packages.
+#+begin_src emacs-lisp
+
+  ;; -*- lexical-binding: t; -*-
+
+  (use-package dash
+    :init
+    (global-dash-fontify-mode))
+
+#+end_src
+
+** Backup Directory
+
+By Default random backup files are generated all through out the work directory. We can change it by using this.
+
+#+begin_src emacs-lisp
+
+  (let ((backup-dir (expand-file-name "backups/" user-emacs-directory))
+        (autosave-dir (expand-file-name "auto-saves/" user-emacs-directory)))
+
+    (make-directory backup-dir t)
+    (make-directory autosave-dir t)
+    
+    ;; Backups
+    (setq backup-directory-alist
+  	`(("." . ,backup-dir))
+  	backup-by-copying t
+  	delete-old-versions t
+  	kept-new-versions 10
+  	kept-old-versions 5
+  	version-control t)
+
+    ;; Auto-saves
+    (setq auto-save-file-name-transforms
+  	`((".*" ,autosave-dir t))))
+
+#+end_src
+
+* Basic UI Configuration
+
+** Early Init
+
+This goes to [[file:early-init.el][early-init.el]] file.
+
+#+begin_src emacs-lisp :tangle ./early-init.el :mkdirp yes
+
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (menu-bar-mode -1)
+
+  (setq frame-inhibit-implied-resize t)
+
+  (setq default-frame-alist
+        '((font . "Iosevka Nerd Font-11.5")))
+
+
+
+#+end_src
+
+** Theme
+
+Kanagawa theme
+#+begin_src emacs-lisp :tangle no
+
+  (use-package kanagawa-themes
+    :custom
+    (kanagawa-themes-org-agenda-height t)
+    (kanagawa-themes-org-bold t)
+    (kanagawa-themes-org-height t)
+    (kanagawa-themes-org-highlight t)
+    (kanagawa-themes-org-priority-bold t)
+    :config
+    (load-theme 'kanagawa-dragon t))
+
+#+end_src
+
+Doom Themes: Gruvbox Theme
+
+#+begin_src emacs-lisp
+
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t)
+    (doom-themes-treemacs-theme "doom-colors")
+    
+    :config
+    ;; 3. Load the theme now that the path is known
+    ;; Load the custom theme path
+    (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+
+    ;; 2. Set the variant variable BEFORE load-theme is called
+    (setq doom-gruvbox-material-dark-variant "hard")
+
+    (load-theme 'doom-gruvbox-material t)
+
+    (doom-themes-visual-bell-config)
+    (doom-themes-neotree-config)
+    (doom-themes-treemacs-config)
+    (doom-themes-org-config))
+
+#+end_src
+** Transparency
+
+#+begin_src emacs-lisp :tangle no
+
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
+
+#+end_src
+
+** Other Basics
+
+#+begin_src emacs-lisp
+
+  (scroll-bar-mode -1)
+  (setq inhibit-startup-message t)
+  (setq visible-bell t)
+  (fringe-mode 0)
+  (global-hl-line-mode 1) ;; Cursorcolumn like equivalent in emacs
+
+  ;; Use Relative Line Numbers
+  (column-number-mode)
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode t)
+
+  ;; Turn off line-numbers in some modes:
+  (dolist (mode '(org-mode-hook
+    		term-mode-hook
+    		shell-mode-hook
+    		treemacs-mode-hook
+    		eshell-mode-hook
+    		vterm-mode-hook
+    		reader-mode-hook))
+
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+#+end_src
+
+** Add Window Dividers and Frame Borders
+
+#+begin_src emacs-lisp
+
+  ;; Add frame borders and window dividers
+  (modify-all-frames-parameters
+   '((right-divider-width . 10)
+     (internal-border-width . 10)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+
+  (set-face-background 'fringe (face-attribute 'default :background))
+
+  ;; This function is called in the font setup block,
+  ;; because emacs client is not calling it propely.
+  (defun my/variables-custom ()
+    (setq line-spacing 0.2)) ;; Increase line-spacing a little
+
+#+end_src
+
+** Font Configuration
+
+In emacsclient, the fonts need to be loaded based on frames.
+
+#+begin_src emacs-lisp
+
+  (defun my/frame-face-setup (frame)
+    (with-selected-frame frame
+      (set-face-attribute 'fixed-pitch frame
+                          :family "Iosevka Nerd Font"
+                          :height 1.0)
+
+      (set-face-attribute 'variable-pitch frame
+                          :family "Inter"
+                          :height 1.13
+                          :weight 'regular)))
+
+  (add-hook 'after-make-frame-functions #'my/frame-face-setup)
+
+
+#+end_src
+
+
+Configure font sizes and types. Taken from [[https://systemcrafters.net/emacs-tips/using-the-emacs-daemon/][System Crafter's]] Emacs daemon mode configuration as a fallback.
+
+#+begin_src emacs-lisp :tangle no
+
+  (defun my/set-font-faces ()
+    (message "Set Font Faces!")
+    ;; Font size
+    (set-face-attribute 'default nil
+  		      :font "Iosevka Nerd Font"
+  		      :height 120)
+
+    ;; Set the fixed pitch face
+    (set-face-attribute 'fixed-pitch nil
+  		      :family "Iosevka Nerd Font"
+  		      :height 1.0)
+
+    ;; Set the variable pitch face
+    (set-face-attribute 'variable-pitch nil
+  		      :font "Inter"
+  		      :height 1.14
+  		      :weight 'regular))
+
+  ;; When started in daemon mode, emacs doesn't load it properly. So there's this.
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+  		(setq doom-modeline-icon t)
+  		(with-selected-frame frame
+                    (my/set-font-faces)
+  		  (my/variables-custom))))
+    (my/set-font-faces))
+
+#+end_src
+
+** Ligatures Setup
+
+[[https://github.com/mickeynp/ligature.el/wiki][ligatures.el]] enables using ligatures in emacs.
+
+For Iosevka Nerd Font
+#+begin_src emacs-lisp
+
+  (use-package ligature
+    :load-path "path-to-ligature-repo"
+    :config
+    ;; Enable all Iosevka ligatures in programming modes
+    (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->" "<--->" "<---->" "<!--"
+                                         "<==" "<===" "<=" "=>" "=>>" "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+                                         "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+                                         ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:" "=:" "<******>" "++" "+++"))
+    ;; Enables ligature checks globally in all buffers. You can also do it
+    ;; per mode with `ligature-mode'.
+    (global-ligature-mode t))
+
+#+end_src
+
+* Advanced UI Configuration
+
+** Nerd Icons setup
+
+#+begin_src emacs-lisp
+
+  ;; General usage
+  (use-package nerd-icons)
+
+  ;; Use in ibuffer
+  (use-package nerd-icons-ibuffer
+    :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+  ;; For completion in minibuffer
+  (use-package nerd-icons-completion
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode)
+    :hook (marginalia-mode nerd-icons-completion-marginalia-setup))
+
+#+end_src
+
+** Dirvish
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :config
+    (setq dired-listing-switches
+          "-l --almost-all --human-readable --group-directories-first --no-group")
+    ;; this command is useful when you want to close the window of `dirvish-side'
+    ;; automatically when opening a file
+    (put 'dired-find-alternate-file 'disabled nil))
+
+  (use-package dirvish
+    :ensure t
+    :init
+    (dirvish-override-dired-mode)
+    :custom
+    (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
+     '(("h" "~/"                          "Home")
+       ("d" "~/Downloads/"                "Downloads")
+       ("m" "/mnt/"                       "Drives")
+       ("s" "/ssh:my-remote-server"      "SSH server")
+       ("e" "/sudo:root@localhost:/etc"  "Modify program settings")
+       ("t" "~/.local/share/Trash/files/" "TrashCan")))
+
+    :config
+    ;; (dirvish-peek-mode)             ; Preview files in minibuffer
+    ;; (dirvish-side-follow-mode)      ; similar to `treemacs-follow-mode'
+
+    (setq delete-by-moving-to-trash t) ;; does what it says
+    (setq dirvish-mode-line-format
+          '(:left (sort symlink) :right (omit yank index)))
+    (setq dirvish-attributes           ; The order *MATTERS* for some attributes
+          '(vc-state subtree-state nerd-icons collapse git-msg file-time file-size)
+          dirvish-side-attributes
+          '(vc-state nerd-icons collapse file-size))
+    ;; open large directory (over 20000 files) asynchronously with `fd' command
+    (setq dirvish-large-directory-threshold 20000)
+    (setq dirvish-subtree-state-style 'nerd)
+    (setq dirvish-path-separators (list
+  				 (format "  %s " (nerd-icons-codicon "nf-cod-home"))
+  				 (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
+  				 (format " %s " (nerd-icons-faicon "nf-fa-angle_right"))))
+    (dirvish-peek-mode) ;; Preview files in minibuffer
+    (dirvish-side-follow-mode)
+    
+    :bind ; Bind `dirvish-fd|dirvish-side|dirvish-dwim' as you see fit
+    (("C-c f" . dirvish)
+     :map dirvish-mode-map               ; Dirvish inherits `dired-mode-map'
+     (";"   . dired-up-directory)        ; So you can adjust `dired' bindings here
+     ("?"   . dirvish-dispatch)          ; [?] a helpful cheatsheet
+     ("a"   . dirvish-setup-menu)        ; [a]ttributes settings:`t' toggles mtime, `f' toggles fullframe, etc.
+     ("f"   . dirvish-file-info-menu)    ; [f]ile info
+     ("o"   . dirvish-quick-access)      ; [o]pen `dirvish-quick-access-entries'
+     ("s"   . dirvish-quicksort)         ; [s]ort flie list
+     ("r"   . dirvish-history-jump)      ; [r]ecent visited
+     ("l"   . dirvish-ls-switches-menu)  ; [l]s command flags
+     ("v"   . dirvish-vc-menu)           ; [v]ersion control commands
+     ("*"   . dirvish-mark-menu)
+     ("y"   . dirvish-yank-menu)
+     ("N"   . dirvish-narrow)
+     ("^"   . dirvish-history-last)
+     ("TAB" . dirvish-subtree-toggle)
+     ("M-f" . dirvish-history-go-forward)
+     ("M-b" . dirvish-history-go-backward)
+     ("M-e" . dirvish-emerge-menu)))
+
+#+end_src
+
+
+*** Media Progrees in Dirvish
+
+Use [[https://github.com/jumper047/media-progress/tree/master][media-progress-dirvish]] to track media progress inside dirvish.
+
+#+begin_src emacs-lisp
+
+  (use-package media-progress-dirvish
+    :after dirvish
+    :config
+    (media-progress-dirvish-setup))
+
+#+end_src
+
+*** Hide Dotfiles
+
+#+begin_src emacs-lisp
+
+  (use-package dired-x
+    :config
+    ;; Make dired-omit-mode hide all "dotfiles"
+    (setq dired-omit-files
+  	(concat dired-omit-files "\\|^\\..*$")))
+
+#+end_src
+
+*** Treemacs
+#+begin_src emacs-lisp
+
+  (use-package treemacs-nerd-icons
+    :config
+    (treemacs-nerd-icons-config))
+
+#+end_src
+
+*** Open Programs
+
+Open files using external programs using [[https://github.com/FrostyX/dired-open-with][dired-open-with]].
+
+#+begin_src emacs-lisp
+
+    (use-package dired-open-with
+      :after dirvish)
+
+#+end_src
+
+** Dired
+:PROPERTIES:
+:header-args:emacs-lisp: :tangle no
+:END:
+
+#+begin_src emacs-lisp
+
+  ;; use nerd fonts with dired 
+  (use-package nerd-icons-dired
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
+
+  (use-package dired
+    :hook
+    (dired-mode . dired-omit-mode) ;; hide dotfiles 
+    :bind (:map dired-mode-map
+  	      ("." . dired-omit-mode)) ;; use "." to show dotfiles
+    :custom
+    (dired-omit-files (rx (seq bol "."))) ;; hide dotfiles
+    :config
+    ;; Let dired guess copy/move destinations
+    (setq dired-dwim-target t)
+    
+    ;; 1. better listing format
+    (setq dired-listing-switches "-alh --group-directories-first")
+
+    ;; 2. Auto revert when files change
+    (setq global-auto-revert-non-file-buffers t)
+    (setq auto-revert-verbose nil)
+    (add-hook 'dired-mode-hook #'auto-revert-mode)
+
+    ;; 4. Hide details by default
+    (add-hook 'dired-mode-hook #'dired-hide-details-mode)
+
+    ;; 5. Recursive operations without confirmation spam
+    (setq dired-recursive-copies 'always)
+    (setq dired-recursive-deletes 'top))
+
+#+end_src
+
+*** Dired subtree
+#+begin_src emacs-lisp
+
+  (use-package dired-subtree
+    :after dired
+    :bind (:map dired-mode-map
+                ("TAB" . dired-subtree-toggle)))
+
+
+#+end_src
+
+*** Dired Collapse
+
+Shows a more github like rendering of directories where if a parent has only one child, then "parent/child" will be rendered.
+
+#+begin_src emacs-lisp
+
+  (use-package dired-collapse
+    :after dired
+    :init (global-dired-collapse-mode))
+
+#+end_src
+
+*** Dired Open
+
+Open files according to extensions.
+
+#+begin_src emacs-lisp
+
+  (use-package dired-open
+    :after dired
+    :custom
+    (dired-open-extensions
+     '(("mp4" . "mpv"))))
+
+#+end_src
+
+
+
+** Doom Modeline
+#+begin_src emacs-lisp
+
+  (use-package doom-modeline
+    :custom
+    (doom-modeline-hud t)
+    (doom-modeline-major-mode-color-icon t)
+    
+    :init
+    (doom-modeline-mode 1))
+
+#+end_src
+
+** Which Key
+#+begin_src emacs-lisp
+
+  (use-package which-key
+    :defer 0
+    :diminish which-key-mode
+    :custom
+    (which-key-idle-delay 1)
+    :config
+    (which-key-mode))
+
+#+end_src
+
+** Vertico
+#+begin_src emacs-lisp
+
+  ;; Enable vertico
+  (use-package vertico
+    :custom
+    (vertico-scroll-margin 0)
+    (vertico-count 10)
+    (vertico-resize t)
+    (vertico-cycle t)
+    :init
+    (vertico-mode))
+
+  ;; Presist history over emacs restarts.
+  (use-package savehist
+    :init
+    (savehist-mode))
+
+
+
+  ;; Marginalia for margins
+  (use-package marginalia
+    :bind (:map minibuffer-local-map
+  	      ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
+
+#+end_src
+
+** Dashboard: A better startup view
+[[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]] is a better startup view.
+#+begin_src emacs-lisp
+
+  (use-package dashboard
+    :custom
+    (initial-buffer-choice 'dashboard-open) ;; When using emacsclient
+    (dashboard-center-content t)
+    (dashboard-vertically-center-content t)
+    (dashboard-navigation-cycle t)
+
+    ;; Using icons in dashboard
+    (dashboard-display-icons-p t)
+    (dashboard-icon-type 'nerd-icons)
+    (dashboard-set-heading-icons t)
+    (dashboard-set-file-icons t)
+
+    ;; (setq dashboard-projects-switch-function (lambda (&rest _) consult-projectile-switch-project))
+    
+    (dashboard-projects-switch-function #'projectile-switch-project)
+    (dashboard-startup-banner "~/.face")
+    (dashboard-image-banner-max-heigth 200)
+    (dashboard-image-banner-max-width 200)
+    (dashboard-banner-logo-title "お帰りなさい!")
+
+    ;; Customize which items are displayed
+    (dashboard-items '((recents   . 5)
+                       (bookmarks . 5)
+                       (projects  . 5)
+                       (agenda    . 5)
+                       (registers . 5)))
+    
+    ;; Customize item shortcuts
+    (dashboard-item-shortcuts '((recents   . "r")
+                                (bookmarks . "m")
+                                (projects  . "p")
+                                (agenda    . "a")
+                                (registers . "e")))
+
+    ;; Customize the widgets on the dashboard
+    (dashboard-startupify-list '(dashboard-insert-banner
+                                 dashboard-insert-newline
+                                 dashboard-insert-banner-title
+                                 dashboard-insert-newline
+                                 dashboard-insert-navigator
+                                 dashboard-insert-newline
+                                 dashboard-insert-init-info
+                                 dashboard-insert-items
+                                 dashboard-insert-newline
+                                 dashboard-insert-footer))
+    
+    ;; modify icon height and vertical adjust
+    ;; (dashboard-icon-file-height 1.75)
+    ;; (dashboard-icon-file-v-adjust -0.125)
+    ;; (dashboard-heading-icon-height 1.75)
+    ;; (dashboard-heading-icon-v-adjust -0.125)
+    
+    :hook
+    (server-after-make-frame . 'dashboard-open) ;; When using emacsclient
+    (dashboard-mode . page-break-lines-mode)
+    
+    :config
+    (dashboard-setup-startup-hook))
+
+#+end_src
+
+** Highlight =TODO= Keywords
+#+begin_src emacs-lisp
+
+  (use-package hl-todo
+    :hook (prog-mode . hl-todo-mode)
+    :config
+    (setq hl-todo-highlight-punctuation ":"
+  	hl-todo-keyword-faces
+  	'(
+            ;; Critical
+            ("FIXME" . "#ea6962") ; red
+            ("BUG"   . "#ea6962")
+
+            ;; Urgent but not broken
+            ("TODO"  . "#e78a4e") ; orange
+
+            ;; Suspicious / tech debt
+            ("HACK"  . "#d8a657") ; yellow
+            ("XXX"   . "#d8a657")
+
+            ;; Informational
+            ("NOTE"  . "#7daea3") ; aqua
+            ("INFO"  . "#7daea3")
+
+            ;; Future ideas
+            ("IDEA"  . "#a9b665") ; green
+            )))
+
+#+end_src
+
+** Pulsar
+Pulse the cursor using the [[https://protesilaos.com/emacs/pulsar][pulsar]] package.
+#+begin_src emacs-lisp
+
+  (use-package pulsar
+    :bind
+    ( :map global-map
+      ("C-x l" . pulsar-pulse-line) ;; overrides 'count-lines-page'
+      ("C-x L" . pulsar-highlight-permanently-dwim))
+    :init
+    (pulsar-global-mode 1)
+    :config
+    (setq pulsar-delay 0.055)
+    (setq pulsar-iterations 5)
+    (setq pulsar-face 'pulsar-green)
+    (setq pulsar-region-face 'pulsar-yellow)
+    (setq pulsar-highlight-face 'pulsar-magenta)
+    :hook
+    (next-error . #'pulsar-pulse-line)
+    (minibuffer-setup-hook . #'pulsar-pulse-line))
+
+#+end_src
+
+** Pretty Info
+
+Info mode by default looks arcane. Use[[https://github.com/ubolonton/info-colors][ info-colors]] for prettifying it a bit.
+
+#+begin_src emacs-lisp
+
+  (use-package info-colors
+    :hook (Info-selection . info-colors-fontify-node))
+
+#+end_src
+
+* Keep Folders Clean
+[[https://github.com/emacscollective/no-littering.git][no-littering]] is currently not downloading in NixOS. IDK Why.
+#+begin_src emacs-lisp
+
+  (use-package no-littering)
+
+#+end_src
+
+* Org Mode
+
+** Basic Setup
+
+A basic setup of org-mode.
+
+#+begin_src  emacs-lisp
+
+  (defun my/org-mode-setup ()
+    (variable-pitch-mode 1)
+    (visual-line-mode 1)
+    (org-indent-mode))
+
+  (defun my/org-font-setup ()
+    ;; Resize Org headings
+    (dolist (face '((org-level-1 . 1.35)
+                    (org-level-2 . 1.3)
+                    (org-level-3 . 1.2)
+                    (org-level-4 . 1.1)
+                    (org-level-5 . 1.1)
+                    (org-level-6 . 1.1)
+                    (org-level-7 . 1.1)
+                    (org-level-8 . 1.1)))
+      (set-face-attribute (car face) nil
+  			:font "Inter"
+  			:weight 'bold
+  			:height (cdr face)))
+
+    ;; Make the document title a bit bigger
+    (set-face-attribute 'org-document-title nil
+  		      :font "Inter"
+  		      :weight 'bold
+  		      :height 1.8)
+    
+    (require 'org-indent)
+    
+    (set-face-attribute 'org-indent nil
+  		      :inherit '(org-hide fixed-pitch))
+    
+    (set-face-attribute 'org-block nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-code nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-verbatim nil
+  		      :inherit 'fixed-pitch
+  		      :height 0.9)
+    
+    (set-face-attribute 'org-special-keyword nil
+  		      :inherit '(font-lock-comment-face fixed-pitch))
+    
+    (set-face-attribute 'org-meta-line nil
+  		      :inherit '(font-lock-comment-face fixed-pitch))
+    
+    (set-face-attribute 'org-checkbox nil
+  		      :inherit 'fixed-pitch))
+
+
+  (use-package org
+    :commands (org-capture org-agenda)
+    :hook
+    (org-mode . my/org-mode-setup)
+    (org-mode . my/org-font-setup)
+    :custom
+    (org-hide-leading-stars t)
+    (org-adapt-indentation t)
+    (org-src-fontify-natively t) ;; native src fonts
+    (org-src-tab-acts-natively t) ;; let tab act as it would when writing code
+    (org-ellipsis "  ")
+    (org-link-descriptive t)
+    
+    :config
+    ;; Enable org templates
+    (require 'org-tempo)
+    (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    
+
+    ;; Configuring org-capture
+
+    ;; First set the default org notes directory
+    (setq org-directory "~/org"
+      	org-default-notes-file (expand-file-name "tasks.org" org-directory))
+    (setq org-log-done 'time)
+    (setq org-log-into-drawer t)
+
+    (setq org-refile-targets
+  	'(("archive.org" :maxlevel . 1)
+  	  ("tasks.org" :maxlevel . 1)))
+
+    ;; Save org buffers after refiling
+    (advice-add 'org-refile
+  	      :after 'org-save-all-org-buffers)
+    
+    (setq org-capture-templates
+  	'(("t" "Tasks / Projects")
+  	  ("tt" "Task" entry
+             (file+headline "tasks.org" "Inbox")
+             "* TODO %?\n  %U\n %a\n %i" :empty-lines 1)
+
+  	  ("j" "Journal Entries")
+            ("jj" "Journal" entry
+             (file+olp+datetree "~/org/journal.org")
+             "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+             ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+             :clock-in :clock-resume
+             :empty-lines 1)))
+
+    (defun my/org-capture-task ()
+      (interactive)
+      (org-capture nil "tt"))
+
+    (defun my/org-capture-journal ()
+      (interactive)
+      (org-capture nil "jj"))
+
+    (keymap-global-set "C-c t" #'my/org-capture-task)
+    (keymap-global-set "C-c j" #'my/org-capture-journal))
+
+#+end_src
+    
+** Org Modern Setup
+
+This is [[https://github.com/rachitve6h2g/org-modern][org-modern]] for pretifying your org file setup.
+
+#+begin_src emacs-lisp
+
+  (use-package org-modern
+    :custom
+    (org-auto-align-tags t)
+    (org-tags-column 0)
+    (org-fold-catch-invisible-edits 'show-and-error)
+    (org-special-ctrl-a/e t)
+    (org-insert-heading-respect-content t)
+    
+    ;; Hide markups or not
+    (org-pretty-entities t)
+    (org-agenda-tags-column 0)
+    
+    :hook
+    
+    (org-mode . org-modern-mode)
+    (org-agenda-finalize . org-modern-agenda)
+    
+    :config
+    (global-org-modern-mode))
+
+  ;; Use org-modern indent for using org-indent with org-modern
+  (use-package org-modern-indent
+    :defer t
+    :custom (org-startup-indented t) ;; Adds a sort of '#+STARTUP: indent' to all org files
+    :hook (org-mode . org-modern-indent-mode))
+
+#+end_src
+
+** Org Auto Tangle
+
+Use auto tangle using [[https://github.com/yilkalargaw/org-auto-tangle][org-auto-tangle]] package. Just set =auto_tangle: t= as the header, and you're set.
+
+#+begin_src emacs-lisp
+
+  (use-package org-auto-tangle
+    :after org
+    :defer t
+    :hook (org-mode . org-auto-tangle-mode))
+
+#+end_src
+
+** Center Org Buffers
+
+Use olivetti:
+ 
+#+begin_src emacs-lisp
+
+  (use-package olivetti
+    :custom (olivetti-body-width 100)
+    :hook (org-mode . olivetti-mode))
+
+#+end_src
+
+** Babel Languages
+
+Babel languages make writing code blocks easier.
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (C . t))))
+
+#+end_src
+
+** Org Roam (My Second Brain)
+
+#+begin_src emacs-lisp
+
+  (use-package org-roam
+    :custom
+    (org-roam-directory (file-truename "~/org"))
+    (org-roam-completion-everywhere t)
+    :config
+    (org-roam-db-autosync-mode))
+
+#+end_src
+
+** Spell It Wright!!
+
+Use aspell dictionary for correct spelling.
+
+#+begin_src emacs-lisp
+
+  ;; Configure the base engine
+  (use-package ispell
+    :custom
+    (ispell-program-name "aspell")
+    (ispell-extra-args '("--sug-mode=ultra")))
+
+  ;; Configure the real-time interface
+  (use-package flyspell
+    :hook ((org-mode . flyspell-mode)
+           (text-mode . flyspell-mode)))
+
+#+end_src
+
+* Superior Window Switching
+
+Ace windows using[[https://github.com/abo-abo/ace-window][ ace-window]] package for superior window switching method.
+
+#+begin_src emacs-lisp
+
+  (use-package ace-window
+    :bind ("M-o" . ace-window)
+    :custom
+    (aw-keys '(?a ?r ?s ?t ?g ?n ?e ?i ?o)))
+
+#+end_src
+
+* Terminal in Emacs
+
+Use [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] package to use terminal inside Emacs. Use =C-v= keymap to open vterm in emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package vterm)
+
+#+end_src
+
+** Multiple Vterm Buffers
+
+#+begin_src emacs-lisp
+
+  ;; Use Multi vterm to create multiple vterm buffers
+  (use-package multi-vterm
+    :config
+    (setq multi-vterm-dedicated-window-height 50))
+
+#+end_src
+
+** Toggle Vterm with Ease
+
+Use the keychord =C-c v= to toggle vterm using the [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]] package.
+
+#+begin_src emacs-lisp
+
+  (use-package vterm-toggle
+    :bind
+    (:map global-map
+  	("C-c v v" . vterm-toggle-cd))
+    (:map vterm-mode-map
+  	("s-n" . vterm-toggle-forward)
+  	("s-p" . vterm-toggle-backward)))
+
+#+end_src
+
+* Ibuffer Instead of Buffer List
+We can use the =ibuffer= in emacs instead of the default =buffer-list= with =C-x C-b=.
+#+begin_src emacs-lisp
+
+  (keymap-global-set "C-x C-b" #'ibuffer)
+
+#+end_src
+
+* Development
+** Magit
+
+Open magit on the same window.
+
+#+begin_src emacs-lisp
+
+  (use-package magit
+    :after nerd-icons
+    :commands magit-status
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (magit-format-file-function #'magit-format-file-nerd-icons))
+
+  (use-package forge
+    :after magit)
+
+  (use-package with-editor :ensure nil)
+
+#+end_src
+
+
+*** Use diff-hl
+We can use [[https://github.com/dgutov/diff-hl][diff-hl]] package to see git changes and other changes inside dired and emacs buffer
+#+begin_src emacs-lisp
+
+  (use-package diff-hl
+    :hook ((prog-mode . diff-hl-mode) ;; Show in programming buffers
+  	 (magit-post-refresh . #'diff-hl-magit-post-refresh)
+  	 (dired-mode . diff-hl-dired-mode))) ;; Also show in dired buffers
+
+#+end_src
+
+** Colorful Mode
+#+begin_src emacs-lisp
+
+  (use-package colorful-mode
+    :custom
+    (colorful-use-prefix t)
+    (colorful-only-strings 'only-prog)
+    (css-fontify-colors nil)
+    :config
+    (global-colorful-mode t)
+    (add-to-list 'global-colorful-modes 'helpful-mode))
+
+#+end_src
+
+** Direnv Integration
+Integrate direnv with Emax
+#+begin_src emacs-lisp
+
+  (use-package envrc
+    :hook (after-init . envrc-global-mode))
+
+#+end_src
+
+** Projectile
+#+begin_src emacs-lisp
+
+  (use-package projectile
+    :init
+    (projectile-mode 1)
+    
+    :custom
+    (projectile-project-search-path '("~/Development/"
+    				    "~/nixdots/"))
+    
+    :bind (:map projectile-mode-map
+    	      ("C-c p" . projectile-command-map)))
+
+  ;; Also use consult-projectile
+  (use-package consult-projectile)
+
+#+end_src
+[[https://docs.projectile.mx/projectile/index.html][Projectile]] is a project management library for Emacs.
+
+** Smartparens
+[[https://github.com/Fuco1/smartparens?tab=readme-ov-file][Smartparens]] is a package for auto-parenthesis. Electric-pair mode is okay, but Smartparens provides a lot of functionalities that electric-pair mode doesn't.
+
+#+begin_src emacs-lisp
+
+  (use-package smartparens
+    :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+    :config
+    ;; load default config
+    (require 'smartparens-config))
+
+#+end_src
+
+** LSP
+
+*** Eglot
+
+#+begin_src emacs-lisp
+
+  (use-package eglot
+    :ensure nil
+    :hook ((c-mode c++-mode python-mode nix-ts-mode) . eglot-ensure)
+    :config
+    ;; Optional performance tuning
+    (setq eglot-autoshutdown t
+  	eglot-send-changes-idle-time 0.5))
+
+#+end_src
+
+**** Booster
+
+Make eglot load faster
+
+#+begin_src emacs-lisp
+
+  (use-package eglot-booster
+    :after eglot
+    :config (eglot-booster-mode))
+
+#+end_src
+
+*** Breadcrumbs
+
+#+begin_src emacs-lisp
+  (use-package breadcrumb
+    :init (breadcrumb-mode)
+    :config
+    (setq which-func-functions #'(breadcrumb-imenu-crumbs))
+    (setq breadcrumb-imenu-crumb-separator "  "))
+
+
+  (use-package imenu
+    :ensure nil
+    :config
+    (setq imenu-auto-rescan t))
+
+#+end_src
+
+*** Languages
+
+**** Nix
+Use [[https://github.com/purcell/emacs-nixfmt][nixfmt]] package for formatting nix files.
+#+begin_src emacs-lisp
+
+  (use-package nixfmt
+    :hook (nix-ts-mode . nixfmt-on-save-mode))
+
+#+end_src
+
+**** Shell
+Use [[https://github.com/purcell/emacs-shfmt][shfmt]] package for formatting shell scripts.
+#+begin_src emacs-lisp
+
+  (use-package shfmt
+    :hook (sh-mode . shfmt-on-save-mode)
+    :custom
+    ;; Use 2 spaces for indentation
+    (shfmt-indent 2)
+
+    ;; Optional but sane defaults
+    (shfmt-arguments '("-i" "2" "-ci")))
+
+#+end_src
+
+**** Treesitter
+
+#+begin_src emacs-lisp
+
+  (use-package nix-ts-mode
+    :mode "\\.nix\\'"
+    :init
+    ;; Add to your init.el before loading nix-ts-mode
+    (setq treesit-font-lock-level 4))
+
+#+end_src
+
+** Auto-Completion
+
+Set up auto-completion for programming languages. This configuration is taken from [[https://github.com/minad/corfu#tab-only-completion][official snippets]].
+
+#+begin_src emacs-lisp
+
+  ;; TAB-only configuration
+  (use-package corfu
+    :custom
+    (corfu-auto t)               ;; Enable auto completion
+    (corfu-preselect 'directory) ;; Select the first candidate, except for directories
+
+    :init
+    (global-corfu-mode)
+
+    :config
+    ;; Free the RET key for less intrusive behavior.
+    ;; Option 1: Unbind RET completely
+    ;; (keymap-unset corfu-map "RET")
+    ;; Option 2: Use RET only in shell modes
+    (keymap-set corfu-map "RET" `( menu-item "" nil :filter
+                                   ,(lambda (&optional _)
+                                      (and (derived-mode-p 'eshell-mode 'comint-mode)
+                                           #'corfu-send)))))
+
+  (use-package cape
+    ;; Bind prefix keymap providing all Cape commands under a menmonic key.
+    :bind ("C-x c" . cape-prefix-map)
+    :init
+    ;; Add to the global default value of `completion-at-point-functions' which is
+    ;; used by `completion-at-point'.  The order of the functions matters, the
+    ;; first function returning a result wins.  Note that the list of buffer-local
+    ;; completion functions takes precedence over the global list.
+    (add-hook 'completion-at-point-functions #'cape-dabbrev)
+    (add-hook 'completion-at-point-functions #'cape-file)
+    (add-hook 'completion-at-point-functions #'cape-elisp-block))
+
+#+end_src
+
+*** Corfu Nerd Icons
+Use the [[https://github.com/LuigiPiucco/nerd-icons-corfu][nerd-icons-corfu]] package for completion ui.
+#+begin_src emacs-lisp
+
+  (use-package nerd-icons-corfu
+    :after (corfu nerd-icons)
+    :config
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+#+end_src
+
+*** Orderless
+Orderless completion style a try for filtering.
+#+begin_src emacs-lisp
+
+  ;; Orderless completions
+  (use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles partial-completion))))
+    (completion-category-defaults nil)
+    (completion-pcm-leading-wildcard t))
+
+#+end_src
+
+** Rainbow Delimiters
+Enable [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]] package  for better parentheses
+#+begin_src emacs-lisp
+
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+#+end_src
+
+** Consult
+[[https://github.com/minad/consult][consult]] provides search and navigation commands based on the Emacs.
+#+begin_src emacs-lisp
+
+  ;; Example configuration for Consult
+  (use-package consult
+    ;; Replace bindings. Lazily loaded by `use-package'.
+    :bind (;; C-c bindings in `mode-specific-map'
+           ("C-c M-x" . consult-mode-command)
+           ("C-c h" . consult-history)
+           ("C-c k" . consult-kmacro)
+           ("C-c m" . consult-man)
+           ("C-c i" . consult-info)
+           ([remap Info-search] . consult-info)
+           ;; C-x bindings in `ctl-x-map'
+           ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+           ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+           ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+           ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+           ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+           ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+           ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+           ;; Custom M-# bindings for fast register access
+           ("M-#" . consult-register-load)
+           ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+           ("C-M-#" . consult-register)
+           ;; Other custom bindings
+           ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+           ;; M-g bindings in `goto-map'
+           ("M-g e" . consult-compile-error)
+           ("M-g r" . consult-grep-match)
+           ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+           ("M-g g" . consult-goto-line)             ;; orig. goto-line
+           ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+           ("M-g m" . consult-mark)
+           ("M-g k" . consult-global-mark)
+           ("M-g i" . consult-imenu)
+           ("M-g I" . consult-imenu-multi)
+           ;; M-s bindings in `search-map'
+           ("M-s d" . consult-fd)                  ;; Alternative: consult-fd
+           ("M-s c" . consult-locate)
+           ("M-s g" . consult-grep)
+           ("M-s G" . consult-git-grep)
+           ("M-s r" . consult-ripgrep)
+           ("M-s l" . consult-line)
+           ("M-s L" . consult-line-multi)
+           ("M-s k" . consult-keep-lines)
+           ("M-s u" . consult-focus-lines)
+           ;; Isearch integration
+           ("M-s e" . consult-isearch-history)
+           :map isearch-mode-map
+           ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+           ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+           ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+           ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+           ;; Minibuffer history
+           :map minibuffer-local-map
+           ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+           ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+
+    ;; The :init configuration is always executed (Not lazy)
+    :init
+
+    ;; Tweak the register preview for `consult-register-load',
+    ;; `consult-register-store' and the built-in commands.  This improves the
+    ;; register formatting, adds thin separator lines, register sorting and hides
+    ;; the window mode line.
+    (advice-add #'register-preview :override #'consult-register-window)
+    (setq register-preview-delay 0.5)
+
+    ;; Use Consult to select xref locations with preview
+    (setq xref-show-xrefs-function #'consult-xref
+          xref-show-definitions-function #'consult-xref)
+
+    ;; Configure other variables and modes in the :config section,
+    ;; after lazily loading the package.
+    :config
+
+    ;; Optionally configure preview. The default value
+    ;; is 'any, such that any key triggers the preview.
+    ;; (setq consult-preview-key 'any)
+    ;; (setq consult-preview-key "M-.")
+    ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
+    ;; For some commands and buffer sources it is useful to configure the
+    ;; :preview-key on a per-command basis using the `consult-customize' macro.
+    (consult-customize
+     consult-theme :preview-key '(:debounce 0.2 any)
+     consult-ripgrep consult-git-grep consult-grep consult-man
+     consult-bookmark consult-recent-file consult-xref
+     consult-source-bookmark consult-source-file-register
+     consult-source-recent-file consult-source-project-recent-file
+     ;; :preview-key "M-."
+     :preview-key '(:debounce 0.4 any))
+
+    ;; Optionally configure the narrowing key.
+    ;; Both < and C-+ work reasonably well.
+    (setq consult-narrow-key "<") ;; "C-+"
+
+    ;; Optionally make narrowing help available in the minibuffer.
+    ;; You may want to use `embark-prefix-help-command' or which-key instead.
+    (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
+    )
+
+#+end_src
+
+*** Consult Dir
+[[https://github.com/karthink/consult-dir][consult-dir]] uses dired behind it and is really, really good for a lot of operations.
+#+begin_src emacs-lisp
+
+  (use-package consult-dir
+    :custom
+    ;; List projectile directories for use with consult
+    (consult-dir-project-list-function #'consult-dir-projectile-dirs)
+    
+    :bind (("C-x C-d" . consult-dir)
+  	 :map minibuffer-local-completion-map
+  	 ("C-x C-d" . consult-dir)
+  	 ("C-x C-j" . consult-dir-jump-file)))
+
+#+end_src
+
+*** Consult Notes
+Using [[https://github.com/mclear-tools/consult-notes][consult-notes]] for easier management of notes. It integrates well with consult and org-roam.
+#+begin_src emacs-lisp
+
+  (use-package consult-notes
+    :commands (consult-notes
+  	     consult-notes-search-in-all-notes
+  	     consult-notes-org-roam-find-node
+  	     consult-notes-org-roam-find-node-relation))
+
+#+end_src
+
+** Embark
+#+begin_src emacs-lisp
+
+  (use-package embark
+    :bind
+    (("C-." . embark-act)         ;; pick some comfortable binding
+     ("C-;" . embark-dwim)        ;; good alternative: M-.
+     ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+    :init
+
+    ;; Optionally replace the key help with a completing-read interface
+    (setq prefix-help-command #'embark-prefix-help-command)
+
+    ;; Show the Embark target at point via Eldoc. You may adjust the
+    ;; Eldoc strategy, if you want to see the documentation from
+    ;; multiple providers. Beware that using this can be a little
+    ;; jarring since the message shown in the minibuffer can be more
+    ;; than one line, causing the modeline to move up and down:
+
+    ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+    ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+    ;; Add Embark to the mouse context menu. Also enable `context-menu-mode'.
+    ;; (context-menu-mode 1)
+    ;; (add-hook 'context-menu-functions #'embark-context-menu 100)
+
+    :config
+
+    ;; Hide the mode line of the Embark live/completions buffers
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none))))
+
+    ;; add which key integration in embark
+    (defun embark-which-key-indicator ()
+      "An embark indicator that displays keymaps using which-key.
+  The which-key help message will show the type and value of the
+  current target followed by an ellipsis if there are further
+  targets."
+      (lambda (&optional keymap targets prefix)
+        (if (null keymap)
+            (which-key--hide-popup-ignore-command)
+  	(which-key--show-keymap
+  	 (if (eq (plist-get (car targets) :type) 'embark-become)
+               "Become"
+             (format "Act on %s '%s'%s"
+                     (plist-get (car targets) :type)
+                     (embark--truncate-target (plist-get (car targets) :target))
+                     (if (cdr targets) "…" "")))
+  	 (if prefix
+               (pcase (lookup-key keymap prefix 'accept-default)
+                 ((and (pred keymapp) km) km)
+                 (_ (key-binding prefix 'accept-default)))
+             keymap)
+  	 nil nil t (lambda (binding)
+                       (not (string-suffix-p "-argument" (cdr binding))))))))
+
+    (setq embark-indicators
+  	'(embark-which-key-indicator
+  	  embark-highlight-indicator
+  	  embark-isearch-highlight-indicator))
+
+    (defun embark-hide-which-key-indicator (fn &rest args)
+      "Hide the which-key indicator immediately when using the completing-read prompter."
+      (which-key--hide-popup-ignore-command)
+      (let ((embark-indicators
+             (remq #'embark-which-key-indicator embark-indicators)))
+        (apply fn args)))
+
+    (advice-add #'embark-completing-read-prompter
+                :around #'embark-hide-which-key-indicator))
+
+  ;; Consult users will also want the embark-consult package.
+  (use-package embark-consult
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
+
+#+end_src
+
+** Indent Bars
+
+#+begin_src emacs-lisp
+
+  (use-package indent-bars
+    :hook ((prog-mode nix-ts-mode) . indent-bars-mode)) ; or whichever modes you prefer
+
+#+end_src
+
+* Clipboard
+On wayland we can use this snippet from [[https://www.emacswiki.org/emacs/CopyAndPaste][EmacsWiki]].
+#+begin_src emacs-lisp
+
+  ;; credit: Lukas Barth at https://www.lukas-barth.net/blog/emacs-wsl-copy-clipboard/
+  (setopt select-active-regions nil)
+
+  (setopt select-enable-clipboard 't)
+  (setopt select-enable-primary nil)
+  (setopt interprogram-cut-function #'gui-select-text)
+
+
+#+end_src
+
+* PDF Reading
+Use [[https://github.com/vedang/pdf-tools][pdf-tools]] package for reading pdfs inside emacs.
+#+begin_src emacs-lisp :tangle no
+
+  (use-package pdf-tools
+    :hook
+    (pdf-view-mode . #'pdf-view-roll-minor-mode) ;; Gives smoother scrolling.
+
+    ;; disable line-numbers using this mode.
+    (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+    :init
+    (pdf-tools-install t))
+
+#+end_src
+
+Save the last visited page in pdf-view using [[https://github.com/nicolaisingh/saveplace-pdf-view][saveplace-pdf-view]].
+#+begin_src emacs-lisp :tangle no
+
+  (use-package saveplace-pdf-view
+    :after (:any doc-view pdf-tools))
+
+#+end_src
+
+Use the new [[https://codeberg.org/MonadicSheep/emacs-reader][emacs-reader]] package which uses the =mupdf= backend instead of =poppler= backend.
+#+begin_src emacs-lisp
+
+  (use-package reader
+    :commands
+    (reader-mode)
+    :hook
+    (reader-mode . (lambda () (display-line-numbers-mode -1))))
+
+
+  ;; The new version is still expecting a function that it does not provide.
+  (with-eval-after-load 'reader
+    (unless (fboundp 'reader-current-doc-pagenumber)
+      (defalias 'reader-current-doc-pagenumber
+        #'reader-dyn--current-doc-pagenumber)))
+
+
+#+end_src
+
+* TODO Elfeed Setup
+Elfeed is a rss reader for emacs.
+
+*  Music Listening
+[[https://github.com/emacsmirror/emms][Emms]] (Emacs Multi-Media System) is a system to listen to music. The config is taken from [[https://emacs.stackexchange.com/a/3741][this comment on StackExchange]].
+#+begin_src emacs-lisp 
+
+  (use-package emms
+    :custom
+    (emms-player-list '(emms-player-mpv))
+    (emms-source-file-default-directory "~/Music/")
+    (emms-show-format "Playing: %s")
+    (emms-info-functions '(emms-info-native))
+    (emms-browser-covers #'emms-browser-cache-thumbnail-async)
+    (emms-browser-thumbnail-small-size 64)
+    (emms-browser-thumbnail-medium-size 128)
+    :init
+    (require 'emms-setup)
+    (emms-all))
+
+#+end_src
+
+* TODO Tasks
+- [ ] Refine the config. There's a lot of stuff that needs to be cleaned up and set properly.
+- [ ] Configure org-journal to follow org-capture and org-agenda for journaling.
+- [ ] Set up org-roam and consult-notes.
+- [X] Figure out why font rendering doesn't work in org-mode when emacs starts in daemon mode.
+
+** FIXME Emacsclient stuffs like Fonts and line-spacing vars don't work.

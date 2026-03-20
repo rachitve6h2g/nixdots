@@ -7,8 +7,8 @@
     in
     {
       environment.sessionVariables = {
-        EDITOR = "hx";
-        VISUAL = "hx";
+        EDITOR = "emacseditor";
+        VISUAL = "emacseditor";
       };
 
       environment.systemPackages =
@@ -16,26 +16,18 @@
         (with pkgs; [
           (vesktop.override { withSystemVencord = true; })
           telegram-desktop
-
           # Common environment packages
           gdu # disk usage analyzer
-
           gophertube # Watch youtube in terminal
-
           # Github-cli
           gh
           gh-dash
-
           # Nix Fetchers
           nix-prefetch
           nix-prefetch-github
-
-          wget # TEST
-
-          taskwarrior3
-
+          # Get where a package is from
+          nix-tree
           nix-output-monitor # May conflict with the nom RSS feed reader
-          kew # TODO: find a way to wrap it, with the playlist data outside
         ])
         ++
           # Packages wrapped by me
@@ -43,17 +35,9 @@
             aria2 # A better terminal downloader
             btop # Python based system monitor
             bottom # Rust based system monitor
-
             # Git tools
             git
-            gitui # TODO: Do th wrapping and be done with it
-
-            helix # TODO: move to neovim
-
-            xplr # Refine the settings
-
             yt-dlp # youtube downloader
-            zathura # wrapped zathura with plugins and my colors
           ]);
     };
 }

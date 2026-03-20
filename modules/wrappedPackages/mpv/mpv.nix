@@ -27,10 +27,10 @@ in
         osd-back-color='#${base01}'
         osd-border-color='#${base01}'
         osd-color='#${base05}'
-        osd-font=Maple Mono NF
+        osd-font=Iosevka Nerd Font
         osd-shadow-color='#${base00}'
         save-position-on-quit=yes
-        sub-font=Maple Mono NF
+        sub-font=Iosevka Nerd Font
 
         script-opts-append=stats-border_color=251818
         script-opts-append=stats-font_color=f4d6cd

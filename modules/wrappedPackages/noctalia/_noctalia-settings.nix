@@ -150,6 +150,17 @@ in
           useFixedWidth = false;
           visualizerType = "wave";
         }
+        {
+          defaultSettings = {
+            autoStartBreaks = false;
+            autoStartWork = false;
+            longBreakDuration = 15;
+            sessionsBeforeLongBreak = 4;
+            shortBreakDuration = 5;
+            workDuration = 25;
+          };
+          id = "plugin:pomodoro";
+        }
       ];
       right = [
         {
@@ -524,9 +535,9 @@ in
     bluetoothDetailsViewMode = "grid";
     bluetoothHideUnnamedDevices = false;
     boxBorderEnabled = false;
-    fontDefault = "Maple Mono NF";
+    fontDefault = "Iosevka Nerd Font";
     fontDefaultScale = 1;
-    fontFixed = "Maple Mono NF";
+    fontFixed = "Iosevka Nerd Font Mono";
     fontFixedScale = 1;
     networkPanelView = "wifi";
     panelBackgroundOpacity = 1.0;
