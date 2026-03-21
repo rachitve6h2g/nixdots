@@ -1,19 +1,34 @@
 { pkgs, self, ... }:
 let
   inherit (self) theme;
-  wallpaper = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/mix/Powerline.png";
-    hash = "sha256-pXlwsQrcfIXFMoLBAvViaStQY/BozRuLHLgxoAbu0SI=";
-  };
-  wallpaper2 = pkgs.fetchurl {
-    url = "https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruvbox_astro.jpg";
-    hash = "sha256-YTxyI+vaC5CGQzqMm1enfPh9/1YoqNXAX7TmAscz1U0=";
-  };
-  wallpaperDir = pkgs.runCommand "wallpaper-dir" { } ''
-    mkdir -p $out
-    cp ${wallpaper} $out
-    cp ${wallpaper2} $out
-  '';
+
+  # 1. Define your data in a clean list
+  wallpaperList = [
+    {
+      name = "Powerline.png";
+      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/mix/Powerline.png";
+      hash = "sha256-pXlwsQrcfIXFMoLBAvViaStQY/BozRuLHLgxoAbu0SI=";
+    }
+    {
+      name = "gruvbox_astro.jpg";
+      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruvbox_astro.jpg";
+      hash = "sha256-YTxyI+vaC5CGQzqMm1enfPh9/1YoqNXAX7TmAscz1U0=";
+    }
+    {
+      name = "platform.jpg";
+      url = "https://raw.githubusercontent.com/AngelJumbo/gruvbox-wallpapers/main/wallpapers/mix/platform.jpg";
+      hash = "sha256-ZQsr2w8vzwPrWvaU7sAE69d8ouetpwe8nkBKeIGx58U=";
+    }
+  ];
+
+  # 2. Transform that list into the format linkFarm expects
+  # Format: [ { name = "file.png"; path = <drv>; } ... ]
+  entries = map (w: {
+    name = w.name;
+    path = pkgs.fetchurl { inherit (w) url hash; };
+  }) wallpaperList;
+
+  wallpaperDir = pkgs.linkFarm "wallpaper-collection" entries;
 in
 {
   appLauncher = {

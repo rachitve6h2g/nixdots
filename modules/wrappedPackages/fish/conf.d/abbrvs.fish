@@ -2,6 +2,7 @@
 abbr -a npu nix-prefetch-url
 abbr -a npg nix-prefetch-github
 abbr -a nho "nh os switch"
+abbr -a nhc "nh clean all"
 abbr -a nhf "nix hash file"
 abbr -a nhp "nix hash path"
 

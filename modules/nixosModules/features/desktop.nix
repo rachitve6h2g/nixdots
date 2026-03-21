@@ -42,6 +42,7 @@
           selfpkgs.mpv
           selfpkgs.noctalia-shell
           selfpkgs.wezterm
+          selfpkgs.swayidle
 
           pkgs.wl-clipboard
           pkgs.brightnessctl

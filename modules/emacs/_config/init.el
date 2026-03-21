@@ -48,7 +48,10 @@
 (setq inhibit-startup-message t)
 (setq visible-bell t)
 (fringe-mode 0)
-(global-hl-line-mode 1) ;; Cursorcolumn like equivalent in emacs
+
+;; Enable cursorline like thing in vim for these modes
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook #'hl-line-mode))
 
 ;; Use Relative Line Numbers
 (column-number-mode)
